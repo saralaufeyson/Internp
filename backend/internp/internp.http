@@ -1,0 +1,6 @@
+@internp_HostAddress = http://localhost:5180
+
+GET {{internp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
