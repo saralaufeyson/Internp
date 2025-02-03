@@ -24,9 +24,8 @@ export class LearningPathComponent implements OnInit {
       courseName: ['', [Validators.required, Validators.minLength(3)]],
       duration: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],  // Only numbers
       progress: ['', Validators.required],
-      status: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required]
+      status: ['', Validators.required]
+     
     });
   }
 

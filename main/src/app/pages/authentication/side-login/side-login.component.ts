@@ -25,9 +25,9 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class SideLoginComponent {
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
-    remember: new FormControl(false),
+    remember: new FormControl(false), // Add the 'remember' form control
   });
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -41,6 +41,8 @@ export class SideLoginComponent {
       this.authService.login(this.form.value).subscribe(
         (response) => {
           console.log('Login successful', response);
+          // Assuming the response contains user information
+          localStorage.setItem('user', JSON.stringify(response.user));
           this.router.navigate(['/dashboard']);
         },
         (error) => {

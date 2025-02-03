@@ -31,15 +31,17 @@ namespace YourNamespace.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] User user)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var existingUser = await _usersCollection.Find(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefaultAsync();
+            var existingUser = await _usersCollection.Find(u => u.Email == request.Email && u.Password == request.Password).FirstOrDefaultAsync();
             if (existingUser == null)
             {
                 return Unauthorized("Invalid email or password.");
             }
 
-            return Ok(new { Message = "Login successful." });
+            return Ok(new { Message = "Login successful.", UserId = existingUser.Id });
         }
+
+
     }
 }
