@@ -6,12 +6,13 @@ import { AppMonthlyEarningsComponent } from 'src/app/components/monthly-earnings
 import { AppRecentTransactionsComponent } from 'src/app/components/recent-transactions/recent-transactions.component';
 import { AppProductPerformanceComponent } from 'src/app/components/product-performance/product-performance.component';
 import { AppBlogCardsComponent } from 'src/app/components/blog-card/blog-card.component';
-
+import {GoalsComponent} from 'src/app/components/goals/goals.component';
 
 @Component({
   selector: 'app-starter',
   standalone: true,
   imports: [
+    GoalsComponent,
     MaterialModule,
     AppSalesOverviewComponent,
     AppYearlyBreakupComponent,
