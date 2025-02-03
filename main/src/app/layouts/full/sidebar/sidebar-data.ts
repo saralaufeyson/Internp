@@ -10,6 +10,11 @@ export const navItems: NavItem[] = [
     route: '/dashboard',
   },
   {
+    displayName: 'Profile',
+    iconName: 'layout-grid-add',
+    route: '/dashboard',
+  },
+  {
     navCap: 'Ui Components',
   },
   {
