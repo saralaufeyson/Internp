@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp-1\\backend\\internp\\internp.csproj": {}
+    "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\backend\\internp\\internp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp-1\\backend\\internp\\internp.csproj": {
+    "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\backend\\internp\\internp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp-1\\backend\\internp\\internp.csproj",
+        "projectUniqueName": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\backend\\internp\\internp.csproj",
         "projectName": "internp",
-        "projectPath": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp-1\\backend\\internp\\internp.csproj",
+        "projectPath": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\backend\\internp\\internp.csproj",
         "packagesPath": "C:\\Users\\ashaik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp-1\\backend\\internp\\obj\\",
+        "outputPath": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\backend\\internp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ashaik\\AppData\\Roaming\\NuGet\\NuGet.Config"
