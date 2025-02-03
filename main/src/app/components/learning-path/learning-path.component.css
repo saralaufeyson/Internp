@@ -1,0 +1,18 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .text-danger {
+    font-size: 0.875rem;
+    color: red;
+  }
+  
+  button:disabled {
+    background-color: #6c757d;
+  }
+  

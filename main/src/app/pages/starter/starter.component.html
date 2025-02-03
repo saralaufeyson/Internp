@@ -1,25 +1,36 @@
-<div class="row">
-  <div class="col-lg-8">
-    <app-goals></app-goals>
+<div class="container">
+  <!-- First Row: Title -->
+  <div class="row">
+    <div class="col-lg-8">
+      <h1 class="mb-4">Welcome to InternPortal</h1>
+      <h3>Your destination for tracking growth</h3>
+    </div>
   </div>
-  <div class="col-lg-4">
-    <app-yearly-breakup></app-yearly-breakup>
-    <app-monthly-earnings></app-monthly-earnings>
-  </div>
-</div>
-<app-poc-projects></app-poc-projects>
 
-<div class="row">
-  <div class="col-lg-4">
-    
+  <!-- Second Row: Two components side by side -->
+  <div class="row">
+    <div class="col-lg-6">
+      <app-goals></app-goals>
+    </div>
+    <div class="col-lg-6">
+      <app-poc-projects></app-poc-projects>
+    </div>
   </div>
-  <div class="col-lg-8">
-   <app-product-performance></app-product-performance>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-12">
-    <app-blog-card></app-blog-card>
+  <!-- Third Row: Single component at the top and other space below -->
+  <div class="row">
+    <div class="col-lg-4">
+      <app-learning-path></app-learning-path>
+    </div>
+    <div class="col-lg-8">
+      <!-- You can add more content here in the future -->
+    </div>
+  </div>
+
+  <!-- Fourth Row: Full-width section (can be used for additional components or space) -->
+  <div class="row">
+    <div class="col-12">
+      <!-- Additional content can go here -->
+    </div>
   </div>
 </div>
