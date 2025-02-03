@@ -1,0 +1,40 @@
+<div class="goals-container">
+    <h2>Set Your Goals</h2>
+  
+    <!-- Form for entering goals -->
+    <div class="goals-container">
+        <h2>Set Your Goals</h2>
+      
+        <!-- Form for entering goals -->
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="monthGoal">Goals for This Month:</label>
+            <input id="monthGoal" formControlName="monthGoal" type="text" placeholder="Enter your goals for this month" />
+            <div *ngIf="form.get('monthGoal')?.invalid && form.get('monthGoal')?.touched" class="error">
+              Month goal is required.
+            </div>
+          </div>
+      
+          <div class="form-group">
+            <label for="yearGoal">Goals for This Year:</label>
+            <input id="yearGoal" formControlName="yearGoal" type="text" placeholder="Enter your goals for this year" />
+            <div *ngIf="form.get('yearGoal')?.invalid && form.get('yearGoal')?.touched" class="error">
+              Year goal is required.
+            </div>
+          </div>
+      
+          <button type="submit" [disabled]="form.invalid">Save Goals</button>
+    </form>
+  
+    <!-- Display saved goals -->
+    <div *ngIf="monthGoals || yearGoals">
+      <h3>Your Saved Goals:</h3>
+      <div class="goal">
+        <strong>Month's Goal:</strong> {{ monthGoals }}
+      </div>
+      <div class="goal">
+        <strong>Year's Goal:</strong> {{ yearGoals }}
+      </div>
+    </div>
+  </div>
+  
