@@ -31,10 +31,16 @@ export class SideRegisterComponent {
 
   submit() {
     if (this.form.valid) {
+      // Send form data for registration
       this.authService.register(this.form.value).subscribe(
-        (response) => {
-          console.log('Registration successful', response);
-          this.router.navigate(['/']);
+        (response: string) => {
+          // Since the server responds with plain text, handle it accordingly
+          console.log('Registration successful:', response);
+          if (response.includes('User registered successfully')) {
+            this.router.navigate(['/']); // Redirect to home or login page
+          } else {
+            console.error('Unexpected response:', response);
+          }
         },
         (error) => {
           console.error('Registration failed', error);

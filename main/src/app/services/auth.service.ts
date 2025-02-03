@@ -14,7 +14,9 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/login`, user);
   }
 
-  register(user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, user);
+  register(user: any): Observable<string> { // Expecting plain text response
+    return this.http.post(`${this.apiUrl}/register`, user, {
+      responseType: 'text', // This makes the response plain text instead of JSON
+    });
   }
 }
