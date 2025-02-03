@@ -52,19 +52,19 @@ export const navItems: NavItem[] = [
   //   iconName: 'table',
   //   route: '/ui-components/tables',
   // },
-  // {
-  //   navCap: 'Auth',
-  // },
-  // {
-  //   displayName: 'Login',
-  //   iconName: 'login',
-  //   route: '/authentication/login',
-  // },
-  // {
-  //   displayName: 'Register',
-  //   iconName: 'user-plus',
-  //   route: '/authentication/register',
-  // },
+  {
+    navCap: 'Auth',
+  },
+  {
+    displayName: 'Login',
+    iconName: 'login',
+    route: '/authentication/login',
+  },
+  {
+    displayName: 'Register',
+    iconName: 'user-plus',
+    route: '/authentication/register',
+  },
   // {
   //   navCap: 'Extra',
   // },
