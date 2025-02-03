@@ -1,39 +1,53 @@
 <div class="goals-container">
-    <h2>Set Your Goals</h2>
-  
+    <h2 class="goals-title">Set Your Goals</h2>
+    
     <!-- Form for entering goals -->
-    <div class="goals-container">
-        <h2>Set Your Goals</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="goals-form">
       
-        <!-- Form for entering goals -->
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="monthGoal">Goals for This Month:</label>
-            <input id="monthGoal" formControlName="monthGoal" type="text" placeholder="Enter your goals for this month" />
-            <div *ngIf="form.get('monthGoal')?.invalid && form.get('monthGoal')?.touched" class="error">
-              Month goal is required.
-            </div>
-          </div>
-      
-          <div class="form-group">
-            <label for="yearGoal">Goals for This Year:</label>
-            <input id="yearGoal" formControlName="yearGoal" type="text" placeholder="Enter your goals for this year" />
-            <div *ngIf="form.get('yearGoal')?.invalid && form.get('yearGoal')?.touched" class="error">
-              Year goal is required.
-            </div>
-          </div>
-      
-          <button type="submit" [disabled]="form.invalid">Save Goals</button>
-    </form>
+      <!-- Month Goal -->
+      <div class="form-group">
+        <label for="monthGoal" class="form-label">Goals for This Month:</label>
+        <input 
+          id="monthGoal" 
+          formControlName="monthGoal" 
+          type="text" 
+          class="form-input" 
+          placeholder="Enter your goals for this month" 
+        />
+        <div *ngIf="form.get('monthGoal')?.invalid && form.get('monthGoal')?.touched" class="error-message">
+          Month goal is required.
+        </div>
+      </div>
   
+      <!-- Year Goal -->
+      <div class="form-group">
+        <label for="yearGoal" class="form-label">Goals for This Year:</label>
+        <input 
+          id="yearGoal" 
+          formControlName="yearGoal" 
+          type="text" 
+          class="form-input" 
+          placeholder="Enter your goals for this year" 
+        />
+        <div *ngIf="form.get('yearGoal')?.invalid && form.get('yearGoal')?.touched" class="error-message">
+          Year goal is required.
+        </div>
+      </div>
+    
+      <!-- Submit Button -->
+      <div class="form-actions">
+        <button type="submit" class="submit-button" [disabled]="form.invalid">Save Goals</button>
+      </div>
+    </form>
+    
     <!-- Display saved goals -->
-    <div *ngIf="monthGoals || yearGoals">
-      <h3>Your Saved Goals:</h3>
+    <div *ngIf="monthGoals || yearGoals" class="saved-goals">
+      <h3 class="saved-goals-title">Your Saved Goals:</h3>
       <div class="goal">
-        <strong>Month's Goal:</strong> {{ monthGoals }}
+        <strong class="goal-label">Month's Goal:</strong> {{ monthGoals }}
       </div>
       <div class="goal">
-        <strong>Year's Goal:</strong> {{ yearGoals }}
+        <strong class="goal-label">Year's Goal:</strong> {{ yearGoals }}
       </div>
     </div>
   </div>

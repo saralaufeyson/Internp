@@ -7,11 +7,12 @@ import { AppRecentTransactionsComponent } from 'src/app/components/recent-transa
 import { AppProductPerformanceComponent } from 'src/app/components/product-performance/product-performance.component';
 import { AppBlogCardsComponent } from 'src/app/components/blog-card/blog-card.component';
 import {GoalsComponent} from 'src/app/components/goals/goals.component';
-
+import { PocProjectsComponent } from 'src/app/components/poc-projects/poc-projects.component';
 @Component({
   selector: 'app-starter',
   standalone: true,
   imports: [
+    PocProjectsComponent,
     GoalsComponent,
     MaterialModule,
     AppSalesOverviewComponent,

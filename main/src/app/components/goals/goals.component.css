@@ -1,45 +1,103 @@
 .goals-container {
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .goals-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .goals-form {
+    display: flex;
+    flex-direction: column;
   }
   
   .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
   
-  input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
+  .form-label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  
+  .form-input {
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
     border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
   }
   
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+  .form-input:focus {
+    border-color: #3DD9EB;
+    outline: none;
+  }
+  
+  .error-message {
+    font-size: 12px;
+    color: #f44336;
+    margin-top: 5px;
+  }
+  
+  .form-actions {
+    text-align: center;
+  }
+  
+  .submit-button {
+    padding: 12px 20px;
+    background-color: #3DD9EB;
+    color: #fff;
     border: none;
     border-radius: 4px;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s;
   }
   
-  button:disabled {
-    background-color: #ccc;
+  .submit-button:hover {
+    background-color: #31b7d3;
   }
   
-  .error {
-    color: red;
-    font-size: 12px;
+  .submit-button:disabled {
+    background-color: #b2d8e7;
+    cursor: not-allowed;
+  }
+  
+  .saved-goals {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .saved-goals-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
   }
   
   .goal {
-    margin-top: 10px;
     font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .goal-label {
+    font-weight: bold;
+    color: #555;
   }
   
