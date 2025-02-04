@@ -30,8 +30,41 @@ namespace YourNamespace.Controllers
                 return BadRequest("Project data is required.");
             }
 
+            if (string.IsNullOrEmpty(project.UserId))
+            {
+                return BadRequest("UserId is required.");
+            }
+
+            // Log the received project data
+            Console.WriteLine($"Received project data: {project.ProjectName}, {project.Description}, {project.Status}, {project.StartDate}, {project.EndDate}");
+
+            // Set the creation time of the project (if you need it)
+            project.CreatedAt = DateTime.UtcNow;
+
+            // Store the PoC project with the user's ID
             await _pocProjectCollection.InsertOneAsync(project);
-            return Ok("PoC Project added successfully.");
+            Console.WriteLine("PoC Project added to the database.");
+            return Ok(new { message = "PoC Project added successfully." });
+        }
+
+        // Get PoC Projects for a specific user
+        [HttpGet("getPocProjects/{userId}")]
+        public async Task<IActionResult> GetPocProjects(string userId)
+        {
+            Console.WriteLine($"Fetching PoC projects for UserId: {userId}");
+
+            var pocProjects = await _pocProjectCollection
+                .Find(p => p.UserId == userId)
+                .ToListAsync();
+
+            if (pocProjects.Count == 0)
+            {
+                Console.WriteLine("No PoC projects found.");
+                return NotFound(new { message = "No PoC projects found for this user." });
+            }
+
+            Console.WriteLine($"Found {pocProjects.Count} projects for UserId: {userId}");
+            return Ok(pocProjects);
         }
 
         // Add a new Learning Path
@@ -44,7 +77,8 @@ namespace YourNamespace.Controllers
             }
 
             await _learningPathCollection.InsertOneAsync(learningPath);
-            return Ok("Learning Path added successfully.");
+            Console.WriteLine("Learning Path added to the database.");
+            return Ok(new { message = "Learning Path added successfully." });
         }
 
         [HttpPost("addGoal")]
@@ -57,7 +91,8 @@ namespace YourNamespace.Controllers
 
             // Store the goal with the user's ID
             await _goalCollection.InsertOneAsync(goal);
-            return Ok("Goal added successfully.");
+            Console.WriteLine("Goal added to the database.");
+            return Ok(new { message = "Goal added successfully." });
         }
 
         // Get goals for a specific user
@@ -76,7 +111,5 @@ namespace YourNamespace.Controllers
             // Return the found goals with an OK status
             return Ok(goals);
         }
-
-
     }
 }

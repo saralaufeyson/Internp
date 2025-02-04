@@ -4,9 +4,9 @@
     <!-- Form for adding a POC -->
     <form [formGroup]="pocForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="title">POC Title:</label>
-        <input id="title" formControlName="title" type="text" placeholder="Enter POC title" />
-        <div *ngIf="pocForm.get('title')?.invalid && pocForm.get('title')?.touched" class="error">
+        <label for="projectName">POC Title:</label>
+        <input id="projectName" formControlName="projectName" type="text" placeholder="Enter POC title" />
+        <div *ngIf="pocForm.get('projectName')?.invalid && pocForm.get('projectName')?.touched" class="error">
           Title is required.
         </div>
       </div>
@@ -44,10 +44,16 @@
     <div *ngIf="pocs.length > 0">
       <h3>Your Saved POCs:</h3>
       <div *ngFor="let poc of pocs" class="poc">
-        <h4>{{ poc.title }} ({{ poc.status }})</h4>
+        <h4>{{ poc.projectName }} ({{ poc.status }})</h4>
         <p><strong>Description:</strong> {{ poc.description }}</p>
         <p><strong>Start Date:</strong> {{ poc.startDate | date }}</p>
         <p *ngIf="poc.status === 'completed'"><strong>End Date:</strong> {{ poc.endDate | date }}</p>
       </div>
     </div>
+  
+    <!-- If no POCs are found -->
+    <div *ngIf="pocs.length === 0">
+      <p>No PoC Projects found.</p>
+    </div>
   </div>
+  
