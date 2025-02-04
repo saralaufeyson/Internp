@@ -29,6 +29,7 @@ export class PocProjectsComponent {
   onSubmit() {
     if (this.pocForm.valid) {
       const newPoc = this.pocForm.value;
+      console.log('Form Data:', newPoc); // Log form data
       this.http.post('http://localhost:5180/api/userdata/addPocProject', newPoc).subscribe(
         (response) => {
           console.log('PoC Project added successfully', response);

@@ -46,5 +46,37 @@ namespace YourNamespace.Controllers
             await _learningPathCollection.InsertOneAsync(learningPath);
             return Ok("Learning Path added successfully.");
         }
+
+        [HttpPost("addGoal")]
+        public async Task<IActionResult> AddGoal([FromBody] Goal goal)
+        {
+            if (goal == null)
+            {
+                return BadRequest("Goal data is required.");
+            }
+
+            // Store the goal with the user's ID
+            await _goalCollection.InsertOneAsync(goal);
+            return Ok("Goal added successfully.");
+        }
+
+        // Get goals for a specific user
+        [HttpGet("getGoals/{userId}")]
+        public async Task<IActionResult> GetGoals(string userId)
+        {
+            // Retrieve goals for the given userId from the database
+            var goals = await _goalCollection.Find(g => g.UserId == userId).ToListAsync();
+
+            // If no goals are found, return a NotFound response with a generic message
+            if (goals.Count == 0)
+            {
+                return NotFound(new { message = "No goals found for this user." });
+            }
+
+            // Return the found goals with an OK status
+            return Ok(goals);
+        }
+
+
     }
 }

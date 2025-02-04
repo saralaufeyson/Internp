@@ -1,62 +1,86 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-goals',
   standalone: true,
-  imports: [ReactiveFormsModule,
-    CommonModule // <-- Include CommonModule here
-  ],  // <-- Include ReactiveFormsModule here
+  imports: [CommonModule, ReactiveFormsModule], // <-- Import necessary Angular modules
   templateUrl: './goals.component.html',
   styleUrls: ['./goals.component.css'],
 })
 export class GoalsComponent implements OnInit {
   form: FormGroup;
-  monthGoals: string = '';
-  yearGoals: string = '';
+  goals: any[] = []; // Array to store saved goals
+  userId: string = '';  // Get the logged-in user ID here (e.g., from LocalStorage or an AuthService)
 
-  constructor() {
-    // Initialize the form with empty values and basic validation
+  constructor(private http: HttpClient) {
+    // Initialize the form with goalName and goalDescription fields
     this.form = new FormGroup({
-      monthGoal: new FormControl('', [Validators.required]),
-      yearGoal: new FormControl('', [Validators.required])
+      goalName: new FormControl('', [Validators.required]),
+      goalDescription: new FormControl('', [Validators.required]),
     });
   }
 
   ngOnInit(): void {
-    // Retrieve saved goals from localStorage (if any)
-    this.loadGoals();
+    // Get the logged-in user's ID (replace with your actual logic to get the user ID)
+    this.userId = localStorage.getItem('userId') || ''; // Assume the user ID is saved in localStorage
+
+    // Load the user's saved goals from the backend
+    if (this.userId) {
+      this.loadGoals();
+    } else {
+      console.error('User ID is not available');
+    }
   }
 
-  // Load the user's saved goals (if they exist)
+  // Fetch saved goals from the backend
   loadGoals() {
-    const savedMonthGoal = localStorage.getItem('monthGoal');
-    const savedYearGoal = localStorage.getItem('yearGoal');
-    
-    if (savedMonthGoal) {
-      this.monthGoals = savedMonthGoal;
+    // Make sure the userId is set before making the request
+    if (!this.userId) {
+      console.error('User ID not found. Cannot load goals.');
+      return;
     }
 
-    if (savedYearGoal) {
-      this.yearGoals = savedYearGoal;
-    }
+    this.http.get(`http://localhost:5180/api/userdata/getGoals/${this.userId}`)
+      .subscribe(
+        (response: any) => {
+          console.log('Fetched goals:', response);
+          // Update the component's goals state with the fetched data
+          this.goals = response || []; // If no goals, set an empty array
+        },
+        (error) => {
+          console.error('Failed to fetch goals:', error);
+        }
+      );
   }
 
-  // Submit the form and save the goals to localStorage
+  // Submit the goal form
   onSubmit() {
     if (this.form.valid) {
-      const { monthGoal, yearGoal } = this.form.value;
+      const { goalName, goalDescription } = this.form.value;
 
-      // Save the goals to localStorage (you can replace this with an API call)
-      localStorage.setItem('monthGoal', monthGoal);
-      localStorage.setItem('yearGoal', yearGoal);
+      const goalData = {
+        goalName: goalName,
+        description: goalDescription,
+        userId: this.userId,
+        createdAt: new Date(),
+      };
 
-      // Set the values to display in the component
-      this.monthGoals = monthGoal;
-      this.yearGoals = yearGoal;
-
-      // Optionally reset the form after submission
-      this.form.reset();
+      // Make API call to store the new goal
+      this.http.post('http://localhost:5180/api/userdata/addGoal', goalData)
+        .subscribe(
+          (response) => {
+            console.log('Goal saved successfully', response);
+            // Optionally add the newly created goal to the component's goals list
+            this.goals.push(goalData);
+            this.form.reset();  // Reset the form after submission
+          },
+          (error) => {
+            console.error('Error saving goal:', error);
+          }
+        );
     }
   }
 }

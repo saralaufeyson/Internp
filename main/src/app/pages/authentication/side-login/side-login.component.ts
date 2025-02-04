@@ -41,8 +41,17 @@ export class SideLoginComponent {
       this.authService.login(this.form.value).subscribe(
         (response) => {
           console.log('Login successful', response);
-          // Assuming the response contains user information
-          localStorage.setItem('user', JSON.stringify(response.user));
+
+          // Store userId in localStorage (You should replace `response.userId` with the correct property name in the response)
+          if (response && response.userId) {
+            localStorage.setItem('userId', response.userId);
+            console.log('User ID saved to localStorage:', response.userId);
+          }
+
+          // You can optionally store the entire user object, but storing the `userId` should suffice for most cases
+          // localStorage.setItem('user', JSON.stringify(response.user)); // If you need to store the whole user object
+
+          // After login, navigate to the dashboard or any other protected page
           this.router.navigate(['/dashboard']);
         },
         (error) => {
