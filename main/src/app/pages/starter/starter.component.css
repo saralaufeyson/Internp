@@ -1,0 +1,35 @@
+/* General Container Styling */
+.container {
+    margin-top: 20px;
+  }
+  
+  /* Section Card for Components */
+  .section-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  /* Section Titles */
+  .section-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1e293b;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 5px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .section-card {
+      padding: 15px;
+    }
+    
+    .section-title {
+      font-size: 20px;
+    }
+  }
+  

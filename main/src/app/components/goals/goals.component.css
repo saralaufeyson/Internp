@@ -1,103 +1,124 @@
+/* Goals Container */
 .goals-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .goals-title {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .goals-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-label {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 8px;
-  }
-  
-  .form-input {
-    padding: 12px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .form-input:focus {
-    border-color: #3DD9EB;
-    outline: none;
-  }
-  
-  .error-message {
-    font-size: 12px;
-    color: #f44336;
-    margin-top: 5px;
-  }
-  
-  .form-actions {
-    text-align: center;
-  }
-  
-  .submit-button {
-    padding: 12px 20px;
-    background-color: #3DD9EB;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .submit-button:hover {
-    background-color: #31b7d3;
-  }
-  
-  .submit-button:disabled {
-    background-color: #b2d8e7;
-    cursor: not-allowed;
-  }
-  
-  .saved-goals {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .saved-goals-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
-    text-align: center;
-  }
-  
-  .goal {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .goal-label {
-    font-weight: bold;
-    color: #555;
-  }
-  
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.goals-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+
+/* Form Styling */
+.goals-form {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #334155;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+/* Error Message */
+.error-message {
+  color: #ff4c4c;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Submit Button */
+.form-actions {
+  margin-top: 10px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.submit-button:hover {
+  background: #2563eb;
+}
+
+.submit-button:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+
+/* Saved Goals */
+.saved-goals {
+  margin-top: 20px;
+}
+
+.saved-goals-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+.goal {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.goal-label {
+  font-weight: bold;
+  color: #3b82f6;
+}
+
+.goal-description,
+.goal-created {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #475569;
+}
+
+/* No Goals Message */
+.no-goals-message {
+  margin-top: 15px;
+  font-style: italic;
+  color: #64748b;
+  font-size: 14px;
+}

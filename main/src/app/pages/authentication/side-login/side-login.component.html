@@ -30,22 +30,20 @@
 
           <div class="or-border m-t-30">or sign in with</div>
 
-          <form (ngSubmit)="submit()" [formGroup]="form" class="m-t-30">
-            <label for="email" class="f-s-14 f-w-600 m-b-12 d-block">Username</label>
-            <input type="email" id="email" class="form-control" formControlName="email" required />
-
-            <label for="password" class="f-s-14 f-w-600 m-b-12 d-block">Password</label>
-            <input type="password" id="password" class="form-control" formControlName="password" required />
-
-            <div class="d-flex align-items-center m-b-12">
-              <input type="checkbox" id="rememberDevice" formControlName="remember" />
-              <label for="rememberDevice" class="m-l-2">Remember this Device</label>
-              <a [routerLink]="['/']" class="text-primary f-w-600 text-decoration-none m-l-auto f-s-14">Forgot Password?</a>
+          <form [formGroup]="form" (ngSubmit)="submit()" class="m-t-30">
+            <div>
+              <label for="email">Email</label>
+              <input id="email" formControlName="email" type="email" />
             </div>
-
-            <button type="submit" class="w-100 btn btn-primary">
-              Sign In
-            </button>
+            <div>
+              <label for="password">Password</label>
+              <input id="password" formControlName="password" type="password" />
+            </div>
+            <div>
+              <label for="remember">Remember Me</label>
+              <input id="remember" formControlName="remember" type="checkbox" />
+            </div>
+            <button type="submit">Login</button>
           </form>
 
           <span class="d-block f-w-500 text-center m-t-24">New to Modernize?

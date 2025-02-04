@@ -4,51 +4,54 @@
     <!-- Form for entering goals -->
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="goals-form">
       
-      <!-- Month Goal -->
+      <!-- Goal Name -->
       <div class="form-group">
-        <label for="monthGoal" class="form-label">Goals for This Month:</label>
+        <label for="goalName" class="form-label">Goal Name:</label>
         <input 
-          id="monthGoal" 
-          formControlName="monthGoal" 
+          id="goalName" 
+          formControlName="goalName" 
           type="text" 
           class="form-input" 
-          placeholder="Enter your goals for this month" 
+          placeholder="Enter your goal name" 
         />
-        <div *ngIf="form.get('monthGoal')?.invalid && form.get('monthGoal')?.touched" class="error-message">
-          Month goal is required.
+        <div *ngIf="form.get('goalName')?.invalid && form.get('goalName')?.touched" class="error-message">
+          Goal name is required.
         </div>
       </div>
   
-      <!-- Year Goal -->
+      <!-- Goal Description -->
       <div class="form-group">
-        <label for="yearGoal" class="form-label">Goals for This Year:</label>
+        <label for="goalDescription" class="form-label">Goal Description:</label>
         <input 
-          id="yearGoal" 
-          formControlName="yearGoal" 
+          id="goalDescription" 
+          formControlName="goalDescription" 
           type="text" 
           class="form-input" 
-          placeholder="Enter your goals for this year" 
+          placeholder="Enter your goal description" 
         />
-        <div *ngIf="form.get('yearGoal')?.invalid && form.get('yearGoal')?.touched" class="error-message">
-          Year goal is required.
+        <div *ngIf="form.get('goalDescription')?.invalid && form.get('goalDescription')?.touched" class="error-message">
+          Goal description is required.
         </div>
       </div>
     
       <!-- Submit Button -->
       <div class="form-actions">
-        <button type="submit" class="submit-button" [disabled]="form.invalid">Save Goals</button>
+        <button type="submit" class="submit-button" [disabled]="form.invalid">Save Goal</button>
       </div>
     </form>
     
     <!-- Display saved goals -->
-    <div *ngIf="monthGoals || yearGoals" class="saved-goals">
+    <div *ngIf="goals.length > 0" class="saved-goals">
       <h3 class="saved-goals-title">Your Saved Goals:</h3>
-      <div class="goal">
-        <strong class="goal-label">Month's Goal:</strong> {{ monthGoals }}
+      <div *ngFor="let goal of goals" class="goal">
+        <strong class="goal-label">Goal Name:</strong> {{ goal.goalName }}
+        <div class="goal-description"><strong>Description:</strong> {{ goal.description }}</div>
+        <div class="goal-created"><strong>Created At:</strong> {{ goal.createdAt | date: 'short' }}</div>
       </div>
-      <div class="goal">
-        <strong class="goal-label">Year's Goal:</strong> {{ yearGoals }}
-      </div>
+    </div>
+    <!-- Show message when no goals are available -->
+    <div *ngIf="goals.length === 0" class="no-goals-message">
+      You have not set any goals yet. Start by adding a goal above!
     </div>
   </div>
   

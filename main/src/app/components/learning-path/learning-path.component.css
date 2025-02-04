@@ -1,5 +1,5 @@
 /* Container Styling */
-.poc-projects {
+.container {
   background: #f9fafb;
   padding: 20px;
   border-radius: 8px;
@@ -10,11 +10,11 @@
 }
 
 /* Heading */
-h2, h3 {
+h2 {
   font-size: 24px;
   font-weight: bold;
   color: #1e293b;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 /* Form Styling */
@@ -30,8 +30,8 @@ label {
   margin-bottom: 5px;
 }
 
-/* Input Fields & Select */
-input, textarea, select {
+/* Input Fields */
+.form-control {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
@@ -40,25 +40,20 @@ input, textarea, select {
   transition: border 0.3s ease;
 }
 
-textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-input:focus, textarea:focus, select:focus {
+.form-control:focus {
   border-color: #3b82f6;
   outline: none;
 }
 
 /* Error Messages */
-.error {
+.text-danger {
   color: #ff4c4c;
   font-size: 12px;
   margin-top: 5px;
 }
 
 /* Submit Button */
-button {
+.btn-primary {
   width: 100%;
   padding: 10px;
   background: #3b82f6;
@@ -70,34 +65,11 @@ button {
   transition: 0.3s;
 }
 
-button:hover {
+.btn-primary:hover {
   background: #2563eb;
 }
 
-button:disabled {
+.btn-primary:disabled {
   background: gray;
   cursor: not-allowed;
-}
-
-/* Display Saved POCs */
-.poc {
-  background: white;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 10px;
-  text-align: left;
-}
-
-.poc h4 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #1e293b;
-  margin-bottom: 5px;
-}
-
-.poc p {
-  font-size: 14px;
-  color: #475569;
-  margin: 3px 0;
 }

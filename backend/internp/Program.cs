@@ -1,12 +1,15 @@
+using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using YourNamespace.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Get MongoDB Connection String from Configuration
 var mongoConnectionString = builder.Configuration.GetConnectionString("MongoDb");
 var mongoClient = new MongoClient(mongoConnectionString);
 builder.Services.AddSingleton<IMongoClient>(mongoClient);
 
+// Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
@@ -23,5 +26,6 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseCors("AllowAngularApp");
-app.MapControllers();
+app.MapControllers(); // Make sure this line maps controllers
+
 app.Run();
