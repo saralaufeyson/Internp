@@ -69,7 +69,7 @@ export class GoalsComponent implements OnInit {
       };
 
       // Make API call to store the new goal
-      this.http.post('http://localhost:5180/api/userdata/addGoal', goalData)
+      this.http.post(`http://localhost:5180/api/userdata/addGoal`, goalData)
         .subscribe(
           (response) => {
             console.log('Goal saved successfully', response);

@@ -68,4 +68,27 @@
     text-decoration: line-through;
     color: #888;
   }
+  .poc-projects {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  .poc {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .error {
+    color: red;
+  }
   
