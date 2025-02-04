@@ -15,6 +15,7 @@ import { MaterialModule } from '../../../material.module';
   standalone: true,
   imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
   templateUrl: './side-register.component.html',
+  styleUrls: ['./side-register.component.css'],
 })
 export class SideRegisterComponent {
   form = new FormGroup({

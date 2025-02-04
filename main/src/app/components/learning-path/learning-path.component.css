@@ -70,6 +70,6 @@ label {
 }
 
 .btn-primary:disabled {
-  background: gray;
+  background: rgb(150, 223, 225);
   cursor: not-allowed;
 }
