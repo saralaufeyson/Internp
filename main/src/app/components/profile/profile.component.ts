@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { GoalsComponent } from '../goals/goals.component';
 import { PocProjectsComponent } from '../poc-projects/poc-projects.component';
 import { LearningPathComponent } from '../learning-path/learning-path.component';
-
+import { FormsModule } from '@angular/forms';
+import { SelectLearningComponent } from '../selectlearning/selectlearning.component';
 @Component({
   selector: 'app-profile',
   standalone: true, // Ensure standalone if you're using standalone components
-  imports: [CommonModule, GoalsComponent, PocProjectsComponent, LearningPathComponent],
+  imports: [CommonModule, GoalsComponent, PocProjectsComponent, LearningPathComponent, FormsModule, SelectLearningComponent], // Import necessary Angular modules
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
