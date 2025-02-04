@@ -22,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
   ],
   templateUrl: './side-login.component.html',
+  styleUrls: ['./side-login.component.css'],
 })
 export class SideLoginComponent {
   form = new FormGroup({

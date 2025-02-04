@@ -1,0 +1,40 @@
+.learning-path-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  button {
+    width: 100%;
+  }
+  
+  .course-details {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-check {
+    margin-bottom: 10px;
+  }
+  
+  .progress {
+    height: 20px;
+  }
+  
+  .progress-bar {
+    background-color: #3b82f6;
+  }
+  

@@ -11,8 +11,9 @@ export const navItems: NavItem[] = [
   },
   {
     displayName: 'Profile',
-    iconName: 'layout-grid-add',
-    route: '/profile',
+    iconName: 'info-circle',
+
+    route: '/dashboard/profile',
   },
   // {
   //   navCap: 'Ui Components',

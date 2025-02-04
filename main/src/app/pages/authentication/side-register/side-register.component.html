@@ -9,8 +9,7 @@
             </a>
           </div>
 
-          <div class="or-border m-t-30">or sign up with</div>
-
+          <h2 class="f-w-600 text-center m-b-10">Create New Account</h2>
           <form (ngSubmit)="submit()" [formGroup]="form" class="m-t-30">
             <label for="username" class="f-s-14 f-w-600 m-b-12 d-block">Name</label>
             <input type="text" id="username" class="form-control" formControlName="username" required />
@@ -21,9 +20,12 @@
             <label for="password" class="f-s-14 f-w-600 m-b-12 d-block">Password</label>
             <input type="password" id="password" class="form-control" formControlName="password" required />
 
-            <button type="submit" class="w-100 btn btn-primary">
-              Sign Up
-            </button>
+            <div class="button-container" style="padding: 20px 0;">
+              <button type="submit" class="w-100 f-s-14 d-block btn btn-primary">
+                Create Account and Login
+              </button>
+            </div>
+            
           </form>
 
           <span class="d-block f-w-500 text-center m-t-24">Already have an Account?
