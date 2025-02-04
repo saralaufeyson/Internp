@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common'; // Import CommonModule here
 import {LearningPathComponent} from 'src/app/components/learning-path/learning-path.component';
 import {GoalsComponent} from 'src/app/components/goals/goals.component';
 import { PocProjectsComponent } from 'src/app/components/poc-projects/poc-projects.component';
+import { ProfileComponent } from 'src/app/components/profile/profile.component';
 @Component({
   selector: 'app-starter',
   standalone: true,
@@ -15,6 +16,7 @@ import { PocProjectsComponent } from 'src/app/components/poc-projects/poc-projec
     // Import TablerIconsModule here
     LearningPathComponent,
     MaterialModule,
+    ProfileComponent,
     CommonModule
     
     
