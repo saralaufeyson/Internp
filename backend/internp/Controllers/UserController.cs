@@ -12,6 +12,8 @@ namespace YourNamespace.Controllers
         private readonly IMongoCollection<Goal> _goalCollection;
         private readonly IMongoCollection<PocProject> _pocProjectCollection;
         private readonly IMongoCollection<LearningPath> _learningPathCollection;
+        private readonly IMongoCollection<User> _userCollection;
+        
 
         public UserDataController(IMongoClient mongoClient)
         {
@@ -19,6 +21,7 @@ namespace YourNamespace.Controllers
             _goalCollection = database.GetCollection<Goal>("Goals");
             _pocProjectCollection = database.GetCollection<PocProject>("PocProjects");
             _learningPathCollection = database.GetCollection<LearningPath>("LearningPaths");
+            _userCollection = database.GetCollection<User>("Users");
         }
 
         // Add a new PoC Project
@@ -111,5 +114,23 @@ namespace YourNamespace.Controllers
             // Return the found goals with an OK status
             return Ok(goals);
         }
+        [HttpGet("getUserProfile/{userId}")]
+public async Task<IActionResult> GetUserProfile(string userId)
+{
+    // Fetch user profile from the database (assuming you have a User collection)
+    var user = await _userCollection.Find(u => u.Id == userId).FirstOrDefaultAsync();
+
+    if (user == null)
+    {
+        return NotFound(new { message = "User not found." });
+    }
+
+    return Ok(new
+    {
+        name = user.Username,
+        email = user.Email,
+    
+    });
+}
     }
 }

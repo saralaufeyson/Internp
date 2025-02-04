@@ -6,64 +6,47 @@
         <input type="file" id="imageUpload" (change)="onImageUpload($event)" accept="image/*">
       </div>
       <div class="profile-info">
-        <h2>{{ userProfile.name }}</h2>
+        <h2>Name : {{ userProfile.name }}</h2>
         <p class="email"><strong>Email:</strong> {{ userProfile.email }}</p>
       </div>
     </div>
-    <div class="col-lg-6">
-        <div class="section-card">
-          <h2 class="section-title">Other Info</h2>
-          <p><strong>Current Status:</strong> {{ userProfile.status }}</p>
-          <p><strong>Joined On:</strong> {{ userProfile.joinedDate | date }}</p>
-        </div>
-      </div>
-      <!--learning path-->
-      <div class="col-lg-6">
-        <div class="section-card">
-          <h2 class="section-title">Learning path</h2>
-          <p><strong>Current Status:</strong> inProgress</p>
-          <p><strong>Name:</strong> Angular </p>
-        </div>
-      </div>
-      <!--goals path-->
-      <div class="col-lg-6">
-        <div class="section-card">
-          <h2 class="section-title">Set goals</h2>
-          <p><strong>Current Status:</strong> inProgress</p>
-          <p><strong>Name:</strong> Angular </p>
-        </div>
-      </div>
-      <app-slearning></app-slearning>
-    <!-- Profile Details Sections -->
-    <!-- <div class="row">
-      
-      <div class="col-lg-6">
-        <div class="section-card">
-          <h2 class="section-title">Goals</h2>
-          <app-goals></app-goals>
-        </div>
-      </div>
-      
-      
-      <div class="col-lg-6">
-        <div class="section-card">
-          <h2 class="section-title">POCs & Projects</h2>
-          <app-poc-projects></app-poc-projects>
+  
+    <!-- Learning Path Section -->
+    <div class="section-container">
+      <div class="section-card">
+        <h2 class="section-title">Learning Path</h2>
+        <div class="grid-container">
+          <div *ngFor="let path of learningPaths" class="grid-item">
+            <p><strong>Name:</strong> {{ path.name }}</p>
+            <p><strong>Status:</strong> {{ path.status }}</p>
+          </div>
         </div>
       </div>
     </div>
   
-    <div class="row">
-      
-      <div class="col-lg-6">
-        <div class="section-card">
-          <h2 class="section-title">Learning Path</h2>
-          <app-learning-path></app-learning-path>
+    <!-- Goals Section -->
+    <div class="section-container">
+      <div class="section-card">
+        <h2 class="section-title">Goals</h2>
+        <div class="grid-container">
+          <div *ngFor="let goal of goals" class="grid-item">
+            <p><strong>Name:</strong> {{ goal.goalName }}</p>
+            <p><strong>Description:</strong> {{ goal.description }}</p>
+          </div>
         </div>
       </div>
-      
-      
-      
-    </div> -->
-  </div>
+    </div>
   
+    <!-- POCs & Projects Section -->
+    <div class="section-container">
+      <div class="section-card">
+        <h2 class="section-title">POCs & Projects</h2>
+        <div class="grid-container">
+          <div *ngFor="let project of pocProjects" class="grid-item">
+            <p><strong>Name:</strong> {{ project.projectName }}</p>
+            <p><strong>Status:</strong> {{ project.status }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
