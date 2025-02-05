@@ -1,33 +1,29 @@
-import { Component } from '@angular/core';
+// src/app/components/learning-path/learning-path.component.ts
+import { Component, OnInit } from '@angular/core';
+import { LearningPathService} from '../../services/learning-path.service';
+import { LearningPath } from '../../services/learning-path.model';
 import { CommonModule } from '@angular/common';
 @Component({
   standalone: true,
-  imports: [CommonModule],
   selector: 'app-learning-path',
+  imports: [CommonModule], // Import CommonModule
   templateUrl: './learning-path.component.html',
   styleUrls: ['./learning-path.component.css']
 })
-export class LearningPathComponent {
-  // Define an array of learning paths
-  learningPaths = [
-    {
-      title: 'Microsoft Azure Fundamentals',
-      description: 'Learn the basics of Microsoft Azure services and solutions.',
-      imageUrl: 'path_to_image_1.jpg',
-      link: '/learning-path/azure-fundamentals'
-    },
-    {
-      title: 'Data Science with Python',
-      description: 'Learn Python and dive into data analysis, visualization, and machine learning.',
-      imageUrl: 'path_to_image_2.jpg',
-      link: '/learning-path/data-science-python'
-    },
-    {
-      title: 'Web Development with Angular',
-      description: 'Learn how to build modern web applications with Angular.',
-      imageUrl: 'path_to_image_3.jpg',
-      link: '/learning-path/angular-web-development'
-    },
-    // Add more learning paths here...
-  ];
+export class LearningPathComponent implements OnInit {
+  learningPaths: LearningPath[] = [];
+
+  constructor(private learningPathService: LearningPathService) { }
+
+  ngOnInit(): void {
+    // Fetch the learning paths from the backend when the component loads
+    this.learningPathService.getLearningPaths().subscribe(
+      (data) => {
+        this.learningPaths = data;  // Populate the learningPaths array
+      },
+      (error) => {
+        console.error('Error fetching learning paths:', error);
+      }
+    );
+  }
 }

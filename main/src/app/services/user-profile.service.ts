@@ -19,7 +19,7 @@ interface UserProfile {
   providedIn: 'root',
 })
 export class UserProfileService {
-  private apiUrl = 'http://localhost:5180/api/userprofile'; // Update if needed
+  private apiUrl = 'http://localhost:5180/api/userdata/userprofile'; // Update if needed
 
   constructor(private http: HttpClient) {}
 

@@ -2,7 +2,7 @@
   <!-- ============================================================== -->
   <!-- Vertical Sidebar -->
   <!-- ============================================================== -->
-  
+
   <mat-sidenav #leftsidenav [mode]="isOver ? 'over' : 'side'" [opened]="!isOver"
     (openedChange)="onSidenavOpenedChange($event)" (closedStart)="onSidenavClosedStart()" class="sidebarNav">
     <div class="flex-layout">
@@ -18,10 +18,10 @@
       <div class="p-24">
         <div class="bg-light-primary d-flex align-items-center gap-4 rounded p-20 m-t-20">
           <div>
-            
-            
+
+
           </div>
-        <!-- <img src="/assets/images/backgrounds/rocket.png" alt="imgae" class="side-img m-t--48" /> -->
+          <!-- <img src="/assets/images/backgrounds/rocket.png" alt="imgae" class="side-img m-t--48" /> -->
         </div>
       </div>
     </div>
@@ -42,11 +42,11 @@
 
 
     <main class="pageWrapper maxWidth">
-        <!-- ============================================================== -->
-        <!-- Outlet -->
-        <!-- ============================================================== -->
-        <router-outlet></router-outlet>
-      </main>
+      <!-- ============================================================== -->
+      <!-- Outlet -->
+      <!-- ============================================================== -->
+      <router-outlet></router-outlet>
+    </main>
   </mat-sidenav-content>
 
 </mat-sidenav-container>

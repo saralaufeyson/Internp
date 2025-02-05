@@ -9,7 +9,7 @@ import { UserProfileService } from '../../services/user-profile.service';
 })
 export class UserProfileComponent implements OnInit {
   userProfile: any = {};
-  userId = '123456'; // Replace with the actual user ID
+  userId = localStorage.getItem('userId') || ''; // Replace with the actual user ID
 
   constructor(private userProfileService: UserProfileService) {}
 

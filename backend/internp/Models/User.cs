@@ -17,6 +17,8 @@ namespace YourNamespace.Models
 
         [BsonElement("password")]
         public required string Password { get; set; }
+
+        [BsonElement("role")]
+        public required string Role { get; set; }
     }
-    
 }
