@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using YourNamespace.Models;
+using MongoDB.Bson;
 
 using System.Threading.Tasks;
 
@@ -14,12 +15,15 @@ namespace YourNamespace.Controllers
         private readonly IMongoCollection<PocProject> _pocProjectCollection;
         private readonly IMongoCollection<LearningPath> _learningPathCollection;
 
+        private readonly IMongoCollection<User> _userCollection;
+
         public UserDataController(IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase("database0");
             _goalCollection = database.GetCollection<Goal>("Goals");
             _pocProjectCollection = database.GetCollection<PocProject>("PocProjects");
             _learningPathCollection = database.GetCollection<LearningPath>("LearningPaths");
+            _userCollection = database.GetCollection<User>("Users");
         }
 
         // Add a new PoC Project
@@ -116,5 +120,30 @@ namespace YourNamespace.Controllers
             // Return the found goals with an OK status
             return Ok(goals);
         }
+        [HttpGet("getUserProfile/{userId}")]
+public async Task<IActionResult> GetUserProfile(string userId)
+{
+    // Convert the userId string to MongoDB ObjectId
+    if (!ObjectId.TryParse(userId, out var objectId))
+    {
+        return BadRequest(new { message = "Invalid user ID format." });
+    }
+
+    // Fetch user profile from the database
+    var user = await _userCollection.Find(u => u.Id == objectId.ToString()).FirstOrDefaultAsync();
+
+    if (user == null)
+    {
+        return NotFound(new { message = "User not found." });
+    }
+
+    // Return the user's username and email
+    return Ok(new
+    {
+        name = user.Username,
+        email = user.Email
+    });
+}
+
     }
 }
