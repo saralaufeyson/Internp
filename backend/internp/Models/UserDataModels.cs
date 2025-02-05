@@ -39,17 +39,23 @@ namespace YourNamespace.Models
 
     public class LearningPath
     {
-        [BsonId]
-        public ObjectId Id { get; set; }
+        
+   
+        [BsonId] // Marks the ID field
+        [BsonRepresentation(BsonType.ObjectId)] // Tells MongoDB to use ObjectId as the Id
+        public required string Id { get; set; }
 
-        public required string UserId { get; set; } // Reference to the user
+        [BsonElement("title")]  // Maps the field to "title" in MongoDB
+        public required string Title { get; set; }
 
-        public required string CourseName { get; set; }
+        [BsonElement("description")]  // Maps the field to "description" in MongoDB
+        public required string Description { get; set; }
 
-        public required string Duration { get; set; }
+        [BsonElement("link")]  // Maps the field to "link" in MongoDB
+        public required string Link { get; set; }
 
-        public required string ProgressStatus { get; set; }
+        
+    
 
-        public DateTime CreatedAt { get; set; }
     }
 }

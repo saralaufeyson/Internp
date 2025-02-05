@@ -71,18 +71,22 @@ namespace YourNamespace.Controllers
         }
 
         // Add a new Learning Path
-        [HttpPost("addLearningPath")]
-        public async Task<IActionResult> AddLearningPath([FromBody] LearningPath learningPath)
+        // Inside UserDataController.cs
+
+        [HttpGet("getLearningPaths")]
+        public async Task<IActionResult> GetLearningPaths()
         {
-            if (learningPath == null)
+            var learningPaths = await _learningPathCollection.Find(lp => true).ToListAsync();
+
+            // If no learning paths are found, return a NotFound status
+            if (learningPaths.Count == 0)
             {
-                return BadRequest("Learning Path data is required.");
+                return NotFound(new { message = "No learning paths found." });
             }
 
-            await _learningPathCollection.InsertOneAsync(learningPath);
-            Console.WriteLine("Learning Path added to the database.");
-            return Ok(new { message = "Learning Path added successfully." });
+            return Ok(learningPaths);  // Return the learning paths as JSON
         }
+
 
         [HttpPost("addGoal")]
         [Authorize(Policy = "InternPolicy, MentorPolicy, AdminPolicy")]

@@ -1,15 +1,15 @@
+<!-- src/app/components/learning-path/learning-path.component.html -->
 <div class="learning-paths-container">
-    <div class="card" *ngFor="let path of learningPaths">
-      <div class="learning-path-card">
-        <div class="card-header">
-          <h3>{{ path.title }}</h3>
-          <p>{{ path.description }}</p>
-        </div>
-        <img class="card-image" [src]="path.imageUrl" alt="Learning Path Image" />
-        <div class="card-actions">
-          <a href="{{ path.link }}" class="start-learning-btn">Start Learning</a>
-        </div>
+  <div class="card" *ngFor="let path of learningPaths">
+    <div class="learning-path-card">
+      <div class="card-header">
+        <h3>{{ path.title }}</h3>
+        <p>{{ path.description }}</p>
+      </div>
+      
+      <div class="card-actions">
+        <a href="{{ path.link }}" class="start-learning-btn">Start Learning</a>
       </div>
     </div>
   </div>
-  
+</div>
