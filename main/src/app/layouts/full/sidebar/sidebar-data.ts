@@ -21,17 +21,17 @@ export const navItems: NavItem[] = [
   {
     displayName: 'My learning Path',
     iconName: 'archive',
-    route: '/learningPath',
+    route: 'dashboard/learningPath',
   },
   {
     displayName: 'My Goals',
     iconName: 'list-details',
-    route: '/goals',
+    route: 'dashboard/goals',
   },
   {
     displayName: 'My PoC Projects',
     iconName: 'file-text-ai',
-    route: '/pocProjects',
+    route: 'dashboard/pocProjects',
   },
   // {
   //   displayName: 'Lists',
