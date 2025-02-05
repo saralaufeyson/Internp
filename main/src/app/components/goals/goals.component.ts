@@ -25,35 +25,35 @@ export class GoalsComponent implements OnInit {
 
   ngOnInit(): void {
     // Get the logged-in user's ID (replace with your actual logic to get the user ID)
-    this.userId = localStorage.getItem('userId') || ''; // Assume the user ID is saved in localStorage
+  //   this.userId = localStorage.getItem('userId') || ''; // Assume the user ID is saved in localStorage
 
-    // Load the user's saved goals from the backend
-    if (this.userId) {
-      this.loadGoals();
-    } else {
-      console.error('User ID is not available');
-    }
-  }
+  //   // Load the user's saved goals from the backend
+  //   if (this.userId) {
+  //     this.loadGoals();
+  //   } else {
+  //     console.error('User ID is not available');
+  //   }
+  // }
 
-  // Fetch saved goals from the backend
-  loadGoals() {
-    // Make sure the userId is set before making the request
-    if (!this.userId) {
-      console.error('User ID not found. Cannot load goals.');
-      return;
-    }
+  // // Fetch saved goals from the backend
+  // loadGoals() {
+  //   // Make sure the userId is set before making the request
+  //   if (!this.userId) {
+  //     console.error('User ID not found. Cannot load goals.');
+  //     return;
+  //   }
 
-    this.http.get(`http://localhost:5180/api/userdata/getGoals/${this.userId}`)
-      .subscribe(
-        (response: any) => {
-          console.log('Fetched goals:', response);
-          // Update the component's goals state with the fetched data
-          this.goals = response || []; // If no goals, set an empty array
-        },
-        (error) => {
-          console.error('Failed to fetch goals:', error);
-        }
-      );
+  //   this.http.get(`http://localhost:5180/api/userdata/getGoals/${this.userId}`)
+  //     .subscribe(
+  //       (response: any) => {
+  //         console.log('Fetched goals:', response);
+  //         // Update the component's goals state with the fetched data
+  //         this.goals = response || []; // If no goals, set an empty array
+  //       },
+  //       (error) => {
+  //         console.error('Failed to fetch goals:', error);
+  //       }
+  //     );
   }
 
   // Submit the goal form

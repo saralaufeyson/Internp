@@ -1,49 +1,49 @@
 <div class="learning-path-container">
-    <h2>Select Learning Path</h2>
-  
-    <!-- Dropdown to select learning path -->
-    <div class="form-group">
-      <label for="learning-path">Choose a course:</label>
-      <select [(ngModel)]="selectedCourse" id="learning-path" class="form-control">
-        <option value="" disabled>Select a course</option>
-        <option *ngFor="let course of courses" [value]="course">{{ course }}</option>
-      </select>
-    </div>
-  
-    <!-- Submit button to fetch course details -->
-    <button (click)="fetchCourseDetails()" class="btn btn-primary mt-3" [disabled]="!selectedCourse">
-      Submit
-    </button>
-  
-    <!-- Course details with checkboxes after submission -->
-    <div *ngIf="courseDetails.length > 0" class="course-details mt-4">
-      <h3>{{ selectedCourse }} - Topics</h3>
-      <div *ngFor="let topic of courseDetails">
-        <div class="form-check">
-          <input
-            type="checkbox"
-            id="{{ topic.name }}"
-            [(ngModel)]="topic.isChecked"
-            (change)="updateProgress()"
-            class="form-check-input"
-          />
-          <label for="{{ topic.name }}" class="form-check-label">{{ topic.name }}</label>
-        </div>
+  <h2>Select Learning Path</h2>
+
+  <!-- Dropdown to select learning path -->
+  <div class="form-group">
+    <label for="learning-path">Choose a course:</label>
+    <select [(ngModel)]="selectedCourse" id="learning-path" class="form-control">
+      <option value="" disabled>Select a course</option>
+      <option *ngFor="let course of courses" [value]="course">{{ course }}</option>
+    </select>
+  </div>
+
+  <!-- Submit button to fetch course details -->
+
+  <button (click)="fetchCourseDetails()" class="btn btn-primary mt-3" [disabled]="!selectedCourse">
+    Submit
+  </button>
+
+  <!-- Course details with checkboxes after submission -->
+  <div *ngIf="courseDetails.length > 0" class="course-details mt-4">
+    <h3>{{ selectedCourse }} - Topics</h3>
+    <div *ngFor="let topic of courseDetails">
+      <div class="form-check">
+        <input
+          type="checkbox"
+          id="{{ topic.name }}"
+          [(ngModel)]="topic.isChecked"
+          (change)="updateProgress()"
+          class="form-check-input"
+        />
+        <label for="{{ topic.name }}" class="form-check-label">{{ topic.name }}</label>
       </div>
-  
-      <!-- Progress bar -->
-      <div class="progress mt-3">
-        <div
-          class="progress-bar"
-          role="progressbar"
-          [style.width]="progress + '%'"
-          [attr.aria-valuenow]="progress"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        >
-          {{ progress }}%
-        </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress mt-3">
+      <div
+        class="progress-bar"
+        role="progressbar"
+        [style.width]="progress + '%'"
+        [attr.aria-valuenow]="progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        {{ progress }}%
       </div>
     </div>
   </div>
-  
+</div>

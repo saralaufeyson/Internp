@@ -18,16 +18,21 @@ export const navItems: NavItem[] = [
   // {
   //   navCap: 'Ui Components',
   // },
-  // {
-  //   displayName: 'Badge',
-  //   iconName: 'archive',
-  //   route: '/ui-components/badge',
-  // },
-  // {
-  //   displayName: 'Chips',
-  //   iconName: 'info-circle',
-  //   route: '/ui-components/chips',
-  // },
+  {
+    displayName: 'My learning Path',
+    iconName: 'archive',
+    route: '/learningPath',
+  },
+  {
+    displayName: 'My Goals',
+    iconName: 'list-details',
+    route: '/goals',
+  },
+  {
+    displayName: 'My PoC Projects',
+    iconName: 'file-text-ai',
+    route: '/pocProjects',
+  },
   // {
   //   displayName: 'Lists',
   //   iconName: 'list-details',

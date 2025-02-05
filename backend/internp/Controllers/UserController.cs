@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using YourNamespace.Models;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace YourNamespace.Controllers
 {
@@ -117,20 +118,50 @@ namespace YourNamespace.Controllers
         [HttpGet("getUserProfile/{userId}")]
 public async Task<IActionResult> GetUserProfile(string userId)
 {
-    // Fetch user profile from the database (assuming you have a User collection)
-    var user = await _userCollection.Find(u => u.Id == userId).FirstOrDefaultAsync();
+    // Convert the userId string to MongoDB ObjectId
+    if (!ObjectId.TryParse(userId, out var objectId))
+    {
+        return BadRequest(new { message = "Invalid user ID format." });
+    }
+
+    // Fetch user profile from the database
+    var user = await _userCollection.Find(u => u.Id == objectId.ToString()).FirstOrDefaultAsync();
 
     if (user == null)
     {
         return NotFound(new { message = "User not found." });
     }
 
+    // Return the user's username and email
     return Ok(new
     {
         name = user.Username,
-        email = user.Email,
-    
+        email = user.Email
     });
+}
+        [HttpPost("updateUserProfile")]
+        public async Task<IActionResult> UpdateUserProfile([FromBody] User user)
+        {
+            if (user == null)
+            {
+                return BadRequest(new { message = "User data is required." });
+            }
+
+            // Check if the user ID is valid
+            if (!ObjectId.TryParse(user.Id, out var objectId))
+            {
+                return BadRequest(new { message = "Invalid user ID format." });
+            }
+
+            // Update the user's profile in the database
+            var result = await _userCollection.ReplaceOneAsync(u => u.Id == objectId.ToString(), user);
+
+            if (result.IsAcknowledged && result.ModifiedCount > 0)
+            {
+                return Ok(new { message = "User profile updated successfully." });
+            }
+
+            return NotFound(new { message = "User not found." });
 }
     }
 }

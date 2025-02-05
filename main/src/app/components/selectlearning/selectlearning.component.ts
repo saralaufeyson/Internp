@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'; 
-
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+ 
 @Component({
   selector: 'app-slearning',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './selectlearning.component.html',
   styleUrls: ['./selectlearning.component.css']
 })
@@ -13,7 +14,7 @@ export class SelectLearningComponent {
   selectedCourse: string = '';
   courseDetails: any[] = [];
   progress: number = 0;
-
+ 
   courseTopics: { [key: string]: { name: string; isChecked: boolean; }[] } = {
     'Python': [
       { name: 'OOPs', isChecked: false },
@@ -48,15 +49,16 @@ export class SelectLearningComponent {
       { name: 'Custom Topic 2', isChecked: false }
     ]
   };
-
+ 
   fetchCourseDetails() {
     this.courseDetails = this.courseTopics[this.selectedCourse] || [];
     this.progress = 0;
   }
-
+ 
   updateProgress() {
     const totalTopics = this.courseDetails.length;
     const checkedTopics = this.courseDetails.filter(topic => topic.isChecked).length;
     this.progress = Math.round((checkedTopics / totalTopics) * 100);
   }
 }
+ 
