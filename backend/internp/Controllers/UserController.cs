@@ -151,12 +151,14 @@ namespace YourNamespace.Controllers
             {
                 return NotFound(new { message = "User not found." });
             }
+             Console.WriteLine($"Fetched user: {user.Username}, Role: {user.Role}");
 
-            // Return the user's username and email
+            // Return the user's username, email, and role
             return Ok(new
             {
                 name = user.Username,
-                email = user.Email
+                email = user.Email,
+                role = user.Role ?? "No role assigned"// Ensure role is included in the response
             });
         }
 

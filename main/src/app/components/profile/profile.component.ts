@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
         (data) => {
           this.userProfile = data;
           // Ensure role is fetched and assigned
-          this.userProfile.role = data.role || '';
+          this.userProfile.role = data.role || 'No role assigned';
         },
         (error) => {
           console.error('Error fetching user profile:', error);
