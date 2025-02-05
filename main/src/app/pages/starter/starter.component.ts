@@ -5,7 +5,7 @@ import { LearningPathComponent } from 'src/app/components/learning-path/learning
 import {GoalsComponent} from 'src/app/components/goals/goals.component';
 import { PocProjectsComponent } from 'src/app/components/poc-projects/poc-projects.component';
 import { ProfileComponent } from 'src/app/components/profile/profile.component';
-import { SelectLearningComponent } from 'src/app/components/selectlearning/selectlearning.component';
+
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-starter',
@@ -20,7 +20,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     MaterialModule,
     ProfileComponent,
-    SelectLearningComponent,
+    
     CommonModule
     
     
