@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using YourNamespace.Models;
-
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using Microsoft.AspNetCore.Authorization;
 
 namespace YourNamespace.Controllers
 {
@@ -24,6 +25,7 @@ namespace YourNamespace.Controllers
 
         // Add a new PoC Project
         [HttpPost("addPocProject")]
+        [Authorize(Policy = "MentorPolicy, AdminPolicy")]
         public async Task<IActionResult> AddPocProject([FromBody] PocProject project)
         {
             if (project == null)
@@ -83,6 +85,7 @@ namespace YourNamespace.Controllers
         }
 
         [HttpPost("addGoal")]
+        [Authorize(Policy = "InternPolicy, MentorPolicy, AdminPolicy")]
         public async Task<IActionResult> AddGoal([FromBody] Goal goal)
         {
             if (goal == null)
@@ -98,6 +101,7 @@ namespace YourNamespace.Controllers
 
         // Get goals for a specific user
         [HttpGet("getGoals/{userId}")]
+        [Authorize(Policy = "InternPolicy, MentorPolicy, AdminPolicy")]
         public async Task<IActionResult> GetGoals(string userId)
         {
             // Retrieve goals for the given userId from the database
@@ -111,6 +115,79 @@ namespace YourNamespace.Controllers
 
             // Return the found goals with an OK status
             return Ok(goals);
+        }
+    }
+
+    [ApiController]
+    [Route("api/[controller]")]
+    public class UserController : ControllerBase
+    {
+        private readonly IMongoCollection<User> _userCollection;
+
+        public UserController(IMongoClient mongoClient)
+        {
+            var database = mongoClient.GetDatabase("database0");
+            _userCollection = database.GetCollection<User>("Users");
+        }
+
+        [HttpGet("getUserProfile/{userId}")]
+        [Authorize(Policy = "AdminPolicy")]
+        public async Task<IActionResult> GetUserProfile(string userId)
+        {
+            // Convert the userId string to MongoDB ObjectId
+            if (!ObjectId.TryParse(userId, out var objectId))
+            {
+                return BadRequest(new { message = "Invalid user ID format." });
+            }
+
+            // Fetch user profile from the database
+            var user = await _userCollection.Find(u => u.Id == objectId.ToString()).FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+
+            // Return the user's username and email
+            return Ok(new
+            {
+                name = user.Username,
+                email = user.Email
+            });
+        }
+
+        [HttpPost("updateUserProfile")]
+        [Authorize(Policy = "AdminPolicy")]
+        public async Task<IActionResult> UpdateUserProfile([FromBody] User user)
+        {
+            if (user == null)
+            {
+                return BadRequest(new { message = "User data is required." });
+            }
+
+            // Check if the user ID is valid
+            if (!ObjectId.TryParse(user.Id, out var objectId))
+            {
+                return BadRequest(new { message = "Invalid user ID format." });
+            }
+
+            // Update the user's profile in the database
+            var result = await _userCollection.ReplaceOneAsync(u => u.Id == objectId.ToString(), user);
+
+            if (result.IsAcknowledged && result.ModifiedCount > 0)
+            {
+                return Ok(new { message = "User profile updated successfully." });
+            }
+
+            return NotFound(new { message = "User not found." });
+        }
+
+        [HttpGet("getAllUsers")]
+        [Authorize(Policy = "AdminPolicy")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _userCollection.Find(_ => true).ToListAsync();
+            return Ok(users);
         }
     }
 }

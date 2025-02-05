@@ -20,6 +20,27 @@ public class Startup
             return new MongoClient(connectionString);
         });
 
+        // Add authorization services
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+            options.AddPolicy("MentorPolicy", policy => policy.RequireRole("Mentor"));
+            options.AddPolicy("InternPolicy", policy => policy.RequireRole("Intern"));
+        });
+
+        // Add CORS policy
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAngularApp",
+                builder => builder
+                    .WithOrigins("http://localhost:4200") // Replace with your Angular app URL
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+        });
+
+        // Add controllers
+        services.AddControllers();
+
         // ...existing code...
     }
 

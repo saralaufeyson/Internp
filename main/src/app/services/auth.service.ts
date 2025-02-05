@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private apiUrl = 'http://localhost:5180/api/auth'; // Replace with your backend URL
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, user);
@@ -18,5 +18,14 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, user, {
       responseType: 'text', // This makes the response plain text instead of JSON
     });
+  }
+
+  getUserRole(userId: string): Observable<string> {
+    return this.http.get<string>(`${this.apiUrl}/role/${userId}`);
+  }
+
+  isAdmin(): boolean {
+    const userRole = localStorage.getItem('userRole');
+    return userRole === 'admin';
   }
 }

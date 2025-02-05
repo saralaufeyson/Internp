@@ -13,36 +13,46 @@
 .sidebarNav-mini {
   .sidebarNav {
     width: $sidenav-mini;
+
     .profile-bar {
       display: none;
     }
+
     .sidebar-list {
       .menu-list-item {
         padding: 8px 17px;
+
         .mdc-list-item__content {
           display: none;
         }
+
         .mdc-list-item__start {
           margin-left: 6px !important;
           margin-right: 8px !important;
         }
       }
     }
+
     &:hover {
       width: $sidenav-desktop;
+
       .profile-bar {
         display: block;
       }
+
       .sidebar-list {
         .menu-list-item {
           padding: 8px 10px;
+
           .mdc-list-item__content {
             display: inline;
           }
+
           .mdc-list-item__start {
             margin-left: 0 !important;
           }
         }
+
         &.mdc-list {
           padding: 0 24px;
 
@@ -111,14 +121,17 @@
       height: 45px;
       padding: 8px 10px !important;
       margin-bottom: 2px;
+
       &.twoline {
         height: 60px;
         align-items: center;
       }
+
       &:before,
       &:focus {
         z-index: -1;
       }
+
       &.disabled {
         opacity: 0.38;
       }
@@ -130,6 +143,7 @@
         justify-content: center;
         font-size: 12px;
       }
+
       &.activeMenu {
         .mdc-list-item__primary-text {
           color: $white !important;
@@ -145,7 +159,7 @@
         margin-left: 0 !important;
         width: 20px;
         height: 20px;
-        line-height:0px;
+        line-height: 0px;
         fill: transparent !important;
         color: $textPrimary;
       }
@@ -157,6 +171,7 @@
 
         .arrow-icon {
           display: flex;
+
           .mat-icon {
             font-size: 18px;
             width: 18px;

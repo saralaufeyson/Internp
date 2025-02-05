@@ -11,16 +11,15 @@
 @use 'spacing';
 @use 'rounded';
 
-$utilities: functions.map-collect(
-  variables.$utilities,
-  display.$utilities,
-  flexbox.$utilities,
-  spacing.$utilities,
-  border.$utilities,
-  rounded.$utilities,
-  text.$utilities,
-  
-);
+$utilities: functions.map-collect(variables.$utilities,
+        display.$utilities,
+        flexbox.$utilities,
+        spacing.$utilities,
+        border.$utilities,
+        rounded.$utilities,
+        text.$utilities,
+
+    );
 
 @each $key,
 $utility in $utilities {
@@ -42,7 +41,7 @@ $utility in $utilities {
 
     @each $class-modifier,
     $value in $values {
-            .#{$property-class-prefix-hyphen + $class-modifier} {
+        .#{$property-class-prefix-hyphen + $class-modifier} {
             @each $property in $properties {
                 #{$property}: $value !important;
             }
@@ -50,9 +49,9 @@ $utility in $utilities {
     }
 }
 
-$ltrutilities: functions.map-collect(
-    spacing.$ltr,
-);
+$ltrutilities: functions.map-collect(spacing.$ltr,
+    );
+
 @each $key,
 $utility in $ltrutilities {
     $values: map.get($utility, values);
@@ -81,9 +80,9 @@ $utility in $ltrutilities {
     }
 }
 
-$rtlutilities: functions.map-collect(
-    spacing.$rtl,
-);
+$rtlutilities: functions.map-collect(spacing.$rtl,
+    );
+
 @each $key,
 $utility in $rtlutilities {
     $values: map.get($utility, values);
@@ -111,5 +110,3 @@ $utility in $rtlutilities {
         }
     }
 }
-
-

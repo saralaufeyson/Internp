@@ -41,17 +41,17 @@
     </form>
     
     <!-- Display saved goals -->
-    <div *ngIf="goals.length > 0" class="saved-goals">
+    <!-- <div *ngIf="goals.length > 0" class="saved-goals">
       <h3 class="saved-goals-title">Your Saved Goals:</h3>
       <div *ngFor="let goal of goals" class="goal">
         <strong class="goal-label">Goal Name:</strong> {{ goal.goalName }}
         <div class="goal-description"><strong>Description:</strong> {{ goal.description }}</div>
         <div class="goal-created"><strong>Created At:</strong> {{ goal.createdAt | date: 'short' }}</div>
       </div>
-    </div>
+    </div>-->
     <!-- Show message when no goals are available -->
-    <div *ngIf="goals.length === 0" class="no-goals-message">
+   <!-- <div *ngIf="goals.length === 0" class="no-goals-message">
       You have not set any goals yet. Start by adding a goal above!
-    </div>
+    </div> -->
   </div>
   
