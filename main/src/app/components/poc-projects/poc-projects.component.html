@@ -1,58 +1,59 @@
 <div class="poc-projects">
-  <h2>Your POCs / Projects</h2>
-
-  <!-- Form for adding a POC -->
-  <form [formGroup]="pocForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="projectName">POC Title:</label>
-      <input id="projectName" formControlName="projectName" type="text" placeholder="Enter POC title" />
-      <div *ngIf="pocForm.get('projectName')?.invalid && pocForm.get('projectName')?.touched" class="error">
-        Title is required.
+    <h2>Your POCs / Projects</h2>
+  
+    <!-- Form for adding a POC -->
+    <form [formGroup]="pocForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="projectName">POC Title:</label>
+        <input id="projectName" formControlName="projectName" type="text" placeholder="Enter POC title" />
+        <div *ngIf="pocForm.get('projectName')?.invalid && pocForm.get('projectName')?.touched" class="error">
+          Title is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" formControlName="description" placeholder="Enter POC description"></textarea>
+        <div *ngIf="pocForm.get('description')?.invalid && pocForm.get('description')?.touched" class="error">
+          Description is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <select id="status" formControlName="status">
+          <option value="inProgress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input id="startDate" formControlName="startDate" type="date" />
+      </div>
+  
+      <div *ngIf="pocForm.get('status')?.value === 'completed'" class="form-group">
+        <label for="endDate">End Date:</label>
+        <input id="endDate" formControlName="endDate" type="date" />
+      </div>
+  
+      <button type="submit" [disabled]="pocForm.invalid">Save POC</button>
+    </form>
+  
+    <!-- Display saved POCs -->
+    <div *ngIf="pocs.length > 0">
+      <h3>Your Saved POCs:</h3>
+      <div *ngFor="let poc of pocs" class="poc">
+        <h4>{{ poc.projectName }} ({{ poc.status }})</h4>
+        <p><strong>Description:</strong> {{ poc.description }}</p>
+        <p><strong>Start Date:</strong> {{ poc.startDate | date }}</p>
+        <p *ngIf="poc.status === 'completed'"><strong>End Date:</strong> {{ poc.endDate | date }}</p>
       </div>
     </div>
-
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea id="description" formControlName="description" placeholder="Enter POC description"></textarea>
-      <div *ngIf="pocForm.get('description')?.invalid && pocForm.get('description')?.touched" class="error">
-        Description is required.
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="status">Status:</label>
-      <select id="status" formControlName="status">
-        <option value="inProgress">In Progress</option>
-        <option value="completed">Completed</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="startDate">Start Date:</label>
-      <input id="startDate" formControlName="startDate" type="date" />
-    </div>
-
-    <div *ngIf="pocForm.get('status')?.value === 'completed'" class="form-group">
-      <label for="endDate">End Date:</label>
-      <input id="endDate" formControlName="endDate" type="date" />
-    </div>
-
-    <button type="submit" [disabled]="pocForm.invalid">Save POC</button>
-  </form>
-
-  <!-- Display saved POCs -->
-  <div *ngIf="pocs.length > 0">
-    <h3>Your Saved POCs:</h3>
-    <div *ngFor="let poc of pocs" class="poc">
-      <h4>{{ poc.projectName }} ({{ poc.status }})</h4>
-      <p><strong>Description:</strong> {{ poc.description }}</p>
-      <p><strong>Start Date:</strong> {{ poc.startDate | date }}</p>
-      <p *ngIf="poc.status === 'completed'"><strong>End Date:</strong> {{ poc.endDate | date }}</p>
-    </div>
+  
+    <!-- If no POCs are found -->
+    <!-- <div *ngIf="pocs.length === 0">
+      <p>No PoC Projects found.</p>
+    </div> -->
   </div>
-
-  <!-- If no POCs are found -->
-  <!-- <div *ngIf="pocs.length === 0">
-    <p>No PoC Projects found.</p>
-  </div> -->
-</div>
+  
