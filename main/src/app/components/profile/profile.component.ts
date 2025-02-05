@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GoalsComponent } from '../goals/goals.component';
-import { PocProjectsComponent } from '../poc-projects/poc-projects.component';
-import { LearningPathComponent } from '../learning-path/learning-path.component';
+
 import { FormsModule } from '@angular/forms';
-import { SelectLearningComponent } from '../selectlearning/selectlearning.component';
+
 import { UserDataService } from '../../services/profile.service';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
@@ -12,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, GoalsComponent, PocProjectsComponent, LearningPathComponent, FormsModule, SelectLearningComponent],
+  imports: [CommonModule,  FormsModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
