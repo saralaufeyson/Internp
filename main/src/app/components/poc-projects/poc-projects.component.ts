@@ -29,35 +29,35 @@ export class PocProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     // Get the logged-in user's ID (replace with your actual logic to get the user ID)
-    this.userId = localStorage.getItem('userId') || ''; // Assume the user ID is saved in localStorage
+    //this.userId = localStorage.getItem('userId') || ''; // Assume the user ID is saved in localStorage
 
     // Check if userId is available, if not, log an error or handle the missing user ID scenario
-    if (this.userId) {
-      // Load the user's PoC Projects only if userId is valid
-      this.loadPocProjects();
-    } else {
-      console.error('No user ID found in localStorage. User is not logged in.');
-      this.errorMessage = 'No user ID found. Please log in.';
-      // Optionally, you could redirect to a login page or show a warning message
-    }
+    // if (this.userId) {
+    //   // Load the user's PoC Projects only if userId is valid
+    //   this.loadPocProjects();
+    // } else {
+    //   console.error('No user ID found in localStorage. User is not logged in.');
+    //   this.errorMessage = 'No user ID found. Please log in.';
+    //   // Optionally, you could redirect to a login page or show a warning message
+    // }
   }
 
   // Fetch user's PoC Projects
-  loadPocProjects() {
-    console.log("Fetching PoC Projects for UserId:", this.userId);  // Log the userId
+  // loadPocProjects() {
+  //   console.log("Fetching PoC Projects for UserId:", this.userId);  // Log the userId
   
-    this.http.get(`http://localhost:5180/api/userdata/getPocProjects/${this.userId}`)
-      .subscribe(
-        (response: any) => {
-          this.pocs = response || [];
-          console.log("PoC Projects fetched successfully:", this.pocs); // Log the fetched data
-        },
-        (error) => {
-          console.error('Error fetching PoC Projects', error);
-          this.errorMessage = 'Error fetching PoC Projects. Please try again later.';
-        }
-      );
-  }
+  //   this.http.get(`http://localhost:5180/api/userdata/getPocProjects/${this.userId}`)
+  //     .subscribe(
+  //       (response: any) => {
+  //         this.pocs = response || [];
+  //         console.log("PoC Projects fetched successfully:", this.pocs); // Log the fetched data
+  //       },
+  //       (error) => {
+  //         console.error('Error fetching PoC Projects', error);
+  //         this.errorMessage = 'Error fetching PoC Projects. Please try again later.';
+  //       }
+  //     );
+  // }
   
 
   // Handle form submission

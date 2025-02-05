@@ -20,12 +20,19 @@
             <label for="password" class="f-s-14 f-w-600 m-b-12 d-block">Password</label>
             <input type="password" id="password" class="form-control" formControlName="password" required />
 
+            <label for="role" class="f-s-14 f-w-600 m-b-12 d-block">Role</label>
+            <select id="role" class="form-control" formControlName="role" required>
+              <option value="Intern">Intern</option>
+              <option value="Mentor">Mentor</option>
+              <option value="Admin">Admin</option>
+            </select>
+
             <div class="button-container" style="padding: 20px 0;">
               <button type="submit" class="w-100 f-s-14 d-block btn btn-primary">
                 Create Account and Login
               </button>
             </div>
-            
+
           </form>
 
           <span class="d-block f-w-500 text-center m-t-24">Already have an Account?

@@ -22,9 +22,10 @@ export class SideRegisterComponent {
     username: new FormControl('', [Validators.required, Validators.minLength(6)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
+    role: new FormControl('Intern', [Validators.required]), // Default role is Intern
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   get f() {
     return this.form.controls;

@@ -25,7 +25,7 @@ namespace YourNamespace.Models
 
         public required string UserId { get; set; } // Reference to the user
 
-        public required string ProjectName  { get; set; } // Renamed from ProjectName to Title
+        public required string ProjectName { get; set; } // Renamed from ProjectName to Title
 
         public required string Description { get; set; }
 
@@ -34,9 +34,8 @@ namespace YourNamespace.Models
         public DateTime StartDate { get; set; }
 
         public DateTime? EndDate { get; set; } // EndDate is optional, so we use DateTime?
-        public DateTime CreatedAt { get; internal set; }
+        public DateTime CreatedAt { get; set; }
     }
-
 
     public class LearningPath
     {
