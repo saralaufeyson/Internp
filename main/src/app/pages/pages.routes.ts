@@ -1,20 +1,21 @@
 import { Routes } from '@angular/router';
 import { StarterComponent } from './starter/starter.component';
-import { ProfileComponent } from '../components/profile/profile.component'; // ✅ Import Profile Component
+import { ProfileComponent } from '../components/profile/profile.component';
+import { LearningPathComponent } from '../components/learning-path/learning-path.component'; // ✅ Import Learning Path Component
+import { GoalsComponent } from '../components/goals/goals.component'; // ✅ Import Goals Component
+import { PocProjectsComponent } from '../components/poc-projects/poc-projects.component'; // ✅ Import PoC Projects Component
 
 export const PagesRoutes: Routes = [
   {
     path: '',
     component: StarterComponent,
     data: {
-      title: 'Dashboard', // Change title to match Dashboard
-      urls: [
-        { title: 'Dashboard', url: '/dashboard' },
-      ],
+      title: 'Dashboard',
+      urls: [{ title: 'Dashboard', url: '/dashboard' }],
     },
   },
   {
-    path: 'profile',  // ✅ Added Profile Route under Dashboard
+    path: 'profile',
     component: ProfileComponent,
     data: {
       title: 'Profile',
@@ -24,5 +25,37 @@ export const PagesRoutes: Routes = [
       ],
     },
   },
-  
+  {
+    path: 'learningPath',  // ✅ Added My Learning Path route
+    component: LearningPathComponent,
+    data: {
+      title: 'My Learning Path',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'My Learning Path' },
+      ],
+    },
+  },
+  {
+    path: 'goals',  // ✅ Added My Goals route
+    component: GoalsComponent,
+    data: {
+      title: 'My Goals',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'My Goals' },
+      ],
+    },
+  },
+  {
+    path: 'pocProjects',  // ✅ Added My PoC Projects route
+    component: PocProjectsComponent,
+    data: {
+      title: 'My PoC Projects',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'My PoC Projects' },
+      ],
+    },
+  },
 ];
