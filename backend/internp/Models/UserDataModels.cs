@@ -1,6 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
+using System.Collections.Generic;
 
 namespace YourNamespace.Models
 {
@@ -53,4 +54,46 @@ namespace YourNamespace.Models
 
         public DateTime CreatedAt { get; set; }
     }
+ 
+
+namespace YourNamespace.Models
+{
+    public class UserProfile
+    {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+
+        [BsonElement("userId")]
+        public string UserId { get; set; }  // Foreign key to User collection
+
+        [BsonElement("name")]
+        public string Name { get; set; }
+
+        [BsonElement("email")]
+        public string Email { get; set; }
+
+        [BsonElement("hobbies")]
+        public List<string> Hobbies { get; set; }
+
+        [BsonElement("specialization")]
+        public string Specialization { get; set; }
+
+        [BsonElement("education")]
+        public string Education { get; set; }
+
+        [BsonElement("yearsOfExperience")]
+        public int YearsOfExperience { get; set; }
+
+        [BsonElement("skills")]
+        public List<string> Skills { get; set; }
+
+        [BsonElement("bio")]
+        public string Bio { get; set; }
+
+        [BsonElement("linkedinUrl")]
+        public string LinkedInUrl { get; set; }
+    }
+}
+
 }

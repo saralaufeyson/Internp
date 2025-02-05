@@ -1,0 +1,12 @@
+<div class="profile-container">
+    <h2>{{ userProfile.name }}</h2>
+    <p><strong>Email:</strong> {{ userProfile.email }}</p>
+    <p><strong>Specialization:</strong> {{ userProfile.specialization }}</p>
+    <p><strong>Education:</strong> {{ userProfile.education }}</p>
+    <p><strong>Years of Experience:</strong> {{ userProfile.yearsOfExperience }}</p>
+    <p><strong>Hobbies:</strong> {{ userProfile.hobbies?.join(', ') }}</p>
+    <p><strong>Skills:</strong> {{ userProfile.skills?.join(', ') }}</p>
+    <p><strong>Bio:</strong> {{ userProfile.bio }}</p>
+    <p><a href="{{ userProfile.linkedinUrl }}" target="_blank">LinkedIn Profile</a></p>
+  </div>
+  

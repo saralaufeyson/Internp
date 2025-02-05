@@ -8,6 +8,20 @@
       <div class="profile-info">
         <h2>Name : {{ userProfile.name }}</h2>
         <p class="email"><strong>Email:</strong> {{ userProfile.email }}</p>
+        <p><strong>Role:</strong> {{ userProfile.role }}</p>
+      </div>
+    </div>
+     <!-- Learning Path Section -->
+     <div class="section-container">
+      <div class="section-card">
+        <h2 class="section-title">Personal Information</h2>
+        <div class="grid-container">
+          
+            <p><strong>Name:</strong> {{ userProfile.name }}</p>
+            <p><strong>Email:</strong> {{ userProfile.email }}</p>
+            <p><strong>role:</strong> {{ userProfile.role }}</p>
+          
+        </div>
       </div>
     </div>
   
@@ -37,6 +51,7 @@
       </div>
     </div>
     <app-slearning></app-slearning>
+    <app-userprofile></app-userprofile>
   
     <!-- POCs & Projects Section -->
     <div class="section-container">

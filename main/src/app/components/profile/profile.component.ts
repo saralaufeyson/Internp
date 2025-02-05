@@ -7,11 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { SelectLearningComponent } from '../selectlearning/selectlearning.component';
 import { UserDataService } from '../../services/profile.service';
 import { HttpClient } from '@angular/common/http';
+import { UserProfileComponent} from '../userprofile/userprofile.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, GoalsComponent, PocProjectsComponent, LearningPathComponent, FormsModule, SelectLearningComponent],
+  imports: [CommonModule, GoalsComponent, PocProjectsComponent, LearningPathComponent, FormsModule, SelectLearningComponent, UserProfileComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
