@@ -21,12 +21,12 @@ public class Startup
         });
 
         // Add authorization services
-        services.AddAuthorization(options =>
-        {
-            options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
-            options.AddPolicy("MentorPolicy", policy => policy.RequireRole("Mentor"));
-            options.AddPolicy("InternPolicy", policy => policy.RequireRole("Intern"));
-        });
+        // services.AddAuthorization(options =>
+        // {
+        //     options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+        //     options.AddPolicy("MentorPolicy", policy => policy.RequireRole("Mentor"));
+        //     options.AddPolicy("InternPolicy", policy => policy.RequireRole("Intern"));
+        // });
 
         // Add CORS policy
         services.AddCors(options =>
