@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { GoalsComponent } from '../goals/goals.component';
+import { PocProjectsComponent } from '../poc-projects/poc-projects.component';
+import { LearningPathComponent } from '../learning-path/learning-path.component';
 import { FormsModule } from '@angular/forms';
 
 import { UserDataService } from '../../services/profile.service';
@@ -10,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule,  FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -23,9 +25,7 @@ export class ProfileComponent implements OnInit {
     role: '' // Add role property
   };
 
-  goals: any[] = [];
-  pocProjects: any[] = [];
-  
+
 
   profileImage: string | ArrayBuffer | null = null;
   userId: string = ''; // Get the logged-in user's ID here (e.g., from LocalStorage or an AuthService)
@@ -50,8 +50,6 @@ export class ProfileComponent implements OnInit {
           this.errorMessage = 'Error fetching user profile. Please try again later.';
         }
       );
-      this.fetchGoals(this.userId);
-      this.fetchPocProjects(this.userId);
       
     } else {
       console.error('No user ID found in localStorage. User is not logged in.');
@@ -59,47 +57,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  // Fetch user goals
-  fetchGoals(userId: string): void {
-    this.http.get(`http://localhost:5180/api/userdata/getGoals/${userId}`)
-      .subscribe(
-        (data: any) => {
-          this.goals = data || [];
-        },
-        (error) => {
-          console.error('Error fetching goals:', error);
-          this.errorMessage = 'Error fetching goals. Please try again later.';
-        }
-      );
-  }
-
-  // Fetch user PoC projects
-  fetchPocProjects(userId: string): void {
-    this.http.get(`http://localhost:5180/api/userdata/getPocProjects/${userId}`)
-      .subscribe(
-        (data: any) => {
-          this.pocProjects = data || [];
-        },
-        (error) => {
-          console.error('Error fetching PoC projects:', error);
-          this.errorMessage = 'Error fetching PoC projects. Please try again later.';
-        }
-      );
-  }
-
-  // Fetch user learning paths
-  // fetchLearningPaths(userId: string): void {
-  //   this.http.get(`http://localhost:5180/api/userdata/getLearningPaths/${userId}`)
-  //     .subscribe(
-  //       (data: any) => {
-  //         this.learningPaths = data || [];
-  //       },
-  //       (error) => {
-  //         console.error('Error fetching learning paths:', error);
-  //         this.errorMessage = 'Error fetching learning paths. Please try again later.';
-  //       }
-  //     );
-  // }
+  
 
   // Handle profile image upload
   onImageUpload(event: any): void {
