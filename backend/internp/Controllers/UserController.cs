@@ -28,7 +28,9 @@ namespace YourNamespace.Controllers
 
         // Add a new PoC Project
         [HttpPost("addPocProject")]
-        [Authorize(Policy = "MentorPolicy, AdminPolicy")]
+        [Authorize(Policy = "MentorPolicy")]
+        [Authorize(Policy = "InternPolicy")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> AddPocProject([FromBody] PocProject project)
         {
             if (project == null)
@@ -88,7 +90,9 @@ namespace YourNamespace.Controllers
         }
 
         [HttpPost("addGoal")]
-        [Authorize(Policy = "InternPolicy, MentorPolicy, AdminPolicy")]
+        [Authorize(Policy = "MentorPolicy")]
+        [Authorize(Policy = "InternPolicy")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> AddGoal([FromBody] Goal goal)
         {
             if (goal == null)
@@ -104,7 +108,9 @@ namespace YourNamespace.Controllers
 
         // Get goals for a specific user
         [HttpGet("getGoals/{userId}")]
-        [Authorize(Policy = "InternPolicy, MentorPolicy, AdminPolicy")]
+        [Authorize(Policy = "MentorPolicy")]
+        [Authorize(Policy = "InternPolicy")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetGoals(string userId)
         {
             // Retrieve goals for the given userId from the database
