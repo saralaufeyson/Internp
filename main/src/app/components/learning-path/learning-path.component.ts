@@ -17,13 +17,15 @@ export class LearningPathComponent implements OnInit {
 
   ngOnInit(): void {
     // Fetch the learning paths from the backend when the component loads
-    this.learningPathService.getLearningPaths().subscribe(
-      (data) => {
+    this.learningPathService.getLearningPaths().subscribe({
+      next: (data) => {
         this.learningPaths = data;  // Populate the learningPaths array
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching learning paths:', error);
       }
-    );
+    });
+  
   }
 }
+  
