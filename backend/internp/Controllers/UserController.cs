@@ -140,7 +140,6 @@ namespace YourNamespace.Controllers
         }
 
         [HttpGet("getUserProfile/{userId}")]
-        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetUserProfile(string userId)
         {
             // Convert the userId string to MongoDB ObjectId
@@ -156,19 +155,18 @@ namespace YourNamespace.Controllers
             {
                 return NotFound(new { message = "User not found." });
             }
-             Console.WriteLine($"Fetched user: {user.Username}, Role: {user.Role}");
 
             // Return the user's username, email, and role
             return Ok(new
             {
                 name = user.Username,
                 email = user.Email,
-                role = user.Role ?? "No role assigned"// Ensure role is included in the response
+                role = user.Role ?? "No role assigned" // Ensure role is included in the response
             });
         }
 
         [HttpPost("updateUserProfile")]
-        [Authorize(Policy = "AdminPolicy")]
+        
         public async Task<IActionResult> UpdateUserProfile([FromBody] User user)
         {
             if (user == null)
@@ -194,8 +192,7 @@ namespace YourNamespace.Controllers
         }
 
         [HttpGet("getAllUsers")]
-        [Authorize(Policy = "AdminPolicy")]
-        public async Task<IActionResult> GetAllUsers()
+               public async Task<IActionResult> GetAllUsers()
         {
             var users = await _userCollection.Find(_ => true).ToListAsync();
             return Ok(users);
