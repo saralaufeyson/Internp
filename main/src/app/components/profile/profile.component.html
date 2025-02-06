@@ -1,15 +1,29 @@
 <div class="container">
-  <!-- Profile Header Section -->
-  <div class="profile-header">
-    <div class="profile-image-container">
-      <img [src]="userProfile.profileImage || 'assets/default-profile.png'" alt="Profile Picture" class="profile-image">
-      <input type="file" id="imageUpload" (change)="onImageUpload($event)" accept="image/*">
+    <!-- Profile Header Section -->
+    <div class="profile-header">
+      <div class="profile-image-container">
+        <!-- <img [src]="profileImage || 'assets/default-profile.png'" alt="Profile Picture" class="profile-image"> -->
+        <input type="file" id="imageUpload" (change)="onImageUpload($event)" accept="image/*">
+      </div>
+      <div class="profile-info">
+        <h2>{{ userProfile.name }}</h2>
+        <p class="email"><strong>Email:</strong> {{ userProfile.email }}</p>
+        <p><strong>Role:</strong> {{ userProfile.role }}</p>
+      </div>
     </div>
-    <div class="profile-info">
-      <h2>Name: {{ userProfile.name }}</h2>
-      <p class="email"><strong>Email:</strong> {{ userProfile.email }}</p>
-      <p class="role"><strong>Role:</strong> {{ userProfile.role }}</p>
-    </div>
-  </div>
-
+    <div class="col-lg-6">
+        <div class="section-card">
+          <h2 class="section-title">Other Info</h2>
+          <p><strong>Current Status:</strong> {{ userProfile.status }}</p>
+          <p><strong>Joined On:</strong> {{ userProfile.joinedDate | date }}</p>
+        </div>
+      </div>
+      
+      
+      
+  
+      
+      
+    
 </div>
+  

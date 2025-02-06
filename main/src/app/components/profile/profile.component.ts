@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
 
   goals: any[] = [];
   pocProjects: any[] = [];
-  learningPaths: any[] = [];
+  
 
   profileImage: string | ArrayBuffer | null = null;
   userId: string = ''; // Get the logged-in user's ID here (e.g., from LocalStorage or an AuthService)
@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
         (data) => {
           this.userProfile = data;
           // Ensure role is fetched and assigned
-          this.userProfile.role = data.role || '';
+          this.userProfile.role = data.role || 'No role assigned';
         },
         (error) => {
           console.error('Error fetching user profile:', error);
@@ -52,7 +52,7 @@ export class ProfileComponent implements OnInit {
       );
       this.fetchGoals(this.userId);
       this.fetchPocProjects(this.userId);
-      this.fetchLearningPaths(this.userId);
+      
     } else {
       console.error('No user ID found in localStorage. User is not logged in.');
       this.errorMessage = 'No user ID found. Please log in.';
@@ -88,18 +88,18 @@ export class ProfileComponent implements OnInit {
   }
 
   // Fetch user learning paths
-  fetchLearningPaths(userId: string): void {
-    this.http.get(`http://localhost:5180/api/userdata/getLearningPaths/${userId}`)
-      .subscribe(
-        (data: any) => {
-          this.learningPaths = data || [];
-        },
-        (error) => {
-          console.error('Error fetching learning paths:', error);
-          this.errorMessage = 'Error fetching learning paths. Please try again later.';
-        }
-      );
-  }
+  // fetchLearningPaths(userId: string): void {
+  //   this.http.get(`http://localhost:5180/api/userdata/getLearningPaths/${userId}`)
+  //     .subscribe(
+  //       (data: any) => {
+  //         this.learningPaths = data || [];
+  //       },
+  //       (error) => {
+  //         console.error('Error fetching learning paths:', error);
+  //         this.errorMessage = 'Error fetching learning paths. Please try again later.';
+  //       }
+  //     );
+  // }
 
   // Handle profile image upload
   onImageUpload(event: any): void {
