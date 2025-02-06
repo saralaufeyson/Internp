@@ -25,7 +25,7 @@ namespace YourNamespace.Controllers
 
         // Add a new PoC Project
         [HttpPost("addPocProject")]
-        //  [Authorize(Policy = "MentorPolicy, AdminPolicy")]
+
         public async Task<IActionResult> AddPocProject([FromBody] PocProject project)
         {
             if (project == null)
@@ -89,7 +89,7 @@ namespace YourNamespace.Controllers
 
 
         [HttpPost("addGoal")]
-        //[Authorize(Policy = "InternPolicy, MentorPolicy, AdminPolicy")]
+
         public async Task<IActionResult> AddGoal([FromBody] Goal goal)
         {
             if (goal == null)
@@ -105,7 +105,6 @@ namespace YourNamespace.Controllers
 
         // Get goals for a specific user
         [HttpGet("getGoals/{userId}")]
-        // [Authorize(Policy = "InternPolicy, MentorPolicy, AdminPolicy")]
         public async Task<IActionResult> GetGoals(string userId)
         {
             // Retrieve goals for the given userId from the database
@@ -135,7 +134,7 @@ namespace YourNamespace.Controllers
         }
 
         [HttpGet("getUserProfile/{userId}")]
-        //[Authorize(Policy = "AdminPolicy")]
+
         public async Task<IActionResult> GetUserProfile(string userId)
         {
             // Convert the userId string to MongoDB ObjectId
@@ -163,7 +162,7 @@ namespace YourNamespace.Controllers
         }
 
         [HttpPost("updateUserProfile")]
-        //[Authorize(Policy = "AdminPolicy")]
+
         public async Task<IActionResult> UpdateUserProfile([FromBody] User user)
         {
             if (user == null)
@@ -189,7 +188,6 @@ namespace YourNamespace.Controllers
         }
 
         [HttpGet("getAllUsers")]
-        //[Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _userCollection.Find(_ => true).ToListAsync();
