@@ -4,7 +4,7 @@ import { ProfileComponent } from '../components/profile/profile.component';
 import { LearningPathComponent } from '../components/learning-path/learning-path.component'; // ✅ Import Learning Path Component
 import { GoalsComponent } from '../components/goals/goals.component'; // ✅ Import Goals Component
 import { PocProjectsComponent } from '../components/poc-projects/poc-projects.component'; // ✅ Import PoC Projects Component
-
+import {InternListComponent} from '../intern-list/intern-list.component'; // ✅ Import Intern List Component
 export const PagesRoutes: Routes = [
   {
     path: '',
@@ -55,6 +55,17 @@ export const PagesRoutes: Routes = [
       urls: [
         { title: 'Dashboard', url: '/dashboard' },
         { title: 'My PoC Projects' },
+      ],
+    },
+  },
+  {
+    path: 'intern-list',  // ✅ Added My PoC Projects route
+    component: InternListComponent,
+    data: {
+      title: 'All Interns',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'All Interns' },
       ],
     },
   },

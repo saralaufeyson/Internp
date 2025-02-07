@@ -1,0 +1,19 @@
+<div class="container">
+    <h2 class="intern-list-title">Intern List</h2>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <table class="intern-table table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let intern of interns">
+          <td>{{ intern.username }}</td>
+          <td>{{ intern.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

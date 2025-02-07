@@ -25,7 +25,7 @@ namespace YourNamespace.Controllers
 
         // Add a new PoC Project
         [HttpPost("addPocProject")]
-        
+
         public async Task<IActionResult> AddPocProject([FromBody] PocProject project)
         {
             if (project == null)
@@ -89,7 +89,7 @@ namespace YourNamespace.Controllers
 
 
         [HttpPost("addGoal")]
-        
+
         public async Task<IActionResult> AddGoal([FromBody] Goal goal)
         {
             if (goal == null)
@@ -105,7 +105,7 @@ namespace YourNamespace.Controllers
 
         // Get goals for a specific user
         [HttpGet("getGoals/{userId}")]
-                public async Task<IActionResult> GetGoals(string userId)
+        public async Task<IActionResult> GetGoals(string userId)
         {
             // Retrieve goals for the given userId from the database
             var goals = await _goalCollection.Find(g => g.UserId == userId).ToListAsync();
@@ -160,7 +160,7 @@ namespace YourNamespace.Controllers
         }
 
         [HttpPost("updateUserProfile")]
-        
+
         public async Task<IActionResult> UpdateUserProfile([FromBody] User user)
         {
             if (user == null)
@@ -186,10 +186,21 @@ namespace YourNamespace.Controllers
         }
 
         [HttpGet("getAllUsers")]
-               public async Task<IActionResult> GetAllUsers()
+        public async Task<IActionResult> GetAllUsers()
         {
             var users = await _userCollection.Find(_ => true).ToListAsync();
             return Ok(users);
         }
+        [HttpGet("getInterns")]
+        public async Task<IActionResult> GetInterns()
+        {
+            var interns = await _userCollection.Find(u => u.Role == "Intern").ToListAsync();
+            if (interns.Count == 0)
+            {
+                return NotFound(new { message = "No interns found." });
+            }
+            return Ok(interns); // Return only interns
+        }
+
     }
 }

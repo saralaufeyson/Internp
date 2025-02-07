@@ -33,6 +33,11 @@ export const navItems: NavItem[] = [
     iconName: 'file-text-ai',
     route: '/dashboard/pocProjects',
   },
+  {
+    displayName: 'All Interns',
+    iconName: 'user',
+    route: '/dashboard/intern-list',
+  },
   // {
   //   displayName: 'Lists',
   //   iconName: 'list-details',

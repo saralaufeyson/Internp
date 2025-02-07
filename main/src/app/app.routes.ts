@@ -3,7 +3,7 @@ import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { AdminGuard } from './guards/admin.guard';
-
+import { InternListComponent } from './intern-list/intern-list.component';
 export const routes: Routes = [
   {
     path: '',
@@ -43,6 +43,11 @@ export const routes: Routes = [
         path: 'user-details',
         component: UserDetailsComponent,
         canActivate: [AdminGuard] // Add a guard to restrict access to admin users
+      },
+      {
+        path: 'intern-list',
+        component: InternListComponent,
+        canActivate: [AdminGuard] // Protect the route with AdminGuard
       },
     ],
   },
