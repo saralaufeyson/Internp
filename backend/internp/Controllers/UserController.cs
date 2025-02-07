@@ -9,6 +9,7 @@ namespace YourNamespace.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    
     public class UserDataController : ControllerBase
     {
         private readonly IMongoCollection<Goal> _goalCollection;
@@ -123,6 +124,7 @@ namespace YourNamespace.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
+    
     public class UserController : ControllerBase
     {
         private readonly IMongoCollection<User> _userCollection;

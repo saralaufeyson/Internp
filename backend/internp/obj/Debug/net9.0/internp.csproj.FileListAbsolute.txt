@@ -158,3 +158,11 @@ C:\Users\dneelam\Internp\backend\internp\obj\Debug\net9.0\refint\internp.dll
 C:\Users\dneelam\Internp\backend\internp\obj\Debug\net9.0\internp.pdb
 C:\Users\dneelam\Internp\backend\internp\obj\Debug\net9.0\internp.genruntimeconfig.cache
 C:\Users\dneelam\Internp\backend\internp\obj\Debug\net9.0\ref\internp.dll
+C:\Users\lkanchi\Downloads\internportal3\Internp\backend\internp\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\lkanchi\Downloads\internportal3\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\lkanchi\Downloads\internportal3\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\lkanchi\Downloads\internportal3\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\lkanchi\Downloads\internportal3\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\lkanchi\Downloads\internportal3\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\lkanchi\Downloads\internportal3\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\lkanchi\Downloads\internportal3\Internp\backend\internp\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
