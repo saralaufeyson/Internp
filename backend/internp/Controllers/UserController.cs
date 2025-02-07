@@ -103,6 +103,21 @@ namespace YourNamespace.Controllers
             return Ok(new { message = "Goal added successfully." });
         }
 
+        [HttpGet("getAllGoals")]
+        public async Task<IActionResult> GetAllGoals()
+        {
+            var goals = await _goalCollection.Find(_ => true).ToListAsync();
+
+            if (goals.Count == 0)
+            {
+                return NotFound(new { message = "No goals found." });
+            }
+
+            return Ok(goals);
+        }
+
+
+
         // Get goals for a specific user
         [HttpGet("getGoals/{userId}")]
         public async Task<IActionResult> GetGoals(string userId)

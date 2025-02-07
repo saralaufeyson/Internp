@@ -5,15 +5,14 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class MentorGuard implements CanActivate {
+export class InternGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    const role = localStorage.getItem('userRole');
-    if (role === 'Mentor') {
+    if (this.authService.isIntern()) {
       return true;
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['/']); // Redirect to home or login page
       return false;
     }
   }

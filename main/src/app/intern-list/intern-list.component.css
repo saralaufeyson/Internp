@@ -1,74 +1,76 @@
 /* Container for Intern List */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px;
-  }
-  
-  /* Table Title Styling */
-  .intern-list-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  /* Alert Message Styling */
-  .alert {
-    margin-bottom: 20px;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #f8d7da;
-    color: #721c24;
-    font-size: 1rem;
-  }
-  
-  /* Table Styling */
-  .intern-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 30px;
+  background: #ffffff; /* Light blue background */
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Title Styling */
+.intern-list-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #0056b3; /* Dark blue */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Alert Message Styling */
+.alert {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f8d7da;
+  color: #721c24;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Table Styling */
+.intern-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Header Styling */
+.intern-table th {
+  background: #007bff; /* Blue header */
+  color: white;
+  padding: 14px;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Cell Styling */
+.intern-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  color: #333;
+}
+
+/* Alternate Row Color */
+.intern-table tbody tr:nth-child(odd) {
+  background: #e3f2fd; /* Light blue row */
+}
+
+/* Table Row Hover Effect */
+.intern-table tbody tr:hover {
+  background: #d0ebff; /* Lighter blue on hover */
+  transition: background 0.3s ease;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
   .intern-table th,
   .intern-table td {
-    padding: 12px 15px;
-    text-align: left;
+    padding: 8px 10px;
   }
-  
-  .intern-table th {
-    background-color: #4CAF50;
-    color: white;
-    font-weight: bold;
-    border-radius: 8px 8px 0 0;
+
+  .intern-list-title {
+    font-size: 1.5rem;
   }
-  
-  .intern-table td {
-    background-color: #f2f2f2;
-    color: #333;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  /* Table Row Hover Effect */
-  .intern-table tr:hover {
-    background-color: #f1f1f1;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Alternate Row Color */
-  .intern-table tbody tr:nth-child(odd) {
-    background-color: #fafafa;
-  }
-  
-  /* Responsive Table */
-  @media (max-width: 768px) {
-    .intern-table th, .intern-table td {
-      padding: 8px 10px;
-    }
-    .intern-list-title {
-      font-size: 1.5rem;
-    }
-  }
-  
+}
