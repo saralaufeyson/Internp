@@ -43,31 +43,7 @@ export const navItems: NavItem[] = [
     iconName: 'user',
     route: '/dashboard/all-goals',
   },
-  // {
-  //   displayName: 'Lists',
-  //   iconName: 'list-details',
-  //   route: '/ui-components/lists',
-  // },
-  // {
-  //   displayName: 'Menu',
-  //   iconName: 'file-text',
-  //   route: '/ui-components/menu',
-  // },
-  // {
-  //   displayName: 'Tooltips',
-  //   iconName: 'file-text-ai',
-  //   route: '/ui-components/tooltips',
-  // },
-  // {
-  //   displayName: 'Forms',
-  //   iconName: 'clipboard-text',
-  //   route: '/ui-components/forms',
-  // },
-  // {
-  //   displayName: 'Tables',
-  //   iconName: 'table',
-  //   route: '/ui-components/tables',
-  // },
+  
   {
     navCap: 'Auth',
   },
@@ -81,17 +57,5 @@ export const navItems: NavItem[] = [
     iconName: 'user-plus',
     route: '/authentication/register',
   },
-  // {
-  //   navCap: 'Extra',
-  // },
-  // {
-  //   displayName: 'Icons',
-  //   iconName: 'mood-smile',
-  //   route: '/extra/icons',
-  // },
-  // {
-  //   displayName: 'Sample Page',
-  //   iconName: 'brand-dribbble',
-  //   route: '/extra/sample-page',
-  // },
+
 ];

@@ -54,13 +54,7 @@ export const appConfig: ApplicationConfig = {
       MaterialModule,
       TablerIconsModule.pick(TablerIcons),
       NgScrollbarModule,
-      // TranslateModule.forRoot({
-      //   loader: {
-      //     provide: TranslateLoader,
-      //     useFactory: HttpLoaderFactory,
-      //     deps: [HttpClient],
-      //   }, 
-      // })
+     
     ),
   ],
 };
