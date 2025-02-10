@@ -1,49 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Chart } from 'chart.js/auto';
 
 @Component({
   selector: 'app-dashboardc',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './dashboardc.component.html',
-  styleUrl: './dashboardc.component.css'
+  styleUrls: ['./dashboardc.component.css']
 })
-export class DashboardcComponent implements OnInit {
-  userId: any = localStorage.getItem('userId');
+export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
+  userId: string | null = localStorage.getItem('userId');
   goalCount: number | undefined;
-  http: HttpClient;
+  pocCount: { totalPocs: number; inProgressPocs: number; completedPocs: number } | undefined;
+  pieChart: any;
 
-  constructor(http: HttpClient) {
-    this.http = http;
-  }
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.updateGoalCount();
     this.updatePocCount();
   }
-  pocCount: { totalPocs: number; inProgressPocs: number; completedPocs: number } | undefined;
 
-  updatePocCount() {
-    if (!this.userId) {
-      console.error('User ID is not defined');
-      return;
-    }
-    this.http.get(`http://localhost:5180/api/User/getPocProjectStats/${this.userId}`)
-      .subscribe({
-        next: (response: any) => {
-          this.pocCount = {
-            totalPocs: response.totalPocs,
-            inProgressPocs: response.inProgressPocs,
-            completedPocs: response.completedPocs
-          };
-          console.log('POC count:', this.pocCount);
-        },
-        error: (error: any) => {
-          console.error('Failed to fetch POC count:', error);
-        }
-      });
+  ngAfterViewInit() {
+    // Delay execution to ensure HTML elements are available
+    setTimeout(() => {
+      this.createPieChart();
+    }, 500);
   }
+
+  ngOnDestroy() {
+    if (this.pieChart) {
+      this.pieChart.destroy();
+    }
+  }
+
   updateGoalCount() {
     if (!this.userId) {
       console.error('User ID is not defined');
@@ -59,5 +51,58 @@ export class DashboardcComponent implements OnInit {
           console.error('Failed to fetch goal count:', error);
         }
       });
+  }
+
+  updatePocCount() {
+    if (!this.userId) {
+      console.error('User ID is not defined');
+      return;
+    }
+    this.http.get(`http://localhost:5180/api/User/getPocProjectStats/${this.userId}`)
+      .subscribe({
+        next: (response: any) => {
+          this.pocCount = {
+            totalPocs: response.totalPocs,
+            inProgressPocs: response.inProgressPocs,
+            completedPocs: response.completedPocs
+          };
+          console.log('POC count:', this.pocCount);
+          this.createPieChart();
+        },
+        error: (error: any) => {
+          console.error('Failed to fetch POC count:', error);
+        }
+      });
+  }
+
+  createPieChart() {
+    if (this.pieChart) {
+      this.pieChart.destroy();
+    }
+
+    setTimeout(() => {
+      const canvas = document.getElementById('pocPieChart') as HTMLCanvasElement | null;
+      if (!canvas) {
+        console.error('Failed to find the canvas element for the pie chart');
+        return;
+      }
+
+      if (this.pocCount) {
+        this.pieChart = new Chart(canvas, {
+          type: 'pie',
+          data: {
+            labels: [ 'In Progress POCs', 'Completed POCs'],
+            datasets: [{
+              data: [ this.pocCount.inProgressPocs, this.pocCount.completedPocs],
+              backgroundColor: [ '#FFCE56', '#FF6384'],
+              hoverBackgroundColor: [ '#FFCE56', '#FF6384']
+            }]
+          },
+          options: {
+            responsive: true
+          }
+        });
+      }
+    }, 500);
   }
 }

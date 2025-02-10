@@ -13,7 +13,9 @@
     font-size: 24px;
     margin-bottom: 16px;
   }
-  
+  .card + .card {
+    margin: 16px; /* Add space between each card */
+  }
   .card p {
     font-size: 18px;
     margin: 8px 0;
