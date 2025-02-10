@@ -1,0 +1,49 @@
+<div class="card">
+    <h1>Goals Count</h1>
+    <div *ngIf="goalCount !== undefined">
+        <p>{{ goalCount }}</p>
+    </div>
+    <div *ngIf="goalCount === undefined">
+        <p style="color: red;">Something's wrong... try reloading</p>
+    </div>
+</div>
+
+<div class="card">
+    <h1>Total POCs</h1>
+    <div *ngIf="pocCount !== undefined">
+        <p>{{ pocCount.totalPocs }}</p>
+    </div>
+    <div *ngIf="pocCount === undefined">
+        <p style="color: red;">Something's wrong... try reloading</p>
+    </div>
+</div>
+
+<div class="card">
+    <h1>In Progress POCs</h1>
+    <div *ngIf="pocCount !== undefined">
+        <p>{{ pocCount.inProgressPocs }}</p>
+    </div>
+    <div *ngIf="pocCount === undefined">
+        <p style="color: red;">Something's wrong... try reloading</p>
+    </div>
+</div>
+
+<div class="card">
+    <h1>Completed POCs</h1>
+    <div *ngIf="pocCount !== undefined">
+        <p>{{ pocCount.completedPocs }}</p>
+    </div>
+    <div *ngIf="pocCount === undefined">
+        <p style="color: red;">Something's wrong... try reloading</p>
+    </div>
+</div>
+<br>
+<div class="card">
+    <h1>POC Status Distribution</h1>
+    <div *ngIf="pocCount">
+        <canvas id="pocPieChart"></canvas>
+    </div>
+    <div *ngIf="!pocCount">
+        <p style="color: red;">Something's wrong... try reloading</p>
+    </div>
+</div>
