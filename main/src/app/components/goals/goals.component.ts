@@ -76,11 +76,25 @@ export class GoalsComponent implements OnInit {
             // Optionally add the newly created goal to the component's goals list
             this.goals.push(goalData);
             this.form.reset();  // Reset the form after submission
+            this.updateGoalCount(); // Update the goal count after adding a new goal
           },
           (error) => {
             console.error('Error saving goal:', error);
           }
         );
     }
+  }
+
+  // Method to update the goal count
+  updateGoalCount() {
+    this.http.get(`http://localhost:5180/api/userdata/getGoalsCount/${this.userId}`)
+      .subscribe(
+        (response: any) => {
+          console.log('Goal count:', response.count);
+        },
+        (error) => {
+          console.error('Failed to fetch goal count:', error);
+        }
+      );
   }
 }
