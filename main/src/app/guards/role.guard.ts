@@ -5,15 +5,17 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class MentorGuard implements CanActivate {
+export class RoleGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(): boolean {
-    const role = localStorage.getItem('userRole');
-    if (role === 'Mentor') {
+  canActivate(route: any): boolean {
+    const expectedRole = route.data['expectedRole'];
+    const userRole = this.authService.getRole();
+
+    if (userRole === expectedRole) {
       return true;
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['/dashboard']); // Redirect unauthorized users
       return false;
     }
   }

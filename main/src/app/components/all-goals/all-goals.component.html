@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>All Goals</h2>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Goal Name</th>
+        <th>Description</th>
+        <th>User ID</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let goal of goals">
+        <td>{{ goal.goalName }}</td>
+        <td>{{ goal.description }}</td>
+        <td>{{ goal.userId }}</td>
+        <td>{{ goal.createdAt | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -40,3 +40,7 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Binary files
+/backend/internp/bin/Debug/net9.0/internp.dll
+/backend/internp/bin/Debug/net9.0/internp.exe

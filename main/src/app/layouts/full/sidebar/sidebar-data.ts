@@ -38,6 +38,11 @@ export const navItems: NavItem[] = [
     iconName: 'user',
     route: '/dashboard/intern-list',
   },
+  {
+    displayName: 'All Goals',
+    iconName: 'user',
+    route: '/dashboard/all-goals',
+  },
   // {
   //   displayName: 'Lists',
   //   iconName: 'list-details',

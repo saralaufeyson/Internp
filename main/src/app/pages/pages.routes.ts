@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AllGoalsComponent } from '../components/all-goals/all-goals.component';
 import { StarterComponent } from './starter/starter.component';
 import { ProfileComponent } from '../components/profile/profile.component';
 import { LearningPathComponent } from '../components/learning-path/learning-path.component'; // ✅ Import Learning Path Component
@@ -63,6 +64,17 @@ export const PagesRoutes: Routes = [
     component: InternListComponent,
     data: {
       title: 'All Interns',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'All Interns' },
+      ],
+    },
+  },
+  {
+    path: 'all-goals',  // ✅ Added My PoC Projects route
+    component: AllGoalsComponent,
+    data: {
+      title: 'All goals',
       urls: [
         { title: 'Dashboard', url: '/dashboard' },
         { title: 'All Interns' },
