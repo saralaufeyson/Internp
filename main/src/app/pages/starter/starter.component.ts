@@ -12,4 +12,4 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./starter.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class StarterComponent {}
+export class StarterComponent { }

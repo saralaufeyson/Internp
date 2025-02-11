@@ -26,7 +26,6 @@ namespace YourNamespace.Controllers
                 return Conflict("User with this email already exists.");
             }
 
-            // Use the role from the request
             user.Role = user.Role ?? "Intern"; // Default role is Intern if not provided
 
             await _usersCollection.InsertOneAsync(user);

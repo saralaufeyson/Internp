@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class UserDataService {
   private apiUrl = 'http://localhost:5180/api/user'; // Ensure this matches your backend API base URL
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Fetch user profile
   getUserProfile(userId: string): Observable<any> {

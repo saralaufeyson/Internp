@@ -5,7 +5,7 @@ import { ProfileComponent } from '../components/profile/profile.component';
 import { LearningPathComponent } from '../components/learning-path/learning-path.component'; // ✅ Import Learning Path Component
 import { GoalsComponent } from '../components/goals/goals.component'; // ✅ Import Goals Component
 import { PocProjectsComponent } from '../components/poc-projects/poc-projects.component'; // ✅ Import PoC Projects Component
-import {InternListComponent} from '../intern-list/intern-list.component'; // ✅ Import Intern List Component
+import { InternListComponent } from '../intern-list/intern-list.component'; // ✅ Import Intern List Component
 export const PagesRoutes: Routes = [
   {
     path: '',

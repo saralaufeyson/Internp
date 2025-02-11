@@ -20,9 +20,6 @@ public class Startup
             return new MongoClient(connectionString);
         });
 
-        // Add authorization services
-       
-
         // Add CORS policy
         services.AddCors(options =>
         {
