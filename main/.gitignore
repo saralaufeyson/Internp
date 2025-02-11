@@ -44,3 +44,4 @@ Thumbs.db
 # Binary files
 /backend/internp/bin/Debug/net9.0/internp.dll
 /backend/internp/bin/Debug/net9.0/internp.exe
+/backend/internp/bin/Debug/net9.0/internp.pdb

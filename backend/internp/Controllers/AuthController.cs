@@ -42,7 +42,17 @@ namespace YourNamespace.Controllers
                 return Unauthorized("Invalid email or password.");
             }
 
-            return Ok(new { Message = "Login successful.", UserId = existingUser.Id });
+            return Ok(new 
+            { 
+                Message = "Login successful.", 
+                User = new 
+                {
+                    existingUser.Id,
+                    existingUser.Email,
+                    existingUser.Username,
+                    existingUser.Role
+                }
+            });
         }
 
         [HttpGet("role/{userId}")]

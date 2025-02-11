@@ -32,6 +32,7 @@ export class AppNavItemComponent implements OnChanges {
       this.depth = 0;
     }
   }
+  
 
   ngOnChanges() {
     this.navService.currentUrl.subscribe((url: string) => { });

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
+  
   private apiUrl = 'http://localhost:5180/api/auth'; // Replace with your backend URL
 
   constructor(private http: HttpClient) { }
@@ -27,5 +28,29 @@ export class AuthService {
   isAdmin(): boolean {
     const userRole = localStorage.getItem('userRole');
     return userRole === 'admin';
+  }
+
+  getRole(): string | null {
+    return localStorage.getItem('userRole');
+  }
+
+  isIntern(): boolean {
+    const userRole = this.getRole();
+    return userRole === 'intern';
+  }
+
+  // ✅ New Method: Check if user is logged in
+  isLoggedIn(): boolean {
+    return localStorage.getItem('userRole') !== null;
+  }
+
+  // ✅ New Method: Save user role on login
+  saveUserRole(role: string): void {
+    localStorage.setItem('userRole', role);
+  }
+
+  // ✅ New Method: Logout user
+  logout(): void {
+    localStorage.removeItem('userRole');
   }
 }

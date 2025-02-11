@@ -2,58 +2,39 @@ import { Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
-import { AdminGuard } from './guards/admin.guard';
+import { AuthGuard } from './guards/auth.guard'; // ✅ Import Auth Guard
+import { RoleGuard } from './guards/role.guard'; // ✅ Import Role Guard
+
 import { AllGoalsComponent } from './components/all-goals/all-goals.component';
 import { InternListComponent } from './intern-list/intern-list.component';
+
 export const routes: Routes = [
   {
     path: '',
     component: FullComponent,
     children: [
-      {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full',
-      },
+      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
-        loadChildren: () =>
-          import('./pages/pages.routes').then((m) => m.PagesRoutes),
-      },
-      {
-        path: 'profile',
-        loadChildren: () =>
-          import('./pages/pages.routes').then((m) => m.PagesRoutes),
-      },
-      {
-        path: 'learningPath',
-        loadChildren: () =>
-          import('./pages/pages.routes').then((m) => m.PagesRoutes),
-      },
-      {
-        path: 'goals',
-        loadChildren: () =>
-          import('./pages/pages.routes').then((m) => m.PagesRoutes),
-      },
-      {
-        path: 'pocProjects',
-        loadChildren: () =>
-          import('./pages/pages.routes').then((m) => m.PagesRoutes),
+        loadChildren: () => import('./pages/pages.routes').then((m) => m.PagesRoutes),
+        canActivate: [AuthGuard], // ✅ Protect Dashboard
       },
       {
         path: 'user-details',
         component: UserDetailsComponent,
-        canActivate: [AdminGuard] // Add a guard to restrict access to admin users
+        canActivate: [AuthGuard],
       },
       {
         path: 'intern-list',
         component: InternListComponent,
-        canActivate: [AdminGuard] // Protect the route with AdminGuard
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['admin'] }, // ✅ Restrict to Admins
       },
       {
         path: 'all-goals',
         component: AllGoalsComponent,
-        canActivate: [AdminGuard] // Protect the route with AdminGuard
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['admin'] },
       },
     ],
   },
@@ -64,14 +45,9 @@ export const routes: Routes = [
       {
         path: 'authentication',
         loadChildren: () =>
-          import('./pages/authentication/authentication.routes').then(
-            (m) => m.AuthenticationRoutes
-          ),
+          import('./pages/authentication/authentication.routes').then((m) => m.AuthenticationRoutes),
       },
     ],
   },
-  {
-    path: '**',
-    redirectTo: 'authentication/error',
-  },
+  { path: '**', redirectTo: 'authentication/error' }, // Redirect to error page if route not found
 ];

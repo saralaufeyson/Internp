@@ -11,5 +11,6 @@ export interface NavItem {
     subtext?: string;
     route?: string;
     children?: NavItem[];
+    roles?:string[];
     ddType?: string;
 }

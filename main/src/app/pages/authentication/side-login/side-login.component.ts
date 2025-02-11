@@ -46,12 +46,25 @@ export class SideLoginComponent {
           // Store userId in localStorage (You should replace `response.userId` with the correct property name in the response)
           if (response && response.userId) {
             localStorage.setItem('userId', response.userId);
+            localStorage.setItem('userRole', response.role);
+            localStorage.setItem('userEmail', response.email);
+            localStorage.setItem('userName', response.name);
+            console.log('User ID saved to localStorage:', response.userId);
+            console.log('User details saved to localStorage:', {
+              role: response.role,
+              email: response.email,
+              name: response.name
+            });
+            localStorage.setItem('userId', response.userId);
             console.log('User ID saved to localStorage:', response.userId);
           }
 
           // You can optionally store the entire user object, but storing the `userId` should suffice for most cases
-          // localStorage.setItem('user', JSON.stringify(response.user)); // If you need to store the whole user object
-
+          // if (response && response.user) {
+          //   localStorage.setItem('user', JSON.stringify(response.user)); // If you need to store the whole user object
+          //   console.log('User saved to localStorage:', response.user);
+          // }
+          
           // After login, navigate to the dashboard or any other protected page
           this.router.navigate(['/dashboard']);
         },
