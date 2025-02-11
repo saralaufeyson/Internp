@@ -21,16 +21,10 @@ export class AuthService {
     });
   }
 
-  getUserRole(userId: string): Observable<string> {
-    return this.http.get<string>(`${this.apiUrl}/role/${userId}`);
-  }
-
-
-
-  getRole(): string | null {
-    return localStorage.getItem('userRole');
-  }
  
-  
+
+ 
+ 
+ 
  
 }
