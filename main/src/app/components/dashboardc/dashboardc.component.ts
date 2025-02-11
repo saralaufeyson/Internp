@@ -64,7 +64,11 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
             completedPocs: response.completedPocs
           };
           console.log('POC count:', this.pocCount);
+<<<<<<< HEAD
 
+=======
+          
+>>>>>>> 6e9330343ab4b51d0190ee48281cc8d00aede623
           // Create the chart only after fetching the data
           this.createPieChart();
         },

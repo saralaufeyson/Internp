@@ -13,6 +13,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { HeaderComponent } from './header/header.component';
+import { AuthService } from 'src/app/services/auth.service';
+import {BrandingComponent} from './sidebar/branding.component';
 
 const MOBILE_VIEW = 'screen and (max-width: 768px)';
 const TABLET_VIEW = 'screen and (min-width: 769px) and (max-width: 1024px)';
@@ -32,6 +34,9 @@ const BELOWMONITOR = 'screen and (max-width: 1023px)';
     NgScrollbarModule,
     TablerIconsModule,
     HeaderComponent,
+    BrandingComponent
+    
+  
   ],
   templateUrl: './full.component.html',
   styleUrls: [],
@@ -39,8 +44,9 @@ const BELOWMONITOR = 'screen and (max-width: 1023px)';
 })
 
 export class FullComponent implements OnInit {
-
-  navItems = navItems;
+  userRole: string | null = null;
+  internNavItems: any[] = navItems.filter(item => item.roles?.includes('intern'));
+  adminNavItems: any[] = navItems.filter(item => item.roles?.includes('admin'));
 
   @ViewChild('leftsidenav')
   public sidenav: MatSidenav | any;
@@ -56,7 +62,7 @@ export class FullComponent implements OnInit {
     return this.isMobileScreen;
   }
 
-  constructor(private breakpointObserver: BreakpointObserver, private navService: NavService) {
+  constructor(private breakpointObserver: BreakpointObserver, private navService: NavService, private authService: AuthService) {
     
     this.htmlElement = document.querySelector('html')!;
     this.htmlElement.classList.add('light-theme');
@@ -71,7 +77,8 @@ export class FullComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {this.userRole = this.authService.getRole();
+    console.log('User Role:', this.userRole);}
 
   ngOnDestroy() {
     this.layoutChangesSubscription.unsubscribe();

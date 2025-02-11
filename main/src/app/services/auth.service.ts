@@ -20,4 +20,20 @@ export class AuthService {
       responseType: 'text', // This makes the response plain text instead of JSON
     });
   }
+<<<<<<< HEAD
+=======
+
+  getUserRole(userId: string): Observable<string> {
+    return this.http.get<string>(`${this.apiUrl}/role/${userId}`);
+  }
+
+
+
+  getRole(): string | null {
+    return localStorage.getItem('role');
+  }
+ 
+  
+ 
+>>>>>>> 6e9330343ab4b51d0190ee48281cc8d00aede623
 }
