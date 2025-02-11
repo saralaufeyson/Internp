@@ -2,10 +2,13 @@ import { Routes } from '@angular/router';
 import { AllGoalsComponent } from '../components/all-goals/all-goals.component';
 import { StarterComponent } from './starter/starter.component';
 import { ProfileComponent } from '../components/profile/profile.component';
-import { LearningPathComponent } from '../components/learning-path/learning-path.component'; // ✅ Import Learning Path Component
-import { GoalsComponent } from '../components/goals/goals.component'; // ✅ Import Goals Component
-import { PocProjectsComponent } from '../components/poc-projects/poc-projects.component'; // ✅ Import PoC Projects Component
-import {InternListComponent} from '../intern-list/intern-list.component'; // ✅ Import Intern List Component
+import { LearningPathComponent } from '../components/learning-path/learning-path.component';
+import { GoalsComponent } from '../components/goals/goals.component';
+import { PocProjectsComponent } from '../components/poc-projects/poc-projects.component';
+import { InternListComponent } from '../intern-list/intern-list.component';
+import { InternGuard } from '../guards/intern.guard'; // Import InternGuard
+import { AdminGuard } from '../guards/admin.guard'; // Import AdminGuard
+
 export const PagesRoutes: Routes = [
   {
     path: '',
@@ -18,6 +21,7 @@ export const PagesRoutes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [InternGuard], // Apply InternGuard
     data: {
       title: 'Profile',
       urls: [
@@ -27,8 +31,9 @@ export const PagesRoutes: Routes = [
     },
   },
   {
-    path: 'learningPath',  // ✅ Added My Learning Path route
+    path: 'learningPath',
     component: LearningPathComponent,
+    canActivate: [InternGuard], // Apply InternGuard
     data: {
       title: 'My Learning Path',
       urls: [
@@ -38,8 +43,9 @@ export const PagesRoutes: Routes = [
     },
   },
   {
-    path: 'goals',  // ✅ Added My Goals route
+    path: 'goals',
     component: GoalsComponent,
+    canActivate: [InternGuard], // Apply InternGuard
     data: {
       title: 'My Goals',
       urls: [
@@ -49,8 +55,9 @@ export const PagesRoutes: Routes = [
     },
   },
   {
-    path: 'pocProjects',  // ✅ Added My PoC Projects route
+    path: 'pocProjects',
     component: PocProjectsComponent,
+    canActivate: [InternGuard], // Apply InternGuard
     data: {
       title: 'My PoC Projects',
       urls: [
@@ -60,8 +67,9 @@ export const PagesRoutes: Routes = [
     },
   },
   {
-    path: 'intern-list',  // ✅ Added My PoC Projects route
+    path: 'intern-list',
     component: InternListComponent,
+    canActivate: [AdminGuard], // Apply AdminGuard
     data: {
       title: 'All Interns',
       urls: [
@@ -71,8 +79,9 @@ export const PagesRoutes: Routes = [
     },
   },
   {
-    path: 'all-goals',  // ✅ Added My PoC Projects route
+    path: 'all-goals',
     component: AllGoalsComponent,
+    canActivate: [AdminGuard], // Apply AdminGuard
     data: {
       title: 'All goals',
       urls: [
