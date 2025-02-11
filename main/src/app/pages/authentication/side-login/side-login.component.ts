@@ -46,10 +46,12 @@ export class SideLoginComponent {
           // Store userId in localStorage (You should replace `response.userId` with the correct property name in the response)
           if (response && response.userId) {
             localStorage.setItem('userId', response.userId);
+            localStorage.setItem('role', response.role); // Save role locally
+           
+            console.log('User Role saved to localStorage:', response.role)
             console.log('User ID saved to localStorage:', response.userId);
           }
-
-          // You can optionally store the entire user object, but storing the `userId` should suffice for most cases
+                    // You can optionally store the entire user object, but storing the `userId` should suffice for most cases
           // localStorage.setItem('user', JSON.stringify(response.user)); // If you need to store the whole user object
 
           // After login, navigate to the dashboard or any other protected page
