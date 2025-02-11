@@ -14,9 +14,9 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
   userId: string | null = localStorage.getItem('userId');
   goalCount: number | undefined;
   pocCount: { totalPocs: number; inProgressPocs: number; completedPocs: number } | undefined;
-  pieChart: any;
+  pieChart: Chart | undefined; // Ensure it's properly typed
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.updateGoalCount();
@@ -24,10 +24,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    // Delay execution to ensure HTML elements are available
-    setTimeout(() => {
-      this.createPieChart();
-    }, 500);
+    // Chart creation will now happen inside updatePocCount() after data loads
   }
 
   ngOnDestroy() {
@@ -67,6 +64,8 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
             completedPocs: response.completedPocs
           };
           console.log('POC count:', this.pocCount);
+
+          // Create the chart only after fetching the data
           this.createPieChart();
         },
         error: (error: any) => {
@@ -76,10 +75,12 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   createPieChart() {
+    // Destroy previous chart instance if it exists
     if (this.pieChart) {
       this.pieChart.destroy();
     }
 
+    // Ensure DOM is ready and canvas exists
     setTimeout(() => {
       const canvas = document.getElementById('pocPieChart') as HTMLCanvasElement | null;
       if (!canvas) {
@@ -91,18 +92,19 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         this.pieChart = new Chart(canvas, {
           type: 'pie',
           data: {
-            labels: [ 'In Progress POCs', 'Completed POCs'],
+            labels: ['In Progress POCs', 'Completed POCs'],
             datasets: [{
-              data: [ this.pocCount.inProgressPocs, this.pocCount.completedPocs],
-              backgroundColor: [ '#FFCE56', '#FF6384'],
-              hoverBackgroundColor: [ '#FFCE56', '#FF6384']
+              data: [this.pocCount.inProgressPocs, this.pocCount.completedPocs],
+              backgroundColor: ['#FFCE56', '#FF6384'],
+              hoverBackgroundColor: ['#FFCE56', '#FF6384']
             }]
           },
           options: {
-            responsive: true
+            responsive: true,
+            maintainAspectRatio: false // Ensure chart resizes properly
           }
         });
       }
-    }, 500);
+    }, 300);
   }
 }
