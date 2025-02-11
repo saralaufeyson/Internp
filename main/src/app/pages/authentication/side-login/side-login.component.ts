@@ -27,7 +27,6 @@ export class SideLoginComponent {
     if (this.form.valid) {
       this.authService.login(this.form.value).subscribe(
         (response) => {
-          console.log('Login successful', response);
           if (response && response.userId) {
             localStorage.setItem('userId', response.userId);
             console.log('User ID saved to localStorage:', response.userId);

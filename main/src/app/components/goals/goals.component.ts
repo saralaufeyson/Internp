@@ -78,7 +78,6 @@ export class GoalsComponent implements OnInit {
     this.http.get(`http://localhost:5180/api/userdata/getGoalsCount/${this.userId}`)
       .subscribe(
         (response: any) => {
-          console.log('Goal count:', response.count);
         },
         (error) => {
           console.error('Failed to fetch goal count:', error);

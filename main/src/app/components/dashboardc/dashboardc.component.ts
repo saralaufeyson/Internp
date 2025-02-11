@@ -16,7 +16,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
   pocCount: { totalPocs: number; inProgressPocs: number; completedPocs: number } | undefined;
   pieChart: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.updateGoalCount();
@@ -45,7 +45,6 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe({
         next: (response: any) => {
           this.goalCount = response.count;
-          console.log('Goal count:', response.count);
         },
         error: (error: any) => {
           console.error('Failed to fetch goal count:', error);
@@ -66,7 +65,6 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
             inProgressPocs: response.inProgressPocs,
             completedPocs: response.completedPocs
           };
-          console.log('POC count:', this.pocCount);
           this.createPieChart();
         },
         error: (error: any) => {
@@ -91,11 +89,11 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         this.pieChart = new Chart(canvas, {
           type: 'pie',
           data: {
-            labels: [ 'In Progress POCs', 'Completed POCs'],
+            labels: ['In Progress POCs', 'Completed POCs'],
             datasets: [{
-              data: [ this.pocCount.inProgressPocs, this.pocCount.completedPocs],
-              backgroundColor: [ '#FFCE56', '#FF6384'],
-              hoverBackgroundColor: [ '#FFCE56', '#FF6384']
+              data: [this.pocCount.inProgressPocs, this.pocCount.completedPocs],
+              backgroundColor: ['#FFCE56', '#FF6384'],
+              hoverBackgroundColor: ['#FFCE56', '#FF6384']
             }]
           },
           options: {

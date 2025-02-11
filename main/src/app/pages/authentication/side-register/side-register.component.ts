@@ -29,7 +29,6 @@ export class SideRegisterComponent {
     if (this.form.valid) {
       this.authService.register(this.form.value).subscribe(
         (response: string) => {
-          console.log('Registration successful:', response);
           if (response.includes('User registered successfully')) {
             this.router.navigate(['/']); // Redirect to home or login page
           } else {

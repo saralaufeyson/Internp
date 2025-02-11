@@ -23,18 +23,4 @@ export class AuthService {
   getUserRole(userId: string): Observable<string> {
     return this.http.get<string>(`${this.apiUrl}/role/${userId}`);
   }
-
-  isAdmin(): boolean {
-    const userRole = localStorage.getItem('userRole');
-    return userRole === 'admin';
-  }
-
-  getRole(): string | null {
-    return localStorage.getItem('userRole');
-  }
-
-  isIntern(): boolean {
-    const userRole = this.getRole();
-    return userRole === 'intern';
-  }
 }
