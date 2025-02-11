@@ -16,7 +16,7 @@ namespace YourNamespace.Services
 
         public AuthService(IMongoClient mongoClient, IConfiguration config)
         {
-            var database = mongoClient.GetDatabase("database0"); // Change this
+            var database = mongoClient.GetDatabase("database0");
             _users = database.GetCollection<User>("Users");
             _config = config;
         }
