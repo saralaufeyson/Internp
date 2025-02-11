@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  
   private apiUrl = 'http://localhost:5180/api/auth'; // Replace with your backend URL
 
   constructor(private http: HttpClient) { }
@@ -33,10 +32,9 @@ export class AuthService {
   getRole(): string | null {
     return localStorage.getItem('userRole');
   }
- 
+
   isIntern(): boolean {
     const userRole = this.getRole();
     return userRole === 'intern';
   }
- 
 }

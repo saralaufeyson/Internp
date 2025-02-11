@@ -43,17 +43,17 @@ export const routes: Routes = [
       {
         path: 'user-details',
         component: UserDetailsComponent,
-        
+
       },
       {
         path: 'intern-list',
         component: InternListComponent,
-      
+
       },
       {
         path: 'all-goals',
         component: AllGoalsComponent,
-       
+
       },
     ],
   },

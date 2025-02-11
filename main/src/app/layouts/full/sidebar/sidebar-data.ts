@@ -12,12 +12,8 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Profile',
     iconName: 'info-circle',
-
     route: '/dashboard/profile',
   },
-  // {
-  //   navCap: 'Ui Components',
-  // },
   {
     displayName: 'My learning Path',
     iconName: 'archive',
@@ -43,7 +39,6 @@ export const navItems: NavItem[] = [
     iconName: 'user',
     route: '/dashboard/all-goals',
   },
-  
   {
     navCap: 'Auth',
   },

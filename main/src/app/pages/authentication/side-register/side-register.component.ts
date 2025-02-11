@@ -1,11 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { MaterialModule } from '../../../material.module';
@@ -13,7 +7,7 @@ import { MaterialModule } from '../../../material.module';
 @Component({
   selector: 'app-side-register',
   standalone: true,
-  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [RouterModule, MaterialModule, ReactiveFormsModule],
   templateUrl: './side-register.component.html',
   styleUrls: ['./side-register.component.css'],
 })
@@ -33,10 +27,8 @@ export class SideRegisterComponent {
 
   submit() {
     if (this.form.valid) {
-      // Send form data for registration
       this.authService.register(this.form.value).subscribe(
         (response: string) => {
-          // Since the server responds with plain text, handle it accordingly
           console.log('Registration successful:', response);
           if (response.includes('User registered successfully')) {
             this.router.navigate(['/']); // Redirect to home or login page

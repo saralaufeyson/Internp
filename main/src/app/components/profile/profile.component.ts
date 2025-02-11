@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GoalsComponent } from '../goals/goals.component';
-import { PocProjectsComponent } from '../poc-projects/poc-projects.component';
-import { LearningPathComponent } from '../learning-path/learning-path.component';
 import { FormsModule } from '@angular/forms';
-
 import { UserDataService } from '../../services/profile.service';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
@@ -25,8 +21,6 @@ export class ProfileComponent implements OnInit {
     role: '' // Add role property
   };
 
-
-
   profileImage: string | ArrayBuffer | null = null;
   userId: string = ''; // Get the logged-in user's ID here (e.g., from LocalStorage or an AuthService)
   errorMessage: string = ''; // For storing error messages
@@ -34,15 +28,12 @@ export class ProfileComponent implements OnInit {
   constructor(private userDataService: UserDataService, private http: HttpClient, private userService: UserService) { }
 
   ngOnInit(): void {
-    // Get the logged-in user's ID (replace with your actual logic to get the user ID)
     this.userId = localStorage.getItem('userId') || ''; // Assume the user ID is saved in localStorage
 
-    // Check if userId is available, if not, log an error or handle the missing user ID scenario
     if (this.userId) {
       this.userService.getUserProfile(this.userId).subscribe(
         (data) => {
           this.userProfile = data;
-          // Ensure role is fetched and assigned
           this.userProfile.role = data.role || 'No role assigned';
         },
         (error) => {
@@ -50,16 +41,12 @@ export class ProfileComponent implements OnInit {
           this.errorMessage = 'Error fetching user profile. Please try again later.';
         }
       );
-      
     } else {
       console.error('No user ID found in localStorage. User is not logged in.');
       this.errorMessage = 'No user ID found. Please log in.';
     }
   }
 
-  
-
-  // Handle profile image upload
   onImageUpload(event: any): void {
     const file = event.target.files[0];
     if (file) {

@@ -6,17 +6,16 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-goals',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule], // <-- Import necessary Angular modules
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './goals.component.html',
   styleUrls: ['./goals.component.css'],
 })
 export class GoalsComponent implements OnInit {
   form: FormGroup;
-  goals: any[] = []; // Array to store saved goals
+  goals: any[] = [];
   userId: string = '';  // Get the logged-in user ID here (e.g., from LocalStorage or an AuthService)
 
   constructor(private http: HttpClient) {
-    // Initialize the form with goalName and goalDescription fields
     this.form = new FormGroup({
       goalName: new FormControl('', [Validators.required]),
       goalDescription: new FormControl('', [Validators.required]),
@@ -24,10 +23,8 @@ export class GoalsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Get the logged-in user's ID (replace with your actual logic to get the user ID)
-    this.userId = localStorage.getItem('userId') || ''; // Assume the user ID is saved in localStorage
+    this.userId = localStorage.getItem('userId') || '';
 
-    // Load the user's saved goals from the backend
     if (this.userId) {
       this.loadGoals();
     } else {
@@ -35,9 +32,7 @@ export class GoalsComponent implements OnInit {
     }
   }
 
-  // Fetch saved goals from the backend
   loadGoals() {
-    // Make sure the userId is set before making the request
     if (!this.userId) {
       console.error('User ID not found. Cannot load goals.');
       return;
@@ -46,9 +41,7 @@ export class GoalsComponent implements OnInit {
     this.http.get(`http://localhost:5180/api/userdata/getGoals/${this.userId}`)
       .subscribe(
         (response: any) => {
-          console.log('Fetched goals:', response);
-          // Update the component's goals state with the fetched data
-          this.goals = response || []; // If no goals, set an empty array
+          this.goals = response || [];
         },
         (error) => {
           console.error('Failed to fetch goals:', error);
@@ -56,7 +49,6 @@ export class GoalsComponent implements OnInit {
       );
   }
 
-  // Submit the goal form
   onSubmit() {
     if (this.form.valid) {
       const { goalName, goalDescription } = this.form.value;
@@ -68,15 +60,12 @@ export class GoalsComponent implements OnInit {
         createdAt: new Date(),
       };
 
-      // Make API call to store the new goal
       this.http.post(`http://localhost:5180/api/userdata/addGoal`, goalData)
         .subscribe(
           (response) => {
-            console.log('Goal saved successfully', response);
-            // Optionally add the newly created goal to the component's goals list
             this.goals.push(goalData);
-            this.form.reset();  // Reset the form after submission
-            this.updateGoalCount(); // Update the goal count after adding a new goal
+            this.form.reset();
+            this.updateGoalCount();
           },
           (error) => {
             console.error('Error saving goal:', error);
@@ -85,7 +74,6 @@ export class GoalsComponent implements OnInit {
     }
   }
 
-  // Method to update the goal count
   updateGoalCount() {
     this.http.get(`http://localhost:5180/api/userdata/getGoalsCount/${this.userId}`)
       .subscribe(
