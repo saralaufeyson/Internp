@@ -1,33 +1,62 @@
-<mat-sidenav-container class="mainWrapper blue_theme  light-theme" autosize autoFocus dir="ltr">
+<mat-sidenav-container
+  class="mainWrapper blue_theme light-theme"
+  autosize
+  autoFocus
+  dir="ltr"
+>
   <!-- ============================================================== -->
   <!-- Vertical Sidebar -->
   <!-- ============================================================== -->
 
-  <mat-sidenav #leftsidenav [mode]="isOver ? 'over' : 'side'" [opened]="!isOver"
-    (openedChange)="onSidenavOpenedChange($event)" (closedStart)="onSidenavClosedStart()" class="sidebarNav">
+  <mat-sidenav
+    #leftsidenav
+    [mode]="isOver ? 'over' : 'side'"
+    [opened]="!isOver"
+    (openedChange)="onSidenavOpenedChange($event)"
+    (closedStart)="onSidenavClosedStart()"
+    class="sidebarNav"
+  >
+  <app-branding></app-branding>
     <div class="flex-layout">
-      <app-sidebar (toggleMobileNav)="sidenav.toggle()" [showToggle]="isOver"></app-sidebar>
+      <app-sidebar
+        (toggleMobileNav)="leftsidenav.toggle()"
+        [showToggle]="isOver"
+      ></app-sidebar>
+      
       <ng-scrollbar class="position-relative" style="height: 100%">
         <mat-nav-list class="sidebar-list">
-          @for(item of navItems; track item) {
-          <app-nav-item [item]="item" (notify)="sidenav.toggle()">
-          </app-nav-item>
-          }
+          <ng-container *ngIf="userRole === 'Intern'">
+            <ng-container *ngFor="let item of internNavItems">
+              <app-nav-item
+                [item]="item"
+                (notify)="leftsidenav.toggle()"
+              ></app-nav-item>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="userRole === 'Admin'">
+            <ng-container *ngFor="let item of adminNavItems">
+              <app-nav-item
+                [item]="item"
+                (notify)="leftsidenav.toggle()"
+              ></app-nav-item>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="userRole !== 'Intern' && userRole !== 'Admin'">
+            <p>Something is wrong</p>
+          </ng-container>
         </mat-nav-list>
       </ng-scrollbar>
-      <div class="p-24">
-        <div class="bg-light-primary d-flex align-items-center gap-4 rounded p-20 m-t-20">
-          <div>
-
-
-          </div>
-          <!-- <img src="/assets/images/backgrounds/rocket.png" alt="imgae" class="side-img m-t--48" /> -->
+      <div class="p-24"></div>
+      <div
+        class="bg-light-primary d-flex align-items-center gap-4 rounded p-20 m-t-20"
+      >
+        <div>
+          <!-- Additional content can go here -->
         </div>
+        <!-- <img src="/assets/images/backgrounds/rocket.png" alt="image" class="side-img m-t--48" /> -->
       </div>
     </div>
   </mat-sidenav>
-
-
 
   <!-- ============================================================== -->
   <!-- Main Content -->
@@ -37,9 +66,11 @@
     <!-- VerticalHeader -->
     <!-- ============================================================== -->
 
-    <app-header [showToggle]="!isOver" (toggleCollapsed)="toggleCollapsed()"
-      (toggleMobileNav)="sidenav.toggle()"></app-header>
-
+    <app-header
+      [showToggle]="!isOver"
+      (toggleCollapsed)="toggleCollapsed()"
+      (toggleMobileNav)="leftsidenav.toggle()"
+    ></app-header>
 
     <main class="pageWrapper maxWidth">
       <!-- ============================================================== -->
@@ -48,5 +79,4 @@
       <router-outlet></router-outlet>
     </main>
   </mat-sidenav-content>
-
 </mat-sidenav-container>
