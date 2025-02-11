@@ -21,7 +21,6 @@ export const PagesRoutes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [InternGuard], // Apply InternGuard
     data: {
       title: 'Profile',
       urls: [

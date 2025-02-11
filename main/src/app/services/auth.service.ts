@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  
+
   private apiUrl = 'http://localhost:5180/api/auth'; // Replace with your backend URL
 
   constructor(private http: HttpClient) { }
@@ -20,17 +20,4 @@ export class AuthService {
       responseType: 'text', // This makes the response plain text instead of JSON
     });
   }
-
-  getUserRole(userId: string): Observable<string> {
-    return this.http.get<string>(`${this.apiUrl}/role/${userId}`);
-  }
-
-
-
-  getRole(): string | null {
-    return localStorage.getItem('userRole');
-  }
- 
-  
- 
 }
