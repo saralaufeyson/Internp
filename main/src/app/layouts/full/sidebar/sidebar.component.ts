@@ -31,7 +31,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userRole = this.authService.getRole();
-    console.log('User Role:', this.userRole);
+    // console.log('User Role:', this.userRole);
     this.loadNavItems();
   }
   isNavItemVisible(item: NavItem): boolean {
