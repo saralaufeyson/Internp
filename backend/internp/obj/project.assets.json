@@ -971,19 +971,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lkanchi\\.nuget\\packages\\": {}
+    "C:\\Users\\dneelam\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lkanchi\\Downloads\\internportal3\\Internp\\backend\\internp\\internp.csproj",
+      "projectUniqueName": "C:\\Users\\dneelam\\Internp\\backend\\internp\\internp.csproj",
       "projectName": "internp",
-      "projectPath": "C:\\Users\\lkanchi\\Downloads\\internportal3\\Internp\\backend\\internp\\internp.csproj",
-      "packagesPath": "C:\\Users\\lkanchi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lkanchi\\Downloads\\internportal3\\Internp\\backend\\internp\\obj\\",
+      "projectPath": "C:\\Users\\dneelam\\Internp\\backend\\internp\\internp.csproj",
+      "packagesPath": "C:\\Users\\dneelam\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dneelam\\Internp\\backend\\internp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\lkanchi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\dneelam\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"

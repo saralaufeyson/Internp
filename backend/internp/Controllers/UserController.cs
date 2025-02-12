@@ -4,12 +4,13 @@ using YourNamespace.Models;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using Microsoft.AspNetCore.Authorization;
+using System.Text.Json;
 
 namespace YourNamespace.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    
+
     public class UserDataController : ControllerBase
     {
         private readonly IMongoCollection<Goal> _goalCollection;
@@ -50,6 +51,60 @@ namespace YourNamespace.Controllers
             Console.WriteLine("PoC Project added to the database.");
             return Ok(new { message = "PoC Project added successfully." });
         }
+        [HttpGet("getPocProject/{projectId}")]
+        public async Task<IActionResult> GetPocProject(string projectId)
+        {
+            if (!ObjectId.TryParse(projectId, out var objectId))
+            {
+                return BadRequest("Invalid project ID format.");
+            }
+
+            var project = await _pocProjectCollection.Find(p => p.Id == objectId).FirstOrDefaultAsync();
+
+            if (project == null)
+            {
+                return NotFound(new { message = "PoC Project not found." });
+            }
+
+            return Ok(project);
+        }
+
+        [HttpPut("updatePocProject/{projectId}")]
+        public async Task<IActionResult> UpdatePocProject(string projectId, [FromBody] JsonElement requestBody)
+        {
+            if (!requestBody.TryGetProperty("endDate", out JsonElement endDateElement))
+            {
+                return BadRequest("EndDate field is required.");
+            }
+
+            DateTime? endDate = endDateElement.ValueKind == JsonValueKind.Null ? (DateTime?)null
+                : endDateElement.GetDateTime();
+
+            // Validate project ID format
+            if (!ObjectId.TryParse(projectId, out var objectId))
+            {
+                return BadRequest("Invalid project ID format.");
+            }
+
+            // Check if the project exists
+            var existingProject = await _pocProjectCollection.Find(p => p.Id == objectId).FirstOrDefaultAsync();
+            if (existingProject == null)
+            {
+                return NotFound(new { message = "PoC Project not found." });
+            }
+
+            // Update only the EndDate field
+            var update = Builders<PocProject>.Update.Set(p => p.EndDate, endDate);
+            var result = await _pocProjectCollection.UpdateOneAsync(p => p.Id == objectId, update);
+
+            if (result.IsAcknowledged && result.ModifiedCount > 0)
+            {
+                return Ok(new { message = "PoC Project EndDate updated successfully." });
+            }
+
+            return NotFound(new { message = "PoC Project not found or EndDate remains unchanged." });
+        }
+
 
         // Get PoC Projects for a specific user
         [HttpGet("getPocProjects/{userId}")]
@@ -136,6 +191,7 @@ namespace YourNamespace.Controllers
             return Ok(goals);
         }
 
+
         // Get the count of goals for a specific user
         [HttpGet("getGoalCount/{userId}")]
         public async Task<IActionResult> GetGoalCount(string userId)
@@ -150,7 +206,7 @@ namespace YourNamespace.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
-    
+
     public class UserController : ControllerBase
     {
         private readonly IMongoCollection<User> _userCollection;
@@ -226,7 +282,7 @@ namespace YourNamespace.Controllers
             var interns = await _userCollection.Find(u => u.Role == "Intern").ToListAsync();
             if (interns.Count == 0)
             {
-            return NotFound(new { message = "No interns found." });
+                return NotFound(new { message = "No interns found." });
             }
             return Ok(interns); // Return only interns
         }
@@ -238,11 +294,11 @@ namespace YourNamespace.Controllers
             var inProgressPocs = await _pocProjectCollection.CountDocumentsAsync(p => p.UserId == userId && p.Status == "inProgress");
             var completedPocs = await _pocProjectCollection.CountDocumentsAsync(p => p.UserId == userId && p.Status == "completed");
 
-            return Ok(new 
-            { 
-                totalPocs, 
-                inProgressPocs, 
-                completedPocs 
+            return Ok(new
+            {
+                totalPocs,
+                inProgressPocs,
+                completedPocs
             });
         }
 
