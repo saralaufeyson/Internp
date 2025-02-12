@@ -49,6 +49,12 @@ export const navItems: NavItem[] = [
     route: '/dashboard/all-goals',
     roles:['admin']
   },
+  {
+    displayName: 'All Mentor Mentees',
+    iconName: 'user',
+    route: '/dashboard/mentor-mentees',
+     roles:['admin']
+  },
   
   {
     navCap: 'Auth',
