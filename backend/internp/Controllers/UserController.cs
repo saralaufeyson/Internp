@@ -72,18 +72,28 @@ namespace YourNamespace.Controllers
         [HttpPut("updatePocProject/{projectId}")]
         public async Task<IActionResult> UpdatePocProject(string projectId, [FromBody] JsonElement requestBody)
         {
-            if (!requestBody.TryGetProperty("endDate", out JsonElement endDateElement))
-            {
-                return BadRequest("EndDate field is required.");
-            }
-
-            DateTime? endDate = endDateElement.ValueKind == JsonValueKind.Null ? (DateTime?)null
-                : endDateElement.GetDateTime();
-
-            // Validate project ID format
             if (!ObjectId.TryParse(projectId, out var objectId))
             {
                 return BadRequest("Invalid project ID format.");
+            }
+
+            // Extract EndDate (if present)
+            DateTime? endDate = null;
+            if (requestBody.TryGetProperty("endDate", out JsonElement endDateElement))
+            {
+                endDate = endDateElement.ValueKind == JsonValueKind.Null ? (DateTime?)null : endDateElement.GetDateTime();
+            }
+
+            // Extract Status (if present)
+            string? status = null;
+            if (requestBody.TryGetProperty("status", out JsonElement statusElement) && statusElement.ValueKind == JsonValueKind.String)
+            {
+                status = statusElement.GetString();
+            }
+
+            if (endDate == null && status == null)
+            {
+                return BadRequest("At least one field (endDate or status) must be provided.");
             }
 
             // Check if the project exists
@@ -93,17 +103,28 @@ namespace YourNamespace.Controllers
                 return NotFound(new { message = "PoC Project not found." });
             }
 
-            // Update only the EndDate field
-            var update = Builders<PocProject>.Update.Set(p => p.EndDate, endDate);
+            // Build update definition
+            var updateDefinition = new List<UpdateDefinition<PocProject>>();
+            if (endDate != null)
+            {
+                updateDefinition.Add(Builders<PocProject>.Update.Set(p => p.EndDate, endDate));
+            }
+            if (!string.IsNullOrEmpty(status))
+            {
+                updateDefinition.Add(Builders<PocProject>.Update.Set(p => p.Status, status));
+            }
+
+            var update = Builders<PocProject>.Update.Combine(updateDefinition);
             var result = await _pocProjectCollection.UpdateOneAsync(p => p.Id == objectId, update);
 
             if (result.IsAcknowledged && result.ModifiedCount > 0)
             {
-                return Ok(new { message = "PoC Project EndDate updated successfully." });
+                return Ok(new { message = "PoC Project updated successfully." });
             }
 
-            return NotFound(new { message = "PoC Project not found or EndDate remains unchanged." });
+            return NotFound(new { message = "PoC Project not found or no changes were made." });
         }
+
 
 
         // Get PoC Projects for a specific user
