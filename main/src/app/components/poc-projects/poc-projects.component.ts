@@ -44,21 +44,21 @@ export class PocProjectsComponent implements OnInit {
 
   // Fetch user's PoC Projects
   loadPocProjects() {
-    console.log("Fetching PoC Projects for UserId:", this.userId);  // Log the userId
-  
     this.http.get(`http://localhost:5180/api/userdata/getPocProjects/${this.userId}`)
       .subscribe(
         (response: any) => {
+          console.log("PoC Projects fetched:", response);
           this.pocs = response || [];
-          console.log("PoC Projects fetched successfully:", this.pocs); // Log the fetched data
+
+          // Log each project to check if `_id` is present
+         
         },
         (error) => {
           console.error('Error fetching PoC Projects', error);
-          this.errorMessage = 'Error fetching PoC Projects. Please try again later.';
         }
       );
   }
-  
+
 
   // Handle form submission
   onSubmit() {
@@ -75,26 +75,51 @@ export class PocProjectsComponent implements OnInit {
         startDate: newPoc.startDate,
         endDate: newPoc.status === 'completed' ? newPoc.endDate : null  // endDate is only set if the status is completed
       }, { responseType: 'text' })  // Add responseType: 'text' to handle plain text response
-      .subscribe(
-        (response: string) => {
-          console.log('PoC Project added successfully', response);
-          this.pocs.push({
-            ...newPoc,
-            endDate: newPoc.status === 'completed' ? newPoc.endDate : null
-          });
-          this.pocForm.reset({
-            status: 'inProgress',
-            startDate: '',
-            endDate: ''
-          });
-        },
-        (error) => {
-          console.error('Error adding PoC Project', error);
-          this.errorMessage = 'Error adding PoC Project. Please try again later.';
-        }
-      );
+        .subscribe(
+          (response: string) => {
+            console.log('PoC Project added successfully', response);
+            this.pocs.push({
+              ...newPoc,
+              endDate: newPoc.status === 'completed' ? newPoc.endDate : null
+            });
+            this.pocForm.reset({
+              status: 'inProgress',
+              startDate: '',
+              endDate: ''
+            });
+          },
+          (error) => {
+            console.error('Error adding PoC Project', error);
+            this.errorMessage = 'Error adding PoC Project. Please try again later.';
+          }
+        );
     } else {
       this.errorMessage = 'Please fill out the form correctly before submitting.';
     }
+  }
+  deletePocProject(projectId: string): void {
+    console.log("Attempting to delete PoC Project with ID:", projectId);
+
+    if (!projectId || typeof projectId !== 'string') {
+      console.error("Invalid projectId:", projectId);
+      this.errorMessage = "Invalid project ID.";
+      return;
+    }
+
+    if (!confirm("Are you sure you want to delete this project?")) {
+      return;
+    }
+
+    this.http.delete(`http://localhost:5180/api/userdata/deletePocProject/${projectId}`)
+      .subscribe({
+        next: () => {
+          console.log('PoC Project deleted successfully');
+          this.pocs = this.pocs.filter(poc => poc._id !== projectId);
+        },
+        error: (error) => {
+          console.error('Error deleting PoC Project', error);
+          this.errorMessage = 'Error deleting PoC Project. Please try again later.';
+        }
+      });
   }
 }
