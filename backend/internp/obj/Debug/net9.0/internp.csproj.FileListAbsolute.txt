@@ -174,3 +174,11 @@ C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\backend\internp\bin\De
 C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\backend\internp\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\dneelam\Internp\backend\internp\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\dneelam\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\dneelam\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\dneelam\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\dneelam\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\dneelam\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\dneelam\Internp\backend\internp\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\dneelam\Internp\backend\internp\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll

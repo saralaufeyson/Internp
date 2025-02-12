@@ -9,7 +9,7 @@ namespace YourNamespace.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    
+
     public class UserDataController : ControllerBase
     {
         private readonly IMongoCollection<Goal> _goalCollection;
@@ -57,19 +57,79 @@ namespace YourNamespace.Controllers
         {
             Console.WriteLine($"Fetching PoC projects for UserId: {userId}");
 
-            var pocProjects = await _pocProjectCollection
+            var projects = await _pocProjectCollection
                 .Find(p => p.UserId == userId)
                 .ToListAsync();
 
-            if (pocProjects.Count == 0)
+            if (projects.Count == 0)
             {
                 Console.WriteLine("No PoC projects found.");
                 return NotFound(new { message = "No PoC projects found for this user." });
             }
 
-            Console.WriteLine($"Found {pocProjects.Count} projects for UserId: {userId}");
-            return Ok(pocProjects);
+            var result = projects.Select(p => new
+            {
+                _id = p.Id.ToString(), // Convert ObjectId to string for frontend usage
+                p.UserId,
+                p.ProjectName,
+                p.Description,
+                p.Status,
+                p.StartDate,
+                p.EndDate,
+                p.CreatedAt
+            });
+
+            Console.WriteLine($"Found {projects.Count} projects for UserId: {userId}");
+            return Ok(result);
         }
+
+        // Delete a PoC Project by ID
+        [HttpDelete("deletePocProject/{projectId}")]
+        public async Task<IActionResult> DeletePocProject(string projectId)
+        {
+            Console.WriteLine($"Received delete request for: {projectId}");
+
+            if (!ObjectId.TryParse(projectId, out var objectId))
+            {
+                return BadRequest(new { message = "Invalid project ID format." });
+            }
+
+            var result = await _pocProjectCollection.DeleteOneAsync(p => p.Id == objectId);
+
+            if (result.DeletedCount > 0)
+            {
+                Console.WriteLine($"PoC Project {projectId} deleted successfully.");
+                return Ok(new { message = "PoC project deleted successfully." });
+            }
+
+            Console.WriteLine("PoC project not found.");
+            return NotFound(new { message = "PoC project not found." });
+        }
+        [HttpPut("updatePocProject/{projectId}")]
+        public async Task<IActionResult> UpdatePocProject(string projectId, [FromBody] PocProject project)
+        {
+            if (project == null)
+            {
+                return BadRequest(new { message = "Project data is required." });
+            }
+
+            if (!ObjectId.TryParse(projectId, out var objectId))
+            {
+                return BadRequest(new { message = "Invalid project ID format." });
+            }
+
+            project.Id = objectId;
+
+            var result = await _pocProjectCollection.ReplaceOneAsync(p => p.Id == objectId, project);
+
+            if (result.IsAcknowledged && result.ModifiedCount > 0)
+            {
+                return Ok(new { message = "PoC project updated successfully." });
+            }
+
+            return NotFound(new { message = "PoC project not found." });
+        }
+
 
         // Add a new Learning Path
         // Inside UserDataController.cs
@@ -146,11 +206,13 @@ namespace YourNamespace.Controllers
             // Return the count with an OK status
             return Ok(new { count = goalCount });
         }
+
+
     }
 
     [ApiController]
     [Route("api/[controller]")]
-    
+
     public class UserController : ControllerBase
     {
         private readonly IMongoCollection<User> _userCollection;
@@ -226,7 +288,7 @@ namespace YourNamespace.Controllers
             var interns = await _userCollection.Find(u => u.Role == "Intern").ToListAsync();
             if (interns.Count == 0)
             {
-            return NotFound(new { message = "No interns found." });
+                return NotFound(new { message = "No interns found." });
             }
             return Ok(interns); // Return only interns
         }
@@ -238,11 +300,11 @@ namespace YourNamespace.Controllers
             var inProgressPocs = await _pocProjectCollection.CountDocumentsAsync(p => p.UserId == userId && p.Status == "inProgress");
             var completedPocs = await _pocProjectCollection.CountDocumentsAsync(p => p.UserId == userId && p.Status == "completed");
 
-            return Ok(new 
-            { 
-                totalPocs, 
-                inProgressPocs, 
-                completedPocs 
+            return Ok(new
+            {
+                totalPocs,
+                inProgressPocs,
+                completedPocs
             });
         }
 
