@@ -1,0 +1,18 @@
+<div class="container">
+    <h2 class="mentor-list-title">Mentor List</h2>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <table class="mentor-table table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let mentor of mentors">
+                <td>{{ mentor.username }}</td>
+                <td>{{ mentor.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
