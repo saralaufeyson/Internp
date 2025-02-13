@@ -50,6 +50,19 @@
       <p *ngIf="poc.status === 'completed'"><strong>End Date:</strong> {{ poc.endDate | date }}</p>
 
       <button (click)="deletePocProject(poc._id)">Delete</button>
+      <button (click)="editPoc(poc)">Edit</button>
+      <div *ngIf="poc.isEditing">
+        <label for="status">Status:</label>
+        <select [(ngModel)]="poc.status">
+          <option value="inProgress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+        <div *ngIf="poc.status === 'completed'">
+          <label for="endDate">End Date:</label>
+          <input [(ngModel)]="poc.endDate" type="date" />
+        </div>
+        <button (click)="updatePocStatus(poc._id, poc.status, poc.endDate)">Save</button>
+      </div>
     </div>
 
   </div>

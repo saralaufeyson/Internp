@@ -4,6 +4,8 @@ using YourNamespace.Models;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using Microsoft.AspNetCore.Authorization;
+using System.Xml.Linq;
+using System.Text.Json;
 
 namespace YourNamespace.Controllers
 {
@@ -105,29 +107,62 @@ namespace YourNamespace.Controllers
             Console.WriteLine("PoC project not found.");
             return NotFound(new { message = "PoC project not found." });
         }
-        [HttpPut("updatePocProject/{projectId}")]
-        public async Task<IActionResult> UpdatePocProject(string projectId, [FromBody] PocProject project)
-        {
-            if (project == null)
-            {
-                return BadRequest(new { message = "Project data is required." });
-            }
 
+        // Update PoC Project status and end date
+        [HttpPut("updatePocProject/{projectId}")]
+        public async Task<IActionResult> UpdatePocProject(string projectId, [FromBody] JsonElement requestBody)
+        {
             if (!ObjectId.TryParse(projectId, out var objectId))
             {
-                return BadRequest(new { message = "Invalid project ID format." });
+                return BadRequest("Invalid project ID format.");
             }
 
-            project.Id = objectId;
+            // Extract EndDate (if present)
+            DateTime? endDate = null;
+            if (requestBody.TryGetProperty("endDate", out JsonElement endDateElement))
+            {
+                endDate = endDateElement.ValueKind == JsonValueKind.Null ? (DateTime?)null : endDateElement.GetDateTime();
+            }
 
-            var result = await _pocProjectCollection.ReplaceOneAsync(p => p.Id == objectId, project);
+            // Extract Status (if present)
+            string? status = null;
+            if (requestBody.TryGetProperty("status", out JsonElement statusElement) && statusElement.ValueKind == JsonValueKind.String)
+            {
+                status = statusElement.GetString();
+            }
+
+            if (endDate == null && status == null)
+            {
+                return BadRequest("At least one field (endDate or status) must be provided.");
+            }
+
+            // Check if the project exists
+            var existingProject = await _pocProjectCollection.Find(p => p.Id == objectId).FirstOrDefaultAsync();
+            if (existingProject == null)
+            {
+                return NotFound(new { message = "PoC Project not found." });
+            }
+
+            // Build update definition
+            var updateDefinition = new List<UpdateDefinition<PocProject>>();
+            if (endDate != null)
+            {
+                updateDefinition.Add(Builders<PocProject>.Update.Set(p => p.EndDate, endDate));
+            }
+            if (!string.IsNullOrEmpty(status))
+            {
+                updateDefinition.Add(Builders<PocProject>.Update.Set(p => p.Status, status));
+            }
+
+            var update = Builders<PocProject>.Update.Combine(updateDefinition);
+            var result = await _pocProjectCollection.UpdateOneAsync(p => p.Id == objectId, update);
 
             if (result.IsAcknowledged && result.ModifiedCount > 0)
             {
-                return Ok(new { message = "PoC project updated successfully." });
+                return Ok(new { message = "PoC Project updated successfully." });
             }
 
-            return NotFound(new { message = "PoC project not found." });
+            return NotFound(new { message = "PoC Project not found or no changes were made." });
         }
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-poc-projects',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule],
   templateUrl: './poc-projects.component.html',
   styleUrls: ['./poc-projects.component.css']
 })
@@ -123,5 +123,29 @@ export class PocProjectsComponent implements OnInit {
           this.errorMessage = 'Error deleting PoC Project. Please try again later.';
         }
       });
+  }
+
+  updatePocStatus(projectId: string, status: string, endDate: string | null) {
+    const updatedPoc = { status, endDate };
+    this.http.put(`http://localhost:5180/api/userdata/updatePocProject/${projectId}`, updatedPoc)
+      .subscribe(
+        (response: any) => {
+          console.log('PoC Project status updated successfully', response);
+          const poc = this.pocs.find(p => p._id === projectId);
+          if (poc) {
+            poc.status = status;
+            poc.endDate = status === 'completed' ? endDate : null;
+            poc.isEditing = false; // Close the edit box
+          }
+        },
+        (error) => {
+          console.error('Error updating PoC Project status', error);
+          this.errorMessage = 'Error updating PoC Project status. Please try again later.';
+        }
+      );
+  }
+
+  editPoc(poc: any) {
+    poc.isEditing = !poc.isEditing;
   }
 }
