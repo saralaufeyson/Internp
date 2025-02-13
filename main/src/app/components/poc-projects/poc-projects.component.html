@@ -41,18 +41,37 @@
   </form>
 
   <!-- Display saved POCs -->
- <div *ngIf="pocs.length > 0">
-  <h3>Your Saved POCs:</h3>
-  <div *ngFor="let poc of pocs" class="poc card p-3 mb-3 shadow-sm">
-    <h4>{{ poc.projectName }} ({{ poc.status }})</h4>
-    <p><strong>Description:</strong> {{ poc.description }}</p>
-    <p><strong>Start Date:</strong> {{ poc.startDate | date }}</p>
-    <p *ngIf="poc.status === 'completed'"><strong>End Date:</strong> {{ poc.endDate | date }}</p>
-    
-    <!-- Delete Icon Button -->
-   
-      <i class="bi bi-trash3 fs-5" (click)="deletePocProject(poc?._id)"></i>
-   
+  <div *ngIf="pocs.length > 0">
+    <h3>Your Saved POCs:</h3>
+    <div *ngFor="let poc of pocs" class="poc">
+      <div class="poc-header">
+        <h4>{{ poc.projectName }} ({{ poc.status }})</h4>
+        <div class="poc-actions">
+          <button (click)="deletePocProject(poc._id)" class="btn btn-danger">
+            <i class="bi bi-trash"></i>
+          </button>
+          <button (click)="editPoc(poc)" class="btn btn-primary">
+            <i class="bi bi-pencil"></i>
+          </button>
+        </div>
+      </div>
+      <p><strong>Description:</strong> {{ poc.description }}</p>
+      <p><strong>Start Date:</strong> {{ poc.startDate | date }}</p>
+      <p *ngIf="poc.status === 'completed'"><strong>End Date:</strong> {{ poc.endDate | date }}</p>
+      <div *ngIf="poc.isEditing">
+        <label for="status">Status:</label>
+        <select [(ngModel)]="poc.status">
+          <option value="inProgress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+        <div *ngIf="poc.status === 'completed'">
+          <label for="endDate">End Date:</label>
+          <input [(ngModel)]="poc.endDate" type="date" />
+        </div>
+        <button (click)="updatePocStatus(poc._id, poc.status, poc.endDate)">Save</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -62,4 +81,3 @@
   <div *ngIf="pocs.length === 0">
     <p>No PoC Projects found.</p>
   </div>
-</div>

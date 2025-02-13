@@ -97,4 +97,20 @@ export class GoalsComponent implements OnInit {
         }
       );
   }
+
+  // Method to delete a goal
+  deleteGoal(goalId: string) {
+    this.http.delete(`http://localhost:5180/api/userdata/deleteGoal/${goalId}`)
+      .subscribe(
+        (response) => {
+          console.log('Goal deleted successfully', response);
+          // Remove the deleted goal from the goals array
+          this.goals = this.goals.filter(goal => goal._id !== goalId);
+          this.updateGoalCount(); // Update the goal count after deleting a goal
+        },
+        (error) => {
+          console.error('Error deleting goal:', error);
+        }
+      );
+  }
 }

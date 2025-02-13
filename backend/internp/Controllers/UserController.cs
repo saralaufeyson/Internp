@@ -4,6 +4,8 @@ using YourNamespace.Models;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using Microsoft.AspNetCore.Authorization;
+using System.Xml.Linq;
+using System.Text.Json;
 
 namespace YourNamespace.Controllers
 {
@@ -105,7 +107,64 @@ namespace YourNamespace.Controllers
             Console.WriteLine("PoC project not found.");
             return NotFound(new { message = "PoC project not found." });
         }
-        
+
+        // Update PoC Project status and end date
+        [HttpPut("updatePocProject/{projectId}")]
+        public async Task<IActionResult> UpdatePocProject(string projectId, [FromBody] JsonElement requestBody)
+        {
+            if (!ObjectId.TryParse(projectId, out var objectId))
+            {
+                return BadRequest("Invalid project ID format.");
+            }
+
+            // Extract EndDate (if present)
+            DateTime? endDate = null;
+            if (requestBody.TryGetProperty("endDate", out JsonElement endDateElement))
+            {
+                endDate = endDateElement.ValueKind == JsonValueKind.Null ? (DateTime?)null : endDateElement.GetDateTime();
+            }
+
+            // Extract Status (if present)
+            string? status = null;
+            if (requestBody.TryGetProperty("status", out JsonElement statusElement) && statusElement.ValueKind == JsonValueKind.String)
+            {
+                status = statusElement.GetString();
+            }
+
+            if (endDate == null && status == null)
+            {
+                return BadRequest("At least one field (endDate or status) must be provided.");
+            }
+
+            // Check if the project exists
+            var existingProject = await _pocProjectCollection.Find(p => p.Id == objectId).FirstOrDefaultAsync();
+            if (existingProject == null)
+            {
+                return NotFound(new { message = "PoC Project not found." });
+            }
+
+            // Build update definition
+            var updateDefinition = new List<UpdateDefinition<PocProject>>();
+            if (endDate != null)
+            {
+                updateDefinition.Add(Builders<PocProject>.Update.Set(p => p.EndDate, endDate));
+            }
+            if (!string.IsNullOrEmpty(status))
+            {
+                updateDefinition.Add(Builders<PocProject>.Update.Set(p => p.Status, status));
+            }
+
+            var update = Builders<PocProject>.Update.Combine(updateDefinition);
+            var result = await _pocProjectCollection.UpdateOneAsync(p => p.Id == objectId, update);
+
+            if (result.IsAcknowledged && result.ModifiedCount > 0)
+            {
+                return Ok(new { message = "PoC Project updated successfully." });
+            }
+
+            return NotFound(new { message = "PoC Project not found or no changes were made." });
+        }
+
 
         // Add a new Learning Path
         // Inside UserDataController.cs
@@ -153,6 +212,24 @@ namespace YourNamespace.Controllers
             return Ok(goals);
         }
 
+        [HttpDelete("deleteGoal/{goalId}")]
+        public async Task<IActionResult> DeleteGoal(string goalId)
+        {
+            if (!ObjectId.TryParse(goalId, out var objectId))
+            {
+                return BadRequest(new { message = "Invalid goal ID format." });
+            }
+
+            var result = await _goalCollection.DeleteOneAsync(g => g.Id == objectId);
+
+            if (result.DeletedCount > 0)
+            {
+                return Ok(new { message = "Goal deleted successfully." });
+            }
+
+            return NotFound(new { message = "Goal not found." });
+        }
+
 
 
         // Get goals for a specific user
@@ -168,8 +245,18 @@ namespace YourNamespace.Controllers
                 return NotFound(new { message = "No goals found for this user." });
             }
 
+            // Convert ObjectId to string for frontend usage
+            var result = goals.Select(g => new
+            {
+                _id = g.Id.ToString(), // Convert ObjectId to string
+                g.UserId,
+                g.GoalName,
+                g.Description,
+                g.CreatedAt
+            });
+
             // Return the found goals with an OK status
-            return Ok(goals);
+            return Ok(result);
         }
 
         // Get the count of goals for a specific user
