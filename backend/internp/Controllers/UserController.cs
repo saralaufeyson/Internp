@@ -212,6 +212,24 @@ namespace YourNamespace.Controllers
             return Ok(goals);
         }
 
+        [HttpDelete("deleteGoal/{goalId}")]
+        public async Task<IActionResult> DeleteGoal(string goalId)
+        {
+            if (!ObjectId.TryParse(goalId, out var objectId))
+            {
+                return BadRequest(new { message = "Invalid goal ID format." });
+            }
+
+            var result = await _goalCollection.DeleteOneAsync(g => g.Id == objectId);
+
+            if (result.DeletedCount > 0)
+            {
+                return Ok(new { message = "Goal deleted successfully." });
+            }
+
+            return NotFound(new { message = "Goal not found." });
+        }
+
 
 
         // Get goals for a specific user
@@ -227,8 +245,18 @@ namespace YourNamespace.Controllers
                 return NotFound(new { message = "No goals found for this user." });
             }
 
+            // Convert ObjectId to string for frontend usage
+            var result = goals.Select(g => new
+            {
+                _id = g.Id.ToString(), // Convert ObjectId to string
+                g.UserId,
+                g.GoalName,
+                g.Description,
+                g.CreatedAt
+            });
+
             // Return the found goals with an OK status
-            return Ok(goals);
+            return Ok(result);
         }
 
         // Get the count of goals for a specific user
