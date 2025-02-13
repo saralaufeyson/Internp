@@ -5,6 +5,8 @@ import { UserDetailsComponent } from './pages/user-details/user-details.componen
 import { MentorMenteesComponent } from './components/mentor-mentees/mentor-mentees.component';
 import { AllGoalsComponent } from './components/all-goals/all-goals.component';
 import { InternListComponent } from './intern-list/intern-list.component';
+import { MentorListComponent } from './mentor-list/mentor-list.component'; // Import MentorListComponent
+
 export const routes: Routes = [
   {
     path: '',
@@ -43,22 +45,26 @@ export const routes: Routes = [
       {
         path: 'user-details',
         component: UserDetailsComponent,
-        
+
       },
       {
         path: 'intern-list',
         component: InternListComponent,
-      
+
       },
       {
         path: 'all-goals',
         component: AllGoalsComponent,
-       
+
       },
       {
         path: 'mentor-mentees',
         component: MentorMenteesComponent,
-       
+
+      },
+      {
+        path: 'mentor-list',
+        component: MentorListComponent,
       },
     ],
   },

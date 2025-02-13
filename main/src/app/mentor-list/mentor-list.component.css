@@ -1,0 +1,93 @@
+/* Container for Mentor List */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fcfcfc;
+    /* Light blue background */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Title Styling */
+.mentor-list-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #0056b3;
+    /* Dark blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Alert Message Styling */
+.alert {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #dc3545;
+    /* Red alert for errors */
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Table Styling */
+.mentor-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.mentor-table th,
+.mentor-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.mentor-table th {
+    background: #007bff;
+    /* Blue header */
+    color: white;
+    font-weight: bold;
+    border-radius: 8px 8px 0 0;
+    padding: 12px;
+}
+
+.mentor-table td {
+    background-color: #f2f2f2;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Table Row Hover Effect */
+.mentor-table tr:hover {
+    background: #d0ebff;
+    /* Lighter blue on hover */
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Alternate Row Color */
+.mentor-table tbody tr:nth-child(odd) {
+    background: #e3f2fd;
+    /* Light blue row */
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+
+    .mentor-table th,
+    .mentor-table td {
+        padding: 8px 10px;
+    }
+
+    .mentor-list-title {
+        font-size: 1.5rem;
+    }
+}

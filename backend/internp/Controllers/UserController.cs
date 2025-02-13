@@ -368,6 +368,7 @@ namespace YourNamespace.Controllers
             var users = await _userCollection.Find(_ => true).ToListAsync();
             return Ok(users);
         }
+
         [HttpGet("getInterns")]
         public async Task<IActionResult> GetInterns()
         {
@@ -377,6 +378,16 @@ namespace YourNamespace.Controllers
                 return NotFound(new { message = "No interns found." });
             }
             return Ok(interns); // Return only interns
+        }
+        [HttpGet("getMentors")]
+        public async Task<IActionResult> GetMentors()
+        {
+            var mentors = await _userCollection.Find(u => u.Role == "Mentor").ToListAsync();
+            if (mentors.Count == 0)
+            {
+                return NotFound(new { message = "No mentors found." });
+            }
+            return Ok(mentors); // Return only mentors
         }
 
         [HttpGet("getPocProjectStats/{userId}")]

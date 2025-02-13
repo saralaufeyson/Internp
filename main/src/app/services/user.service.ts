@@ -25,4 +25,9 @@ export class UserService {
   getInterns(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/getInterns`); // Ensure this route exists on your backend
   }
+
+  // Get all users who are 'Mentor' role
+  getMentors(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/getMentors`);
+  }
 }

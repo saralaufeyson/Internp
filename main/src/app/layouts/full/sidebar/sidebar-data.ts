@@ -8,54 +8,60 @@ export const navItems: NavItem[] = [
     displayName: 'Dashboard',
     iconName: 'layout-grid-add',
     route: '/dashboard',
-    roles:['intern','admin']
+    roles: ['intern', 'admin']
   },
   {
     displayName: 'Profile',
     iconName: 'info-circle',
 
     route: '/dashboard/profile',
-    roles:['intern','admin']
+    roles: ['intern', 'admin']
 
   },
- 
+
   {
     displayName: 'My learning Path',
     iconName: 'archive',
     route: '/dashboard/learningPath',
-    roles:['intern']
+    roles: ['intern']
   },
   {
     displayName: 'My Goals',
     iconName: 'list-details',
     route: '/dashboard/goals',
-    roles:['intern']
+    roles: ['intern']
   },
   {
     displayName: 'My PoC Projects',
     iconName: 'file-text-ai',
     route: '/dashboard/pocProjects',
-    roles:['intern']
+    roles: ['intern']
   },
   {
     displayName: 'All Interns',
     iconName: 'user',
     route: '/dashboard/intern-list',
-    roles:['admin']
+    roles: ['admin']
   },
   {
     displayName: 'All Goals',
     iconName: 'user',
     route: '/dashboard/all-goals',
-    roles:['admin']
+    roles: ['admin']
   },
   {
     displayName: 'All Mentor Mentees',
     iconName: 'user',
     route: '/dashboard/mentor-mentees',
-     roles:['admin']
+    roles: ['admin']
   },
-  
+  {
+    displayName: 'All Mentors',
+    iconName: 'user',
+    route: '/dashboard/mentor-list',
+    roles: ['admin']
+  },
+
   {
     navCap: 'Auth',
   },
