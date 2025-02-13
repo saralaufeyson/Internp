@@ -4,17 +4,17 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Goal Name</th>
+        <th>Username</th>
         <th>Description</th>
-        <th>User ID</th>
+        <th>Goal Name</th>
         <th>Created At</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let goal of goals">
+        <td>{{ goal.username }}</td>
         <td>{{ goal.goalName }}</td>
         <td>{{ goal.description }}</td>
-        <td>{{ goal.userId }}</td>
         <td>{{ goal.createdAt | date:'short' }}</td>
       </tr>
     </tbody>

@@ -17,14 +17,16 @@ namespace YourNamespace.Controllers
         private readonly IMongoCollection<Goal> _goalCollection;
         private readonly IMongoCollection<PocProject> _pocProjectCollection;
         private readonly IMongoCollection<LearningPath> _learningPathCollection;
-
+        private readonly IMongoCollection<User> _userCollection;
         public UserDataController(IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase("database0");
             _goalCollection = database.GetCollection<Goal>("Goals");
             _pocProjectCollection = database.GetCollection<PocProject>("PocProjects");
             _learningPathCollection = database.GetCollection<LearningPath>("LearningPaths");
+            _userCollection = database.GetCollection<User>("Users");
         }
+
 
         // Add a new PoC Project
         [HttpPost("addPocProject")]
@@ -209,7 +211,28 @@ namespace YourNamespace.Controllers
                 return NotFound(new { message = "No goals found." });
             }
 
-            return Ok(goals);
+            var validUserIds = goals
+                .Select(g => g.UserId)
+                .Where(userId => ObjectId.TryParse(userId, out _))
+                .Distinct()
+                .ToList();
+
+            var users = await _userCollection.Find(u => validUserIds.Contains(u.Id)).ToListAsync();
+            var userDictionary = users
+                .Where(u => u.Id != null)
+                .ToDictionary(u => u.Id!, u => u.Username);
+
+            var result = goals.Select(g => new
+            {
+                _id = g.Id.ToString(),
+                g.UserId,
+                Username = userDictionary.TryGetValue(g.UserId, out var username) ? username : "Unknown",
+                g.GoalName,
+                g.Description,
+                g.CreatedAt
+            });
+
+            return Ok(result);
         }
 
         [HttpDelete("deleteGoal/{goalId}")]
