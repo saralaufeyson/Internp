@@ -20,5 +20,8 @@ namespace YourNamespace.Models
 
         [BsonElement("role")]
         public required string Role { get; set; }
+
+        public List<string>? AssignedInterns { get; set; } = new List<string>();
+        public string? AssignedMentorId { get; set; }
     }
 }

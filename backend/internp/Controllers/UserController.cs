@@ -379,6 +379,38 @@ namespace YourNamespace.Controllers
             }
             return Ok(interns); // Return only interns
         }
+
+        [HttpPost("assignInternsToMentor")]
+        public async Task<IActionResult> AssignInternsToMentor([FromBody] AssignInternsRequest request)
+        {
+            if (request == null || string.IsNullOrEmpty(request.MentorId) || request.InternIds == null || !request.InternIds.Any())
+            {
+                return BadRequest(new { message = "MentorId and InternIds are required." });
+            }
+
+            var mentor = await _userCollection.Find(u => u.Id == request.MentorId && u.Role == "Mentor").FirstOrDefaultAsync();
+            if (mentor == null)
+            {
+                return NotFound(new { message = "Mentor not found." });
+            }
+
+            var interns = await _userCollection.Find(u => request.InternIds.Contains(u.Id) && u.Role == "Intern").ToListAsync();
+            if (interns.Count != request.InternIds.Count)
+            {
+                return BadRequest(new { message = "One or more interns not found." });
+            }
+
+            var update = Builders<User>.Update.Set(u => u.AssignedInterns, request.InternIds);
+            var result = await _userCollection.UpdateOneAsync(u => u.Id == request.MentorId, update);
+
+            if (result.IsAcknowledged && result.ModifiedCount > 0)
+            {
+                return Ok(new { message = "Interns assigned to mentor successfully." });
+            }
+
+            return NotFound(new { message = "Mentor not found or no changes were made." });
+        }
+
         [HttpGet("getMentors")]
         public async Task<IActionResult> GetMentors()
         {
@@ -387,7 +419,40 @@ namespace YourNamespace.Controllers
             {
                 return NotFound(new { message = "No mentors found." });
             }
-            return Ok(mentors); // Return only mentors
+
+            return Ok(mentors);
+        }
+
+        [HttpGet("getMentorsWithInterns")]
+        public async Task<IActionResult> GetMentorsWithInterns()
+        {
+            var mentors = await _userCollection.Find(u => u.Role == "Mentor").ToListAsync();
+            if (mentors.Count == 0)
+            {
+                return NotFound(new { message = "No mentors found." });
+            }
+
+            var mentorDetails = new List<object>();
+
+            foreach (var mentor in mentors)
+            {
+                var internIds = mentor.AssignedInterns ?? new List<string>();
+                var interns = await _userCollection.Find(u => internIds.Contains(u.Id)).ToListAsync();
+
+                mentorDetails.Add(new
+                {
+                    MentorId = mentor.Id,
+                    MentorName = mentor.Username,
+                    Interns = interns.Select(i => new
+                    {
+                        InternId = i.Id,
+                        InternName = i.Username,
+                        InternEmail = i.Email
+                    }).ToList()
+                });
+            }
+
+            return Ok(mentorDetails);
         }
 
         [HttpGet("getPocProjectStats/{userId}")]
@@ -405,5 +470,11 @@ namespace YourNamespace.Controllers
             });
         }
 
+    }
+
+    public class AssignInternsRequest
+    {
+        public string? MentorId { get; set; }
+        public List<string>? InternIds { get; set; }
     }
 }
