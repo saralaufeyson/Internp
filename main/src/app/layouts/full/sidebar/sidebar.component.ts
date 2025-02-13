@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit {
   @Output() toggleMobileNav = new EventEmitter<void>();
   @Output() toggleCollapsed = new EventEmitter<void>();
 
-  navItems: NavItem[] = [];
+  
   filteredNavItems: NavItem[] = [];
   userRole: string | null = null;
 
@@ -31,27 +31,13 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userRole = this.authService.getRole();
-    //console.log('User Role:', this.userRole);
-    this.loadNavItems();
+    
+    
+    
   }
   isNavItemVisible(item: NavItem): boolean {
     return (item.roles?.includes(this.userRole as string) ?? false) || (item.roles?.includes('guest') ?? false);
   }
-  // loadNavItems(): void {
-  //   this.navItems = navItems;
-  //   this.filteredNavItems = this.navItems.filter(item => this.isNavItemVisible(item));
-  // }
 
-loadNavItems(): void {
-  this.navItems = navItems;
-  if (this.userRole === 'intern') {
-    this.filteredNavItems = this.navItems.filter(item => item.roles?.includes('intern'));
-    console.log('Intern Nav Items:', this.filteredNavItems);
-  } else if (this.userRole === 'admin') {
-    this.filteredNavItems = this.navItems.filter(item => item.roles?.includes('admin'));
-    console.log('Admin Nav Items:', this.filteredNavItems);
-  } else {
-    this.filteredNavItems = this.navItems.filter(item => this.isNavItemVisible(item));
-  }
-}
+
 }

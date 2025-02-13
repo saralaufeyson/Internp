@@ -95,8 +95,8 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
             labels: ['In Progress POCs', 'Completed POCs'],
             datasets: [{
               data: [this.pocCount.inProgressPocs, this.pocCount.completedPocs],
-              backgroundColor: ['#FFCE56', '#FF6384'],
-              hoverBackgroundColor: ['#FFCE56', '#FF6384']
+              backgroundColor: ['#00e6e6', '#1B3E9C'],
+              hoverBackgroundColor: ['#00e6e6', '#1B3E9C']
             }]
           },
           options: {

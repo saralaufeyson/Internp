@@ -1,73 +1,94 @@
+/* Learning Paths Container */
 .learning-paths-container {
-  max-width: 900px;
-  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
   padding: 20px;
-  background: #fcfcfc; /* Light background */
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Individual Card Styling */
 .card {
   background: white;
   border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .card:hover {
-  transform: translateY(-3px);
+  transform: scale(1.05);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-.card-header {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
+/* Learning Path Card Content */
+.learning-path-card {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Card Header */
+.card-header h3 {
+  font-size: 1.4rem;
+  color: rgb(27, 62, 156);
   margin-bottom: 10px;
 }
 
-.card-header h3 {
-  color: #0056b3; /* Dark blue */
-  margin: 0;
-}
-
 .card-header p {
-  color: #555;
-  font-size: 14px;
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.5;
 }
 
+/* Card Actions - Buttons */
 .card-actions {
+  margin-top: 15px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
+/* Start Learning Button */
 .start-learning-btn {
-  display: inline-block;
-  padding: 8px 12px;
-  background: #007bff; /* Blue button */
+  background: rgb(27, 62, 156);
   color: white;
   text-decoration: none;
+  padding: 10px 15px;
   border-radius: 5px;
-  font-weight: bold;
+  font-size: 1rem;
   transition: background 0.3s ease-in-out;
 }
 
 .start-learning-btn:hover {
-  background: #0056b3; /* Darker blue on hover */
+  background: rgb(19, 45, 114);
 }
 
+/* Add to Learning Path Button */
 .add-learning-path-btn {
-  background: #28a745; /* Green button */
-  color: white;
-  padding: 8px 12px;
-  border: none;
+  background: transparent;
+  color: rgb(27, 62, 156);
+  border: 2px solid rgb(27, 62, 156);
+  padding: 10px 15px;
   border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .add-learning-path-btn:hover {
-  background: #218838; /* Darker green */
+  background: rgb(27, 62, 156);
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .learning-paths-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .card {
+      width: 100%;
+      max-width: 350px;
+  }
 }

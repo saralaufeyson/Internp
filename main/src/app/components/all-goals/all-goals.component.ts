@@ -6,12 +6,13 @@ interface Goal {
   goalName: string;
   description: string;
   userId: string;
+  username: string; // Add username property
   createdAt: string;
 }
 
 @Component({
   standalone: true,
-  imports : [DatePipe , CommonModule],
+  imports: [DatePipe, CommonModule],
   selector: 'app-all-goals',
   templateUrl: './all-goals.component.html',
   styleUrls: ['./all-goals.component.css']
@@ -20,7 +21,7 @@ export class AllGoalsComponent implements OnInit {
   goals: Goal[] = [];
   errorMessage: string = '';
   private apiUrl = 'http://localhost:5180/api/userdata/getAllGoals';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.fetchAllGoals();

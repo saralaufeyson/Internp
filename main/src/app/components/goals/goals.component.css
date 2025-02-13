@@ -79,7 +79,7 @@
 }
 
 .submit-button:disabled {
-  background: rgb(150, 223, 225);
+  background: rgb(134, 159, 227);
   cursor: not-allowed;
 }
 
@@ -103,6 +103,12 @@
   text-align: left;
 }
 
+.goal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .goal-label {
   font-weight: bold;
   color: #3b82f6;
@@ -121,4 +127,34 @@
   font-style: italic;
   color: #64748b;
   font-size: 14px;
+}
+
+/* Button Styling */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: auto;
+  /* Adjust width to auto */
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+.goal-name {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }

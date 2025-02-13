@@ -1,52 +1,90 @@
+/* Container for Goals List */
 .container {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fcfcfc; /* Light blue background */
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    text-align: center;
-    color: #0056b3; /* Dark blue */
-    margin-bottom: 20px;
-  }
-  
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .table th {
-    background: #007bff; /* Blue header */
-    color: white;
-    padding: 12px;
-    text-align: left;
-  }
-  
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fcfcfc;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Title Styling */
+h2 {
+  text-align: center;
+  color: rgb(27, 62, 156);
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Alert Message Styling */
+.alert {
+  padding: 12px;
+  color: white;
+  background: #dc3545;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+/* Table Styling */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+/* Header Styling */
+.table thead th {
+  background: rgb(27, 62, 156);
+  color: white;
+  padding: 15px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1rem;
+  position: sticky;
+  top: 0;
+}
+
+/* Table Row Styling */
+.table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  background-color: #ffffff;
+  color: #333;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover Effect - Makes Rows Stand Out */
+.table tbody tr:hover {
+  background: #ffffff;
+  transform: scale(1.02);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Alternate Row Color */
+.table tbody tr:nth-child(odd) {
+  background: #e9f5ff;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+  .table th,
   .table td {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    font-size: 0.9rem;
   }
-  
-  .table tbody tr:nth-child(odd) {
-    background: #e3f2fd; /* Light blue row */
+
+  h2 {
+    font-size: 1.5rem;
   }
-  
-  .table tbody tr:hover {
-    background: #d0ebff; /* Lighter blue on hover */
-    transition: background 0.3s ease;
-  }
-  
-  .alert {
-    padding: 10px;
-    color: white;
-    background: #dc3545; /* Red alert for errors */
-    border-radius: 5px;
-    text-align: center;
-  }
-  
+}
+
+/* Add slight animation on hover */
+tbody tr {
+  transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+}
