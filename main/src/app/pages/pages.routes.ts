@@ -8,7 +8,6 @@ import { PocProjectsComponent } from '../components/poc-projects/poc-projects.co
 import { InternListComponent } from '../intern-list/intern-list.component';
 import { InternGuard } from '../guards/intern.guard'; // Import InternGuard
 import { AdminGuard } from '../guards/admin.guard'; // Import AdminGuard
-import { MentorMenteesComponent } from '../components/mentor-mentees/mentor-mentees.component';
 import { MentorListComponent } from '../mentor-list/mentor-list.component'; // Import MentorListComponent
 
 export const PagesRoutes: Routes = [
@@ -89,18 +88,6 @@ export const PagesRoutes: Routes = [
       urls: [
         { title: 'Dashboard', url: '/dashboard' },
         { title: 'All Interns' },
-      ],
-    },
-  },
-  {
-    path: 'mentor-mentees',
-    component: MentorMenteesComponent,
-    canActivate: [AdminGuard], // Apply AdminGuard
-    data: {
-      title: 'All Mentor Mentees',
-      urls: [
-        { title: 'Dashboard', url: '/dashboard' },
-        { title: 'All Mentor Mentees' },
       ],
     },
   },
