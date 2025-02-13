@@ -1,3 +1,8 @@
+<!-- Add this line to include Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- Add this line to include Bootstrap Icons CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+
 <div class="poc-projects">
   <h2>Your POCs / Projects</h2>
 
@@ -44,13 +49,20 @@
   <div *ngIf="pocs.length > 0">
     <h3>Your Saved POCs:</h3>
     <div *ngFor="let poc of pocs" class="poc">
-      <h4>{{ poc.projectName }} ({{ poc.status }})</h4>
+      <div class="poc-header">
+        <h4>{{ poc.projectName }} ({{ poc.status }})</h4>
+        <div class="poc-actions">
+          <button (click)="deletePocProject(poc._id)" class="btn btn-danger">
+            <i class="bi bi-trash"></i>
+          </button>
+          <button (click)="editPoc(poc)" class="btn btn-primary">
+            <i class="bi bi-pencil"></i>
+          </button>
+        </div>
+      </div>
       <p><strong>Description:</strong> {{ poc.description }}</p>
       <p><strong>Start Date:</strong> {{ poc.startDate | date }}</p>
       <p *ngIf="poc.status === 'completed'"><strong>End Date:</strong> {{ poc.endDate | date }}</p>
-
-      <button (click)="deletePocProject(poc._id)">Delete</button>
-      <button (click)="editPoc(poc)">Edit</button>
       <div *ngIf="poc.isEditing">
         <label for="status">Status:</label>
         <select [(ngModel)]="poc.status">
