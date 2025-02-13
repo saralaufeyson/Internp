@@ -1,29 +1,142 @@
-// src/app/components/learning-path/learning-path.component.ts
 import { Component, OnInit } from '@angular/core';
-import { LearningPathService} from '../../services/learning-path.service';
+import { LearningPathService } from '../../services/learning-path.service';
+//import { mylearnService } from '../../services/mylearn.service';
 import { LearningPath } from '../../services/learning-path.model';
 import { CommonModule } from '@angular/common';
+
 @Component({
   standalone: true,
   selector: 'app-learning-path',
-  imports: [CommonModule], // Import CommonModule
+  imports: [CommonModule],
   templateUrl: './learning-path.component.html',
-  styleUrls: ['./learning-path.component.css']
+  styleUrls: ['./learning-path.component.css'],
 })
 export class LearningPathComponent implements OnInit {
   learningPaths: LearningPath[] = [];
+  userId: string = localStorage.getItem('userId') || ''; // Get userId from local storage
+  learningPathId: string = localStorage.getItem('learningPathId') || ''; // Get learningPathId from local storage
+  learningPathStatus: any;
+  showModal = false;
+  selectedPath: any;
 
-  constructor(private learningPathService: LearningPathService) { }
+  constructor(private learningPathService: LearningPathService) {}
 
   ngOnInit(): void {
-    // Fetch the learning paths from the backend when the component loads
+    this.getLearningPaths();
+    this.getStoredLearningPathAndUserId();
+    // Remove this call to confirmAddLearningPath as it should be triggered by user action
+   this.addLearningPathStatus
+  }
+
+  getLearningPaths(): void {
     this.learningPathService.getLearningPaths().subscribe(
       (data) => {
-        this.learningPaths = data;  // Populate the learningPaths array
+        this.learningPaths = data; // Populate the learningPaths array
       },
       (error) => {
         console.error('Error fetching learning paths:', error);
       }
     );
+  }
+
+  addLearningPathStatus(path: any): void {
+    this.selectedPath = path;
+    console.log('Adding learning path:', path);
+    this.showModal = true;
+
+    const status = 'enrolled'; // Define the status to be added
+    const learningPathStatus = {
+      userId: this.userId,
+      learningPathId: this.selectedPath.id,
+      status: status,
+      title: this.selectedPath.title,
+      description: this.selectedPath.description,
+      link: this.selectedPath.link,
+      createdAt: new Date().toISOString(),
+    };
+
+    this.learningPathService
+      .addLearningPathStatus(
+        this.userId,
+        this.selectedPath,
+        learningPathStatus
+      )
+      .subscribe(
+        (response) => {
+          console.log('Learning path status added:', status);
+          this.getLearningPathStatus(); // Refresh status after adding
+          this.closeModal();
+        },
+        (error) => {
+          console.error('Error adding learning path status:', error);
+        }
+      );
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+  }
+
+  confirmAddLearningPath(): void {
+    if (!this.selectedPath) {
+      console.error('No learning path selected');
+      return;
+    }
+    const status = 'enrolled'; // Define the status to be added
+    const learningPathStatus = {
+      userId: this.userId,
+      learningPathId: this.selectedPath.id,
+      status: status,
+      title: this.selectedPath.title,
+      description: this.selectedPath.description,
+      link: this.selectedPath.link,
+      createdAt: new Date().toISOString(),
+    };
+    
+
+    this.learningPathService
+      .addLearningPathStatus(
+        this.userId,
+        this.selectedPath.id,
+        learningPathStatus
+      )
+      .subscribe(
+        (response) => {
+          console.log('Learning path status added:', status);
+          this.getLearningPathStatus(); // Refresh status after adding
+          this.closeModal();
+        },
+        (error) => {
+          console.error('Error adding learning path status:', error);
+        }
+      );
+  }
+
+  getLearningPathStatus(): void {
+    this.learningPathService.getLearningPathStatus(this.userId).subscribe(
+      (response) => {
+        this.learningPathStatus = response;
+        console.log('Learning path status:', this.learningPathStatus);
+        console.log('Type of learningPathStatus:', typeof this.learningPathStatus);
+      },
+      (error) => {
+        console.error('Error fetching learning path status:', error);
+      }
+    );
+  }
+
+  storeLearningPathAndUserId(learningPathId: string): void {
+    localStorage.setItem('learningPathId', learningPathId);
+    this.learningPathId = learningPathId;
+  }
+
+  getStoredLearningPathAndUserId(): {
+    learningPathId: string | null;
+    userId: string | null;
+  } {
+    const learningPathId = localStorage.getItem('learningPathId');
+    const userId = localStorage.getItem('userId');
+    console.log('Learning Path ID:', learningPathId);
+    return { learningPathId, userId };
   }
 }

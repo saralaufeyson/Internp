@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using YourNamespace.Models;
+
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using Microsoft.AspNetCore.Authorization;
@@ -15,6 +16,7 @@ namespace YourNamespace.Controllers
         private readonly IMongoCollection<Goal> _goalCollection;
         private readonly IMongoCollection<PocProject> _pocProjectCollection;
         private readonly IMongoCollection<LearningPath> _learningPathCollection;
+        private readonly IMongoCollection<myLearningPath> _myLearningPathCollection;
 
         public UserDataController(IMongoClient mongoClient)
         {
@@ -22,8 +24,52 @@ namespace YourNamespace.Controllers
             _goalCollection = database.GetCollection<Goal>("Goals");
             _pocProjectCollection = database.GetCollection<PocProject>("PocProjects");
             _learningPathCollection = database.GetCollection<LearningPath>("LearningPaths");
+            _myLearningPathCollection = database.GetCollection<myLearningPath>("myLearningPath");
+
+        }
+        // Add a new Learning Path Status
+        [HttpPost("addLearningPathStatus")]
+        public async Task<IActionResult> AddLearningPathStatus([FromBody] myLearningPath learningPathStatus)
+        {
+            if (learningPathStatus == null)
+            {
+            return BadRequest("Learning Path Status data is required.");
+            }
+
+            if (string.IsNullOrEmpty(learningPathStatus.UserId) || string.IsNullOrEmpty(learningPathStatus.LearningPathId))
+            {
+            return BadRequest("UserId and LearningPathId are required.");
+            }
+
+            // Set the creation time of the learning path status
+            learningPathStatus.CreatedAt = DateTime.UtcNow;
+
+            // Store the learning path status
+            await _myLearningPathCollection.InsertOneAsync(learningPathStatus);
+            Console.WriteLine($"Learning Path Status added to the database for UserId: {learningPathStatus.UserId}");
+            return Ok(new { message = "Learning Path Status added successfully." });
         }
 
+        // Get Learning Path Status for a specific user
+        [HttpGet("getLearningPathStatus/{userId}")]
+        public async Task<IActionResult> GetLearningPathStatus(string userId)
+        {
+            Console.WriteLine($"Fetching Learning Path Status for UserId: {userId}");
+
+            var userLearningPathCollection = _learningPathCollection.Database.GetCollection<myLearningPath>("myLearningPath");
+            var learningPathStatuses = await userLearningPathCollection
+            .Find(lp => lp.UserId == userId)
+            .ToListAsync();
+
+            if (learningPathStatuses.Count == 0)
+            {
+            Console.WriteLine("No Learning Path Status found.");
+            return NotFound(new { message = "No Learning Path Status found for this user." });
+            }
+
+            Console.WriteLine($"Found {learningPathStatuses.Count} learning path statuses for UserId: {userId}");
+            return Ok(learningPathStatuses);
+        }
         // Add a new PoC Project
         [HttpPost("addPocProject")]
 

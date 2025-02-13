@@ -1,55 +1,73 @@
 .learning-paths-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  max-width: 900px;
+  margin: 20px auto;
   padding: 20px;
+  background: #fcfcfc; /* Light background */
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.learning-path-card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-3px);
 }
 
 .card-header {
-  background-color: #f5f5f5;
-  padding: 20px;
-  text-align: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .card-header h3 {
-  font-size: 1.5rem;
+  color: #0056b3; /* Dark blue */
   margin: 0;
 }
 
 .card-header p {
-  font-size: 1rem;
-  color: #666;
-}
-
-.card-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+  color: #555;
+  font-size: 14px;
 }
 
 .card-actions {
-  padding: 10px;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .start-learning-btn {
-  background-color: #007bff;
+  display: inline-block;
+  padding: 8px 12px;
+  background: #007bff; /* Blue button */
   color: white;
-  padding: 10px 20px;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 5px;
   font-weight: bold;
+  transition: background 0.3s ease-in-out;
 }
 
 .start-learning-btn:hover {
-  background-color: #0056b3;
+  background: #0056b3; /* Darker blue on hover */
+}
+
+.add-learning-path-btn {
+  background: #28a745; /* Green button */
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+}
+
+.add-learning-path-btn:hover {
+  background: #218838; /* Darker green */
 }
