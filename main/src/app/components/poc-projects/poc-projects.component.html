@@ -41,18 +41,22 @@
   </form>
 
   <!-- Display saved POCs -->
-  <div *ngIf="pocs.length > 0">
-    <h3>Your Saved POCs:</h3>
-    <div *ngFor="let poc of pocs" class="poc">
-      <h4>{{ poc.projectName }} ({{ poc.status }})</h4>
-      <p><strong>Description:</strong> {{ poc.description }}</p>
-      <p><strong>Start Date:</strong> {{ poc.startDate | date }}</p>
-      <p *ngIf="poc.status === 'completed'"><strong>End Date:</strong> {{ poc.endDate | date }}</p>
-
-      <button (click)="deletePocProject(poc._id)">Delete</button>
-    </div>
-
+ <div *ngIf="pocs.length > 0">
+  <h3>Your Saved POCs:</h3>
+  <div *ngFor="let poc of pocs" class="poc card p-3 mb-3 shadow-sm">
+    <h4>{{ poc.projectName }} ({{ poc.status }})</h4>
+    <p><strong>Description:</strong> {{ poc.description }}</p>
+    <p><strong>Start Date:</strong> {{ poc.startDate | date }}</p>
+    <p *ngIf="poc.status === 'completed'"><strong>End Date:</strong> {{ poc.endDate | date }}</p>
+    
+    <!-- Delete Icon Button -->
+   
+      <i class="bi bi-trash3 fs-5" (click)="deletePocProject(poc?._id)"></i>
+   
   </div>
+</div>
+
+  
 
   <!-- If no POCs are found -->
   <div *ngIf="pocs.length === 0">
