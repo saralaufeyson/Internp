@@ -1,91 +1,80 @@
-/* Container for Mentor List */
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
 .container {
-    max-width: 700px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fcfcfc;
-    border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Mentor List Title Styling */
-  .mentor-list-title {
-    text-align: center;
-    color: rgb(27, 62, 156);
-    margin-bottom: 20px;
-    font-size: 2rem;
-    font-weight: 600;
-  }
-  
-  /* Alert Message Styling */
-  .alert {
-    padding: 12px;
-    color: white;
-    background: #dc3545;
-    border-radius: 5px;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1rem;
-  }
-  
-  /* Mentor Table Styling */
-  .mentor-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 20px;
-  }
-  
-  /* Header Styling */
-  .mentor-table thead th {
-    background: #1B3E9C;
-    color: white;
-    padding: 15px;
-    text-align: left;
-    font-weight: bold;
-    font-size: 1rem;
-    position: sticky;
-    top: 0;
-  }
-  
-  /* Table Row Styling */
-  .mentor-table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #ddd;
-    background-color: #f9f9f9;
-    color: #333;
-    transition: background 0.3s ease, transform 0.2s ease;
-  }
-  
-  /* Hover Effect - Makes Rows Stand Out */
-  .mentor-table tbody tr:hover {
-    background: #cce5ff;
-    transform: scale(1.02);
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
-  }
-  
-  /* Alternate Row Color */
-  .mentor-table tbody tr:nth-child(odd) {
-    background: #e9f5ff;
-  }
-  
-  /* Responsive Table */
-  @media (max-width: 768px) {
-    .mentor-table th,
-    .mentor-table td {
-      padding: 10px;
-      font-size: 0.9rem;
-    }
-  
-    .mentor-list-title {
-      font-size: 1.5rem;
-    }
-  }
-  
-  /* Add slight animation on hover */
-  tbody tr {
-    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
-  }
-  
+  width: 90%;
+  margin: auto;
+  overflow: visible !important;
+  /* Ensure no clipping */
+}
+
+/* Table Styling */
+.mentor-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: visible !important;
+  /* Prevent hiding dropdown */
+}
+
+.mentor-table th {
+  background-color: #193b8c;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+.mentor-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Dropdown Styling */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute !important;
+  z-index: 1050 !important;
+  background-color: white;
+  min-width: 200px;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f1f1f1;
+}
+
+/* Button Styling */
+.assign-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.assign-btn:hover {
+  background-color: #0056b3;
+}
