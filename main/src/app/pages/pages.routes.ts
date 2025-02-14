@@ -9,6 +9,7 @@ import { InternListComponent } from '../intern-list/intern-list.component';
 import { InternGuard } from '../guards/intern.guard'; // Import InternGuard
 import { AdminGuard } from '../guards/admin.guard'; // Import AdminGuard
 import { MentorListComponent } from '../mentor-list/mentor-list.component'; // Import MentorListComponent
+import { MentorsWithInternsComponent } from '../components/mentors-with-interns/mentors-with-interns.component'; // Import the new component
 
 export const PagesRoutes: Routes = [
   {
@@ -100,6 +101,18 @@ export const PagesRoutes: Routes = [
       urls: [
         { title: 'Dashboard', url: '/dashboard' },
         { title: 'All Mentors' },
+      ],
+    },
+  },
+  {
+    path: 'mentors-with-interns',
+    component: MentorsWithInternsComponent,
+    canActivate: [AdminGuard], // Apply AdminGuard
+    data: {
+      title: 'Mentors with Interns',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'Mentors with Interns' },
       ],
     },
   },
