@@ -29,7 +29,7 @@ namespace YourNamespace.Services
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.NameIdentifier, user.Id ?? throw new ArgumentNullException(nameof(user.Id))),
                 new Claim(ClaimTypes.Name, user.Username)
             };
 
