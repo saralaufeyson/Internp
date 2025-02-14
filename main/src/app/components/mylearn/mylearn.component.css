@@ -16,7 +16,7 @@
     margin-bottom: 20px;
 }
 
-/* Card Container - Grid Layout */
+/* Card Container */
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -27,16 +27,15 @@
 /* Individual Card */
 .card {
     background: white;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    overflow: hidden;
+    width: 320px;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Card Header */
@@ -47,11 +46,13 @@
     font-size: 1.2rem;
     text-align: center;
     font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 /* Card Body */
 .card-body {
-    padding: 15px;
+    padding: 20px;
     text-align: left;
 }
 
@@ -88,6 +89,8 @@
     font-size: 0.9rem;
     color: #555;
     text-align: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 /* No Data Message */
@@ -109,11 +112,5 @@
         max-width: 350px;
     }
 
-    .learning-status-container {
-        padding: 15px;
-    }
-
-    .learning-status-container h3 {
-        font-size: 1.5rem;
-    }
+  
 }

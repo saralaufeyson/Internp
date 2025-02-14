@@ -50,12 +50,6 @@ export const navItems: NavItem[] = [
     roles: ['admin']
   },
   {
-    displayName: 'All Mentor Mentees',
-    iconName: 'user',
-    route: '/dashboard/mentor-mentees',
-    roles: ['admin']
-  },
-  {
     displayName: 'All Mentors',
     iconName: 'user',
     route: '/dashboard/mentor-list',

@@ -80,4 +80,9 @@ namespace YourNamespace.Models
         [BsonElement("createdAt")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
+    public class AssignInternsRequest
+    {
+        public string? MentorId { get; set; }
+        public List<string>? InternIds { get; set; }
+    }
 }

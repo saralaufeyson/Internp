@@ -1,5 +1,6 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
 
 namespace YourNamespace.Models
 {
@@ -20,5 +21,11 @@ namespace YourNamespace.Models
 
         [BsonElement("role")]
         public required string Role { get; set; }
+
+        [BsonElement("assignedInterns")]
+        public List<string>? AssignedInterns { get; set; } = new List<string>();
+
+        [BsonElement("assignedMentorId")]
+        public string? AssignedMentorId { get; set; }
     }
 }

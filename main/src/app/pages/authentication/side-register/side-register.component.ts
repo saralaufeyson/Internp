@@ -19,7 +19,7 @@ import { MaterialModule } from '../../../material.module';
 })
 export class SideRegisterComponent {
   form = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    username: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
     role: new FormControl('Intern', [Validators.required]), // Default role is Intern
@@ -39,7 +39,7 @@ export class SideRegisterComponent {
           // Since the server responds with plain text, handle it accordingly
           console.log('Registration successful:', response);
           if (response.includes('User registered successfully')) {
-            this.router.navigate(['/']); // Redirect to home or login page
+            this.router.navigate(['authentication/login']); // Redirect to home or login page
           } else {
             console.error('Unexpected response:', response);
           }
