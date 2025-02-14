@@ -13,12 +13,9 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Profile',
     iconName: 'info-circle',
-
     route: '/dashboard/profile',
     roles: ['intern', 'admin']
-
   },
-
   {
     displayName: 'My learning Path',
     iconName: 'archive',
@@ -55,7 +52,12 @@ export const navItems: NavItem[] = [
     route: '/dashboard/mentor-list',
     roles: ['admin']
   },
-
+  {
+    displayName: 'Mentors with Interns',
+    iconName: 'users',
+    route: '/dashboard/mentors-with-interns',
+    roles: ['admin']
+  },
   {
     navCap: 'Auth',
   },
@@ -63,14 +65,12 @@ export const navItems: NavItem[] = [
     displayName: 'Login',
     iconName: 'login',
     route: '/authentication/login',
-
   },
   {
     displayName: 'Register',
     iconName: 'user-plus',
     route: '/authentication/register',
   },
-
 ];
 export const internNavItems: NavItem[] = navItems.filter(item => item.roles?.includes('intern'));
 export const adminNavItems: NavItem[] = navItems.filter(item => item.roles?.includes('admin'));

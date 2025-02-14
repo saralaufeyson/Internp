@@ -6,12 +6,20 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Assign Interns</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let mentor of mentors">
                 <td>{{ mentor.username }}</td>
                 <td>{{ mentor.email }}</td>
+                <td>
+                    <div *ngFor="let intern of interns">
+                        <input type="checkbox" [value]="intern.id" (change)="onCheckboxChange($event, mentor.id)" /> {{
+                        intern.username }}
+                    </div>
+                    <button (click)="assignInternsToMentor(mentor.id)">Assign</button>
+                </td>
             </tr>
         </tbody>
     </table>
