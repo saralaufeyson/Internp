@@ -1,7 +1,8 @@
 <div class="container">
     <h2 class="mentor-list-title">Mentor List</h2>
     <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
-    <table class="mentor-table table table-striped">
+
+    <table class="mentor-table">
         <thead>
             <tr>
                 <th>Name</th>
@@ -14,11 +15,25 @@
                 <td>{{ mentor.username }}</td>
                 <td>{{ mentor.email }}</td>
                 <td>
-                    <div *ngFor="let intern of interns">
-                        <input type="checkbox" [value]="intern.id" (change)="onCheckboxChange($event, mentor.id)" /> {{
-                        intern.username }}
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                            id="dropdownMenuButton{{mentor.id}}" data-bs-toggle="dropdown" aria-expanded="false">
+                            Select Interns
+                        </button>
+                        <ul class="dropdown-menu" [attr.aria-labelledby]="'dropdownMenuButton' + mentor.id"
+                            (click)="$event.stopPropagation()">
+                            <li *ngFor="let intern of interns">
+                                <label class="dropdown-item">
+                                    <input type="checkbox" [value]="intern.id"
+                                        (change)="onCheckboxChange($event, mentor.id)" />
+                                    {{ intern.username }}
+                                </label>
+                            </li>
+                        </ul>
                     </div>
-                    <button (click)="assignInternsToMentor(mentor.id)">Assign</button>
+                    <button class="btn btn-primary assign-btn" (click)="assignInternsToMentor(mentor.id)">
+                        Assign
+                    </button>
                 </td>
             </tr>
         </tbody>

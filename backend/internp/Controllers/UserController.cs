@@ -18,8 +18,8 @@ namespace YourNamespace.Controllers
         private readonly IMongoCollection<Goal> _goalCollection;
         private readonly IMongoCollection<PocProject> _pocProjectCollection;
         private readonly IMongoCollection<LearningPath> _learningPathCollection;
-        private readonly IMongoCollection<User> _userCollection;       
-         private readonly IMongoCollection<myLearningPath> _myLearningPathCollection;
+        private readonly IMongoCollection<User> _userCollection;
+        private readonly IMongoCollection<myLearningPath> _myLearningPathCollection;
 
         public UserDataController(IMongoClient mongoClient)
         {
@@ -37,12 +37,12 @@ namespace YourNamespace.Controllers
         {
             if (learningPathStatus == null)
             {
-            return BadRequest("Learning Path Status data is required.");
+                return BadRequest("Learning Path Status data is required.");
             }
 
             if (string.IsNullOrEmpty(learningPathStatus.UserId) || string.IsNullOrEmpty(learningPathStatus.LearningPathId))
             {
-            return BadRequest("UserId and LearningPathId are required.");
+                return BadRequest("UserId and LearningPathId are required.");
             }
 
             // Set the creation time of the learning path status
@@ -67,8 +67,8 @@ namespace YourNamespace.Controllers
 
             if (learningPathStatuses.Count == 0)
             {
-            Console.WriteLine("No Learning Path Status found.");
-            return NotFound(new { message = "No Learning Path Status found for this user." });
+                Console.WriteLine("No Learning Path Status found.");
+                return NotFound(new { message = "No Learning Path Status found for this user." });
             }
 
             Console.WriteLine($"Found {learningPathStatuses.Count} learning path statuses for UserId: {userId}");
