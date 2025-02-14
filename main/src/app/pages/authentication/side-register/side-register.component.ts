@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SideRegisterComponent {
   form = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    username: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
     role: new FormControl('Intern', [Validators.required]), // Default role is Intern
