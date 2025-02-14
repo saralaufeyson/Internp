@@ -24,18 +24,12 @@
     <img src="/assets/images/profile/user-1.jpg" class="rounded-circle object-cover" width="35" />
   </button>
   <mat-menu #profilemenu="matMenu" class="cardWithShadow">
-    <button mat-menu-item>
-      <mat-icon class="d-flex align-items-center"><i-tabler name="user" class="icon-18 d-flex"></i-tabler></mat-icon>My
-      Profile
-    </button>
+  
     <button mat-menu-item>
       <mat-icon class="d-flex align-items-center"><i-tabler name="mail" class="icon-18 d-flex"></i-tabler></mat-icon>
-     <a [routerLink]="['/dashboard/profile']">My Account</a>
+     <a [routerLink]="['/dashboard/profile']" class="no-underline profile-link">Profile</a>
     </button>
-    <button mat-menu-item>
-      <mat-icon class="d-flex align-items-center"><i-tabler name="list-check"
-          class="icon-18 d-flex"></i-tabler></mat-icon>My Task
-    </button>
+    
 
     <div class="p-x-12 m-t-12">
       <a [routerLink]="['/authentication/login']" mat-stroked-button color="primary" class="w-100">Logout</a>
