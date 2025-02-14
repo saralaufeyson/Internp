@@ -42,7 +42,7 @@
 
   <!-- Display saved POCs -->
   <div *ngIf="pocs.length > 0">
-    <h3>Your Saved POCs:</h3>
+    <h3 class="mt-3"> Your Saved POCs:</h3>
     <div *ngFor="let poc of pocs" class="poc">
       <div class="poc-header">
         <h4>{{ poc.projectName }} ({{ poc.status }})</h4>
