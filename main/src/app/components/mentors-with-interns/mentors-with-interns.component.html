@@ -1,0 +1,33 @@
+<div class="container">
+    <h2 class="title">Mentors with Interns</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+    <!-- Check if mentorsWithInterns has data -->
+    <div *ngIf="mentorsWithInterns.length > 0; else noData">
+        <div class="card mb-3" *ngFor="let mentor of mentorsWithInterns">
+            <div class="card-header">
+                <strong>{{ mentor.mentorName }}</strong> <!-- Ensure correct property names -->
+            </div>
+
+            <ul class="list-group list-group-flush" *ngIf="mentor.interns.length > 0; else noInterns">
+                <li class="list-group-item" *ngFor="let intern of mentor.interns">
+                    {{ intern.internName }} ({{ intern.internEmail }})
+                </li>
+            </ul>
+
+            <!-- Show this if the mentor has no interns -->
+            <ng-template #noInterns>
+                <div class="list-group-item text-muted">No interns assigned</div>
+            </ng-template>
+        </div>
+    </div>
+
+    <!-- If no mentors exist -->
+    <ng-template #noData>
+        <div class="alert alert-info">No mentors found</div>
+    </ng-template>
+
+
+</div>
