@@ -12,6 +12,11 @@
 /* Section Title */
 .learning-status-container h3 {
     font-size: 1.8rem;
+    color: rgb(242, 242, 243);
+    margin-bottom: 20px;
+}
+.learning-status-container h2{
+    font-size: 1.8rem;
     color: rgb(27, 62, 156);
     margin-bottom: 20px;
 }
