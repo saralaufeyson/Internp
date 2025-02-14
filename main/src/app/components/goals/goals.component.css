@@ -79,7 +79,7 @@
 }
 
 .submit-button:disabled {
-  background: rgb(150, 223, 225);
+  background: rgb(134, 159, 227);
   cursor: not-allowed;
 }
 

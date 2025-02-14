@@ -33,6 +33,7 @@ export class SidebarComponent implements OnInit {
     this.userRole = this.authService.getRole();
     
     
+    
   }
   isNavItemVisible(item: NavItem): boolean {
     return (item.roles?.includes(this.userRole as string) ?? false) || (item.roles?.includes('guest') ?? false);

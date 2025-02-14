@@ -4,15 +4,15 @@
   margin: 20px auto;
   padding: 20px;
   background: #fcfcfc;
-  /* Light blue background */
+  /* Light background */
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Table Title Styling */
 .intern-list-title {
   text-align: center;
-  color: #0056b3;
+  color: rgb(27, 62, 156);
   /* Dark blue */
   margin-bottom: 20px;
   font-size: 2rem;
@@ -21,7 +21,7 @@
 
 /* Alert Message Styling */
 .alert {
-  padding: 10px;
+  padding: 12px;
   color: white;
   background: #dc3545;
   /* Red alert for errors */
@@ -41,50 +41,56 @@
   margin-top: 20px;
 }
 
-.intern-table th,
-.intern-table td {
-  padding: 12px 15px;
-  text-align: left;
-}
-
+/* Header Styling */
 .intern-table th {
-  background: #007bff;
+  background: rgb(27, 62, 156);
   /* Blue header */
   color: white;
-  padding: 12px;
+  padding: 15px;
   text-align: left;
   font-weight: bold;
+  font-size: 1rem;
+  position: sticky;
+  top: 0;
 }
 
+/* Table Row Styling */
 .intern-table td {
-  padding: 10px;
+  padding: 12px 15px;
   border-bottom: 1px solid #ddd;
-  background-color: #f2f2f2;
+  background-color: #f9f9f9;
   color: #333;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-/* Table Row Hover Effect */
+/* Hover Effect - Makes Rows Stand Out */
 .intern-table tbody tr:hover {
-  background: #d0ebff;
+  background: #cce5ff;
   /* Lighter blue on hover */
-  transition: background 0.3s ease;
+  transform: scale(1.02);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* Alternate Row Color */
 .intern-table tbody tr:nth-child(odd) {
-  background: #e3f2fd;
+  background: #e9f5ff;
   /* Light blue row */
 }
 
 /* Responsive Table */
 @media (max-width: 768px) {
-
   .intern-table th,
   .intern-table td {
-    padding: 8px 10px;
+    padding: 10px;
+    font-size: 0.9rem;
   }
 
   .intern-list-title {
     font-size: 1.5rem;
   }
+}
+
+/* Add slight animation on hover */
+tbody tr {
+  transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
 }
