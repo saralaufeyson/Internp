@@ -1,149 +1,79 @@
-/* Login Page Header */
-.login-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-  }
-  
-  .login-logo {
-    width: 150px;
-    margin-bottom: 10px;
-  }
-  
-  /* Login Button Section */
-  .login-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 24px;
-  }
-  
-  .login-buttons button {
-    width: 48%;
-  }
-  
-  .btn-outline-primary {
-    border-color: #3b82f6;
-    color: #3b82f6;
-  }
-  
-  .btn-outline-primary:hover {
-    background-color: #3b82f6;
-    color: white;
-  }
-  
-  /* Or Divider */
-  .or-border {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 14px;
-    color: #aaa;
-  }
-  
-  .or-border:before,
-  .or-border:after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 1px;
-    background: #ddd;
-    margin-top: 8px;
-  }
-  
-  .or-border:before {
-    margin-left: 15px;
-  }
-  
-  .or-border:after {
-    margin-right: 15px;
-  }
-  
-  /* Form Styles */
-  form {
-    margin-top: 30px;
-  }
-  
-  form div {
-    margin-bottom: 15px;
-  }
-  
-  form label {
-    font-weight: 500;
-    color: #333;
-    font-size: 14px;
-  }
-  
-  form input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    margin-top: 8px;
-  }
-  
-  form input[type="checkbox"] {
-    width: auto;
-    margin-right: 8px;
-  }
-  
-  form button {
-    width: 100%;
-    padding: 12px;
-    background: #3b82f6;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  form button:hover {
-    background: #2563eb;
-  }
-  
-  /* Footer Link */
-  .f-w-500 {
-    font-weight: 500;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
-  .text-primary {
-    color: #3b82f6;
-  }
-  
-  .text-decoration-none {
-    text-decoration: none;
-  }
-  
-  .text-primary:hover {
-    text-decoration: underline;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .login-header {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .login-buttons {
-      flex-direction: column;
-    }
-  
-    .login-buttons button {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-  
-    .or-border {
-      margin-top: 20px;
-    }
-  }
-  
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Full Page Layout */
+.blank-layout-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8fafc;
+}
+
+/* Auth Box */
+.boxed-auth {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
+/* Logo */
+.login-header img {
+  width: 160px;
+}
+
+/* Form Inputs */
+form div {
+  text-align: left; /* Align labels and inputs to the left */
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2f80ed;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #1c60bd;
+}
+
+/* Register Link */
+.f-w-500 {
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.text-primary {
+  color: #2f80ed;
+}

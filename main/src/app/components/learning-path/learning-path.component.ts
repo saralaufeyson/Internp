@@ -18,6 +18,8 @@ export class LearningPathComponent implements OnInit {
   learningPathStatus: any;
   showModal = false;
   selectedPath: any;
+  showNotification = false;
+  notificationMessage = '';
 
   constructor(private learningPathService: LearningPathService) {}
 
@@ -66,6 +68,7 @@ export class LearningPathComponent implements OnInit {
           console.log('Learning path status added:', status);
           this.getLearningPathStatus(); // Refresh status after adding
           this.closeModal();
+          this.showNotificationMessage(`${this.selectedPath.title} added to learning path`); // Show custom notification
         },
         (error) => {
           console.error('Error adding learning path status:', error);
@@ -138,5 +141,13 @@ export class LearningPathComponent implements OnInit {
     const userId = localStorage.getItem('userId');
     console.log('Learning Path ID:', learningPathId);
     return { learningPathId, userId };
+  }
+
+  showNotificationMessage(message: string): void {
+    this.notificationMessage = message;
+    this.showNotification = true;
+    setTimeout(() => {
+      this.showNotification = false;
+    }, 3000); // Hide notification after 3 seconds
   }
 }

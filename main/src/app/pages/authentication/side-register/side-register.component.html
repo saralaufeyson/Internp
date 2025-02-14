@@ -3,13 +3,11 @@
     <div class="col-lg-4 d-flex align-items-center">
       <div class="cardWithShadow boxed-auth">
         <div class="p-32">
-          <div class="text-center">
-            <a [routerLink]="['/dashboard']">
-              <img src="./assets/images/logos/dark-logo.svg" class="align-middle m-2" alt="logo" />
-            </a>
-          </div>
+            <div class="text-center">
+            <img src="./assets/images/logos/dark-logo.svg" class="align-middle p-0 m-0" alt="logo" />
+            </div>
 
-          <h2 class="f-w-600 text-center m-b-10">Create New Account</h2>
+            
           <form (ngSubmit)="submit()" [formGroup]="form" class="m-t-30">
             <label for="username" class="f-s-14 f-w-600 m-b-12 d-block">Name</label>
             <input type="text" id="username" class="form-control" formControlName="username" required />

@@ -8,12 +8,14 @@
         </div>
 
         <div class="card-actions">
-          <a href="{{ path.link }}" class="start-learning-btn"> Start Learning</a>
-          <button class="add-learning-path-btn" (click)="addLearningPathStatus(path)"> Add to Learning Path</button>
-          
+          <a href="{{ path.link }}" class="start-learning-btn" target="_blank">Start Learning</a>
+          <button class="add-learning-path-btn" (click)="addLearningPathStatus(path)">Add to Learning Path</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<div *ngIf="showNotification" class="notification">
+  {{ notificationMessage }}
+</div>
