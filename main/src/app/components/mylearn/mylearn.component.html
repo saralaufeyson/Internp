@@ -1,27 +1,26 @@
 <div *ngIf="learningPathStatus?.length > 0" class="learning-status-container">
-    <h2>Current Learning Path Status</h2>
-  
-    <div class="card-container">
-      <div *ngFor="let path of learningPathStatus" class="card">
-        <div class="card-header">
-          <h3>{{ path.title }}</h3>
-        </div>
-  
-        <div class="card-body">
-          <p><strong>Status:</strong> {{ path.status }}</p>
-          <p>{{ path.description }}</p>
-          <a [href]="path.link" target="_blank" class="btn">Start Learning</a>
-        </div>
-  
-        <div class="card-footer">
-          <p><small>Added on: {{ path.createdAt | date:'longDate' }}</small></p>
-        </div>
+  <h2>Current Learning Path Status</h2>
+
+  <div class="card-container">
+    <div *ngFor="let path of learningPathStatus" class="card">
+      <div class="card-header">
+        <h3>{{ path.title }}</h3>
+      </div>
+
+      <div class="card-body">
+        <p><strong>Status:</strong> {{ path.status }}</p>
+        <p>{{ path.description }}</p>
+        <a [href]="path.link" target="_blank" class="btn">Start Learning</a>
+      </div>
+
+      <div class="card-footer">
+        <p><small>Added on: {{ path.createdAt | date:'longDate' }}</small></p>
       </div>
     </div>
   </div>
-  
-  <!-- Show a message if there are no learning paths -->
-  <div *ngIf="!learningPathStatus || learningPathStatus.length === 0" class="no-data">
-    <p>No learning paths added yet.</p>
-  </div>
-  
+</div>
+
+<!-- Show a message if there are no learning paths -->
+<div *ngIf="!learningPathStatus || learningPathStatus.length === 0" class="no-data">
+  <p>No learning paths added yet.</p>
+</div>

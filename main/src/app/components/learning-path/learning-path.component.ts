@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LearningPathService } from '../../services/learning-path.service';
-//import { mylearnService } from '../../services/mylearn.service';
 import { LearningPath } from '../../services/learning-path.model';
 import { CommonModule } from '@angular/common';
 
@@ -21,13 +20,11 @@ export class LearningPathComponent implements OnInit {
   showNotification = false;
   notificationMessage = '';
 
-  constructor(private learningPathService: LearningPathService) {}
+  constructor(private learningPathService: LearningPathService) { }
 
   ngOnInit(): void {
     this.getLearningPaths();
     this.getStoredLearningPathAndUserId();
-    // Remove this call to confirmAddLearningPath as it should be triggered by user action
-   this.addLearningPathStatus
   }
 
   getLearningPaths(): void {
@@ -58,11 +55,7 @@ export class LearningPathComponent implements OnInit {
     };
 
     this.learningPathService
-      .addLearningPathStatus(
-        this.userId,
-        this.selectedPath,
-        learningPathStatus
-      )
+      .addLearningPathStatus(this.userId, learningPathStatus) // Fix method call
       .subscribe(
         (response) => {
           console.log('Learning path status added:', status);
@@ -95,14 +88,9 @@ export class LearningPathComponent implements OnInit {
       link: this.selectedPath.link,
       createdAt: new Date().toISOString(),
     };
-    
 
     this.learningPathService
-      .addLearningPathStatus(
-        this.userId,
-        this.selectedPath.id,
-        learningPathStatus
-      )
+      .addLearningPathStatus(this.userId, learningPathStatus) // Fix method call
       .subscribe(
         (response) => {
           console.log('Learning path status added:', status);

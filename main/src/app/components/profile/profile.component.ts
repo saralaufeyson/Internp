@@ -14,7 +14,7 @@ import { UserDetailsComponent } from "../user-details/user-details.component";
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, MylearnComponent, UserDetailsComponent],
+  imports: [CommonModule, FormsModule, UserDetailsComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -52,14 +52,14 @@ export class ProfileComponent implements OnInit {
           this.errorMessage = 'Error fetching user profile. Please try again later.';
         }
       );
-      
+
     } else {
       console.error('No user ID found in localStorage. User is not logged in.');
       this.errorMessage = 'No user ID found. Please log in.';
     }
   }
 
-  
+
 
   // Handle profile image upload
   onImageUpload(event: any): void {

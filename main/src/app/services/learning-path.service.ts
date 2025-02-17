@@ -8,15 +8,15 @@ import { Observable } from 'rxjs';
 export class LearningPathService {
   private apiUrl = 'http://localhost:5180/api/userdata'; // Ensure consistent URL casing
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getLearningPaths(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/getLearningPaths`);
   }
 
-  addLearningPathStatus(userId: string, learningPathId: string, data: any = {}): Observable<any> {
+  addLearningPathStatus(userId: string, learningPathStatus: any): Observable<any> { // Fix method signature
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`${this.apiUrl}/addLearningPathStatus`, JSON.stringify(data), { headers });
+    return this.http.post(`${this.apiUrl}/addLearningPathStatus`, JSON.stringify(learningPathStatus), { headers });
   }
 
   getLearningPathStatus(userId: string): Observable<any> {
