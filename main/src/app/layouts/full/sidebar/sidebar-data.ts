@@ -1,5 +1,5 @@
 import { NavItem } from './nav-item/nav-item';
-
+ 
 export const navItems: NavItem[] = [
   {
     navCap: 'Home',
@@ -32,6 +32,12 @@ export const navItems: NavItem[] = [
     displayName: 'My PoC Projects',
     iconName: 'file-text-ai',
     route: '/dashboard/pocProjects',
+    roles: ['intern']
+  },
+  {
+    displayName: 'My Learning Status',
+    iconName: 'school',
+    route: '/dashboard/my-learning-status',
     roles: ['intern']
   },
   {

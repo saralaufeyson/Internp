@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GoalsComponent } from '../goals/goals.component';
-import { PocProjectsComponent } from '../poc-projects/poc-projects.component';
-import { LearningPathComponent } from '../learning-path/learning-path.component';
 import { FormsModule } from '@angular/forms';
 import { MylearnComponent } from '../mylearn/mylearn.component';
 
@@ -14,7 +11,7 @@ import { UserDetailsComponent } from "../user-details/user-details.component";
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, MylearnComponent, UserDetailsComponent],
+  imports: [CommonModule, FormsModule, UserDetailsComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
