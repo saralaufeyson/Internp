@@ -8,10 +8,18 @@
       <div>
         <label for="email">Email Address</label>
         <input id="email" formControlName="email" type="email" placeholder="Enter your email" />
+        <div *ngIf="f.email.touched && f.email.invalid" class="error-message">
+          <div *ngIf="f.email.errors?.['required']">Email is required</div>
+          <div *ngIf="f.email.errors?.['email']">Invalid email address</div>
+        </div>
       </div>
       <div>
         <label for="password">Password</label>
         <input id="password" formControlName="password" type="password" placeholder="Enter your password" />
+        <div *ngIf="f.password.touched && f.password.invalid" class="error-message">
+          <div *ngIf="f.password.errors?.['required']">Password is required</div>
+          <div *ngIf="f.password.errors?.['incorrect']">Wrong password</div>
+        </div>
       </div>
       <div>
         <input id="remember" formControlName="remember" type="checkbox" />

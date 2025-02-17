@@ -27,12 +27,16 @@
 
 /* Logo */
 .login-header img {
-  width: 160px;
+  width: 350px;
+  margin-bottom: 20px;
+  /* Add margin below the logo */
 }
 
 /* Form Inputs */
 form div {
-  text-align: left; /* Align labels and inputs to the left */
+  text-align: left;
+  margin-bottom: 20px;
+  /* Add margin between each field */
 }
 
 input {
@@ -76,4 +80,17 @@ button:hover {
 
 .text-primary {
   color: #2f80ed;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Error Snackbar */
+.error-snackbar {
+  background-color: red;
+  color: white;
 }
