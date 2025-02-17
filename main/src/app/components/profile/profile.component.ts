@@ -9,11 +9,12 @@ import { MylearnComponent } from '../mylearn/mylearn.component';
 import { UserDataService } from '../../services/profile.service';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
+import { UserDetailsComponent } from "../user-details/user-details.component";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule,MylearnComponent],
+  imports: [CommonModule, FormsModule, MylearnComponent, UserDetailsComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
