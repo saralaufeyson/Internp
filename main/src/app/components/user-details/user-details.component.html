@@ -8,7 +8,7 @@
       <p><strong>Address:</strong> {{ userDetails.address }}</p>
       <p><strong>10th Grade:</strong> {{ userDetails.tenthGrade }}</p>
       <p><strong>12th Grade:</strong> {{ userDetails.twelfthGrade }}</p>
-      <p><strong>BTech CGPA:</strong> {{ userDetails.btechCgpa }}</p>
+      <p><strong>BTech CGPA:</strong> {{ userDetails.bTechCgpa }}</p>
     </div>
     <button class="btn btn-primary" (click)="editUserDetails()">Edit</button>
   </div>
@@ -38,8 +38,8 @@
         <input type="text" id="twelfthGrade" class="form-control" [(ngModel)]="userDetails.twelfthGrade" name="twelfthGrade" required />
       </div>
       <div class="form-group">
-        <label for="btechCgpa">BTech CGPA</label>
-        <input type="text" id="btechCgpa" class="form-control" [(ngModel)]="userDetails.btechCgpa" name="btechCgpa" required />
+        <label for="bTechCgpa">BTech CGPA</label>
+        <input type="text" id="bTechCgpa" class="form-control" [(ngModel)]="userDetails.bTechCgpa" name="bTechCgpa" required />
       </div>
       <button type="submit" class="btn btn-success">Save</button>
       <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
