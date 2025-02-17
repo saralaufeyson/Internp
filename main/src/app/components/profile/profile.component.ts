@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GoalsComponent } from '../goals/goals.component';
-import { PocProjectsComponent } from '../poc-projects/poc-projects.component';
-import { LearningPathComponent } from '../learning-path/learning-path.component';
 import { FormsModule } from '@angular/forms';
-import { MylearnComponent } from '../mylearn/mylearn.component';
+
 
 import { UserDataService } from '../../services/profile.service';
 import { HttpClient } from '@angular/common/http';
@@ -52,14 +49,14 @@ export class ProfileComponent implements OnInit {
           this.errorMessage = 'Error fetching user profile. Please try again later.';
         }
       );
-
+      
     } else {
       console.error('No user ID found in localStorage. User is not logged in.');
       this.errorMessage = 'No user ID found. Please log in.';
     }
   }
 
-
+  
 
   // Handle profile image upload
   onImageUpload(event: any): void {
