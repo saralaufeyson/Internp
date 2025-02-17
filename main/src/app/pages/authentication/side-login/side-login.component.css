@@ -49,6 +49,7 @@ input {
   font-size: 14px;
 }
 
+
 input.is-invalid {
   border-color: red;
 }
@@ -90,4 +91,22 @@ button:hover {
 .error-snackbar {
   background-color: red;
   color: white;
+}
+
+/* Make border red and background light red when invalid */
+.is-invalid {
+  border: 1px solid red !important;
+  background-color: #ffe6e6 !important;
+}
+
+/* Change placeholder text color to red */
+.error-text::placeholder {
+  color: red !important;
+  opacity: 1;
+  /* Ensures the color is visible in all browsers */
+}
+
+/* Change the input text color to red when invalid */
+.error-text {
+  color: red !important;
 }

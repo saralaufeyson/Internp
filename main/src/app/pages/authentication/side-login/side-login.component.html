@@ -5,20 +5,29 @@
     </div>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
-      <div>
+      <!-- Email Input -->
+      <div class="input-container">
         <label for="email">Email Address</label>
-        <input id="email" formControlName="email" type="email" placeholder="Enter your email"
-          [ngClass]="{'is-invalid': f.email.touched && f.email.invalid}" />
+        <input id="email" formControlName="email" type="email"
+          [placeholder]="f.email.touched && f.email.errors?.['required'] ? 'Email is required' : 'Enter your email'"
+          [ngClass]="{'is-invalid': f.email.touched && f.email.invalid, 'error-text': f.email.touched && f.email.invalid}" />
       </div>
-      <div>
+
+      <!-- Password Input -->
+      <div class="input-container">
         <label for="password">Password</label>
-        <input id="password" formControlName="password" type="password" placeholder="Enter your password"
-          [ngClass]="{'is-invalid': f.password.touched && f.password.invalid}" />
+        <input id="password" formControlName="password" type="password"
+          [placeholder]="f.password.touched && f.password.errors?.['required'] ? 'Password is required' : 'Enter your password'"
+          [ngClass]="{'is-invalid': f.password.touched && f.password.invalid, 'error-text': f.password.touched && f.password.invalid}" />
       </div>
+
+      <!-- Remember Me -->
       <div>
         <input id="remember" formControlName="remember" type="checkbox" />
         <label for="remember">Remember Me</label>
       </div>
+
+      <!-- Login Button -->
       <button type="submit">Login</button>
     </form>
 
