@@ -57,12 +57,14 @@ input.is-invalid {
   color: red;
   font-size: 12px;
   margin-top: 5px;
-  position: absolute;
+  position: relative;
+  /* Change from absolute to relative */
   width: 100%;
   text-align: left;
-  padding-left: 200px;
-  margin-top: -50px;
-  /* Adjust this value as needed */
+  padding-left: 0;
+  /* Remove padding */
+  margin-top: 0;
+  /* Adjust margin */
 }
 
 /* Checkbox */
