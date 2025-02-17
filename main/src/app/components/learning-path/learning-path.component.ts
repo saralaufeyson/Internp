@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LearningPathService } from '../../services/learning-path.service';
+//import { mylearnService } from '../../services/mylearn.service';
 import { LearningPath } from '../../services/learning-path.model';
 import { CommonModule } from '@angular/common';
 
@@ -20,11 +21,13 @@ export class LearningPathComponent implements OnInit {
   showNotification = false;
   notificationMessage = '';
 
-  constructor(private learningPathService: LearningPathService) { }
+  constructor(private learningPathService: LearningPathService) {}
 
   ngOnInit(): void {
     this.getLearningPaths();
     this.getStoredLearningPathAndUserId();
+    // Remove this call to confirmAddLearningPath as it should be triggered by user action
+   this.addLearningPathStatus
   }
 
   getLearningPaths(): void {
@@ -43,30 +46,50 @@ export class LearningPathComponent implements OnInit {
     console.log('Adding learning path:', path);
     this.showModal = true;
 
-    const status = 'enrolled'; // Define the status to be added
-    const learningPathStatus = {
-      userId: this.userId,
-      learningPathId: this.selectedPath.id,
-      status: status,
-      title: this.selectedPath.title,
-      description: this.selectedPath.description,
-      link: this.selectedPath.link,
-      createdAt: new Date().toISOString(),
-    };
+    // Check if the learning path is already added
+    this.learningPathService.getLearningPathStatus(this.userId).subscribe(
+      (response) => {
+        this.learningPathStatus = response;
+        const isAlreadyAdded = this.learningPathStatus.some((lp: any) => lp.learningPathId === this.selectedPath.id);
 
-    this.learningPathService
-      .addLearningPathStatus(this.userId, learningPathStatus) // Fix method call
-      .subscribe(
-        (response) => {
-          console.log('Learning path status added:', status);
-          this.getLearningPathStatus(); // Refresh status after adding
+        if (isAlreadyAdded) {
+          this.showNotificationMessage(`${this.selectedPath.title} is already added to learning path`); // Show notification
           this.closeModal();
-          this.showNotificationMessage(`${this.selectedPath.title} added to learning path`); // Show custom notification
-        },
-        (error) => {
-          console.error('Error adding learning path status:', error);
+        } else {
+          const status = 'enrolled'; // Define the status to be added
+          const learningPathStatus = {
+            userId: this.userId,
+            learningPathId: this.selectedPath.id,
+            status: status,
+            title: this.selectedPath.title,
+            description: this.selectedPath.description,
+            link: this.selectedPath.link,
+            createdAt: new Date().toISOString(),
+          };
+
+          this.learningPathService
+            .addLearningPathStatus(
+              this.userId,
+              this.selectedPath,
+              learningPathStatus
+            )
+            .subscribe(
+              (response) => {
+                console.log('Learning path status added:', status);
+                this.getLearningPathStatus(); // Refresh status after adding
+                this.closeModal();
+                this.showNotificationMessage(`${this.selectedPath.title} added to learning path`); // Show custom notification
+              },
+              (error) => {
+                console.error('Error adding learning path status:', error);
+              }
+            );
         }
-      );
+      },
+      (error) => {
+        console.error('Error fetching learning path status:', error);
+      }
+    );
   }
 
   closeModal(): void {
@@ -88,9 +111,14 @@ export class LearningPathComponent implements OnInit {
       link: this.selectedPath.link,
       createdAt: new Date().toISOString(),
     };
+    
 
     this.learningPathService
-      .addLearningPathStatus(this.userId, learningPathStatus) // Fix method call
+      .addLearningPathStatus(
+        this.userId,
+        this.selectedPath.id,
+        learningPathStatus
+      )
       .subscribe(
         (response) => {
           console.log('Learning path status added:', status);
@@ -136,6 +164,6 @@ export class LearningPathComponent implements OnInit {
     this.showNotification = true;
     setTimeout(() => {
       this.showNotification = false;
-    }, 3000); // Hide notification after 3 seconds
+    }, 5000); // Hide notification after 3 seconds
   }
 }

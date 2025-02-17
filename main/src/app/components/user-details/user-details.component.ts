@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserDetailsService } from '../../services/user-details.service'; // Make sure to import your service
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
+  @Input() userName: string = ''; // Input property to receive the username
+
   userDetails: any = {
     phoneNumber: '',
     email: '',
