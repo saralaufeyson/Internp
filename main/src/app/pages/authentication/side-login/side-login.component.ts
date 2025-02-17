@@ -10,6 +10,8 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { MaterialModule } from '../../../material.module';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-side-login',
@@ -20,18 +22,19 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
+    CommonModule
   ],
   templateUrl: './side-login.component.html',
   styleUrls: ['./side-login.component.css'],
 })
 export class SideLoginComponent {
   form = new FormGroup({
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]), // Add email validator
     password: new FormControl('', [Validators.required]),
-    remember: new FormControl(false), // Add the 'remember' form control
+    remember: new FormControl(false),
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) { } // Inject MatSnackBar
 
   get f() {
     return this.form.controls;
@@ -43,22 +46,22 @@ export class SideLoginComponent {
         (response) => {
           console.log('Login successful', response);
 
-          // Store userId in localStorage (You should replace `response.userId` with the correct property name in the response)
           if (response && response.userId) {
             localStorage.setItem('userId', response.userId);
-            localStorage.setItem('role', response.role); // Save role locally
-           
+            localStorage.setItem('role', response.role);
             console.log('User Role saved to localStorage:', response.role)
             console.log('User ID saved to localStorage:', response.userId);
           }
-                    // You can optionally store the entire user object, but storing the `userId` should suffice for most cases
-          // localStorage.setItem('user', JSON.stringify(response.user)); // If you need to store the whole user object
 
-          // After login, navigate to the dashboard or any other protected page
           this.router.navigate(['/dashboard']);
         },
         (error) => {
           console.error('Login failed', error);
+          this.snackBar.open('Could not login. Please check your credentials.', 'Close', {
+            duration: 3000,
+            panelClass: ['error-snackbar']
+          });
+          this.form.controls['password'].setErrors({ incorrect: true }); // Set error on password field
         }
       );
     }

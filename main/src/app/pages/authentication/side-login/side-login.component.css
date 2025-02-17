@@ -27,12 +27,16 @@
 
 /* Logo */
 .login-header img {
-  width: 160px;
+  width: 350px;
+  margin-bottom: 20px;
+  /* Add margin below the logo */
 }
 
 /* Form Inputs */
 form div {
-  text-align: left; /* Align labels and inputs to the left */
+  text-align: left;
+  margin-bottom: 20px;
+  /* Add margin between each field */
 }
 
 input {
@@ -43,6 +47,11 @@ input {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 14px;
+}
+
+
+input.is-invalid {
+  border-color: red;
 }
 
 /* Checkbox */
@@ -76,4 +85,28 @@ button:hover {
 
 .text-primary {
   color: #2f80ed;
+}
+
+/* Error Snackbar */
+.error-snackbar {
+  background-color: red;
+  color: white;
+}
+
+/* Make border red and background light red when invalid */
+.is-invalid {
+  border: 1px solid red !important;
+  background-color: #ffe6e6 !important;
+}
+
+/* Change placeholder text color to red */
+.error-text::placeholder {
+  color: red !important;
+  opacity: 1;
+  /* Ensures the color is visible in all browsers */
+}
+
+/* Change the input text color to red when invalid */
+.error-text {
+  color: red !important;
 }
