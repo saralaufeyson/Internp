@@ -23,6 +23,7 @@ export class SideRegisterComponent {
     username: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
+    confirmPassword: new FormControl('', [Validators.required]),
     role: new FormControl('Intern', [Validators.required]), // Default role is Intern
   });
 
@@ -36,7 +37,15 @@ export class SideRegisterComponent {
   }
 
   submit() {
-    if (this.form.valid) {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched(); // Mark all fields as touched to trigger validation messages
+      return;
+    }
+    if (this.form.get('password')?.value !== this.form.get('confirmPassword')?.value) {
+      this.showNotificationMessage('Passwords do not match');
+      return;
+    }
+    if (this.form.valid && this.form.get('password')?.value === this.form.get('confirmPassword')?.value) {
       // Send form data for registration
       this.authService.register(this.form.value).subscribe(
         (response: string) => {
