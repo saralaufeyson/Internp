@@ -3,6 +3,7 @@ import { UserDetailsService } from '../../services/user-details.service'; // Mak
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
 @Component({
   standalone: true,
   imports: [FormsModule, CommonModule],
@@ -17,7 +18,7 @@ export class UserDetailsComponent implements OnInit {
     address: '',
     tenthGrade: '',
     twelfthGrade: '',
-    btechCgpa: ''
+    btechCgpa: '', // Ensure this field is correctly defined
   };
   isEditMode: boolean = false;
   userId: string = ''; // This will be retrieved from localStorage or route parameter
@@ -25,13 +26,13 @@ export class UserDetailsComponent implements OnInit {
   constructor(private userDetailsService: UserDetailsService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // Assuming userId is stored in localStorage
     this.userId = localStorage.getItem('userId') || '';
     
-    // Fetch user details from the backend on component load
     this.userDetailsService.getUserDetails(this.userId).subscribe(
       (data) => {
+        console.log('Fetched User Details:', data);  // Log the response from the backend
         this.userDetails = data;
+        console.log('Updated userDetails:', this.userDetails); // Log updated userDetails
       },
       (error) => {
         console.error('Error fetching user details:', error);
@@ -62,6 +63,4 @@ export class UserDetailsComponent implements OnInit {
       },
     });
   }
-  
-  
 }

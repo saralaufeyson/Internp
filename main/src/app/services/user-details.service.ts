@@ -10,7 +10,7 @@ interface UserDetails {
   address: string;
   tenthGrade: string;
   twelfthGrade: string;
-  btechCgpa: string;
+  btechCgpa: string; // Ensure this field is correctly defined
 }
 
 @Injectable({
@@ -48,6 +48,4 @@ export class UserDetailsService {
         })
       );
   }
-  
-  
 }
