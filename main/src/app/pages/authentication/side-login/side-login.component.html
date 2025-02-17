@@ -3,11 +3,6 @@
     <div class="login-header">
       <img src="./assets/images/logos/dark-logo.svg" alt="InternPortal Logo" />
     </div>
-<div class="blank-layout-container">
-  <div class="boxed-auth">
-    <div class="login-header">
-      <img src="./assets/images/logos/dark-logo.svg" alt="InternPortal Logo" />
-    </div>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
       <!-- Email Input -->
@@ -35,12 +30,6 @@
       <!-- Login Button -->
       <button type="submit">Login</button>
     </form>
-
-    <span class="f-w-500">
-      New to InternPortal?
-      <a [routerLink]="['/authentication/register']" class="text-primary">
-        Create an account</a>
-    </span>
     <span class="f-w-500">
       New to InternPortal?
       <a [routerLink]="['/authentication/register']" class="text-primary">
