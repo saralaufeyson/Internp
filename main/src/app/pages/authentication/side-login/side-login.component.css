@@ -53,20 +53,6 @@ input.is-invalid {
   border-color: red;
 }
 
-.invalid-feedback {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
-  position: relative;
-  /* Change from absolute to relative */
-  width: 100%;
-  text-align: left;
-  padding-left: 0;
-  /* Remove padding */
-  margin-top: 0;
-  /* Adjust margin */
-}
-
 /* Checkbox */
 input[type="checkbox"] {
   width: auto;
@@ -98,13 +84,6 @@ button:hover {
 
 .text-primary {
   color: #2f80ed;
-}
-
-/* Error Message */
-.error-message {
-  color: red;
-  font-size: 12px;
-  margin-top: 4px;
 }
 
 /* Error Snackbar */
