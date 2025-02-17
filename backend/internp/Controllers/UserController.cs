@@ -350,11 +350,14 @@ namespace YourNamespace.Controllers
     {
         private readonly IMongoCollection<User> _userCollection;
         private readonly IMongoCollection<PocProject> _pocProjectCollection;
+
+        private readonly IMongoCollection<UserDetails> _userDetailsCollection;
         public UserController(IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase("database0");
             _userCollection = database.GetCollection<User>("Users");
             _pocProjectCollection = database.GetCollection<PocProject>("PocProjects");
+             _userDetailsCollection = database.GetCollection<UserDetails>("UserDetails");
         }
 
         [HttpGet("getUserProfile/{userId}")]
