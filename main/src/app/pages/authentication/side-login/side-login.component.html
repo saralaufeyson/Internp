@@ -7,19 +7,21 @@
     <form [formGroup]="form" (ngSubmit)="submit()">
       <div>
         <label for="email">Email Address</label>
-        <input id="email" formControlName="email" type="email" placeholder="Enter your email" />
-        <div *ngIf="f.email.touched && f.email.invalid" class="error-message">
-          <div *ngIf="f.email.errors?.['required']">Email is required</div>
-          <div *ngIf="f.email.errors?.['email']">Invalid email address</div>
-        </div>
+        <input id="email" formControlName="email" type="email" placeholder="Enter your email"
+          [ngClass]="{'is-invalid': f.email.touched && f.email.invalid}" />
+        <span *ngIf="f.email.touched && f.email.invalid" class="invalid-feedback">
+          <span *ngIf="f.email.errors?.['required']">Email is required</span>
+          <span *ngIf="f.email.errors?.['email']">Invalid email address</span>
+        </span>
       </div>
       <div>
         <label for="password">Password</label>
-        <input id="password" formControlName="password" type="password" placeholder="Enter your password" />
-        <div *ngIf="f.password.touched && f.password.invalid" class="error-message">
-          <div *ngIf="f.password.errors?.['required']">Password is required</div>
-          <div *ngIf="f.password.errors?.['incorrect']">Wrong password</div>
-        </div>
+        <input id="password" formControlName="password" type="password" placeholder="Enter your password"
+          [ngClass]="{'is-invalid': f.password.touched && f.password.invalid}" />
+        <span *ngIf="f.password.touched && f.password.invalid" class="invalid-feedback">
+          <span *ngIf="f.password.errors?.['required']">Password is required</span>
+          <span *ngIf="f.password.errors?.['incorrect']">Wrong password</span>
+        </span>
       </div>
       <div>
         <input id="remember" formControlName="remember" type="checkbox" />
