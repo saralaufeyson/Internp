@@ -101,8 +101,9 @@
   transform: translateX(-50%);
   background-color: rgb(27, 62, 156);
   color: white;
-  padding: 10px 20px;
+  padding: 20px 40px; /* Increase padding for larger size */
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+  font-size: 1.2rem; /* Increase font size */
 }
