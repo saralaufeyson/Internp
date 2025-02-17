@@ -7,8 +7,9 @@
         <h6><strong>Email:</strong> {{ userProfile.email }}</h6>
         <h6><strong>Role:</strong> {{ userProfile.role }}</h6>
       </div>
+      <app-user-details [userName]="userProfile.name"></app-user-details>
     </div>
-    <app-user-details></app-user-details>
+    
     <app-mylearn></app-mylearn>
       
       
@@ -18,4 +19,3 @@
       
     
 </div>
-  

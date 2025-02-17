@@ -1,7 +1,8 @@
 <div class="container">
   <div *ngIf="!isEditMode">
     <!-- Display user details -->
-    <h4><strong>User Details</strong></h4>
+    <h4><strong>{{ userName }} Details</strong></h4>
+   
     <div *ngIf="userDetails">
       <p><strong>Phone Number:</strong> {{ userDetails.phoneNumber }}</p>
       <p><strong>Email:</strong> {{ userDetails.email }}</p>
