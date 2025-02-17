@@ -62,8 +62,8 @@ namespace YourNamespace.Controllers
 
             var userLearningPathCollection = _learningPathCollection.Database.GetCollection<myLearningPath>("myLearningPath");
             var learningPathStatuses = await userLearningPathCollection
-            .Find(lp => lp.UserId == userId)
-            .ToListAsync();
+                .Find(lp => lp.UserId == userId)
+                .ToListAsync();
 
             if (learningPathStatuses.Count == 0)
             {
@@ -71,8 +71,38 @@ namespace YourNamespace.Controllers
                 return NotFound(new { message = "No Learning Path Status found for this user." });
             }
 
+            var result = learningPathStatuses.Select(lp => new
+            {
+                _id = lp.Id.ToString(), // Convert ObjectId to string for frontend usage
+                lp.UserId,
+                lp.LearningPathId,
+                lp.Status,
+                lp.Title,
+                lp.Description,
+                lp.Link,
+                lp.CreatedAt
+            });
+
             Console.WriteLine($"Found {learningPathStatuses.Count} learning path statuses for UserId: {userId}");
-            return Ok(learningPathStatuses);
+            return Ok(result);
+        }
+
+        [HttpDelete("deleteLearningPathStatus/{learningPathStatusId}")]
+        public async Task<IActionResult> DeleteLearningPathStatus(string learningPathStatusId)
+        {
+            if (!ObjectId.TryParse(learningPathStatusId, out var objectId))
+            {
+                return BadRequest(new { message = "Invalid learning path status ID format." });
+            }
+
+            var result = await _myLearningPathCollection.DeleteOneAsync(lp => lp.Id == objectId);
+
+            if (result.DeletedCount > 0)
+            {
+                return Ok(new { message = "Learning Path Status deleted successfully." });
+            }
+
+            return NotFound(new { message = "Learning Path Status not found." });
         }
 
         // Add a new PoC Project
@@ -357,7 +387,7 @@ namespace YourNamespace.Controllers
             var database = mongoClient.GetDatabase("database0");
             _userCollection = database.GetCollection<User>("Users");
             _pocProjectCollection = database.GetCollection<PocProject>("PocProjects");
-             _userDetailsCollection = database.GetCollection<UserDetails>("UserDetails");
+            _userDetailsCollection = database.GetCollection<UserDetails>("UserDetails");
         }
 
         [HttpGet("getUserProfile/{userId}")]

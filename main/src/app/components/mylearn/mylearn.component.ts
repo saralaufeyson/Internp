@@ -18,7 +18,7 @@ export class MylearnComponent implements OnInit {
   learningPathId: string = localStorage.getItem('learningPathId') || ''; // Get learningPathId from local storage
   learningPathStatus: any;
 
-  constructor(private mylearnService: LearningPathService) {}
+  constructor(private mylearnService: LearningPathService) { }
 
   ngOnInit(): void {
     this.getLearningPathStatus();
@@ -35,13 +35,19 @@ export class MylearnComponent implements OnInit {
       }
     );
   }
-  
+
   getLearningPathStatus(): void {
     this.mylearnService.getLearningPathStatus(this.userId).subscribe(
       (response: any) => {
         // Ensure the response is an array
         this.learningPathStatus = Array.isArray(response) ? response : [response];
-  
+
+        // Include the id field in the response
+        this.learningPathStatus = this.learningPathStatus.map((status: any) => ({
+          ...status,
+          id: status.id
+        }));
+
         console.log('Learning path status:', this.learningPathStatus);
       },
       (error: any) => {
@@ -49,6 +55,18 @@ export class MylearnComponent implements OnInit {
       }
     );
   }
-  
+
+  removeLearningPathStatus(learningPathStatusId: string): void {
+    this.mylearnService.deleteLearningPathStatus(learningPathStatusId).subscribe(
+      response => {
+        console.log('Learning path status removed:', response);
+        this.getLearningPathStatus(); // Refresh status after removal
+      },
+      error => {
+        console.error('Error removing learning path status:', error);
+      }
+    );
+  }
+
 }
 

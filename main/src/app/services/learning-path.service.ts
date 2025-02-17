@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class LearningPathService {
   private apiUrl = 'http://localhost:5180/api/userdata'; // Ensure consistent URL casing
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getLearningPaths(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/getLearningPaths`);
@@ -20,6 +20,11 @@ export class LearningPathService {
   }
 
   getLearningPathStatus(userId: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/getLearningPathStatus/${userId}`);
+    return this.http.get<any>(`${this.apiUrl}/getLearningPathStatus/${userId}`);
+  }
+
+  deleteLearningPathStatus(learningPathStatusId: string): Observable<any> {
+    const url = `${this.apiUrl}/deleteLearningPathStatus/${learningPathStatusId}`;
+    return this.http.delete(url);
   }
 }
