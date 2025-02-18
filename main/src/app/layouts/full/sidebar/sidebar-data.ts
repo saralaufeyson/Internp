@@ -8,7 +8,13 @@ export const navItems: NavItem[] = [
     displayName: 'Dashboard',
     iconName: 'layout-grid-add',
     route: '/dashboard',
-    roles: ['intern', 'admin']
+    roles: ['intern']
+  },
+  {
+    displayName: 'Admin Dashboard',
+    iconName: 'layout-grid-add',
+    route: '/dashboard/admin',
+    roles: [ 'admin']
   },
   {
     displayName: 'Profile',
