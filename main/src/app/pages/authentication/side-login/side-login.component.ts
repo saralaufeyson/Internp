@@ -55,9 +55,10 @@ export class SideLoginComponent {
             // Redirect based on user role
             if (response.role === 'Intern') {
               this.router.navigate(['/dashboard/intern-dashboard']);
-            } else if (response.role === 'Admin' || response.role === 'Mentor') {
-              this.router.navigate(['/dashboard']);
+            } else if (response.role === 'Admin') {
+              this.router.navigate(['/dashboard/admin']);
             }
+            
           }
         },
         (error) => {

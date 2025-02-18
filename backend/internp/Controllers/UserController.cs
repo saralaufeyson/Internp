@@ -163,6 +163,8 @@ namespace YourNamespace.Controllers
             Console.WriteLine($"Found {projects.Count} projects for UserId: {userId}");
             return Ok(result);
         }
+        // Get all PoC Projects
+       
 
         // Delete a PoC Project by ID
         [HttpDelete("deletePocProject/{projectId}")]
@@ -311,7 +313,8 @@ namespace YourNamespace.Controllers
 
             return Ok(result);
         }
-
+        // Get the count of all goals
+    
         [HttpDelete("deleteGoal/{goalId}")]
         public async Task<IActionResult> DeleteGoal(string goalId)
         {
@@ -369,6 +372,32 @@ namespace YourNamespace.Controllers
             // Return the count with an OK status
             return Ok(new { count = goalCount });
         }
+        [HttpGet("getAllGoalsCount")]
+        public async Task<IActionResult> GetAllGoalsCount()
+        {
+            var goalCount = await _goalCollection.CountDocumentsAsync(_ => true);
+            return Ok(new { count = goalCount });
+        }
+        [HttpGet("getAllUsersGoalCount")]
+        public async Task<IActionResult> GetAllUsersGoalCount()
+        {
+            var users = await _userCollection.Find(u => u.Role == "Intern").ToListAsync();
+            var userGoalCounts = new List<object>();
+
+            foreach (var user in users)
+            {
+            var goalCount = await _goalCollection.CountDocumentsAsync(g => g.UserId == user.Id);
+            userGoalCounts.Add(new
+            {
+                UserId = user.Id,
+                Username = user.Username,
+                GoalCount = goalCount
+            });
+            }
+
+            return Ok(userGoalCounts);
+        }
+
 
 
     }
@@ -554,10 +583,25 @@ namespace YourNamespace.Controllers
             });
         }
 
+    
+    [HttpGet("getAllPocProjectStats")]
+    public async Task<IActionResult> GetAllPocProjectStats()
+    {
+        var totalPocs = await _pocProjectCollection.CountDocumentsAsync(_ => true);
+        var inProgressPocs = await _pocProjectCollection.CountDocumentsAsync(p => p.Status == "inProgress");
+        var completedPocs = await _pocProjectCollection.CountDocumentsAsync(p => p.Status == "completed");
+
+        return Ok(new
+        {
+            totalPocs,
+            inProgressPocs,
+            completedPocs
+        });
     }
     public class AssignInternsRequest
     {
         public string? MentorId { get; set; }
         public List<string>? InternIds { get; set; }
     }
+}
 }

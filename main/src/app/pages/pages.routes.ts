@@ -11,6 +11,7 @@ import { AdminGuard } from '../guards/admin.guard'; // Import AdminGuard
 import { MentorListComponent } from '../mentor-list/mentor-list.component'; // Import MentorListComponent
 import { MentorsWithInternsComponent } from '../components/mentors-with-interns/mentors-with-interns.component'; // Import the new component
 import { MylearnComponent } from '../components/mylearn/mylearn.component'; // Import MyLearnComponent
+import { AdmindashComponent } from '../components/admindash/admindash.component';
 import { InternPlansComponent } from '../components/intern-plans/intern-plans.component';
 import { MentorGuard } from '../guards/mentor.guard'; // Import MentorGuard
 import { InternDashboardComponent } from '../components/intern-dashboard/intern-dashboard.component';
@@ -69,6 +70,18 @@ export const PagesRoutes: Routes = [
       urls: [
         { title: 'Dashboard', url: '/dashboard' },
         { title: 'My PoC Projects' },
+      ],
+    },
+  },
+  {
+    path: 'admin',
+    component: AdmindashComponent,
+    canActivate: [AdminGuard], // Apply InternGuard
+    data: {
+      title: 'Admin Dashboard',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'Admin Dashboard' },
       ],
     },
   },

@@ -11,6 +11,12 @@ export const navItems: NavItem[] = [
     roles: ['intern']
   },
   {
+    displayName: 'Admin Dashboard',
+    iconName: 'layout-grid-add',
+    route: '/dashboard/admin',
+    roles: [ 'admin']
+  },
+  {
     displayName: 'Profile',
     iconName: 'info-circle',
     route: '/dashboard/profile',

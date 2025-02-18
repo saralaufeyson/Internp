@@ -1,0 +1,39 @@
+<div class="admin-dashboard">
+  <h2>Admin Dashboard</h2>
+ 
+<div class="card">
+    <h1>Proof of Concepts </h1>
+    <div *ngIf="totalPocs !== undefined">
+        <div class="card">
+            <p>Total PoCs: {{ totalPocs }}</p>
+        </div>
+        <div class="card">
+            <p>In Progress: {{ inProgressPocs }}</p>
+        </div>
+        <div class="card">
+            <p>Completed: {{ completedPocs }}</p>
+        </div>
+    </div>
+    <div *ngIf="totalPocs === undefined">
+        <p style="color: red;">Something's wrong... try reloading</p>
+    </div>
+</div>
+<div class="card">
+    <h1>OverAll Goal Count</h1>
+    <h4>Interns</h4>
+    <div *ngIf="allGoalsCount !== undefined">
+      <p>{{ allGoalsCount }}</p>
+    </div>
+    <div *ngIf="allGoalsCount === undefined">
+      <p style="color: red;">Something's wrong... try reloading</p>
+    </div>
+  </div>
+  <div class="card">
+    <h1>Proof of Concepts status</h1>
+    <canvas id="pocPieChart"></canvas>
+  </div>
+  <div class="card">
+    <h1>Intern Goals Bar Chart</h1>
+    <canvas id="userGoalsDoughnutChart"></canvas>
+  </div>
+</div>
