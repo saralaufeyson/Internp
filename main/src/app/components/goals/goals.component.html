@@ -43,9 +43,9 @@
         <div class="goal-name">
           <strong class="goal-label">Goal Name:</strong> <strong>{{ goal.goalName }}</strong>
         </div>
-        <button (click)="deleteGoal(goal._id)" class="btn btn-danger">
-          <i class="bi bi-trash"></i>
-        </button>
+       
+          <i class="bi bi-trash" (click)="deleteGoal(goal._id)"></i>
+       
       </div>
       <div class="goal-description"><strong>Description:</strong> {{ goal.description }}</div>
       <div class="goal-created"><strong>Created At:</strong> {{ goal.createdAt | date: 'short' }}</div>

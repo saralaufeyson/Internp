@@ -12,9 +12,9 @@
         <p>{{ path.description }}</p>
         <a [href]="path.link" target="_blank" class="btn">Start Learning</a>
         &nbsp; <!-- Added space -->
-        <button (click)="removeLearningPathStatus(path._id)" class="btn btn-danger">
-          <i class="bi bi-trash"></i>
-        </button>
+       
+          <i class="bi bi-trash" (click)="removeLearningPathStatus(path._id)"></i>
+        
       </div>
 
       <div class="card-footer">
