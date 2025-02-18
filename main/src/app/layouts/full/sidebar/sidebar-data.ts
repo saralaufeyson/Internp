@@ -1,14 +1,14 @@
 import { NavItem } from './nav-item/nav-item';
- 
+
 export const navItems: NavItem[] = [
   {
     navCap: 'Home',
   },
   {
-    displayName: 'Dashboard',
-    iconName: 'layout-grid-add',
-    route: '/dashboard',
-    roles: ['intern', 'admin']
+    displayName: 'Intern Dashboard',
+    iconName: 'dashboard',
+    route: '/dashboard/intern-dashboard',
+    roles: ['intern']
   },
   {
     displayName: 'Profile',
@@ -46,6 +46,7 @@ export const navItems: NavItem[] = [
     route: '/dashboard/intern-plans',
     roles: ['intern']
   },
+
   {
     displayName: 'All Interns',
     iconName: 'user',

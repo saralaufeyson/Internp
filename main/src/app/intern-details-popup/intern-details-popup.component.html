@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Intern Details</h2>
+<mat-dialog-content>
+    <div *ngIf="userDetails">
+        <h3>{{ userDetails.username }}</h3>
+        <p>Email: {{ userDetails.email }}</p>
+        <p>Phone: {{ userDetails.phoneNumber }}</p>
+        <p>Address: {{ userDetails.address }}</p>
+        <p>10th Grade: {{ userDetails.tenthGrade }}</p>
+        <p>12th Grade: {{ userDetails.twelfthGrade }}</p>
+        <p>B.Tech CGPA: {{ userDetails.bTechCgpa }}</p>
+    </div>
+    <app-dashboardc [userId]="userId"></app-dashboardc>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">Close</button>
+</mat-dialog-actions>

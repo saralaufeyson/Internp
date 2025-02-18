@@ -7,11 +7,12 @@ import { UserDataService } from '../../services/profile.service';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
 import { UserDetailsComponent } from "../user-details/user-details.component";
+import { DashboardcComponent } from "../dashboardc/dashboardc.component";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserDetailsComponent],
+  imports: [CommonModule, FormsModule, UserDetailsComponent, DashboardcComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -24,16 +25,13 @@ export class ProfileComponent implements OnInit {
     role: '' // Add role property
   };
 
-
-
-  profileImage: string | ArrayBuffer | null = null;
   userId: string = ''; // Get the logged-in user's ID here (e.g., from LocalStorage or an AuthService)
+  profileImage: string | ArrayBuffer | null = null;
   errorMessage: string = ''; // For storing error messages
 
   constructor(private userDataService: UserDataService, private http: HttpClient, private userService: UserService) { }
 
   ngOnInit(): void {
-    // Get the logged-in user's ID (replace with your actual logic to get the user ID)
     this.userId = localStorage.getItem('userId') || ''; // Assume the user ID is saved in localStorage
 
     // Check if userId is available, if not, log an error or handle the missing user ID scenario
@@ -49,14 +47,14 @@ export class ProfileComponent implements OnInit {
           this.errorMessage = 'Error fetching user profile. Please try again later.';
         }
       );
-      
+
     } else {
       console.error('No user ID found in localStorage. User is not logged in.');
       this.errorMessage = 'No user ID found. Please log in.';
     }
   }
 
-  
+
 
   // Handle profile image upload
   onImageUpload(event: any): void {

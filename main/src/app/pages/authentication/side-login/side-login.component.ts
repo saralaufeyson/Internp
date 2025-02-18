@@ -51,9 +51,14 @@ export class SideLoginComponent {
             localStorage.setItem('role', response.role);
             console.log('User Role saved to localStorage:', response.role)
             console.log('User ID saved to localStorage:', response.userId);
-          }
 
-          this.router.navigate(['/dashboard']);
+            // Redirect based on user role
+            if (response.role === 'Intern') {
+              this.router.navigate(['/dashboard/intern-dashboard']);
+            } else if (response.role === 'Admin' || response.role === 'Mentor') {
+              this.router.navigate(['/dashboard']);
+            }
+          }
         },
         (error) => {
           console.error('Login failed', error);
