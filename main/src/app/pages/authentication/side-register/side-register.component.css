@@ -50,24 +50,25 @@ form label {
   font-weight: 600;
   color: #333;
   font-size: 14px;
+  margin-bottom: 4px;
+  /* Reduce gap between label and input box */
 }
 
-form input {
+form input,
+form select {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
+  /* Reduce padding */
   border-radius: 8px;
   border: 1px solid #ddd;
-  margin-top: 8px;
+  margin-top: 6px;
+  /* Reduce gap between fields */
+  margin-bottom: 15px;
+  /* Reduce gap between fields */
   font-size: 14px;
 }
 
 form select {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  margin-top: 8px;
-  font-size: 14px;
   background-color: #fff;
   appearance: none;
   background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');
@@ -123,9 +124,12 @@ form button:hover {
 .blank-layout-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  /* Align items to the top */
   height: 100vh;
   background-color: #f8f9fa;
+  padding-top: 10px;
+  /* Reduce padding to move content up */
 }
 
 .cardWithShadow {
@@ -133,6 +137,8 @@ form button:hover {
   border-radius: 8px;
   background-color: #ffffff;
   padding: 32px;
+  margin-top: 10px;
+  /* Reduce margin to bring the form up */
 }
 
 .button-container {
