@@ -62,8 +62,8 @@ namespace YourNamespace.Controllers
 
             var userLearningPathCollection = _learningPathCollection.Database.GetCollection<myLearningPath>("myLearningPath");
             var learningPathStatuses = await userLearningPathCollection
-            .Find(lp => lp.UserId == userId)
-            .ToListAsync();
+                .Find(lp => lp.UserId == userId)
+                .ToListAsync();
 
             if (learningPathStatuses.Count == 0)
             {
@@ -71,8 +71,38 @@ namespace YourNamespace.Controllers
                 return NotFound(new { message = "No Learning Path Status found for this user." });
             }
 
+            var result = learningPathStatuses.Select(lp => new
+            {
+                _id = lp.Id.ToString(), // Convert ObjectId to string for frontend usage
+                lp.UserId,
+                lp.LearningPathId,
+                lp.Status,
+                lp.Title,
+                lp.Description,
+                lp.Link,
+                lp.CreatedAt
+            });
+
             Console.WriteLine($"Found {learningPathStatuses.Count} learning path statuses for UserId: {userId}");
-            return Ok(learningPathStatuses);
+            return Ok(result);
+        }
+
+        [HttpDelete("deleteLearningPathStatus/{learningPathStatusId}")]
+        public async Task<IActionResult> DeleteLearningPathStatus(string learningPathStatusId)
+        {
+            if (!ObjectId.TryParse(learningPathStatusId, out var objectId))
+            {
+                return BadRequest(new { message = "Invalid learning path status ID format." });
+            }
+
+            var result = await _myLearningPathCollection.DeleteOneAsync(lp => lp.Id == objectId);
+
+            if (result.DeletedCount > 0)
+            {
+                return Ok(new { message = "Learning Path Status deleted successfully." });
+            }
+
+            return NotFound(new { message = "Learning Path Status not found." });
         }
 
         // Add a new PoC Project
@@ -133,6 +163,8 @@ namespace YourNamespace.Controllers
             Console.WriteLine($"Found {projects.Count} projects for UserId: {userId}");
             return Ok(result);
         }
+        // Get all PoC Projects
+       
 
         // Delete a PoC Project by ID
         [HttpDelete("deletePocProject/{projectId}")]
@@ -281,7 +313,8 @@ namespace YourNamespace.Controllers
 
             return Ok(result);
         }
-
+        // Get the count of all goals
+    
         [HttpDelete("deleteGoal/{goalId}")]
         public async Task<IActionResult> DeleteGoal(string goalId)
         {
@@ -339,6 +372,32 @@ namespace YourNamespace.Controllers
             // Return the count with an OK status
             return Ok(new { count = goalCount });
         }
+        [HttpGet("getAllGoalsCount")]
+        public async Task<IActionResult> GetAllGoalsCount()
+        {
+            var goalCount = await _goalCollection.CountDocumentsAsync(_ => true);
+            return Ok(new { count = goalCount });
+        }
+        [HttpGet("getAllUsersGoalCount")]
+        public async Task<IActionResult> GetAllUsersGoalCount()
+        {
+            var users = await _userCollection.Find(u => u.Role == "Intern").ToListAsync();
+            var userGoalCounts = new List<object>();
+
+            foreach (var user in users)
+            {
+            var goalCount = await _goalCollection.CountDocumentsAsync(g => g.UserId == user.Id);
+            userGoalCounts.Add(new
+            {
+                UserId = user.Id,
+                Username = user.Username,
+                GoalCount = goalCount
+            });
+            }
+
+            return Ok(userGoalCounts);
+        }
+
 
 
     }
@@ -357,7 +416,7 @@ namespace YourNamespace.Controllers
             var database = mongoClient.GetDatabase("database0");
             _userCollection = database.GetCollection<User>("Users");
             _pocProjectCollection = database.GetCollection<PocProject>("PocProjects");
-             _userDetailsCollection = database.GetCollection<UserDetails>("UserDetails");
+            _userDetailsCollection = database.GetCollection<UserDetails>("UserDetails");
         }
 
         [HttpGet("getUserProfile/{userId}")]
@@ -524,10 +583,25 @@ namespace YourNamespace.Controllers
             });
         }
 
+    
+    [HttpGet("getAllPocProjectStats")]
+    public async Task<IActionResult> GetAllPocProjectStats()
+    {
+        var totalPocs = await _pocProjectCollection.CountDocumentsAsync(_ => true);
+        var inProgressPocs = await _pocProjectCollection.CountDocumentsAsync(p => p.Status == "inProgress");
+        var completedPocs = await _pocProjectCollection.CountDocumentsAsync(p => p.Status == "completed");
+
+        return Ok(new
+        {
+            totalPocs,
+            inProgressPocs,
+            completedPocs
+        });
     }
     public class AssignInternsRequest
     {
         public string? MentorId { get; set; }
         public List<string>? InternIds { get; set; }
     }
+}
 }
