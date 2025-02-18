@@ -1,0 +1,49 @@
+<div class="container">
+  <div *ngIf="!isEditMode">
+    <!-- Display user details -->
+    <h4><strong>{{ userName }} Details</strong></h4>
+   
+    <div *ngIf="userDetails">
+      <p><strong>Phone Number:</strong> {{ userDetails.phoneNumber }}</p>
+      <p><strong>Email:</strong> {{ userDetails.email }}</p>
+      <p><strong>Address:</strong> {{ userDetails.address }}</p>
+      <p><strong>10th Grade:</strong> {{ userDetails.tenthGrade }}</p>
+      <p><strong>12th Grade:</strong> {{ userDetails.twelfthGrade }}</p>
+      <p><strong>BTech CGPA:</strong> {{ userDetails.bTechCgpa }}</p>
+    </div>
+    <button class="btn btn-primary" (click)="editUserDetails()">Edit</button>
+  </div>
+
+  <div *ngIf="isEditMode">
+    <!-- Form to edit user details -->
+    <h4><strong>Edit User Details</strong></h4>
+    <form (ngSubmit)="saveUserDetails()">
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" id="phoneNumber" class="form-control" [(ngModel)]="userDetails.phoneNumber" name="phoneNumber" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" [(ngModel)]="userDetails.email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" id="address" class="form-control" [(ngModel)]="userDetails.address" name="address" required />
+      </div>
+      <div class="form-group">
+        <label for="tenthGrade">10th Grade</label>
+        <input type="text" id="tenthGrade" class="form-control" [(ngModel)]="userDetails.tenthGrade" name="tenthGrade" required />
+      </div>
+      <div class="form-group">
+        <label for="twelfthGrade">12th Grade</label>
+        <input type="text" id="twelfthGrade" class="form-control" [(ngModel)]="userDetails.twelfthGrade" name="twelfthGrade" required />
+      </div>
+      <div class="form-group">
+        <label for="bTechCgpa">BTech CGPA</label>
+        <input type="text" id="bTechCgpa" class="form-control" [(ngModel)]="userDetails.bTechCgpa" name="bTechCgpa" required />
+      </div>
+      <button type="submit" class="btn btn-success">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+    </form>
+  </div>
+</div>

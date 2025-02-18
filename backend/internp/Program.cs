@@ -10,9 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using YourNamespace.Services;
 
-
 var builder = WebApplication.CreateBuilder(args);
-
 
 // Load configuration
 var configuration = builder.Configuration;
@@ -22,7 +20,9 @@ var mongoConnectionString = configuration.GetConnectionString("MongoDb");
 var mongoClient = new MongoClient(mongoConnectionString);
 builder.Services.AddSingleton<IMongoClient>(mongoClient);
 
+// Register Services
 builder.Services.AddSingleton<AuthService>();
+builder.Services.AddScoped<UserDetailsService>();  // ✅ Register UserDetailsService
 
 // Configure Authentication using JWT
 builder.Services.AddAuthentication(options =>

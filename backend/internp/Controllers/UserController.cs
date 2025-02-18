@@ -264,7 +264,7 @@ namespace YourNamespace.Controllers
                 .Distinct()
                 .ToList();
 
-            var users = await _userCollection.Find(u => validUserIds.Contains(u.Id)).ToListAsync();
+            var users = await _userCollection.Find(u => u.Id != null && validUserIds.Contains(u.Id)).ToListAsync();
             var userDictionary = users
                 .Where(u => u.Id != null)
                 .ToDictionary(u => u.Id!, u => u.Username);
@@ -350,11 +350,14 @@ namespace YourNamespace.Controllers
     {
         private readonly IMongoCollection<User> _userCollection;
         private readonly IMongoCollection<PocProject> _pocProjectCollection;
+
+        private readonly IMongoCollection<UserDetails> _userDetailsCollection;
         public UserController(IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase("database0");
             _userCollection = database.GetCollection<User>("Users");
             _pocProjectCollection = database.GetCollection<PocProject>("PocProjects");
+             _userDetailsCollection = database.GetCollection<UserDetails>("UserDetails");
         }
 
         [HttpGet("getUserProfile/{userId}")]
@@ -441,7 +444,9 @@ namespace YourNamespace.Controllers
                 return NotFound(new { message = "Mentor not found." });
             }
 
+#pragma warning disable CS8604 // Possible null reference argument.
             var interns = await _userCollection.Find(u => request.InternIds.Contains(u.Id) && u.Role == "Intern").ToListAsync();
+#pragma warning restore CS8604 // Possible null reference argument.
             if (interns.Count != request.InternIds.Count)
             {
                 return BadRequest(new { message = "One or more interns not found." });
@@ -484,7 +489,9 @@ namespace YourNamespace.Controllers
             foreach (var mentor in mentors)
             {
                 var internIds = mentor.AssignedInterns ?? new List<string>();
+#pragma warning disable CS8604 // Possible null reference argument.
                 var interns = await _userCollection.Find(u => internIds.Contains(u.Id)).ToListAsync();
+#pragma warning restore CS8604 // Possible null reference argument.
 
                 mentorDetails.Add(new
                 {
