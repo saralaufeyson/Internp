@@ -1,3 +1,6 @@
+/* Import Bootstrap CSS */
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+
 /* Learning Status Container */
 .learning-status-container {
     max-width: 1000px;
@@ -15,7 +18,8 @@
     color: rgb(242, 242, 243);
     margin-bottom: 20px;
 }
-.learning-status-container h2{
+
+.learning-status-container h2 {
     font-size: 1.8rem;
     color: rgb(27, 62, 156);
     margin-bottom: 20px;
@@ -84,6 +88,23 @@
 
 .card-body .btn:hover {
     background: rgb(19, 45, 114);
+}
+
+/* Adjust the remove button to use Bootstrap styles */
+.card-body .btn-danger {
+    display: inline-block;
+    background: red;
+    /* Ensure the background is red */
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s ease-in-out;
+}
+
+.card-body .btn-danger:hover {
+    background: darkred;
 }
 
 /* Card Footer */
