@@ -17,10 +17,16 @@ export const navItems: NavItem[] = [
     roles: [ 'admin']
   },
   {
+    displayName: 'Mentor Dashboard',
+    iconName: 'layout-grid-add',
+    route: '/dashboard/mentor',
+    roles: [ 'mentor']
+  },
+  {
     displayName: 'Profile',
     iconName: 'info-circle',
     route: '/dashboard/profile',
-    roles: ['intern', 'admin']
+    roles: ['intern', 'admin','mentor']
   },
   {
     displayName: 'My learning Path',

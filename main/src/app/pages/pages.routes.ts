@@ -15,6 +15,7 @@ import { AdmindashComponent } from '../components/admindash/admindash.component'
 import { InternPlansComponent } from '../components/intern-plans/intern-plans.component';
 import { MentorGuard } from '../guards/mentor.guard'; // Import MentorGuard
 import { InternDashboardComponent } from '../components/intern-dashboard/intern-dashboard.component';
+import { MentorDashComponent } from '../components/mentor-dash/mentor-dash.component';
 
 export const PagesRoutes: Routes = [
   {
@@ -79,6 +80,18 @@ export const PagesRoutes: Routes = [
     canActivate: [AdminGuard], // Apply InternGuard
     data: {
       title: 'Admin Dashboard',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'Admin Dashboard' },
+      ],
+    },
+  },
+  {
+    path: 'mentor',
+    component: MentorDashComponent,
+    canActivate: [MentorGuard], // Apply InternGuard
+    data: {
+      title: 'Mentor Dashboard',
       urls: [
         { title: 'Dashboard', url: '/dashboard' },
         { title: 'Admin Dashboard' },

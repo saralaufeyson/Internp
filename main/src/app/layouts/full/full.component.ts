@@ -47,6 +47,7 @@ export class FullComponent implements OnInit {
   userRole: string | null = null;
   internNavItems: any[] = navItems.filter(item => item.roles?.includes('intern'));
   adminNavItems: any[] = navItems.filter(item => item.roles?.includes('admin'));
+  mentorNavItems: any[] = navItems.filter(item => item.roles?.includes('mentor'));
 
   @ViewChild('leftsidenav')
   public sidenav: MatSidenav | any;
