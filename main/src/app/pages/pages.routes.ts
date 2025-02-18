@@ -11,6 +11,7 @@ import { AdminGuard } from '../guards/admin.guard'; // Import AdminGuard
 import { MentorListComponent } from '../mentor-list/mentor-list.component'; // Import MentorListComponent
 import { MentorsWithInternsComponent } from '../components/mentors-with-interns/mentors-with-interns.component'; // Import the new component
 import { MylearnComponent } from '../components/mylearn/mylearn.component'; // Import MyLearnComponent
+import { InternPlansComponent } from '../components/intern-plans/intern-plans.component';
  
 export const PagesRoutes: Routes = [
   {
@@ -123,6 +124,18 @@ export const PagesRoutes: Routes = [
     canActivate: [InternGuard], // Apply InternGuard
     data: {
       title: 'My Learning Status',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'My Learning Status' },
+      ],
+    },
+  },
+  {
+    path: 'intern-plans',
+    component: InternPlansComponent,
+    canActivate: [InternGuard], // Apply InternGuard
+    data: {
+      title: 'My Plans',
       urls: [
         { title: 'Dashboard', url: '/dashboard' },
         { title: 'My Learning Status' },
