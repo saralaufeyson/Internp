@@ -41,6 +41,12 @@ export const navItems: NavItem[] = [
     roles: ['intern']
   },
   {
+    displayName: 'My Plans',
+    iconName: 'school',
+    route: '/dashboard/intern-plans',
+    roles: ['intern']
+  },
+  {
     displayName: 'All Interns',
     iconName: 'user',
     route: '/dashboard/intern-list',
