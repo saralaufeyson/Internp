@@ -11,12 +11,13 @@
       <p><strong>12th Grade:</strong> {{ userDetails.twelfthGrade }}</p>
       <p><strong>BTech CGPA:</strong> {{ userDetails.bTechCgpa }}</p>
     </div>
-    <button class="btn btn-primary" (click)="editUserDetails()">Edit</button>
+    <button class="btn btn-primary" (click)="editUserDetails()" *ngIf="!isNewUser">Edit</button>
+    <button class="btn btn-primary" (click)="editUserDetails()" *ngIf="isNewUser">Add Details</button>
   </div>
 
   <div *ngIf="isEditMode">
     <!-- Form to edit user details -->
-    <h4><strong>Edit User Details</strong></h4>
+    <h4><strong>{{ isNewUser ? 'Add' : 'Edit' }} User Details</strong></h4>
     <form (ngSubmit)="saveUserDetails()">
       <div class="form-group">
         <label for="phoneNumber">Phone Number</label>
@@ -42,7 +43,7 @@
         <label for="bTechCgpa">BTech CGPA</label>
         <input type="text" id="bTechCgpa" class="form-control" [(ngModel)]="userDetails.bTechCgpa" name="bTechCgpa" required />
       </div>
-      <button type="submit" class="btn btn-success">Save</button>
+      <button type="submit" class="btn btn-success">{{ isNewUser ? 'Add' : 'Save' }}</button>
       <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
     </form>
   </div>

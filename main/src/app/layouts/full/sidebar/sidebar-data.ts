@@ -42,7 +42,7 @@ export const navItems: NavItem[] = [
   },
   {
     displayName: 'My Plans',
-    iconName: 'school',
+    iconName: 'calendar',
     route: '/dashboard/intern-plans',
     roles: ['intern']
   },

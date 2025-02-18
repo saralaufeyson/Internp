@@ -28,6 +28,11 @@ namespace YourNamespace.Controllers
         [HttpPost("adddetails")]
         public async Task<IActionResult> CreateUserDetails([FromBody] UserDetails userDetails)
         {
+            if (userDetails == null || string.IsNullOrEmpty(userDetails.UserId) || string.IsNullOrEmpty(userDetails.Email))
+            {
+                return BadRequest("Invalid user details.");
+            }
+
             await _userDetailsService.CreateUserDetailsAsync(userDetails);
             return CreatedAtAction(nameof(GetUserDetails), new { userId = userDetails.UserId }, userDetails);
         }
