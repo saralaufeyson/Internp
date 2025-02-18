@@ -60,6 +60,16 @@ export const routes: Routes = [
         path: 'mentor-list',
         component: MentorListComponent,
       },
+      {
+        path: 'admin-dashboard',
+        loadChildren: () =>
+          import('./pages/pages.routes').then((m) => m.PagesRoutes),
+      },
+      {
+        path: 'mentor-dashboard',
+        loadChildren: () =>
+          import('./pages/pages.routes').then((m) => m.PagesRoutes),
+      },
     ],
   },
   {

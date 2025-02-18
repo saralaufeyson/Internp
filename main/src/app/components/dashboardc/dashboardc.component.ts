@@ -1,7 +1,8 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Chart } from 'chart.js/auto';
+import { UserDetailsService } from '../../services/user-details.service';
 
 @Component({
   selector: 'app-dashboardc',
@@ -11,16 +12,23 @@ import { Chart } from 'chart.js/auto';
   styleUrls: ['./dashboardc.component.css']
 })
 export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
-  userId: string | null = localStorage.getItem('userId');
+  @Input() userId: string;
+  dashboardData: any;
   goalCount: number | undefined;
   pocCount: { totalPocs: number; inProgressPocs: number; completedPocs: number } | undefined;
   pieChart: Chart | undefined; // Ensure it's properly typed
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userDetailsService: UserDetailsService) { }
 
   ngOnInit() {
-    this.updateGoalCount();
-    this.updatePocCount();
+    if (this.userId) {
+      console.log('DashboardcComponent initialized with userId:', this.userId);
+      this.updateGoalCount();
+      this.updatePocCount();
+      this.fetchDashboardData();
+    } else {
+      console.error('DashboardcComponent initialized without userId');
+    }
   }
 
   ngAfterViewInit() {
@@ -64,7 +72,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
             completedPocs: response.completedPocs
           };
           console.log('POC count:', this.pocCount);
-          
+
           // Create the chart only after fetching the data
           this.createPieChart();
         },
@@ -106,5 +114,19 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       }
     }, 300);
+  }
+
+  fetchDashboardData(): void {
+    if (this.userId) {
+      this.userDetailsService.getUserDetails(this.userId).subscribe(
+        (data: any) => {
+          this.dashboardData = data;
+          console.log('Dashboard data:', this.dashboardData);
+        },
+        (error: any) => {
+          console.error('Error fetching dashboard data:', error);
+        }
+      );
+    }
   }
 }

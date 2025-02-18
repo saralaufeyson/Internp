@@ -12,7 +12,9 @@ import { MentorListComponent } from '../mentor-list/mentor-list.component'; // I
 import { MentorsWithInternsComponent } from '../components/mentors-with-interns/mentors-with-interns.component'; // Import the new component
 import { MylearnComponent } from '../components/mylearn/mylearn.component'; // Import MyLearnComponent
 import { InternPlansComponent } from '../components/intern-plans/intern-plans.component';
- 
+import { MentorGuard } from '../guards/mentor.guard'; // Import MentorGuard
+import { InternDashboardComponent } from '../components/intern-dashboard/intern-dashboard.component';
+
 export const PagesRoutes: Routes = [
   {
     path: '',
@@ -139,6 +141,18 @@ export const PagesRoutes: Routes = [
       urls: [
         { title: 'Dashboard', url: '/dashboard' },
         { title: 'My Learning Status' },
+      ],
+    },
+  },
+  {
+    path: 'intern-dashboard',
+    component: InternDashboardComponent,
+    canActivate: [InternGuard], // Apply InternGuard
+    data: {
+      title: 'Intern Dashboard',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'Intern Dashboard' },
       ],
     },
   },

@@ -16,28 +16,32 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   templateUrl: './sidebar.component.html',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports:[CommonModule]
+  imports: [CommonModule]
 })
 export class SidebarComponent implements OnInit {
   @Input() showToggle = true;
   @Output() toggleMobileNav = new EventEmitter<void>();
   @Output() toggleCollapsed = new EventEmitter<void>();
 
-  
   filteredNavItems: NavItem[] = [];
   userRole: string | null = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.userRole = this.authService.getRole();
-    
-    
-    
+    this.filteredNavItems = navItems.filter(item => this.isNavItemVisible(item));
+    if (this.userRole === 'intern') {
+      this.filteredNavItems.push({
+        displayName: 'Intern Dashboard',
+        iconName: 'dashboard',
+        route: '/intern-dashboard',
+        roles: ['intern']
+      });
+    }
   }
+
   isNavItemVisible(item: NavItem): boolean {
     return (item.roles?.includes(this.userRole as string) ?? false) || (item.roles?.includes('guest') ?? false);
   }
-
-
 }
