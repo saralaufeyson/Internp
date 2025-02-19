@@ -1,0 +1,44 @@
+/* Mentor Dashboard Styles */
+.mentor-dashboard {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+/* Card Styling */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 16px 0;
+  display: inline-block; /* Makes the card wrap around the text */
+  max-width: 100%; /* Ensures the card does not exceed the container width */
+}
+
+/* Card Heading */
+.card h1 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+/* Spacing Between Cards */
+.card + .card {
+  margin: 16px;
+}
+
+/* Card Paragraph */
+.card p {
+  font-size: 18px;
+  margin: 8px 0;
+  color: rgb(28, 36, 27); /* Text color */
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  font-size: 18px;
+  margin-top: 10px;
+}
