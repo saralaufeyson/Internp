@@ -1,73 +1,118 @@
-// using Microsoft.AspNetCore.Mvc;
-// using MongoDB.Driver;
-// using System.Collections.Generic;
-// using System.Linq;
-// using YourNamespace.Models;
-// using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using YourNamespace.Models;
 
-// namespace Internp.Controllers
-// {
-//     [Route("api/[controller]")]
-//     [ApiController]
-//     public class MentorController : ControllerBase
-//     {
-//         private readonly IMongoCollection<User> _usersCollection;
+namespace Internp.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class MentorController : ControllerBase
+    {
+        private readonly IMongoCollection<User> _usersCollection;
+        private readonly IMongoCollection<Goal> _goalsCollection;
+        private readonly IMongoCollection<PocProject> _pocsCollection;
+        private readonly IMongoCollection<myLearningPath> _learningPathCollection;
 
-//         public MentorController(IMongoClient client)
-//         {
-//             var database = client.GetDatabase("database0");
-//             _usersCollection = database.GetCollection<User>("Users");
-//         }
+        public MentorController(IMongoClient client)
+        {
+            var database = client.GetDatabase("database0");
+            _usersCollection = database.GetCollection<User>("Users");
+            _goalsCollection = database.GetCollection<Goal>("Goals");
+            _pocsCollection = database.GetCollection<PocProject>("PocProjects");
+            _learningPathCollection = database.GetCollection<myLearningPath>("myLearningPath");
+        }
 
-//         // GET: api/Mentor/{mentorId}/InternsGoals
-//         public ActionResult<IEnumerable<Goal>> GetInternsGoals(string mentorId)
-//         public ActionResult<IEnumerable<Goal>> GetInternsGoals(int mentorId)
-//         {
-//                 .Where(u => u.AssignedMentorId == mentorId)
-//                 .Where(u => u.AssignedMentorId == user.Id)
-//                 .SelectMany(u => u.Goals)
-//                 .ToList();
+        // ✅ API: Get assigned interns under a mentor
+        [HttpGet("{mentorId}/interns")]
+        public async Task<ActionResult<IEnumerable<User>>> GetInternsUnderMentor(string mentorId)
+        {
+            var mentor = await _usersCollection.Find(u => u.Id == mentorId).FirstOrDefaultAsync();
+            
+            if (mentor == null || mentor.AssignedInterns == null || !mentor.AssignedInterns.Any())
+            {
+                return NotFound("No interns assigned to this mentor.");
+            }
 
-//             if (goals == null || !goals.Any())
-//             {
-//                 return NotFound();
-//             }
+            var interns = await _usersCollection.Find(u => mentor.AssignedInterns.Contains(u.Id)).ToListAsync();
+            return Ok(interns);
+        }
 
-//             return Ok(goals);
-//         }
+        // ✅ API: Get total goals from all assigned interns
+        [HttpGet("{mentorId}/total-goals")]
+        public async Task<ActionResult<int>> GetTotalInternGoals(string mentorId)
+        {
+            var mentor = await _usersCollection.Find(u => u.Id == mentorId).FirstOrDefaultAsync();
+            
+            if (mentor == null || mentor.AssignedInterns == null || !mentor.AssignedInterns.Any())
+            {
+                return NotFound("No interns assigned to this mentor.");
+            }
 
-//         // GET: api/Mentor/{mentorId}/InternsDetails
-//         public ActionResult<IEnumerable<User>> GetInternsDetails(string mentorId)
-//         public ActionResult<IEnumerable<Intern>> GetInternsDetails(int mentorId)
-//         {
-//                 .Where(u => u.AssignedMentorId == mentorId)
-//                 .Where(u => u.MentorId == mentorId)
-//                 .SelectMany(u => u.Interns)
-//                 .ToList();
+            long totalGoals = await _goalsCollection.CountDocumentsAsync(g => mentor.AssignedInterns.Contains(g.UserId));
+            return Ok(new { totalGoals });
+        }
 
-//             if (interns == null || !interns.Any())
-//             {
-//                 return NotFound();
-//             }
+        // ✅ API: Get all POCs for assigned interns
+        [HttpGet("{mentorId}/total-pocs")]
+        public async Task<ActionResult<int>> GetTotalInternPocs(string mentorId)
+        {
+            var mentor = await _usersCollection.Find(u => u.Id == mentorId).FirstOrDefaultAsync();
+            
+            if (mentor == null || mentor.AssignedInterns == null || !mentor.AssignedInterns.Any())
+            {
+                return NotFound("No interns assigned to this mentor.");
+            }
 
-//             return Ok(interns);
-//         }
+            int totalPocs = (int)await _pocsCollection.CountDocumentsAsync(p => mentor.AssignedInterns.Contains(p.UserId));
+            return Ok(new { totalPocs });
+        }
 
-//         // GET: api/Mentor/{mentorId}/InternsPocs
-//         public ActionResult<IEnumerable<Poc>> GetInternsPocs(string mentorId)
-//         public ActionResult<IEnumerable<Poc>> GetInternsPocs(int mentorId)
-//         {
-//             var pocs = _usersCollection.AsQueryable()
-//                 .Where(u => u.MentorId == mentorId)
-//                 .SelectMany(u => u.Pocs)
-//                 .ToList();
+        // ✅ API: Get in-progress POCs for assigned interns
+    [HttpGet("{mentorId}/poc-project-stats")]
+public async Task<IActionResult> GetPocProjectStats(string mentorId)
+{
+    var mentor = await _usersCollection.Find(u => u.Id == mentorId).FirstOrDefaultAsync();
 
-//             if (pocs == null || !pocs.Any())
-//             {
-//                 return NotFound();
-//             }
+    if (mentor == null || mentor.AssignedInterns == null || !mentor.AssignedInterns.Any())
+    {
+        return NotFound("No interns assigned to this mentor.");
+    }
 
-//             return Ok(pocs);
-//         }
-//     }
-// }
+    var totalPocs = await _pocsCollection.CountDocumentsAsync(p => mentor.AssignedInterns.Contains(p.UserId));
+    var inProgressPocs = await _pocsCollection.CountDocumentsAsync(p => mentor.AssignedInterns.Contains(p.UserId) && p.Status.ToLower() == "inprogress");
+    var completedPocs = await _pocsCollection.CountDocumentsAsync(p => mentor.AssignedInterns.Contains(p.UserId) && p.Status.ToLower() == "completed");
+
+    return Ok(new
+    {
+        totalPocs,
+        inProgressPocs,
+        completedPocs
+    });
+}
+[HttpGet("{mentorId}/interns-learning-paths")]
+public async Task<IActionResult> GetInternsLearningPaths(string mentorId)
+{
+    var mentor = await _usersCollection.Find(u => u.Id == mentorId).FirstOrDefaultAsync();
+
+    if (mentor == null || mentor.AssignedInterns == null || !mentor.AssignedInterns.Any())
+    {
+        return NotFound("No interns assigned to this mentor.");
+    }
+
+    var learningPaths = await _learningPathCollection
+        .Find(lp => mentor.AssignedInterns.Contains(lp.UserId))
+        .ToListAsync();
+
+    if (learningPaths == null || !learningPaths.Any())
+    {
+        return NotFound("No learning paths found for assigned interns.");
+    }
+
+    return Ok(learningPaths);
+}
+
+
+}}
