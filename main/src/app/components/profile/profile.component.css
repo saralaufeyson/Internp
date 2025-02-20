@@ -1,72 +1,53 @@
 /* Profile Header */
 .profile-header {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.profile-info {
+  margin-left: 20px;
+}
+
+h4, h6 {
+  color: #0f1f4c;
+}
+
+/* Section Card */
+.section-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.section-container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
   }
-  
-  .profile-image-container {
-    position: relative;
-  }
-  
-  .profile-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #3b82f6;
-  }
-  
-  #imageUpload {
+
+  .profile-info {
+    margin-left: 0;
     margin-top: 10px;
   }
-  
-  /* Profile Info */
-  .profile-info {
-    margin-left: 20px;
-  }
-  
-  h2 h4 {
-    /* color: #555; */
-    color:#0f1f4c
-    
-  }
-  
-  /* Section Card */
-  .section-card {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  
-  .section-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: #1e293b;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #3b82f6;
-    padding-bottom: 5px;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .profile-header {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .profile-info {
-      margin-left: 0;
-      margin-top: 10px;
-    }
-  }
-  /* General styles */
+}
+
+/* General styles */
 .container {
   margin: 0 auto;
   padding: 20px;
@@ -78,19 +59,6 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
-}
-
-.profile-image-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.profile-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 10px;
 }
 
 .profile-info h2, .profile-info p {
