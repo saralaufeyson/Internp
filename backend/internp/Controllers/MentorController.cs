@@ -42,17 +42,28 @@ namespace Internp.Controllers
 
         // ✅ API: Get total goals from all assigned interns
         [HttpGet("{mentorId}/total-goals")]
-        public async Task<ActionResult<int>> GetTotalInternGoals(string mentorId)
+        public async Task<ActionResult> GetTotalInternGoals(string mentorId)
         {
             var mentor = await _usersCollection.Find(u => u.Id == mentorId).FirstOrDefaultAsync();
             
             if (mentor == null || mentor.AssignedInterns == null || !mentor.AssignedInterns.Any())
             {
-                return NotFound("No interns assigned to this mentor.");
+            return NotFound("No interns assigned to this mentor.");
             }
 
-            long totalGoals = await _goalsCollection.CountDocumentsAsync(g => mentor.AssignedInterns.Contains(g.UserId));
-            return Ok(new { totalGoals });
+            var internsGoals = await _goalsCollection
+            .Aggregate()
+            .Match(g => mentor.AssignedInterns.Contains(g.UserId))
+            .Group(g => g.UserId, g => new { UserId = g.Key, GoalCount = g.Count() })
+            .ToListAsync();
+
+            long totalGoals = internsGoals.Sum(g => g.GoalCount);
+
+            return Ok(new 
+            { 
+            InternsGoals = internsGoals,
+            TotalGoals = totalGoals 
+            });
         }
 
         // ✅ API: Get all POCs for assigned interns
