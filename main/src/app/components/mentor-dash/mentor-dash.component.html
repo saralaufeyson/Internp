@@ -1,0 +1,47 @@
+<div class="mentor-dashboard">
+    <h2>Guidance Nexus</h2>
+    <h5><i>Empowering mentors, tracking growth, shaping futures.</i></h5>
+  
+    <!-- Mentees Section -->
+    <h1>Your Mentees</h1>
+    <div *ngIf="interns.length > 0">
+      <div *ngFor="let intern of interns" class="card" (click)="openInternDetails(intern)">
+        <h2>{{ intern.username }}</h2>
+        <p>{{ intern.email }}</p>
+      </div>
+    </div>
+    <div *ngIf="interns.length === 0">
+      <p style="color: red;">No interns found</p>
+    </div>
+  
+    <!-- Mentor Goals Section -->
+    <div class="card">
+      <h1>Mentor Goals</h1>
+      <div *ngIf="mentorGoals !== undefined">
+        <p>{{ mentorGoals }}</p>
+      </div>
+      <div *ngIf="mentorGoals === undefined">
+        <p style="color: red;">Something's wrong... try reloading</p>
+      </div>
+    </div>
+  
+    <!-- Proof of Concepts Section -->
+    <div class="card">
+      <h1>Proof of Concepts</h1>
+      <div *ngIf="totalPocs !== undefined">
+        <div class="card">
+          <p>Total PoCs: {{ totalPocs }}</p>
+        </div>
+        <div class="card">
+          <p>In Progress: {{ inProgressPocs }}</p>
+        </div>
+        <div class="card">
+          <p>Completed: {{ completedPocs }}</p>
+        </div>
+      </div>
+      <div *ngIf="totalPocs === undefined">
+        <p style="color: red;">Something's wrong... try reloading</p>
+      </div>
+    </div>
+  </div>
+  

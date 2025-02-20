@@ -58,7 +58,7 @@ export class SideLoginComponent {
             } else if (response.role === 'Admin') {
               this.router.navigate(['/dashboard/admin']);
             }else if (response.role === 'Mentor') {
-              this.router.navigate(['/dashboard/']);
+              this.router.navigate(['/dashboard/mentor']);
 
             }
             
