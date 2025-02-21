@@ -84,6 +84,12 @@ export const navItems: NavItem[] = [
     roles: ['admin']
   },
   {
+    displayName: 'Intern Feedback',
+    iconName: 'users',
+    route: '/dashboard/intern-feedback',
+    roles: ['admin','mentor']
+  },
+  {
     navCap: 'Auth',
   },
   {
