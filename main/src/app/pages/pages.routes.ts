@@ -18,6 +18,7 @@ import { InternDashboardComponent } from '../components/intern-dashboard/intern-
 import { MentorDashComponent } from '../components/mentor-dash/mentor-dash.component';
 import { internNavItems } from '../layouts/full/sidebar/sidebar-data';
 import { InternFeedbackComponent } from '../components/intern-feedback/intern-feedback.component';
+import { AdminReviewsComponent } from '../components/admin-reviews/admin-reviews.component';
 
 export const PagesRoutes: Routes = [
   {
@@ -139,7 +140,7 @@ export const PagesRoutes: Routes = [
   {
     path: 'intern-feedback',
     component: InternFeedbackComponent,
-    canActivate: [AdminGuard], // Apply AdminGuard
+    canActivate: [MentorGuard], // Apply AdminGuard
     data: {
       title: 'Intern Feedback',
       urls: [
@@ -191,6 +192,19 @@ export const PagesRoutes: Routes = [
    
     data: {
       title: 'MENTOR Dashboard',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'Intern Dashboard' },
+      ],
+    },
+  },
+  {
+    path: 'admin-reviews',
+    component: AdminReviewsComponent,
+    canActivate: [AdminGuard], // Apply MentorGuard
+   
+    data: {
+      title: 'Admin Reviews',
       urls: [
         { title: 'Dashboard', url: '/dashboard' },
         { title: 'Intern Dashboard' },

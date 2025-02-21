@@ -76,6 +76,13 @@ public class InternFeedbackController : ControllerBase
         return Ok(feedbacks);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetAllFeedbacks()
+    {
+        var feedbacks = await _internFeedbacks.Find(_ => true).ToListAsync();
+        return Ok(feedbacks);
+    }
+
     [HttpDelete("{internId}")]
     public async Task<IActionResult> DeleteFeedback(string internId)
     {
