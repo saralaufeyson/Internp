@@ -1,0 +1,135 @@
+/* General Form Styling */
+.container {
+  width: 100%;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h2, h3, h4 {
+  color: #193b8c;
+}
+
+/* Form Sections */
+.basic-info, .performance-ratings, .monthly-tasks, .feedback-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+/* Form Rows */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #193b8c;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Performance Ratings */
+.rating-scale {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.rating-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.rating-buttons button {
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.rating-buttons button.selected {
+  background-color: #193b8c;
+  color: white;
+  border: none;
+}
+
+.rating-buttons button:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+/* Monthly Tasks Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  margin-top: 10px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #193b8c;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+  padding: 10px;
+}
+
+/* Submit Button */
+.submit-btn {
+  background-color: #193b8c;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}

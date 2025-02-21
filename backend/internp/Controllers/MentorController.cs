@@ -36,7 +36,7 @@ namespace Internp.Controllers
                 return NotFound("No interns assigned to this mentor.");
             }
 
-            var interns = await _usersCollection.Find(u => mentor.AssignedInterns.Contains(u.Id)).ToListAsync();
+            var interns = await _usersCollection.Find(u => mentor.AssignedInterns != null && mentor.AssignedInterns.Contains(u.Id)).ToListAsync();
             return Ok(interns);
         }
 

@@ -10,7 +10,7 @@ import { Chart } from 'chart.js';
   standalone: true,
   imports: [CommonModule, MatDialogModule],
   templateUrl: './mentor-dash.component.html',
-  styleUrls: ['./mentor-dash.component.scss']
+  styleUrls: ['./mentor-dash.component.css']
 })
 export class MentorDashComponent implements OnInit {
   mentorGoals: number = 0;

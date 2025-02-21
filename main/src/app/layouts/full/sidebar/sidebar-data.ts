@@ -53,7 +53,7 @@ export const navItems: NavItem[] = [
     roles: ['intern']
   },
   {
-    displayName: 'My Plans',
+    displayName: 'Aspirations',
     iconName: 'calendar',
     route: '/dashboard/intern-plans',
     roles: ['intern']
@@ -84,6 +84,12 @@ export const navItems: NavItem[] = [
     roles: ['admin']
   },
   {
+    displayName: 'Intern Feedback',
+    iconName: 'users',
+    route: '/dashboard/intern-feedback',
+    roles: ['admin','mentor']
+  },
+  {
     navCap: 'Auth',
   },
   {
@@ -99,3 +105,4 @@ export const navItems: NavItem[] = [
 ];
 export const internNavItems: NavItem[] = navItems.filter(item => item.roles?.includes('intern'));
 export const adminNavItems: NavItem[] = navItems.filter(item => item.roles?.includes('admin'));
+export const mentorNavItems: NavItem[] = navItems.filter(item => item.roles?.includes('mentor'));

@@ -5,6 +5,7 @@ import { UserDetailsComponent } from './pages/user-details/user-details.componen
 import { AllGoalsComponent } from './components/all-goals/all-goals.component';
 import { InternListComponent } from './intern-list/intern-list.component';
 import { MentorListComponent } from './mentor-list/mentor-list.component'; // Import MentorListComponent
+import { InternFeedbackComponent } from './components/intern-feedback/intern-feedback.component';
 
 export const routes: Routes = [
   {
@@ -59,6 +60,11 @@ export const routes: Routes = [
       {
         path: 'mentor-list',
         component: MentorListComponent,
+      },
+      {
+        path: 'intern-feedback',
+        component: InternFeedbackComponent,
+        
       },
       {
         path: 'admin-dashboard',

@@ -97,3 +97,5 @@ export class FullComponent implements OnInit {
     this.isCollapsedWidthFixed = !this.isOver;
   }
 }
+
+ 

@@ -16,6 +16,8 @@ import { InternPlansComponent } from '../components/intern-plans/intern-plans.co
 import { MentorGuard } from '../guards/mentor.guard'; // Import MentorGuard
 import { InternDashboardComponent } from '../components/intern-dashboard/intern-dashboard.component';
 import { MentorDashComponent } from '../components/mentor-dash/mentor-dash.component';
+import { internNavItems } from '../layouts/full/sidebar/sidebar-data';
+import { InternFeedbackComponent } from '../components/intern-feedback/intern-feedback.component';
 
 export const PagesRoutes: Routes = [
   {
@@ -87,18 +89,6 @@ export const PagesRoutes: Routes = [
     },
   },
   {
-    path: 'mentor',
-    component: MentorDashComponent,
-    canActivate: [MentorGuard], // Apply InternGuard
-    data: {
-      title: 'Mentor Dashboard',
-      urls: [
-        { title: 'Dashboard', url: '/dashboard' },
-        { title: 'Admin Dashboard' },
-      ],
-    },
-  },
-  {
     path: 'intern-list',
     component: InternListComponent,
     canActivate: [AdminGuard], // Apply AdminGuard
@@ -147,6 +137,30 @@ export const PagesRoutes: Routes = [
     },
   },
   {
+    path: 'intern-feedback',
+    component: InternFeedbackComponent,
+    canActivate: [AdminGuard], // Apply AdminGuard
+    data: {
+      title: 'Intern Feedback',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'Intern Feedback' },
+      ],
+    },
+  },
+  {
+    path: 'intern-feedback',
+    component: InternFeedbackComponent,
+    canActivate: [MentorGuard], // Apply AdminGuard
+    data: {
+      title: 'Intern Feedback',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'Intern Feedback' },
+      ],
+    },
+  },
+  {
     path: 'my-learning-status',
     component: MylearnComponent,
     canActivate: [InternGuard], // Apply InternGuard
@@ -182,4 +196,18 @@ export const PagesRoutes: Routes = [
       ],
     },
   },
+  {
+    path: 'mentor',
+    component: MentorDashComponent,
+    canActivate: [MentorGuard], // Apply MentorGuard
+   
+    data: {
+      title: 'MENTOR Dashboard',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'Intern Dashboard' },
+      ],
+    },
+  },
+  
 ];
