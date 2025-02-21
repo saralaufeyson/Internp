@@ -1,0 +1,36 @@
+<div class="container">
+    <h2 class="page-title">Intern Performance Reviews</h2>
+    
+    <table class="reviews-table">
+      <thead>
+        <tr>
+          <th>Intern ID</th>
+          <th>Full Name</th>
+          <th>Project BU</th>
+          <th>Mentor</th>
+          <th>DM</th>
+          <th>Joining Date</th>
+          <th>Ratings</th>
+          <th>Feedback</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let review of reviews">
+          <td>{{ review.internId }}</td>
+          <td>{{ review.fullName }}</td>
+          <td>{{ review.projectBU }}</td>
+          <td>{{ review.mentorName }}</td>
+          <td>{{ review.dmName }}</td>
+          <td>{{ review.joiningDate | date }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let key of review.ratingKeys">
+                {{ key }}: {{ review.ratings[key] }}
+              </li>
+            </ul>
+          </td>
+          <td>{{ review.feedback }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
