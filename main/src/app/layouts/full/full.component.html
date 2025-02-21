@@ -33,6 +33,14 @@
               ></app-nav-item>
             </ng-container>
           </ng-container>
+          <ng-container *ngIf="userRole === 'Mentor'">
+            <ng-container *ngFor="let item of mentorNavItems">
+              <app-nav-item
+                [item]="item"
+                (notify)="leftsidenav.toggle()"
+              ></app-nav-item>
+            </ng-container>
+          </ng-container>
           <ng-container *ngIf="userRole === 'Admin'">
             <ng-container *ngFor="let item of adminNavItems">
               <app-nav-item
@@ -41,7 +49,7 @@
               ></app-nav-item>
             </ng-container>
           </ng-container>
-          <ng-container *ngIf="userRole !== 'Intern' && userRole !== 'Admin'">
+          <ng-container *ngIf="userRole !== 'Intern' && userRole !== 'Admin' && userRole !== 'Mentor'">
             <p> role: not defined</p>
           </ng-container>
         </mat-nav-list>
@@ -80,3 +88,4 @@
     </main>
   </mat-sidenav-content>
 </mat-sidenav-container>
+ 

@@ -1,0 +1,76 @@
+<div class="mentor-dashboard">
+  <h2>Guidance Nexus</h2>
+  <h5><i>Empowering mentors, tracking growth, shaping futures.</i></h5>
+
+  <!-- Mentees Section -->
+  <div class="card">
+    <h1>Your Mentees</h1>
+    <div *ngIf="interns.length > 0">
+      <div *ngFor="let intern of interns" class="card" (click)="openInternDetails(intern)">
+        <h2>{{ intern.username }}</h2>
+        <p>{{ intern.email }}</p>
+        <div *ngIf="internLearningPaths[intern.id] && internLearningPaths[intern.id].length > 0">
+          <h3>Learning Paths</h3>
+          <div class="learning-paths-grid">
+            <div *ngFor="let path of internLearningPaths[intern.id]" class="learning-path-card">
+              <h4>{{ path.title }}</h4>
+              <p>{{ path.description }}</p>
+              <a [href]="path.link" target="_blank">View Course</a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!internLearningPaths[intern.id]?.length">
+          <p>No learning paths found</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="interns.length === 0">
+      <p class="error-message">No interns found</p>
+    </div>
+  </div>
+
+  <!-- Mentor Goals Section -->
+  <div class="card">
+    <h1>Mentor Goals</h1>
+    <div *ngIf="mentorGoals !== undefined">
+      <p>{{ mentorGoals }}</p>
+    </div>
+    <div *ngIf="mentorGoals === undefined">
+      <p class="error-message">Something's wrong... try reloading</p>
+    </div>
+  </div>
+
+  <!-- Intern Goals Bar Chart -->
+  <div class="card">
+    <h1>Intern Goals Bar Chart</h1>
+    <canvas id="internGoalsBarChart"></canvas>
+  </div>
+
+  <!-- Proof of Concepts Section -->
+  <div class="card">
+    <h1>Proof of Concepts</h1>
+    <div *ngIf="totalPocs !== undefined">
+      <div class="card">
+        <p>Total PoCs: {{ totalPocs }}</p>
+      </div>
+      <div class="card">
+        <p>In Progress: {{ inProgressPocs }}</p>
+      </div>
+      <div class="card">
+        <p>Completed: {{ completedPocs }}</p>
+      </div>
+    </div>
+    <div *ngIf="totalPocs === undefined">
+      <p class="error-message">Something's wrong... try reloading</p>
+    </div>
+  </div>
+
+  <!-- Proof of Concepts Pie Chart -->
+  <div class="card" style="display: flex; justify-content: center;">
+    <h1>Proof of Concepts Status</h1>
+    <canvas id="pocPieChart"></canvas>
+  </div>
+
+  <!-- Intern Learning Paths Section -->
+  
+</div>
