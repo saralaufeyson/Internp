@@ -51,6 +51,9 @@ namespace YourNamespace.Models
 
         [BsonElement("link")]  // Maps the field to "link" in MongoDB
         public required string Link { get; set; }
+
+        [BsonElement("subtopics")]
+        public List<Subtopic> Subtopics { get; set; } = new List<Subtopic>(); // List of subtopics
     }
 
     public class myLearningPath

@@ -20,7 +20,7 @@ export class LearningPathComponent implements OnInit {
   showNotification = false;
   notificationMessage = '';
 
-  constructor(private learningPathService: LearningPathService) {}
+  constructor(private learningPathService: LearningPathService) { }
 
   ngOnInit(): void {
     this.getLearningPaths();
@@ -74,6 +74,7 @@ export class LearningPathComponent implements OnInit {
       description: this.selectedPath.description,
       link: this.selectedPath.link,
       createdAt: new Date().toISOString(),
+      subtopics: this.selectedPath.subtopics // Include subtopics
     };
 
     this.learningPathService
@@ -113,6 +114,7 @@ export class LearningPathComponent implements OnInit {
       description: this.selectedPath.description,
       link: this.selectedPath.link,
       createdAt: new Date().toISOString(),
+      subtopics: this.selectedPath.subtopics // Include subtopics
     };
 
     this.learningPathService

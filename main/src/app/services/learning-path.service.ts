@@ -27,6 +27,7 @@ export class LearningPathService {
     const url = `${this.apiUrl}/deleteLearningPathStatus/${learningPathStatusId}`;
     return this.http.delete(url);
   }
+
   updateLearningPathProgress(learningPathStatusId: string, progress: number) {
     return this.http.put(`${this.apiUrl}/updateLearningPathProgress/${learningPathStatusId}`, { progress });
   }
