@@ -3,11 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Chart } from 'chart.js/auto';
 import { UserDetailsService } from '../../services/user-details.service';
+import { RouterModule } from '@angular/router'; // Import RouterModule
 
 @Component({
   selector: 'app-dashboardc',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule], // Add RouterModule to imports
   templateUrl: './dashboardc.component.html',
   styleUrls: ['./dashboardc.component.css']
 })
