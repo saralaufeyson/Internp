@@ -12,28 +12,22 @@
         <p>{{ path.description }}</p>
         <a [href]="path.link" target="_blank" class="btn">Start Learning</a>
         &nbsp; <!-- Added space -->
-        <i class="bi bi-trash" (click)="removeLearningPathStatus(path._id)"></i>
+        <i class="bi bi-trash" (click)="removeLearningPathStatus(path.id)"></i>
         <div>
           <label>Subtopics:</label>
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton{{path.id}}"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Select Subtopics
-            </button>
-            <ul class="dropdown-menu" [attr.aria-labelledby]="'dropdownMenuButton' + path.id">
-              <li *ngFor="let subtopic of path.subtopics">
-                <label class="dropdown-item">
-                  <input type="checkbox" [checked]="subtopic.completed" (change)="toggleSubtopic(path.id, subtopic)" />
-                  {{ subtopic.name }}
-                </label>
-              </li>
-            </ul>
+          <div>
+            <div *ngFor="let subtopic of path.subtopics">
+              <label>
+                <input type="checkbox" [checked]="subtopic.completed" (change)="toggleSubtopic(path.id, subtopic)" />
+                {{ subtopic.name }}
+              </label>
+            </div>
           </div>
         </div>
         <div>
           <label>Progress:</label>
           <progress [value]="path.progress" max="100"></progress>
-          {{ path.progress }}%
+          {{ path.progress.toFixed(1) }}%
         </div>
       </div>
 

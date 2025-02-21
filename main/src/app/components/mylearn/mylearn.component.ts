@@ -88,6 +88,7 @@ export class MylearnComponent implements OnInit {
   }
 
   updateProgress(learningPathStatusId: string, progress: number): void {
+    progress = Math.round(progress * 10) / 10; // Limit to single decimal point
     this.learningPathService.updateLearningPathProgress(learningPathStatusId, progress).subscribe(
       (response) => {
         console.log('Progress updated:', response);
