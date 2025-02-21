@@ -77,6 +77,10 @@ button:hover {
   background-color: #1c60bd;
 }
 
+button:hover {
+  background-color: #1c60bd;
+}
+
 /* Register Link */
 .f-w-500 {
   font-weight: 500;

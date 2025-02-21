@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-
 import { UserDataService } from '../../services/profile.service';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
@@ -51,20 +49,6 @@ export class ProfileComponent implements OnInit {
     } else {
       console.error('No user ID found in localStorage. User is not logged in.');
       this.errorMessage = 'No user ID found. Please log in.';
-    }
-  }
-
-
-
-  // Handle profile image upload
-  onImageUpload(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.profileImage = reader.result;
-      };
-      reader.readAsDataURL(file);
     }
   }
 }

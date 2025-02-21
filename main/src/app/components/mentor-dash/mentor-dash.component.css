@@ -1,6 +1,6 @@
 /* Mentor Dashboard Styles */
 .mentor-dashboard {
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   padding: 20px;
   background-color: #ffffff;
   display: flex;
@@ -10,21 +10,29 @@
 
 /* Card Styling */
 .card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
   margin: 16px 0;
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px; /* Increase max-width */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Card Heading */
 .card h1 {
-  font-size: 24px;
+  font-size: 28px;
   margin-bottom: 16px;
-  color: #333;
+  color: #1B3E9C;
+  border-bottom: 2px solid #1B3E9C;
+  padding-bottom: 8px;
 }
 
 /* Spacing Between Cards */
@@ -36,12 +44,12 @@
 .card p {
   font-size: 18px;
   margin: 8px 0;
-  color: rgb(28, 36, 27); /* Text color */
+  color: #333;
 }
 
 /* Error Message */
 .error-message {
-  color: red;
+  color: #e74c3c;
   font-size: 18px;
   margin-top: 10px;
 }
@@ -54,18 +62,24 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;
   margin: 16px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.learning-path-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .learning-paths-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Increase min-width */
   gap: 16px;
 }
 
 .learning-path-card h2 {
-  font-size: 20px;
+  font-size: 22px;
   margin-bottom: 8px;
-  color: #333;
+  color: #1B3E9C;
 }
 
 .learning-path-card p {
@@ -78,6 +92,7 @@
   font-size: 16px;
   color: #1B3E9C;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .learning-path-card a:hover {
@@ -88,8 +103,42 @@
 canvas {
   width: 100% !important;
   height: auto !important;
-  max-width: 400px;
-  max-height: 400px;
+  max-width: 500px; /* Increase max-width */
+  max-height: 500px; /* Increase max-height */
   display: block;
   margin: 0 auto;
+}
+
+/* Mentor Dashboard Header */
+.mentor-dashboard h2 {
+  font-size: 36px;
+  color: #1B3E9C;
+  margin-bottom: 10px;
+}
+
+.mentor-dashboard h5 {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+/* Button Styling */
+button {
+  background-color: #1B3E9C;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #163a7d;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(27, 62, 156, 0.5);
 }
