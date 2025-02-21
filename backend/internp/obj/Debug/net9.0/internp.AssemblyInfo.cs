@@ -13,11 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("internp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac70f9a14c910c0dc330e8403826b60bcea61fc1")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea3ee5cacb2611e1d1d81aee4d41ff4c670eefd3")]
->>>>>>> 4a36ad269cc6ff22ffff866cc36f28e9adbb9661
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+607115f5e4e3818f5a70afa80387d64665692b08")]
 [assembly: System.Reflection.AssemblyProductAttribute("internp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("internp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
