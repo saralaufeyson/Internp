@@ -48,6 +48,13 @@ namespace YourNamespace.Controllers
             // Set the creation time of the learning path status
             learningPathStatus.CreatedAt = DateTime.UtcNow;
 
+            // Fetch the learning path to get subtopics
+            var learningPath = await _learningPathCollection.Find(lp => lp.Id == learningPathStatus.LearningPathId).FirstOrDefaultAsync();
+            if (learningPath != null)
+            {
+                learningPathStatus.Subtopics = learningPath.Subtopics;
+            }
+
             // Store the learning path status
             await _myLearningPathCollection.InsertOneAsync(learningPathStatus);
             Console.WriteLine($"Learning Path Status added to the database for UserId: {learningPathStatus.UserId}");
@@ -263,9 +270,29 @@ namespace YourNamespace.Controllers
                 return NotFound(new { message = "No learning paths found." });
             }
 
-            return Ok(learningPaths);  // Return the learning paths as JSON
+            var result = learningPaths.Select(lp => new
+            {
+                lp.Id,
+                lp.Title,
+                lp.Description,
+                lp.Link,
+                lp.Subtopics
+            });
+
+            return Ok(result);  // Return the learning paths as JSON
         }
 
+        [HttpPost("addLearningPath")]
+        public async Task<IActionResult> AddLearningPath([FromBody] LearningPath learningPath)
+        {
+            if (learningPath == null)
+            {
+                return BadRequest("Learning Path data is required.");
+            }
+
+            await _learningPathCollection.InsertOneAsync(learningPath);
+            return Ok(new { message = "Learning Path added successfully." });
+        }
 
         [HttpPost("addGoal")]
 
