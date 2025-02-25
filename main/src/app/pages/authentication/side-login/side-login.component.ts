@@ -34,6 +34,9 @@ export class SideLoginComponent {
     remember: new FormControl(false),
   });
 
+  showNotification = false;
+  notificationMessage = '';
+
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) { } // Inject MatSnackBar
 
   get f() {
@@ -49,7 +52,7 @@ export class SideLoginComponent {
           if (response && response.userId) {
             localStorage.setItem('userId', response.userId);
             localStorage.setItem('role', response.role);
-            console.log('User Role saved to localStorage:', response.role)
+            console.log('User Role saved to localStorage:', response.role);
             console.log('User ID saved to localStorage:', response.userId);
 
             // Redirect based on user role
@@ -57,11 +60,9 @@ export class SideLoginComponent {
               this.router.navigate(['/dashboard/intern-dashboard']);
             } else if (response.role === 'Admin') {
               this.router.navigate(['/dashboard/admin']);
-            }else if (response.role === 'Mentor') {
+            } else if (response.role === 'Mentor') {
               this.router.navigate(['/dashboard/mentor']);
-
             }
-            
           }
         },
         (error) => {
@@ -71,6 +72,8 @@ export class SideLoginComponent {
             panelClass: ['error-snackbar']
           });
           this.form.controls['password'].setErrors({ incorrect: true }); // Set error on password field
+          this.showNotification = true;
+          this.notificationMessage = 'Could not login. Please check your credentials.';
         }
       );
     }

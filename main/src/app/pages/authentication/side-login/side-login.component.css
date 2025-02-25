@@ -21,15 +21,47 @@
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-  width: 400px;
+  width: 100%;
   text-align: center;
+  margin-right: 20px; /* Added margin between containers */
 }
 
-/* Logo */
-.login-header img {
-  width: 350px;
-  margin-bottom: 20px;
-  /* Add margin below the logo */
+/* Form Styles */
+form {
+  margin-top: 30px;
+}
+
+.form-group {
+  margin-bottom: 10px; /* Reduced margin */
+}
+
+form label {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 3px; /* Reduced margin */
+  text-align: left; /* Align labels to the left */
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 10px; /* Adjusted padding */
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  margin-bottom: 10px; /* Adjusted margin */
+  box-sizing: border-box;
+}
+
+form select {
+  background-color: #fff;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 .708-.708"/>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px; /* Adjusted padding */
 }
 
 /* Form Inputs */
@@ -48,7 +80,6 @@ input {
   border-radius: 8px;
   font-size: 14px;
 }
-
 
 input.is-invalid {
   border-color: red;
@@ -71,10 +102,6 @@ button {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
-}
-
-button:hover {
-  background-color: #1c60bd;
 }
 
 button:hover {

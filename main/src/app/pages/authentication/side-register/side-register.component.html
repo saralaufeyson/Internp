@@ -10,52 +10,52 @@
             </a>
           </div>
 
-            <h2 class="f-w-600 text-center m-b-10" style="font-size: 1.2rem;">Create New Account</h2>
-            <form (ngSubmit)="submit()" [formGroup]="form" class="m-t-30">
+          <h2 class="f-w-600 text-center m-b-10" style="font-size: 1.2rem;">Create New Account</h2>
+          <form (ngSubmit)="submit()" [formGroup]="form" class="m-t-30 text-left">
             <div class="form-group">
-              <label for="username" class="f-s-14 f-w-600">Name *</label>
+              <label for="username" class="f-s-14 f-w-600 text-left d-block">Name *</label>
               <input type="text" id="username" class="form-control" formControlName="username" required
-              [ngClass]="{'is-invalid': form.get('username')?.invalid && form.get('username')?.touched}" />
+                [ngClass]="{'is-invalid': form.get('username')?.invalid && form.get('username')?.touched}" />
               <div *ngIf="form.get('username')?.invalid && form.get('username')?.touched" class="invalid-feedback">
-              Name is required
+                Name is required
               </div>
             </div>
 
             <div class="form-group">
-              <label for="email" class="f-s-14 f-w-600">Email Address *</label>
+              <label for="email" class="f-s-14 f-w-600 text-left d-block">Email Address *</label>
               <input type="email" id="email" class="form-control" formControlName="email" required
-              [ngClass]="{'is-invalid': form.get('email')?.invalid && form.get('email')?.touched}" />
+                [ngClass]="{'is-invalid': form.get('email')?.invalid && form.get('email')?.touched}" />
               <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="invalid-feedback">
-              Valid email is required
+                Valid email is required
               </div>
             </div>
 
             <div class="form-group">
-              <label for="password" class="f-s-14 f-w-600">Password *</label>
+              <label for="password" class="f-s-14 f-w-600 text-left d-block">Password *</label>
               <input type="password" id="password" class="form-control" formControlName="password" required
-              [ngClass]="{'is-invalid': form.get('password')?.invalid && form.get('password')?.touched}" />
+                [ngClass]="{'is-invalid': form.get('password')?.invalid && form.get('password')?.touched}" />
               <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="invalid-feedback">
-              Password is required
+                Password is required
               </div>
             </div>
 
             <div class="form-group">
-              <label for="confirmPassword" class="f-s-14 f-w-600">Confirm Password *</label>
+              <label for="confirmPassword" class="f-s-14 f-w-600 text-left d-block">Confirm Password *</label>
               <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword" required
-              [ngClass]="{'is-invalid': form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched}" />
+                [ngClass]="{'is-invalid': form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched}" />
               <div *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched"
-              class="invalid-feedback">
-              Confirm Password is required
+                class="invalid-feedback">
+                Confirm Password is required
               </div>
               <div
-              *ngIf="form.get('password')?.value !== form.get('confirmPassword')?.value && form.get('confirmPassword')?.touched"
-              class="invalid-feedback">
-              Passwords do not match
+                *ngIf="form.get('password')?.value !== form.get('confirmPassword')?.value && form.get('confirmPassword')?.touched"
+                class="invalid-feedback">
+                Passwords do not match
               </div>
             </div>
 
             <div class="form-group">
-              <label for="role" class="f-s-14 f-w-600">Role *</label>
+              <label for="role" class="f-s-14 f-w-600 text-left d-block">Role *</label>
               <select id="role" class="form-control" formControlName="role" required style="margin-bottom: 15px;">
               <option value="Intern">Intern</option>
               <option value="Mentor">Mentor</option>
@@ -64,17 +64,32 @@
             </div>
 
             <div class="button-container" style="padding: 20px 0;">
-              <button type="submit" class="w-100 f-s-14 d-block btn btn-primary" style="background-color: rgb(27, 62, 156);"> 
-              Create Account and Login
+              <button type="submit" class="w-100 f-s-14 d-block btn btn-primary"
+                style="background-color: rgb(27, 62, 156); height: 50px; font-weight: bold;">
+                Create Account and Login
               </button>
             </div>
-
-            </form>
+          </form>
 
           <span class="d-block f-w-500 text-center m-t-24">Already have an Account?
             <a [routerLink]="['/authentication/login']" class="text-decoration-none text-primary f-w-500 f-s-14">
               Sign In</a>
           </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 d-flex align-items-center" style="max-width: 100%;">
+      <div class="carousel-container" style="width: 100%; height: 100%;">
+        <div id="authCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+          <div class="carousel-inner" style="height: 100%;">
+            <div class="carousel-item active" style="height: 100%;">
+              <img src="../../../../assets/images/backgrounds/Back.png" class="d-block w-100 h-100" alt="Back Image">
+            </div>
+            <div class="carousel-item" style="height: 100%;">
+              <img src="../../../../assets/images/backgrounds/Cover.png" class="d-block w-100 h-100" alt="Cover Image">
+            </div>
+          </div>
         </div>
       </div>
     </div>

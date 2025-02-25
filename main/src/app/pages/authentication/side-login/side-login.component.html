@@ -1,40 +1,77 @@
-<div class="blank-layout-container">
-  <div class="boxed-auth">
-    <div class="login-header">
-      <img src="./assets/images/logos/dark-logo.svg" alt="InternPortal Logo" />
+<div class="blank-layout-container justify-content-center align-items-center bg-light">
+  <div class="position-relative row w-100 h-100 bg-gredient justify-content-center">
+    <div class="col-lg-4 d-flex align-items-center" style="max-width: 100%; margin-right: 20px;">
+      <div class="cardWithShadow boxed-auth" style="width: 100%;">
+        <div class="p-32">
+          <div class="text-center">
+            <a [routerLink]="['/dashboard']">
+              <img src="./assets/images/logos/dark-logo.svg" class="align-middle m-2" alt="logo"
+                style="width: 250px; height: auto;" />
+            </a>
+          </div>
+          <h2 class="f-w-600 text-center m-b-10" style="font-size: 1.5rem;">Login to Your Account</h2>
+          <form (ngSubmit)="submit()" [formGroup]="form" class="m-t-30">
+            <!-- Email Input -->
+            <div class="form-group">
+              <label for="email" class="f-s-14 f-w-600 text-left">Email Address *</label>
+              <input id="email" formControlName="email" type="email" 
+                [placeholder]="f.email.touched && f.email.errors?.['required'] ? 'Email is required' : 'Enter your email'"
+                [ngClass]="{'is-invalid': f.email.touched && f.email.invalid, 'error-text': f.email.touched && f.email.invalid}" />
+              <div *ngIf="f.email.touched && f.email.invalid" class="invalid-feedback">
+                {{ f.email.errors?.['required'] ? 'Email is required' : 'Invalid email address' }}
+              </div>
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group">
+              <label for="password" class="f-s-14 f-w-600 text-left">Password *</label>
+              <input id="password" formControlName="password" type="password"
+                [placeholder]="f.password.touched && f.password.errors?.['required'] ? 'Password is required' : 'Enter your password'"
+                [ngClass]="{'is-invalid': f.password.touched && f.password.invalid, 'error-text': f.password.touched && f.password.invalid}" />
+              <div *ngIf="f.password.touched && f.password.invalid" class="invalid-feedback">
+                {{ f.password.errors?.['required'] ? 'Password is required' : 'Invalid password' }}
+              </div>
+            </div>
+
+            <!-- Remember Me -->
+            <!-- <div class="form-group d-flex align-items-center">
+              <input id="remember" formControlName="remember" type="checkbox" class="m-r-10" />
+              <label for="remember" class="f-s-14 f-w-600 text-left m-0">Remember Me</label>
+            </div> -->
+
+            <!-- Login Button -->
+            <div class="button-container">
+              <button type="submit" class="w-100 f-s-14 d-block btn btn-primary" style="background-color: rgb(27, 62, 156);">
+                Login
+              </button>
+            </div>
+          </form>
+
+          <span class="d-block f-w-500 text-center m-t-24">Don't have an Account?
+            <a [routerLink]="['/authentication/register']" class="text-decoration-none text-primary f-w-500 f-s-14">
+              Sign Up</a>
+          </span>
+        </div>
+      </div>
     </div>
 
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <!-- Email Input -->
-      <div class="input-container">
-        <label for="email">Email Address*</label>
-        <input id="email" formControlName="email" type="email" 
-          [placeholder]="f.email.touched && f.email.errors?.['required'] ? 'Email is required' : 'Enter your email'"
-          [ngClass]="{'is-invalid': f.email.touched && f.email.invalid, 'error-text': f.email.touched && f.email.invalid}" />
+    <div class="col-lg-4 d-flex align-items-center" style="max-width: 100%; margin-left: 20px;">
+      <div class="carousel-container" style="width: 100%;">
+      <div id="authCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+        <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../../../../assets/images/backgrounds/Back.png" class="d-block w-100" alt="Back Image" style="height: 100%;">
+        </div>
+        <div class="carousel-item">
+          <img src="../../../../assets/images/backgrounds/Cover.png" class="d-block w-100" alt="Cover Image" style="height: 100%;">
+        </div>
+        </div>
       </div>
-
-      <!-- Password Input -->
-      <div class="input-container">
-        <label for="password">Password*</label>
-        <input id="password" formControlName="password" type="password"
-          [placeholder]="f.password.touched && f.password.errors?.['required'] ? 'Password is required' : 'Enter your password'"
-          [ngClass]="{'is-invalid': f.password.touched && f.password.invalid, 'error-text': f.password.touched && f.password.invalid}" />
       </div>
-
-      <!-- Remember Me -->
-      <div>
-        <input id="remember" formControlName="remember" type="checkbox" />
-        <label for="remember">Remember Me</label>
-      </div>
-
-      <!-- Login Button -->
-      <button type="submit" style="background-color: rgb(27, 62, 156); color: white;">Login</button>
-    </form>
-
-    <span class="f-w-500">
-      New to InternPortal?
-      <a [routerLink]="['/authentication/register']" class="text-primary">
-        Create an account</a>
-    </span>
+    </div>
   </div>
+</div>
+
+<div *ngIf="showNotification" class="notification">
+  {{ notificationMessage }}
 </div>

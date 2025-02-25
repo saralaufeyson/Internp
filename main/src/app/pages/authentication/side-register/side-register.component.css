@@ -1,3 +1,30 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Full Page Layout */
+.blank-layout-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8fafc;
+}
+
+/* Auth Box */
+.boxed-auth {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
 /* Form Styles */
 form {
   margin-top: 30px;
@@ -33,4 +60,35 @@ form select {
   background-repeat: no-repeat;
   background-position: right 10px center;
   padding-right: 30px; /* Adjusted padding */
+}
+
+.cardWithShadow {
+  display: flex;
+  flex-direction: row;
+}
+
+.carousel-container {
+  width: 100%;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-inner img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
 }
