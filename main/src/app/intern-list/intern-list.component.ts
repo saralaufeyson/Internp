@@ -35,7 +35,7 @@ export class InternListComponent implements OnInit {
 
   openInternDetails(internId: string): void {
     const dialogRef = this.dialog.open(InternDetailsPopupComponent, {
-      width: '80%',
+      width: '800px',
       data: { internId }
     });
 
