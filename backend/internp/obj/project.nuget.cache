@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RPZ/La8Jj0I=",
+  "dgSpecHash": "g7+/KUDzn40=",
   "success": true,
   "projectFilePath": "C:\\Users\\dneelam\\Internp\\backend\\internp\\internp.csproj",
   "expectedPackageFiles": [
@@ -17,8 +17,8 @@
     "C:\\Users\\dneelam\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\dneelam\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
     "C:\\Users\\dneelam\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
-    "C:\\Users\\dneelam\\.nuget\\packages\\mongodb.bson\\3.2.0\\mongodb.bson.3.2.0.nupkg.sha512",
-    "C:\\Users\\dneelam\\.nuget\\packages\\mongodb.driver\\3.2.0\\mongodb.driver.3.2.0.nupkg.sha512",
+    "C:\\Users\\dneelam\\.nuget\\packages\\mongodb.bson\\3.2.1\\mongodb.bson.3.2.1.nupkg.sha512",
+    "C:\\Users\\dneelam\\.nuget\\packages\\mongodb.driver\\3.2.1\\mongodb.driver.3.2.1.nupkg.sha512",
     "C:\\Users\\dneelam\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
     "C:\\Users\\dneelam\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
     "C:\\Users\\dneelam\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
