@@ -11,10 +11,10 @@
           <a href="{{ path.link }}" class="start-learning-btn" target="_blank">Start Learning</a>
           <button class="add-learning-path-btn" (click)="addLearningPathStatus(path)">Add to Learning Path</button>
         </div>
-
-        <div>
-        </div>
-
-        <div *ngIf="showNotification" class="notification">
-          {{ notificationMessage }}
-        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showNotification" class="notification">
+    {{ notificationMessage }}
+  </div>
+</div>
