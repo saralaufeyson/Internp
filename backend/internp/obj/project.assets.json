@@ -971,11 +971,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\ashaik\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\lkanchi\\.nuget\\packages\\": {}
+>>>>>>> d4c7c071cfc9427944326e69d18201abc06c4802
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\backend\\internp\\internp.csproj",
       "projectName": "internp",
       "projectPath": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\backend\\internp\\internp.csproj",
@@ -984,6 +989,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ashaik\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "C:\\Users\\lkanchi\\Downloads\\internportal3\\Internp\\backend\\internp\\internp.csproj",
+      "projectName": "internp",
+      "projectPath": "C:\\Users\\lkanchi\\Downloads\\internportal3\\Internp\\backend\\internp\\internp.csproj",
+      "packagesPath": "C:\\Users\\lkanchi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lkanchi\\Downloads\\internportal3\\Internp\\backend\\internp\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\lkanchi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> d4c7c071cfc9427944326e69d18201abc06c4802
       ],
       "originalTargetFrameworks": [
         "net9.0"
