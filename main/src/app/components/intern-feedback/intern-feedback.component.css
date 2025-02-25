@@ -8,12 +8,17 @@
   border-radius: 8px;
 }
 
-h2, h3, h4 {
+h2,
+h3,
+h4 {
   color: #193b8c;
 }
 
 /* Form Sections */
-.basic-info, .performance-ratings, .monthly-tasks, .feedback-section {
+.basic-info,
+.performance-ratings,
+.monthly-tasks,
+.feedback-section {
   margin-bottom: 20px;
   padding: 15px;
   border: 1px solid #ddd;
@@ -41,7 +46,9 @@ label {
   color: #193b8c;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
@@ -69,7 +76,9 @@ textarea {
 
 .rating-buttons {
   display: flex;
-  gap: 5px;
+  gap: 115px;
+  padding-right: 100px;
+  /* Add padding to ensure the last button has a gap with the right side border */
 }
 
 .rating-buttons button {
@@ -101,7 +110,9 @@ table {
   margin-top: 10px;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid #ddd;
 }
 

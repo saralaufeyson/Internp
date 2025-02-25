@@ -1,133 +1,143 @@
 <div class="container">
-    <h2 class="form-title">Performance Review Form</h2>
-    
-    <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
-      <!-- Basic Information -->
-      <div class="basic-info">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="internId">Intern ID</label>
-            <input id="internId" type="text" formControlName="internId">
-          </div>
-          <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input id="fullName" type="text" formControlName="fullName">
-          </div>
-        </div>
-  
-        <div class="form-row">
-          <div class="form-group">
-            <label for="projectBU">Delivery/Project/BU</label>
-            <input id="projectBU" type="text" formControlName="projectBU">
-          </div>
-          <div class="form-group">
-            <label for="skillSet">Skill Set</label>
-            <input id="skillSet" type="text" formControlName="skillSet">
-          </div>
-        </div>
-  
-        <div class="form-row">
-          <div class="form-group">
-            <label for="mentorName">Mentor Name</label>
-            <input id="mentorName" type="text" formControlName="mentorName">
-          </div>
-          <div class="form-group">
-            <label for="dmName">DM Name</label>
-            <input id="dmName" type="text" formControlName="dmName">
-          </div>
-        </div>
-  
-        <div class="form-row">
-          <div class="form-group">
-            <label for="joiningDate">Date of Joining</label>
-            <input id="joiningDate" type="date" formControlName="joiningDate">
-          </div>
-          <div class="form-group">
-            <label for="validationPeriod">Validation Period</label>
-            <input id="validationPeriod" type="text" formControlName="validationPeriod">
-          </div>
-        </div>
-      </div>
-  
-      <!-- Performance Ratings -->
-      <div class="performance-ratings">
-        <h3>Performance Ratings</h3>
-        <p class="rating-scale">Scale Indicative: Excellent-5, Good-4, Average-3, Need Improvement-2, Poor-1</p>
-        
-        <div formGroupName="ratings">
-          <div class="rating-row" *ngFor="let rating of ratingCriteria">
-            <label [for]="rating.key">{{rating.label}}</label>
-            <div class="rating-buttons">
-              <button 
-                type="button" 
-                *ngFor="let score of [1,2,3,4,5]"
-                [class.selected]="feedbackForm.get('ratings')?.get(rating.key)?.value === score"
-                (click)="setRating(rating.key, score)">
-                {{score}}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Monthly Tasks -->
-      <div class="monthly-tasks">
-        <h3>Monthly Tasks</h3>
-        <div formArrayName="tasks">
-          <div *ngFor="let taskGroup of taskForms.controls; let i=index" [formGroupName]="i" class="task-group">
-            <h4>Month {{i + 1}}</h4>
-            <table>
-              <thead>
-                <tr>
-                  <th>Task Details</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Priority</th>
-                  <th>Weightage</th>
-                  <th>Status</th>
-                  <th>DM Rating</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><input type="text" formControlName="taskDetails"></td>
-                  <td><input type="date" formControlName="startDate"></td>
-                  <td><input type="date" formControlName="endDate"></td>
-                  <td><input type="number" formControlName="priority"></td>
-                  <td><input type="number" formControlName="weightage"></td>
-                  <td>
-                    <select formControlName="status">
-                      <option value="Completed">Completed</option>
-                      <option value="Incomplete">Incomplete</option>
-                      <option value="In Progress">In Progress</option>
-                    </select>
-                  </td>
-                  <td><input type="number" formControlName="dmRating"></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Feedback Section -->
-      <div class="feedback-section">
+  <h2 class="form-title">Performance Review Form</h2>
+
+  <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+    <!-- Basic Information -->
+    <div class="basic-info">
+      <div class="form-row">
         <div class="form-group">
-          <label for="recommendation">Recommendation</label>
-          <textarea id="recommendation" formControlName="recommendation"></textarea>
+          <label for="internId">Intern ID</label>
+          <input id="internId" type="text" formControlName="internId">
         </div>
-  
         <div class="form-group">
-          <label for="areasOfImprovement">Areas of Improvement</label>
-          <textarea id="areasOfImprovement" formControlName="areasOfImprovement"></textarea>
-        </div>
-  
-        <div class="form-group">
-          <label for="feedback">Feedback</label>
-          <textarea id="feedback" formControlName="feedback"></textarea>
+          <label for="fullName">Full Name</label>
+          <input id="fullName" type="text" formControlName="fullName">
         </div>
       </div>
-  
-      <button type="submit" class="submit-btn">Submit Review</button>
-    </form>
-  </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="projectBU">Delivery/Project/BU</label>
+          <input id="projectBU" type="text" formControlName="projectBU">
+        </div>
+        <div class="form-group">
+          <label for="skillSet">Skill Set</label>
+          <input id="skillSet" type="text" formControlName="skillSet">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="mentorName">Mentor Name</label>
+          <input id="mentorName" type="text" formControlName="mentorName">
+        </div>
+        <div class="form-group">
+          <label for="dmName">DM Name</label>
+          <input id="dmName" type="text" formControlName="dmName">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="joiningDate">Date of Joining</label>
+          <input id="joiningDate" type="date" formControlName="joiningDate">
+        </div>
+        <div class="form-group">
+          <label for="validationPeriod">Validation Period</label>
+          <input id="validationPeriod" type="text" formControlName="validationPeriod">
+        </div>
+      </div>
+    </div>
+
+    <!-- Performance Ratings -->
+    <div class="performance-ratings">
+      <h3>Performance Ratings</h3>
+      <p class="rating-scale" style="color: #193b8c;"><strong>Scale Indicative:</strong>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>Poor</strong>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>Need Improvement</strong>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>Average</strong>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>Good</strong>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>Excellent</strong>
+      </p>
+
+      <div formGroupName="ratings">
+        <div class="rating-row" *ngFor="let rating of ratingCriteria">
+          <label [for]="rating.key">{{rating.label}}</label>
+          <div class="rating-buttons">
+            <button type="button" *ngFor="let score of [1,2,3,4,5]"
+              [class.selected]="feedbackForm.get('ratings')?.get(rating.key)?.value === score"
+              (click)="setRating(rating.key, score)">
+              {{score}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Monthly Tasks -->
+    <div class="monthly-tasks">
+      <h3>Monthly Tasks</h3>
+      <div formArrayName="tasks">
+        <div *ngFor="let taskGroup of taskForms.controls; let i=index" [formGroupName]="i" class="task-group">
+          <h4>Month {{i + 1}}</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Task Details</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Priority</th>
+                <th>Weightage</th>
+                <th>Status</th>
+                <th>DM Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" formControlName="taskDetails"></td>
+                <td><input type="date" formControlName="startDate"></td>
+                <td><input type="date" formControlName="endDate"></td>
+                <td><input type="number" formControlName="priority"></td>
+                <td><input type="number" formControlName="weightage"></td>
+                <td>
+                  <select formControlName="status">
+                    <option value="Completed">Completed</option>
+                    <option value="Incomplete">Incomplete</option>
+                    <option value="In Progress">In Progress</option>
+                  </select>
+                </td>
+                <td><input type="number" formControlName="dmRating"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback Section -->
+    <div class="feedback-section">
+      <div class="form-group">
+        <label for="recommendation">Recommendation</label>
+        <textarea id="recommendation" formControlName="recommendation"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="areasOfImprovement">Areas of Improvement</label>
+        <textarea id="areasOfImprovement" formControlName="areasOfImprovement"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="feedback">Feedback</label>
+        <textarea id="feedback" formControlName="feedback"></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit Review</button>
+  </form>
+</div>
