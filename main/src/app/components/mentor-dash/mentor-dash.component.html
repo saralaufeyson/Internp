@@ -16,6 +16,19 @@
               <h4>{{ path.title }}</h4>
               <p>{{ path.description }}</p>
               <a [href]="path.link" target="_blank">View Course</a>
+              <div>
+                <label>Subtopics:</label>
+                <ul>
+                  <li *ngFor="let subtopic of path.subtopics">
+                    <input type="checkbox" [checked]="subtopic.completed" disabled /> {{ subtopic.name }}
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <label>Progress:</label>
+                <progress [value]="path.progress" max="100"></progress>
+                {{ path.progress.toFixed(1) }}%
+              </div>
             </div>
           </div>
         </div>

@@ -195,7 +195,7 @@ export class MentorDashComponent implements OnInit {
       }
     });
   }
-  }
+}
 
 
 
