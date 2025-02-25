@@ -106,6 +106,10 @@ button:disabled {
 
 .btn-danger:hover {
   background-color: #c82333;
+  color: blue;
+  /* Change text color to blue on hover */
+  border: 1px solid blue;
+  /* Add border to make it more interactive */
 }
 
 .btn-primary {
@@ -116,6 +120,17 @@ button:disabled {
 
 .btn-primary:hover {
   background-color: #0056b3;
+  color: blue;
+  /* Change text color to blue on hover */
+  border: 1px solid blue;
+  /* Add border to make it more interactive */
+}
+
+/* Icon Styling */
+.btn-danger i:hover,
+.btn-primary i:hover {
+  color: blue;
+  /* Change icon color to blue on hover */
 }
 
 /* Display Saved POCs */
@@ -150,6 +165,18 @@ button:disabled {
 .poc-actions {
   display: flex;
   gap: 10px;
+}
+
+.poc-actions i {
+  cursor: pointer;
+  /* Make icons clickable */
+  transition: color 0.3s ease;
+  /* Smooth transition for color change */
+}
+
+.poc-actions i:hover {
+  color: blue;
+  /* Change icon color to blue on hover */
 }
 
 .goal-header {

@@ -110,9 +110,21 @@
   align-items: center;
 }
 
+.goal-header i {
+  cursor: pointer;
+  /* Make icons clickable */
+  transition: color 0.3s ease;
+  /* Smooth transition for color change */
+}
+
+.goal-header i:hover {
+  color: blue;
+  /* Change icon color to blue on hover */
+}
+
 .goal-label {
   font-weight: bold;
-  color:rgb(27, 62, 156);
+  color: rgb(27, 62, 156);
 }
 
 .goal-description,
