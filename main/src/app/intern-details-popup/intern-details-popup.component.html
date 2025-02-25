@@ -1,13 +1,13 @@
 <h2 mat-dialog-title>Intern Details</h2>
 <mat-dialog-content>
-    <div *ngIf="userDetails">
+    <div *ngIf="userDetails" class="details-box">
         <h3>{{ userDetails.username }}</h3>
-        <p>Email: {{ userDetails.email }}</p>
-        <p>Phone: {{ userDetails.phoneNumber }}</p>
-        <p>Address: {{ userDetails.address }}</p>
-        <p>10th Grade: {{ userDetails.tenthGrade }}</p>
-        <p>12th Grade: {{ userDetails.twelfthGrade }}</p>
-        <p>B.Tech CGPA: {{ userDetails.bTechCgpa }}</p>
+        <p><span>Email:</span> {{ userDetails.email }}</p>
+        <p><span>Phone:</span> {{ userDetails.phoneNumber }}</p>
+        <p><span>Address:</span> {{ userDetails.address }}</p>
+        <p><span>10th Grade:</span> {{ userDetails.tenthGrade }}</p>
+        <p><span>12th Grade:</span> {{ userDetails.twelfthGrade }}</p>
+        <p><span>B.Tech CGPA:</span> {{ userDetails.bTechCgpa }}</p>
     </div>
     <app-dashboardc [userId]="userId"></app-dashboardc>
 </mat-dialog-content>

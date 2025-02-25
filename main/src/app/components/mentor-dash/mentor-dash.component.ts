@@ -113,7 +113,7 @@ export class MentorDashComponent implements OnInit {
 
   openInternDetails(intern: any): void {
     this.dialog.open(InternDetailsPopupComponent, {
-      width: '400px',
+      width: '800px',
       data: { internId: intern.id }  // Pass internId to the popup
     });
   }
@@ -195,7 +195,7 @@ export class MentorDashComponent implements OnInit {
       }
     });
   }
-  }
+}
 
 
 

@@ -1,9 +1,59 @@
 mat-dialog-content {
     max-height: 400px;
     overflow-y: auto;
+    max-width: 800px;
+    width: 100%;
+    padding: 20px; /* Added padding for better spacing */
+    background-color: #f9f9f9; /* Background color to match theme */
+    border-radius: 8px; /* Rounded corners */
+}
+
+mat-dialog-title {
+    font-size: 24px; /* Larger font size for title */
+    font-weight: bold; /* Bold title */
+    color: #333; /* Title color to match theme */
+    margin-bottom: 10px; /* Space below title */
+}
+
+.details-box {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.details-box h3 {
+    margin-top: 0;
+    color: #007bff;
+}
+
+.details-box p {
+    margin: 5px 0;
+}
+
+.details-box p span {
+    font-weight: bold;
+    color: #333;
 }
 
 mat-dialog-actions {
     display: flex;
     justify-content: flex-end;
+    padding: 10px 20px; /* Padding for actions area */
+    background-color: #f1f1f1; /* Background color for actions area */
+    border-top: 1px solid #ddd; /* Top border for separation */
+}
+
+button[mat-button] {
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Button padding */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+button[mat-button]:hover {
+    background-color: #0056b3; /* Darker background on hover */
 }
