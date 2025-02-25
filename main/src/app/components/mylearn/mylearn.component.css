@@ -107,6 +107,16 @@
     background: darkred;
 }
 
+/* Make the trash icon interactable and change its color to blue when hovered over */
+.card-body .bi-trash {
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.card-body .bi-trash:hover {
+    color: blue;
+}
+
 /* Card Footer */
 .card-footer {
     background: #f5f5f5;
