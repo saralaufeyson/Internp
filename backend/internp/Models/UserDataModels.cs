@@ -57,7 +57,7 @@ namespace YourNamespace.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public ObjectId Id { get; set; } 
+        public ObjectId Id { get; set; }
 
         [BsonElement("userid")]
         public required string UserId { get; set; } // Reference to the user
@@ -79,7 +79,20 @@ namespace YourNamespace.Models
 
         [BsonElement("createdAt")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        [BsonElement("progress")]
+        public double Progress { get; set; } = 0; // Progress of the learning path
+
+        [BsonElement("subtopics")]
+        public List<Subtopic> Subtopics { get; set; } = new List<Subtopic>(); // List of subtopics
     }
 
-   
+    public class Subtopic
+    {
+        [BsonElement("name")]
+        public required string Name { get; set; } // Name of the subtopic
+
+        [BsonElement("completed")]
+        public bool Completed { get; set; } = false; // Completion status of the subtopic
+    }
 }

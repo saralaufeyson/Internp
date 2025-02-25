@@ -73,14 +73,16 @@ namespace YourNamespace.Controllers
 
             var result = learningPathStatuses.Select(lp => new
             {
-                _id = lp.Id.ToString(), // Convert ObjectId to string for frontend usage
+                id = lp.Id.ToString(), // Ensure id is included in the response
                 lp.UserId,
                 lp.LearningPathId,
                 lp.Status,
                 lp.Title,
                 lp.Description,
                 lp.Link,
-                lp.CreatedAt
+                lp.CreatedAt,
+                lp.Progress,
+                lp.Subtopics // Ensure subtopics are included in the response
             });
 
             Console.WriteLine($"Found {learningPathStatuses.Count} learning path statuses for UserId: {userId}");
@@ -164,7 +166,7 @@ namespace YourNamespace.Controllers
             return Ok(result);
         }
         // Get all PoC Projects
-       
+
 
         // Delete a PoC Project by ID
         [HttpDelete("deletePocProject/{projectId}")]
@@ -314,7 +316,7 @@ namespace YourNamespace.Controllers
             return Ok(result);
         }
         // Get the count of all goals
-    
+
         [HttpDelete("deleteGoal/{goalId}")]
         public async Task<IActionResult> DeleteGoal(string goalId)
         {
@@ -386,20 +388,72 @@ namespace YourNamespace.Controllers
 
             foreach (var user in users)
             {
-            var goalCount = await _goalCollection.CountDocumentsAsync(g => g.UserId == user.Id);
-            userGoalCounts.Add(new
-            {
-                UserId = user.Id,
-                Username = user.Username,
-                GoalCount = goalCount
-            });
+                var goalCount = await _goalCollection.CountDocumentsAsync(g => g.UserId == user.Id);
+                userGoalCounts.Add(new
+                {
+                    UserId = user.Id,
+                    Username = user.Username,
+                    GoalCount = goalCount
+                });
             }
 
             return Ok(userGoalCounts);
         }
 
+        [HttpPut("updateLearningPathProgress/{learningPathStatusId}")]
+        public async Task<IActionResult> UpdateLearningPathProgress(string learningPathStatusId, [FromBody] JsonElement requestBody)
+        {
+            if (!ObjectId.TryParse(learningPathStatusId, out var objectId))
+            {
+                return BadRequest(new { message = "Invalid learning path status ID format." });
+            }
 
+            if (!requestBody.TryGetProperty("progress", out JsonElement progressElement) || !progressElement.TryGetDouble(out double progress))
+            {
+                return BadRequest(new { message = "Invalid progress value." });
+            }
 
+            var update = Builders<myLearningPath>.Update.Set(lp => lp.Progress, progress);
+            var result = await _myLearningPathCollection.UpdateOneAsync(lp => lp.Id == objectId, update);
+
+            if (result.ModifiedCount > 0)
+            {
+                return Ok(new { message = "Learning path progress updated successfully." });
+            }
+
+            return NotFound(new { message = "Learning path status not found." });
+        }
+
+        [HttpPut("updateSubtopicStatus/{learningPathStatusId}/{subtopicName}")]
+        public async Task<IActionResult> UpdateSubtopicStatus(string learningPathStatusId, string subtopicName, [FromBody] JsonElement requestBody)
+        {
+            if (!ObjectId.TryParse(learningPathStatusId, out var objectId))
+            {
+                return BadRequest(new { message = "Invalid learning path status ID format." });
+            }
+
+            if (!requestBody.TryGetProperty("completed", out JsonElement completedElement) ||
+                (completedElement.ValueKind != JsonValueKind.True && completedElement.ValueKind != JsonValueKind.False))
+            {
+                return BadRequest(new { message = "Invalid completed value." });
+            }
+
+            var filter = Builders<myLearningPath>.Filter.And(
+                Builders<myLearningPath>.Filter.Eq(lp => lp.Id, objectId),
+                Builders<myLearningPath>.Filter.ElemMatch(lp => lp.Subtopics, st => st.Name == subtopicName)
+            );
+
+            var update = Builders<myLearningPath>.Update.Set("Subtopics.$.Completed", completedElement.GetBoolean());
+
+            var result = await _myLearningPathCollection.UpdateOneAsync(filter, update);
+
+            if (result.ModifiedCount > 0)
+            {
+                return Ok(new { message = "Subtopic status updated successfully." });
+            }
+
+            return NotFound(new { message = "Learning path status or subtopic not found." });
+        }
     }
 
     [ApiController]
@@ -583,25 +637,25 @@ namespace YourNamespace.Controllers
             });
         }
 
-    
-    [HttpGet("getAllPocProjectStats")]
-    public async Task<IActionResult> GetAllPocProjectStats()
-    {
-        var totalPocs = await _pocProjectCollection.CountDocumentsAsync(_ => true);
-        var inProgressPocs = await _pocProjectCollection.CountDocumentsAsync(p => p.Status == "inProgress");
-        var completedPocs = await _pocProjectCollection.CountDocumentsAsync(p => p.Status == "completed");
 
-        return Ok(new
+        [HttpGet("getAllPocProjectStats")]
+        public async Task<IActionResult> GetAllPocProjectStats()
         {
-            totalPocs,
-            inProgressPocs,
-            completedPocs
-        });
+            var totalPocs = await _pocProjectCollection.CountDocumentsAsync(_ => true);
+            var inProgressPocs = await _pocProjectCollection.CountDocumentsAsync(p => p.Status == "inProgress");
+            var completedPocs = await _pocProjectCollection.CountDocumentsAsync(p => p.Status == "completed");
+
+            return Ok(new
+            {
+                totalPocs,
+                inProgressPocs,
+                completedPocs
+            });
+        }
+        public class AssignInternsRequest
+        {
+            public string? MentorId { get; set; }
+            public List<string>? InternIds { get; set; }
+        }
     }
-    public class AssignInternsRequest
-    {
-        public string? MentorId { get; set; }
-        public List<string>? InternIds { get; set; }
-    }
-}
 }
