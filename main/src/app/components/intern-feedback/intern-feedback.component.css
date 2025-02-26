@@ -102,6 +102,21 @@ textarea {
   color: white;
 }
 
+.rating-slider {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Further adjusted gap to accommodate longer text */
+}
+
+.rating-slider input[type="range"] {
+  flex: 1;
+}
+
+.rating-slider span {
+  min-width: 140px; /* Further adjusted width to accommodate longer text */
+  text-align: center;
+}
+
 /* Monthly Tasks Table */
 table {
   width: 100%;

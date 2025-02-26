@@ -27,6 +27,14 @@ export class InternFeedbackComponent {
     { key: 'delivery', label: 'Delivery' }
   ];
 
+  ratingTextMap: { [key: number]: string } = {
+    1: 'Poor',
+    2: 'Need Improvement',
+    3: 'Average',
+    4: 'Good',
+    5: 'Excellent'
+  };
+
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.createForm();
   }
@@ -77,8 +85,13 @@ export class InternFeedbackComponent {
     });
   }
 
-  setRating(criteriaKey: string, value: number) {
+  setRating(event: any, criteriaKey: string) {
+    const value = event.target.value;
     this.feedbackForm.get('ratings')?.get(criteriaKey)?.setValue(value);
+  }
+
+  getRatingText(value: number): string {
+    return this.ratingTextMap[value] || '';
   }
 
   onSubmit() {
