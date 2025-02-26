@@ -9,11 +9,37 @@
   margin-bottom: 20px;
 }
 
+.profile-image {
+  position: relative;
+  margin-right: 20px;
+}
+
+.profile-image label {
+  cursor: pointer;
+}
+
+.profile-image button {
+  display: block;
+  margin-top: 10px;
+  background-color: #193b8c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-image button:hover {
+  background-color: #0056b3;
+}
+
 .profile-info {
   margin-left: 20px;
 }
 
-h4, h6 {
+h4,
+h6 {
   color: #0f1f4c;
 }
 
@@ -61,7 +87,8 @@ h4, h6 {
   margin-bottom: 40px;
 }
 
-.profile-info h2, .profile-info p {
+.profile-info h2,
+.profile-info p {
   margin: 0;
 }
 
@@ -111,11 +138,11 @@ h4, h6 {
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .profile-header {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .grid-container {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 }

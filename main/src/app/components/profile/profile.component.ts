@@ -28,6 +28,8 @@ export class ProfileComponent implements OnInit {
   profileImage: SafeUrl | null = null;
   selectedFile: File | null = null;
   errorMessage: string = ''; // For storing error messages
+  isUploading: boolean = false;
+  isUploaded: boolean = false;
 
   constructor(private userDataService: UserDataService, private http: HttpClient, private userService: UserService, private sanitizer: DomSanitizer) { }
 
@@ -74,11 +76,13 @@ export class ProfileComponent implements OnInit {
     if (this.selectedFile) {
       const url = URL.createObjectURL(this.selectedFile);
       this.profileImage = this.sanitizer.bypassSecurityTrustUrl(url);
+      this.isUploaded = false;
     }
   }
 
   uploadImage(): void {
     if (this.selectedFile) {
+      this.isUploading = true;
       const formData = new FormData();
       formData.append('image', this.selectedFile);
 
@@ -87,9 +91,12 @@ export class ProfileComponent implements OnInit {
           (response) => {
             console.log('Image uploaded successfully:', response);
             this.loadProfileImage();
+            this.isUploading = false;
+            this.isUploaded = true;
           },
           (error) => {
             console.error('Error uploading image:', error);
+            this.isUploading = false;
           }
         );
     }
