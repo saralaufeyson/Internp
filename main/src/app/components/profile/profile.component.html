@@ -11,4 +11,23 @@
   <div class="section-container">
     <app-user-details [userName]="userProfile.name"></app-user-details>
   </div>
+
+  <div class="section-container">
+    <h2>Your POCs / Projects</h2>
+    <div class="poc-container" *ngIf="pocs.length > 0">
+      <div *ngFor="let poc of pocs" class="poc">
+        <h4>{{ poc.projectName }} ({{ poc.status }})</h4>
+        <p><strong>Description:</strong> {{ poc.description }}</p>
+        <p><strong>Start Date:</strong> {{ poc.startDate | date }}</p>
+        <p *ngIf="poc.status === 'completed'">
+          <strong>End Date:</strong> {{ poc.endDate | date }}
+        </p>
+      </div>
+    </div>
+    <div *ngIf="pocs.length === 0">
+      <p>No PoC Projects found.</p>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 </div>

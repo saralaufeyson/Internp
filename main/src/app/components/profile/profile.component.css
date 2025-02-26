@@ -1,7 +1,15 @@
+/* General styles */
+.container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 800px;
+}
+
 /* Profile Header */
 .profile-header {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 20px;
   background: #ffffff;
   border-radius: 8px;
@@ -9,23 +17,15 @@
   margin-bottom: 20px;
 }
 
-.profile-info {
-  margin-left: 20px;
-}
-
-h4, h6 {
+/* Profile Info */
+.profile-info h4,
+.profile-info h6 {
   color: #0f1f4c;
+  margin: 5px 0;
+  text-align: center;
 }
 
-/* Section Card */
-.section-card {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
+/* Section Container */
 .section-container {
   background: #ffffff;
   padding: 20px;
@@ -34,7 +34,33 @@ h4, h6 {
   margin-bottom: 20px;
 }
 
-/* Responsive */
+/* PoC Container */
+.poc-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.poc {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .profile-header {
     flex-direction: column;
@@ -42,80 +68,6 @@ h4, h6 {
   }
 
   .profile-info {
-    margin-left: 0;
     margin-top: 10px;
-  }
-}
-
-/* General styles */
-.container {
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Profile Header */
-.profile-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
-}
-
-.profile-info h2, .profile-info p {
-  margin: 0;
-}
-
-/* Section styles */
-.section-container {
-  margin-bottom: 40px;
-}
-
-.section-card {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.section-title {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-/* Grid layout for Learning Path, Goals, and Projects */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.grid-item {
-  background-color: #fff;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.grid-item p {
-  margin: 5px 0;
-}
-
-/* Optional: Add hover effect for items */
-.grid-item:hover {
-  background-color: #f1f1f1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-  .profile-header {
-      flex-direction: column;
-      align-items: center;
-  }
-
-  .grid-container {
-      grid-template-columns: 1fr;
   }
 }
