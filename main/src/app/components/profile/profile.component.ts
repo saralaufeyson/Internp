@@ -5,13 +5,12 @@ import { UserDataService } from '../../services/profile.service';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
 import { UserDetailsComponent } from "../user-details/user-details.component";
-import { DashboardcComponent } from "../dashboardc/dashboardc.component";
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserDetailsComponent, DashboardcComponent],
+  imports: [CommonModule, FormsModule, UserDetailsComponent,],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
