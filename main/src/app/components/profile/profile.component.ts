@@ -6,13 +6,12 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
 import { PocService } from 'src/app/services/poc.service';
 import { UserDetailsComponent } from "../user-details/user-details.component";
-import { PocProjectsComponent } from '../poc-projects/poc-projects.component';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserDetailsComponent, PocProjectsComponent],
+  imports: [CommonModule, FormsModule, UserDetailsComponent,],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -57,7 +56,7 @@ export class ProfileComponent implements OnInit {
 
       this.loadProfileImage();
 
-      this.loadPocProjects();
+      
     } else {
       console.error('No user ID found in localStorage. User is not logged in.');
       this.errorMessage = 'No user ID found. Please log in.';
@@ -73,6 +72,7 @@ export class ProfileComponent implements OnInit {
         },
         (error) => {
           console.error('Error fetching profile image:', error);
+          this.profileImage = null; // Ensure profileImage is null if there's an error
         }
       );
   }
@@ -108,15 +108,6 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  loadPocProjects() {
-    this.pocService.getPocProjects(this.userId).subscribe(
-      (response: any) => {
-        console.log("PoC Projects fetched:", response);
-        this.pocs = response || [];
-      },
-      (error) => {
-        console.error('Error fetching PoC Projects', error);
-      }
-    );
-  }
+  
+  
 }

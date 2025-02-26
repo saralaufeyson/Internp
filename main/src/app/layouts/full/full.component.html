@@ -23,37 +23,35 @@
         [showToggle]="isOver"
       ></app-sidebar>
       
-      <ng-scrollbar class="position-relative" style="height: 100%">
-        <mat-nav-list class="sidebar-list">
-          <ng-container *ngIf="userRole === 'Intern'">
-            <ng-container *ngFor="let item of internNavItems">
-              <app-nav-item
-                [item]="item"
-                (notify)="leftsidenav.toggle()"
-              ></app-nav-item>
-            </ng-container>
+      <mat-nav-list class="sidebar-list">
+        <ng-container *ngIf="userRole === 'Intern'">
+          <ng-container *ngFor="let item of internNavItems">
+            <app-nav-item
+              [item]="item"
+              (notify)="leftsidenav.toggle()"
+            ></app-nav-item>
           </ng-container>
-          <ng-container *ngIf="userRole === 'Mentor'">
-            <ng-container *ngFor="let item of mentorNavItems">
-              <app-nav-item
-                [item]="item"
-                (notify)="leftsidenav.toggle()"
-              ></app-nav-item>
-            </ng-container>
+        </ng-container>
+        <ng-container *ngIf="userRole === 'Mentor'">
+          <ng-container *ngFor="let item of mentorNavItems">
+            <app-nav-item
+              [item]="item"
+              (notify)="leftsidenav.toggle()"
+            ></app-nav-item>
           </ng-container>
-          <ng-container *ngIf="userRole === 'Admin'">
-            <ng-container *ngFor="let item of adminNavItems">
-              <app-nav-item
-                [item]="item"
-                (notify)="leftsidenav.toggle()"
-              ></app-nav-item>
-            </ng-container>
+        </ng-container>
+        <ng-container *ngIf="userRole === 'Admin'">
+          <ng-container *ngFor="let item of adminNavItems">
+            <app-nav-item
+              [item]="item"
+              (notify)="leftsidenav.toggle()"
+            ></app-nav-item>
           </ng-container>
-          <ng-container *ngIf="userRole !== 'Intern' && userRole !== 'Admin' && userRole !== 'Mentor'">
-            <p> role: not defined</p>
-          </ng-container>
-        </mat-nav-list>
-      </ng-scrollbar>
+        </ng-container>
+        <ng-container *ngIf="userRole !== 'Intern' && userRole !== 'Admin' && userRole !== 'Mentor'">
+          <p> role: not defined</p>
+        </ng-container>
+      </mat-nav-list>
       <div class="p-24"></div>
       <div
         class="bg-light-primary d-flex align-items-center gap-4 rounded p-20 m-t-20"
@@ -88,4 +86,3 @@
     </main>
   </mat-sidenav-content>
 </mat-sidenav-container>
- 

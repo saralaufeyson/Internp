@@ -21,6 +21,7 @@ export class MentorDashComponent implements OnInit {
   internLearningPaths: { [key: string]: any[] } = {};
   learningPaths: any[] = [];
   userId: string = localStorage.getItem('userId') || '';
+  selectedIntern: any;
 
   constructor(private http: HttpClient, private dialog: MatDialog) {}
 
@@ -119,6 +120,9 @@ export class MentorDashComponent implements OnInit {
     });
   }
 
+  selectIntern(intern: any): void {
+    this.selectedIntern = intern;
+  }
 
   createPieChart(): void {
     const ctx = document.getElementById('pocPieChart') as HTMLCanvasElement;
