@@ -16,6 +16,28 @@
 
 .profile-image label {
   cursor: pointer;
+  display: block;
+  position: relative;
+}
+
+.profile-image img {
+  display: block;
+  border-radius: 50%;
+}
+
+.profile-image .camera-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+  display: none;
+}
+
+.profile-image:hover .camera-icon {
+  display: block;
 }
 
 .profile-image button {
@@ -36,6 +58,7 @@
 
 .profile-info {
   margin-left: 20px;
+  flex-grow: 1;
 }
 
 h4,

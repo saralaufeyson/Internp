@@ -67,6 +67,7 @@ export class ProfileComponent implements OnInit {
         },
         (error) => {
           console.error('Error fetching profile image:', error);
+          this.profileImage = null; // Ensure profileImage is null if there's an error
         }
       );
   }
