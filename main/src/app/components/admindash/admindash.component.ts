@@ -55,7 +55,7 @@ export class AdmindashComponent implements OnInit {
         const usernames = response.map(user => user.username);
         const goalCounts = response.map(user => user.goalCount);
 
-        this.createDoughnutChart(usernames, goalCounts);
+        this.createRadarChart(usernames, goalCounts);
       },
       (error) => {
         console.error('Error fetching user goals:', error);
@@ -82,62 +82,39 @@ export class AdmindashComponent implements OnInit {
     });
   }
 
-  createDoughnutChart(usernames: string[], goalCounts: number[]): void {
-    const ctx = document.getElementById('userGoalsDoughnutChart') as HTMLCanvasElement;
+  createRadarChart(usernames: string[], goalCounts: number[]): void {
+    const ctx = document.getElementById('userGoalsRadarChart') as HTMLCanvasElement;
     new Chart(ctx, {
-      type: 'pie',
+      type: 'radar',
       data: {
-        labels: usernames,
+        labels: usernames,  // Categories on each axis (users)
         datasets: [{
-          data: goalCounts,
-          backgroundColor:  [
-            '#99ffff',  // Lightest Cyan
-            '#66ffff',  // Lighter Cyan
-            '#00e6e6',  // Base Cyan
-            '#00bfbf',  // Darker Cyan
-            '#008f8f',   // Darkest Cyan
-            '#6f86c9',  // Lightest Blue
-            '#4a66b3',  // Lighter Blue
-            '#1B3E9C',  // Base Blue
-            '#142d74',  // Darker Blue
-            '#0e1f51' ,  // Darkest Blue
-            '#f7f7f7',  // Light Gray (Background)
-            '#dcdcdc',  // Gray (Borders)
-            '#e0e0e0'  , // Light Gray (Panels)
-            '#ff9f40',  // Soft Orange
-            '#FF6384',  // Coral Red
-            '#FFCD56' ,  // Golden Yellow
-            '#333333',  // Dark Gray (Body Text)
-            '#1a1a1a'   // Almost Black (Headings)
-          ],
-          hoverBackgroundColor:  [
-            '#99ffff',  // Lightest Cyan
-            '#66ffff',  // Lighter Cyan
-            '#00e6e6',  // Base Cyan
-            '#00bfbf',  // Darker Cyan
-            '#008f8f',   // Darkest Cyan
-            '#6f86c9',  // Lightest Blue
-            '#4a66b3',  // Lighter Blue
-            '#1B3E9C',  // Base Blue
-            '#142d74',  // Darker Blue
-            '#0e1f51' ,  // Darkest Blue
-            '#f7f7f7',  // Light Gray (Background)
-            '#dcdcdc',  // Gray (Borders)
-            '#e0e0e0'  , // Light Gray (Panels)
-            '#ff9f40',  // Soft Orange
-            '#FF6384',  // Coral Red
-            '#FFCD56' ,  // Golden Yellow
-            '#333333',  // Dark Gray (Body Text)
-            '#1a1a1a'   // Almost Black (Headings)
-          ]          
+          label: 'Total Goals',
+          data: goalCounts,  // Values corresponding to each user
+          backgroundColor: 'rgba(0, 230, 230, 0.2)', // Semi-transparent cyan fill
+          borderColor: '#00bfbf',  // Darker cyan for border
+          pointBackgroundColor: '#00bfbf',  // Point color
+          pointBorderColor: '#fff',  // White border around points
+          pointHoverBackgroundColor: '#ff9f40', // Orange hover effect
+          pointHoverBorderColor: '#333'  // Darker hover border
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        scales: {
+          r: {  // "r" is the radial scale
+            angleLines: {
+              display: true  // Show angle lines
+            },
+            suggestedMin: 0,  // Min value for radar chart
+            suggestedMax: Math.max(...goalCounts) + 1 // Dynamic max
+          }
+        },
         plugins: {
           legend: {
-            display: false
+            display: true, // Show legend
+            position: 'top'
           },
           tooltip: {
             callbacks: {
@@ -152,5 +129,6 @@ export class AdmindashComponent implements OnInit {
       }
     });
   }
-  }
   
+}
+

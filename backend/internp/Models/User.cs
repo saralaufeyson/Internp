@@ -26,5 +26,8 @@ namespace YourNamespace.Models
 
         [BsonElement("assignedMentorId")]
         public string? AssignedMentorId { get; set; }
+
+        [BsonElement("profileImage")]
+        public byte[]? ProfileImage { get; set; }
     }
 }

@@ -17,9 +17,35 @@
   margin-bottom: 20px;
 }
 
+.profile-image {
+  position: relative;
+  margin-right: 20px;
+}
+
+.profile-image label {
+  cursor: pointer;
+}
+
+.profile-image button {
+  display: block;
+  margin-top: 10px;
+  background-color: #193b8c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-image button:hover {
+  background-color: #0056b3;
+}
+
 /* Profile Info */
 .profile-info h4,
-.profile-info h6 {
+.profile-info
+h6 {
   color: #0f1f4c;
   margin: 5px 0;
   text-align: center;
@@ -69,5 +95,79 @@
 
   .profile-info {
     margin-top: 10px;
+  }
+}
+
+/* General styles */
+.container {
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.profile-info h2,
+.profile-info p {
+  margin: 0;
+}
+
+/* Section styles */
+.section-container {
+  margin-bottom: 40px;
+}
+
+.section-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Grid layout for Learning Path, Goals, and Projects */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.grid-item {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item p {
+  margin: 5px 0;
+}
+
+/* Optional: Add hover effect for items */
+.grid-item:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
   }
 }

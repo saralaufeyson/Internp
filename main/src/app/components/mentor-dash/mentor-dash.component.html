@@ -18,9 +18,10 @@
               <a [href]="path.link" target="_blank">View Course</a>
               <div>
                 <label>Subtopics:</label>
-                <ul>
+                <ul class="no-bullets">
                   <li *ngFor="let subtopic of path.subtopics">
-                    <input type="checkbox" [checked]="subtopic.completed" disabled /> {{ subtopic.name }}
+                    <span *ngIf="subtopic.completed" class="tick-mark">&#10003;</span>
+                    <span *ngIf="!subtopic.completed" class="hollow-circle">&#9675;</span> {{ subtopic.name }}
                   </li>
                 </ul>
               </div>
@@ -41,6 +42,19 @@
       <p class="error-message">No interns found</p>
     </div>
   </div>
+
+  <style>
+    .no-bullets {
+      list-style-type: none;
+      padding: 0;
+    }
+    .tick-mark {
+      color: green;
+    }
+    .hollow-circle {
+      color: red;
+    }
+  </style>
 
   <!-- Mentor Goals Section -->
   <div class="card">

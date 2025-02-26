@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { PocService } from 'src/app/services/poc.service';
 import { UserDetailsComponent } from "../user-details/user-details.component";
 import { PocProjectsComponent } from '../poc-projects/poc-projects.component';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -24,14 +25,18 @@ export class ProfileComponent implements OnInit {
     role: ''
   };
 
-  userId: string = '';
-  errorMessage: string = '';
+  userId: string = ''; // Get the logged-in user's ID here (e.g., from LocalStorage or an AuthService)
+  profileImage: SafeUrl | null = null;
+  selectedFile: File | null = null;
+  errorMessage: string = ''; // For storing error messages
+  isUploading: boolean = false;
+  isUploaded: boolean = false;
   pocs: Array<any> = [];
 
   constructor(
     private userDataService: UserDataService,
     private http: HttpClient,
-    private userService: UserService,
+    private userService: UserService, private sanitizer: DomSanitizer,
     private pocService: PocService
   ) { }
 
@@ -50,10 +55,56 @@ export class ProfileComponent implements OnInit {
         }
       );
 
+      this.loadProfileImage();
+
       this.loadPocProjects();
     } else {
       console.error('No user ID found in localStorage. User is not logged in.');
       this.errorMessage = 'No user ID found. Please log in.';
+    }
+  }
+
+  loadProfileImage(): void {
+    this.http.get(`http://localhost:5180/api/user/getProfileImage/${this.userId}`, { responseType: 'blob' })
+      .subscribe(
+        (response) => {
+          const url = URL.createObjectURL(response);
+          this.profileImage = this.sanitizer.bypassSecurityTrustUrl(url);
+        },
+        (error) => {
+          console.error('Error fetching profile image:', error);
+        }
+      );
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      const url = URL.createObjectURL(this.selectedFile);
+      this.profileImage = this.sanitizer.bypassSecurityTrustUrl(url);
+      this.isUploaded = false;
+    }
+  }
+
+  uploadImage(): void {
+    if (this.selectedFile) {
+      this.isUploading = true;
+      const formData = new FormData();
+      formData.append('image', this.selectedFile);
+
+      this.http.post(`http://localhost:5180/api/user/uploadImage/${this.userId}`, formData, { responseType: 'text' })
+        .subscribe(
+          (response) => {
+            console.log('Image uploaded successfully:', response);
+            this.loadProfileImage();
+            this.isUploading = false;
+            this.isUploaded = true;
+          },
+          (error) => {
+            console.error('Error uploading image:', error);
+            this.isUploading = false;
+          }
+        );
     }
   }
 
