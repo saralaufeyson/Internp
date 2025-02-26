@@ -14,19 +14,13 @@ export const navItems: NavItem[] = [
     displayName: 'Admin Dashboard',
     iconName: 'layout-grid-add',
     route: '/dashboard/admin',
-    roles: [ 'admin']
+    roles: ['admin']
   },
   {
     displayName: 'Mentor Dashboard',
     iconName: 'layout-grid-add',
     route: '/dashboard/mentor',
-    roles: [ 'mentor']
-  },
-  {
-    displayName: 'Profile',
-    iconName: 'info-circle',
-    route: '/dashboard/profile',
-    roles: ['intern', 'admin','mentor']
+    roles: ['mentor']
   },
   {
     displayName: 'My learning Path',
@@ -94,7 +88,7 @@ export const navItems: NavItem[] = [
     iconName: 'users',
     route: '/dashboard/admin-reviews',
     roles: ['admin']
-    
+
   },
   {
     navCap: 'Auth',
