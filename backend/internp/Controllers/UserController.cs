@@ -7,6 +7,8 @@ using MongoDB.Bson;
 using Microsoft.AspNetCore.Authorization;
 using System.Xml.Linq;
 using System.Text.Json;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace YourNamespace.Controllers
 {
@@ -683,6 +685,53 @@ namespace YourNamespace.Controllers
         {
             public string? MentorId { get; set; }
             public List<string>? InternIds { get; set; }
+        }
+
+        [HttpPost("uploadImage/{userId}")]
+        public async Task<IActionResult> UploadImage(string userId, IFormFile image)
+        {
+            if (image == null || image.Length == 0)
+            {
+                return BadRequest("No image file provided.");
+            }
+
+            // Check if the file is an image
+            if (!image.ContentType.StartsWith("image/"))
+            {
+                return BadRequest("Only image files are allowed.");
+            }
+
+            var user = await _userCollection.Find(u => u.Id == userId).FirstOrDefaultAsync();
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            using var memoryStream = new MemoryStream();
+            await image.CopyToAsync(memoryStream);
+            var imageBytes = memoryStream.ToArray();
+
+            var update = Builders<User>.Update.Set(u => u.ProfileImage, imageBytes);
+            var result = await _userCollection.UpdateOneAsync(u => u.Id == userId, update);
+
+            if (result.ModifiedCount > 0)
+            {
+                return Ok("Image uploaded successfully.");
+            }
+
+            return StatusCode(500, "An error occurred while uploading the image.");
+        }
+
+        [HttpGet("getProfileImage/{userId}")]
+        public async Task<IActionResult> GetProfileImage(string userId)
+        {
+            var user = await _userCollection.Find(u => u.Id == userId).FirstOrDefaultAsync();
+            if (user == null || user.ProfileImage == null)
+            {
+                return NotFound("User or profile image not found.");
+            }
+
+            return File(user.ProfileImage, "image/jpeg"); // Assuming the image is in JPEG format
         }
     }
 }
