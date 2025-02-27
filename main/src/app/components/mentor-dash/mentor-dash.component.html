@@ -15,7 +15,7 @@
       </ul>
       <div *ngIf="selectedIntern" class="tab-content">
         <div class="tab-pane active">
-          <h2>{{ selectedIntern.username }}</h2>
+          <!-- <h2>{{ selectedIntern.username }}</h2> -->
           <p>{{ selectedIntern.email }}</p>
           <div *ngIf="internLearningPaths[selectedIntern.id] && internLearningPaths[selectedIntern.id].length > 0">
             <h3>Learning Paths</h3>

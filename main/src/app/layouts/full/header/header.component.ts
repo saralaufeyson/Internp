@@ -8,7 +8,7 @@ import {
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { MaterialModule } from 'src/app/material.module';
 import { RouterModule } from '@angular/router';
-import { CommonModule, NgForOf } from '@angular/common';
+import { CommonModule } from '@angular/common'; // Correct import statement
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
@@ -21,10 +21,11 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 export class HeaderComponent {
   @Input() showToggle = true;
   @Input() toggleChecked = false;
+  @Input() toggleCollapsed = false; // Add this input property
   @Output() toggleMobileNav = new EventEmitter<void>();
   @Output() toggleMobileFilterNav = new EventEmitter<void>();
-  @Output() toggleCollapsed = new EventEmitter<void>();
+  @Output() toggleCollapsedChange = new EventEmitter<void>();
 
-
+  // Ensure toggleChecked is used to control the visibility of the "Internportal" text
 }
 

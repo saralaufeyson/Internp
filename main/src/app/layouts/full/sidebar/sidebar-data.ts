@@ -5,19 +5,19 @@ export const navItems: NavItem[] = [
     navCap: 'Home',
   },
   {
-    displayName: 'Intern Dashboard',
+    displayName: 'Dashboard',
     iconName: 'dashboard',
     route: '/dashboard/intern-dashboard',
     roles: ['intern']
   },
   {
-    displayName: 'Admin Dashboard',
+    displayName: 'Dashboard',
     iconName: 'layout-grid-add',
     route: '/dashboard/admin',
     roles: ['admin']
   },
   {
-    displayName: 'Mentor Dashboard',
+    displayName: 'Dashboard',
     iconName: 'layout-grid-add',
     route: '/dashboard/mentor',
     roles: ['mentor']

@@ -38,6 +38,11 @@ export class InternFeedbackComponent {
     5: 'Excellent'
   };
 
+  // months = [
+  //   'January', 'February', 'March', 'April', 'May', 'June',
+  //   'July', 'August', 'September', 'October', 'November', 'December'
+  // ];
+
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.createForm();
     
@@ -60,14 +65,7 @@ export class InternFeedbackComponent {
           [criteria.key]: [0]
         }), {})
       ),
-      tasks: this.fb.array([
-        this.createMonthlyTaskGroup(),
-        this.createMonthlyTaskGroup(),
-        this.createMonthlyTaskGroup(),
-        this.createMonthlyTaskGroup(),
-        this.createMonthlyTaskGroup(),
-        this.createMonthlyTaskGroup()
-      ]),
+      tasks: this.fb.array([]), // Initialize with an empty array
       recommendation: [''],
       areasOfImprovement: [''],
       feedback: ['']
@@ -76,6 +74,10 @@ export class InternFeedbackComponent {
     }
 
     interns: any[] = [];
+    months :any[]= [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
 
     loadInterns() {
     const mentorId = localStorage.getItem('userId');
@@ -119,7 +121,10 @@ export class InternFeedbackComponent {
       });
     }
     }
-
+  // months = [
+  //   'January', 'February', 'March', 'April', 'May', 'June',
+  //   'July', 'August', 'September', 'October', 'November', 'December'
+  // ];
   createMonthlyTaskGroup() {
     return this.fb.group({
       taskDetails: [''],
@@ -128,8 +133,12 @@ export class InternFeedbackComponent {
       priority: [''],
       weightage: [0],
       status: ['Yet to start'],
-      dmRating: [0]
+      month:['']
     });
+  }
+
+  addTask() {
+    this.taskForms.push(this.createMonthlyTaskGroup());
   }
 
   setRating(event: any, criteriaKey: string) {

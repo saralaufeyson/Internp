@@ -89,6 +89,7 @@ public class MonthlyTask
     [BsonElement("status")]
     public string? Status { get; set; } = "Yet to start";
 
-    [BsonElement("dmRating")]
-    public int? DMRating { get; set; }
+
+    [BsonElement("month")]
+    public string? Month { get; set; } = "";
 }
