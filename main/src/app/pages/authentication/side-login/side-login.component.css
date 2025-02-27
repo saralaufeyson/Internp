@@ -114,3 +114,8 @@ button:hover {
 .error-text {
   color: red !important;
 }
+
+form[_ngcontent-ng-c2617672373] div[_ngcontent-ng-c2617672373] {
+  text-align: left;
+  margin-bottom: 5px;
+}
