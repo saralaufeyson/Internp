@@ -5,14 +5,23 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 600px;
-  margin: auto;
   text-align: center;
+  flex: 1;
+}
+
+.poc-projects-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 /* Heading */
 h2,
 h3 {
-  font-size: 24px;
+  font-size: 20px;
+  /* Reduced from 24px */
   font-weight: bold;
   color: #1e293b;
   margin-bottom: 15px;
@@ -29,6 +38,8 @@ label {
   color: #334155;
   display: block;
   margin-bottom: 5px;
+  font-size: 12px;
+  /* Reduced from default */
 }
 
 /* Input Fields & Select */
@@ -144,14 +155,16 @@ button:disabled {
 }
 
 .poc h4 {
-  font-size: 18px;
+  font-size: 16px;
+  /* Reduced from 18px */
   font-weight: bold;
   color: #1e293b;
   margin-bottom: 5px;
 }
 
 .poc p {
-  font-size: 14px;
+  font-size: 12px;
+  /* Reduced from 14px */
   color: #475569;
   margin: 3px 0;
 }
@@ -183,4 +196,26 @@ button:disabled {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.saved-pocs {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  text-align: center;
+}
+
+.saved-pocs h3 {
+  font-size: 18px;
+  /* Reduced from 20px */
+  font-weight: bold;
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+
+.saved-pocs .poc {
+  font-size: 12px;
 }

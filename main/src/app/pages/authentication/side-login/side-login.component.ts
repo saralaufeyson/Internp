@@ -12,6 +12,7 @@ import { MaterialModule } from '../../../material.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon'; // Import MatIconModule
 
 @Component({
   selector: 'app-side-login',
@@ -22,7 +23,8 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
+    MatIconModule // Add MatIconModule to imports
   ],
   templateUrl: './side-login.component.html',
   styleUrls: ['./side-login.component.css'],
@@ -34,10 +36,16 @@ export class SideLoginComponent {
     remember: new FormControl(false),
   });
 
+  hidePassword = true; // Add property to toggle password visibility
+
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) { } // Inject MatSnackBar
 
   get f() {
     return this.form.controls;
+  }
+
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
   }
 
   submit() {
@@ -60,11 +68,11 @@ export class SideLoginComponent {
               this.router.navigate(['/dashboard/intern-dashboard']);
             } else if (response.role === 'Admin') {
               this.router.navigate(['/dashboard/admin']);
-            }else if (response.role === 'Mentor') {
+            } else if (response.role === 'Mentor') {
               this.router.navigate(['/dashboard/mentor']);
 
             }
-            
+
           }
         },
         (error) => {

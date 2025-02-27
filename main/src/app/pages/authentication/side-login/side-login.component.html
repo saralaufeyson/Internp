@@ -8,17 +8,20 @@
       <!-- Email Input -->
       <div class="input-container">
         <label for="email">Email Address*</label>
-        <input id="email" formControlName="email" type="email" 
+        <input id="email" formControlName="email" type="email"
           [placeholder]="f.email.touched && f.email.errors?.['required'] ? 'Email is required' : 'Enter your email'"
           [ngClass]="{'is-invalid': f.email.touched && f.email.invalid, 'error-text': f.email.touched && f.email.invalid}" />
       </div>
 
       <!-- Password Input -->
-      <div class="input-container">
+      <div class="input-container password-container">
         <label for="password">Password*</label>
-        <input id="password" formControlName="password" type="password"
+        <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" id="password"
           [placeholder]="f.password.touched && f.password.errors?.['required'] ? 'Password is required' : 'Enter your password'"
           [ngClass]="{'is-invalid': f.password.touched && f.password.invalid, 'error-text': f.password.touched && f.password.invalid}" />
+        <button type="button" (click)="togglePasswordVisibility()">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
       </div>
 
       <!-- Remember Me -->
@@ -28,7 +31,8 @@
       </div>
 
       <!-- Login Button -->
-      <button type="submit" style="background-color: rgb(27, 62, 156); color: white;">Login</button>
+      <button type="submit"
+        style="background-color: rgb(27, 62, 156); color: white; margin-bottom: 15px;">Login</button>
     </form>
 
     <span class="f-w-500">

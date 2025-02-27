@@ -38,7 +38,8 @@ export class AdminReviewsComponent implements OnInit {
         next: (data) => {
           this.reviews = data.map(review => ({
             ...review,
-            ratingKeys: Object.keys(review.ratings)
+            ratingKeys: Object.keys(review.ratings),
+            overallRating: review.overallRating // Ensure overallRating is fetched
           }));
         },
         error: (err) => {

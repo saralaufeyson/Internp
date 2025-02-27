@@ -29,6 +29,7 @@
 .login-header img {
   width: 350px;
   margin-bottom: 20px;
+  margin-left: -20px;
   /* Add margin below the logo */
 }
 
@@ -49,6 +50,29 @@ input {
   font-size: 14px;
 }
 
+.input-container.password-container {
+  position: relative;
+}
+
+.input-container.password-container input {
+  padding-right: 40px;
+  /* Add padding to make space for the button */
+}
+
+.input-container.password-container button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.input-container.password-container button mat-icon {
+  font-size: 20px;
+}
 
 input.is-invalid {
   border-color: red;
@@ -79,6 +103,21 @@ button:hover {
 
 button:hover {
   background-color: #1c60bd;
+}
+
+button[type="button"] {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+}
+
+button[type="button"] mat-icon {
+  font-size: 20px;
 }
 
 /* Register Link */
@@ -113,4 +152,32 @@ button:hover {
 /* Change the input text color to red when invalid */
 .error-text {
   color: red !important;
+}
+
+form[_ngcontent-ng-c1927182847] div[_ngcontent-ng-c1927182847] {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.input-container.password-container[_ngcontent-ng-c1927182847] button[_ngcontent-ng-c1927182847] {
+  position: absolute;
+  height: 15px;
+  width: 20px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+button[type="button"][_ngcontent-ng-c1927182847] {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  color: black;
+  transform: translateY(-50%);
+  padding: 0;
 }

@@ -45,12 +45,16 @@
       </div>
     </div>
 
+    <div class="overall-rating">
+      <h3>Overall Performance Rating: {{ overallRating | number: '1.1-1' }}</h3>
+    </div>
+
     <!-- Monthly Tasks -->
     <div class="monthly-tasks">
       <h3>Monthly Tasks</h3>
       <div formArrayName="tasks">
         <div *ngFor="let taskGroup of taskForms.controls; let i=index" [formGroupName]="i" class="task-group">
-          <h4>Month {{i + 1}}</h4>
+          <h4>Task {{i + 1}}</h4>
           <div class="form-row">
             <div class="form-group">
               <label for="month">Month</label>

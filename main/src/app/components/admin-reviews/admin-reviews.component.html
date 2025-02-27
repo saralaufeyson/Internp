@@ -11,6 +11,7 @@
 
         <th>Ratings</th>
         <th>Feedback</th>
+        <th>Overall Rating</th>
       </tr>
     </thead>
     <tbody>
@@ -29,6 +30,7 @@
           </ul>
         </td>
         <td>{{ review.feedback }}</td>
+        <td>{{ review.overallRating | number: '1.1-1' }}</td>
       </tr>
     </tbody>
   </table>

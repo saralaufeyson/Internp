@@ -3,7 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 5px;
+  /* Decrease padding */
 }
 
 /* Individual Card Styling */
@@ -12,8 +13,10 @@
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 800px; /* Increase max-width */
-  padding: 20px;
+  max-width: 500px;
+  /* Decrease max-width */
+  padding: 10px;
+  /* Decrease padding */
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -24,41 +27,60 @@
 
 /* Learning Path Card Content */
 .learning-path-card {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  /* Decrease margin-bottom */
 }
 
 .learning-path-card h3 {
-  font-size: 1.4rem;
+  font-size: 1rem;
+  /* Further decrease font-size */
   color: #0095FF;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  /* Decrease margin-bottom */
 }
 
 /* Textarea Styling */
 textarea {
   width: 100%;
-  height: 80px;
-  padding: 8px;
+  height: 70px;
+  /* Decrease height */
+  padding: 6px;
+  /* Decrease padding */
   border: 1px solid #ccc;
   border-radius: 5px;
   resize: none;
-  font-size: 1rem;
+  font-size: 0.8rem;
+  /* Further decrease font-size */
 }
 
 /* Save Plans Button */
 .start-learning-btn {
   display: block;
-  margin: 20px auto;
+  margin: 15px auto;
+  /* Decrease margin */
   background: #0095FF;
   color: white;
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 8px 16px;
+  /* Decrease padding */
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 0.8rem;
+  /* Further decrease font-size */
   transition: background 0.3s ease-in-out;
 }
 
 .start-learning-btn:hover {
   background: #0095FF;
+}
+
+.text-center {
+  text-align: center !important;
+  font-size: 1.5rem;
+}
+
+.text-center {
+  text-align: center !important;
+  font-size: 1.5rem;
 }
 
 /* Saved Plans Container */
@@ -67,7 +89,8 @@ textarea {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 800px; /* Increase max-width */
+  max-width: 600px;
+  /* Decrease max-width */
 }
 
 /* Custom Notification */
@@ -78,26 +101,44 @@ textarea {
   transform: translateX(-50%);
   background-color: #0095FF;
   color: white;
-  padding: 15px 30px;
+  padding: 10px 20px;
+  /* Decrease padding */
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
+  /* Further decrease font-size */
   animation: fadeInOut 3s ease-in-out;
 }
 
 /* Notification Animation */
 @keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(10px); }
-  10% { opacity: 1; transform: translateY(0); }
-  90% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(10px); }
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .learning-paths-container {
-    padding: 10px;
+    padding: 5px;
+    /* Decrease padding */
   }
 
   .card {
@@ -108,5 +149,34 @@ textarea {
   .saved-plans-container {
     width: 100%;
     max-width: 100%;
+  }
+}
+
+/* Plans Container */
+.plans-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+/* Shadow Box */
+.shadow-box {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 48%;
+}
+
+/* Responsive Design for Plans Container and Shadow Box */
+@media (max-width: 768px) {
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .shadow-box {
+    width: 100%;
+    margin-bottom: 20px;
   }
 }

@@ -21,6 +21,8 @@ public class InternFeedbackController : ControllerBase
             return BadRequest("Invalid feedback data.");
         }
 
+        feedback.CalculateOverallRating();
+
         var existingFeedback = await _internFeedbacks
             .Find(f => f.InternId == feedback.InternId)
             .FirstOrDefaultAsync();
@@ -33,16 +35,13 @@ public class InternFeedbackController : ControllerBase
         {
             var update = Builders<InternFeedback>.Update
                 .Set(f => f.FullName, feedback.FullName)
-                
-                
                 .Set(f => f.MentorName, feedback.MentorName)
-                
-                
                 .Set(f => f.Ratings, feedback.Ratings)
                 .Set(f => f.Tasks, feedback.Tasks)
                 .Set(f => f.Recommendation, feedback.Recommendation)
                 .Set(f => f.AreasOfImprovement, feedback.AreasOfImprovement)
-                .Set(f => f.Feedback, feedback.Feedback);
+                .Set(f => f.Feedback, feedback.Feedback)
+                .Set(f => f.OverallRating, feedback.OverallRating);
 
             await _internFeedbacks.UpdateOneAsync(f => f.InternId == feedback.InternId, update);
         }
