@@ -14,7 +14,7 @@
       </div>
 
       <!-- Password Input -->
-      <div class="input-container">
+      <div class="input-container password-container">
         <label for="password">Password*</label>
         <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" id="password"
           [placeholder]="f.password.touched && f.password.errors?.['required'] ? 'Password is required' : 'Enter your password'"
