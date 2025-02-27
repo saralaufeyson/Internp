@@ -15,6 +15,7 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import { HeaderComponent } from './header/header.component';
 import { AuthService } from 'src/app/services/auth.service';
 import {BrandingComponent} from './sidebar/branding.component';
+import { AfterViewInit, Renderer2 } from '@angular/core';
 
 const MOBILE_VIEW = 'screen and (max-width: 768px)';
 const TABLET_VIEW = 'screen and (min-width: 769px) and (max-width: 1024px)';
@@ -79,7 +80,9 @@ export class FullComponent implements OnInit {
   }
 
   ngOnInit(): void {this.userRole = this.authService.getRole();
-    console.log('User Role:', this.userRole);}
+    console.log('User Role:', this.userRole);
+    
+  }
 
   ngOnDestroy() {
     this.layoutChangesSubscription.unsubscribe();
@@ -98,4 +101,3 @@ export class FullComponent implements OnInit {
   }
 }
 
- 

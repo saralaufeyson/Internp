@@ -48,9 +48,12 @@ export class SideLoginComponent {
 
           if (response && response.userId) {
             localStorage.setItem('userId', response.userId);
+            localStorage.setItem('user', response.username);
             localStorage.setItem('role', response.role);
+            console.log(JSON.stringify(response));
             console.log('User Role saved to localStorage:', response.role)
             console.log('User ID saved to localStorage:', response.userId);
+            console.log('User saved to localStorage:', response.username);
 
             // Redirect based on user role
             if (response.role === 'Intern') {
