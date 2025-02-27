@@ -78,7 +78,7 @@
   /* Adjust width */
   padding: 8px 16px;
   /* Reduced padding */
-  background: rgb(27, 62, 156);
+  background: #0095FF;
   color: white;
   border: none;
   border-radius: 5px;
@@ -89,11 +89,11 @@
 }
 
 .submit-button:hover {
-  background: rgb(27, 62, 156);
+  background: #0095FF;
 }
 
 .submit-button:disabled {
-  background: rgb(134, 159, 227);
+  background: #86d7e3;
   cursor: not-allowed;
 }
 
@@ -154,7 +154,7 @@
 
 .goal-label {
   font-weight: bold;
-  color: rgb(27, 62, 156);
+  color: #0095FF;
 }
 
 .goal-description,

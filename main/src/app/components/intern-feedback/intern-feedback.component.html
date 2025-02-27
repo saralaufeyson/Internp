@@ -6,24 +6,16 @@
     <div class="basic-info">
       <div class="form-row">
         <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <select id="fullName" formControlName="fullName" (change)="onInternSelect($event)">
+            <option *ngFor="let intern of interns" [value]="intern.username">{{intern.username}}</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="internId">Intern ID</label>
           <input id="internId" type="text" formControlName="internId">
         </div>
-        <div class="form-group">
-          <label for="fullName">Full Name</label>
-          <input id="fullName" type="text" formControlName="fullName">
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="projectBU">Delivery/Project/BU</label>
-          <input id="projectBU" type="text" formControlName="projectBU">
-        </div>
-        <div class="form-group">
-          <label for="skillSet">Skill Set</label>
-          <input id="skillSet" type="text" formControlName="skillSet">
-        </div>
+        
       </div>
 
       <div class="form-row">
@@ -31,22 +23,10 @@
           <label for="mentorName">Mentor Name</label>
           <input id="mentorName" type="text" formControlName="mentorName">
         </div>
-        <div class="form-group">
-          <label for="dmName">DM Name</label>
-          <input id="dmName" type="text" formControlName="dmName">
-        </div>
+
       </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="joiningDate">Date of Joining</label>
-          <input id="joiningDate" type="date" formControlName="joiningDate">
-        </div>
-        <div class="form-group">
-          <label for="validationPeriod">Validation Period</label>
-          <input id="validationPeriod" type="text" formControlName="validationPeriod">
-        </div>
-      </div>
+      
     </div>
 
     <!-- Performance Ratings -->

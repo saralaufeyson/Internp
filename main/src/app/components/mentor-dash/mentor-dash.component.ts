@@ -132,8 +132,8 @@ export class MentorDashComponent implements OnInit {
         labels: ['In Progress', 'Completed'],
         datasets: [{
           data: [this.inProgressPocs, this.completedPocs],
-          backgroundColor: ['#00e6e6', '#1B3E9C'],
-          hoverBackgroundColor: ['#00e6e6', '#1B3E9C']
+          backgroundColor: ['#00e6e6', '#0095FF'],
+          hoverBackgroundColor: ['#00e6e6', '#0095FF']
         }]
       },
       options: {
@@ -153,8 +153,8 @@ export class MentorDashComponent implements OnInit {
         datasets: [{
           label: 'Goal Count',
           data: goalCounts,
-          backgroundColor: '#1B3E9C',
-          borderColor: '#1B3E9C',
+          backgroundColor: '#0095FF',
+          borderColor: '#0095FF',
           borderWidth: 1
         }]
       },

@@ -33,12 +33,11 @@ public class InternFeedbackController : ControllerBase
         {
             var update = Builders<InternFeedback>.Update
                 .Set(f => f.FullName, feedback.FullName)
-                .Set(f => f.ProjectBU, feedback.ProjectBU)
-                .Set(f => f.SkillSet, feedback.SkillSet)
+                
+                
                 .Set(f => f.MentorName, feedback.MentorName)
-                .Set(f => f.DMName, feedback.DMName)
-                .Set(f => f.JoiningDate, feedback.JoiningDate)
-                .Set(f => f.ValidationPeriod, feedback.ValidationPeriod)
+                
+                
                 .Set(f => f.Ratings, feedback.Ratings)
                 .Set(f => f.Tasks, feedback.Tasks)
                 .Set(f => f.Recommendation, feedback.Recommendation)

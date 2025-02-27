@@ -34,7 +34,7 @@
 .card-header h3 {
   font-size: 1rem;
   /* Adjusted font size */
-  color: rgb(27, 62, 156);
+  color: #0095FF;
   margin-bottom: 10px;
 }
 
@@ -55,7 +55,7 @@
 
 /* Start Learning Button */
 .start-learning-btn {
-  background: rgb(27, 62, 156);
+  background: #0095FF;
   color: white;
   text-decoration: none;
   padding: 10px 15px;
@@ -66,14 +66,14 @@
 }
 
 .start-learning-btn:hover {
-  background: rgb(19, 45, 114);
+  background: #0095FF;
 }
 
 /* Add to Learning Path Button */
 .add-learning-path-btn {
   background: transparent;
-  color: rgb(27, 62, 156);
-  border: 2px solid rgb(27, 62, 156);
+  color: #0095FF;
+  border: 2px solid #0095FF;
   padding: 10px 15px;
   border-radius: 5px;
   font-size: 0.8rem;
@@ -83,7 +83,7 @@
 }
 
 .add-learning-path-btn:hover {
-  background: rgb(27, 62, 156);
+  background: #0095FF;
   color: white;
 }
 
@@ -107,7 +107,7 @@
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgb(27, 62, 156);
+  background-color: #0095FF;
   color: white;
   padding: 20px 40px;
   border-radius: 5px;

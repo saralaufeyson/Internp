@@ -11,7 +11,7 @@
 h2,
 h3,
 h4 {
-  color: #193b8c;
+  color: #0095FF;
 }
 
 /* Form Sections */
@@ -43,7 +43,7 @@ h4 {
 label {
   font-weight: bold;
   margin-bottom: 5px;
-  color: #193b8c;
+  color: #0095FF;
 }
 
 input,
@@ -92,7 +92,7 @@ textarea {
 }
 
 .rating-buttons button.selected {
-  background-color: #193b8c;
+  background-color: #0095FF;
   color: white;
   border: none;
 }
@@ -182,7 +182,7 @@ td {
 }
 
 th {
-  background-color: #193b8c;
+  background-color: #0095FF;
   color: white;
   padding: 10px;
   text-align: left;
@@ -194,7 +194,7 @@ td {
 
 /* Submit Button */
 .submit-btn {
-  background-color: #193b8c;
+  background-color: #0095FF;
   color: white;
   border: none;
   padding: 12px 20px;

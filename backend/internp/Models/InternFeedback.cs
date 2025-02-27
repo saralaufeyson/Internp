@@ -13,23 +13,10 @@ public class InternFeedback
     [BsonElement("fullName")]
     public string? FullName { get; set; }
 
-    [BsonElement("projectBU")]
-    public string? ProjectBU { get; set; }
-
-    [BsonElement("skillSet")]
-    public string? SkillSet { get; set; }
+ 
 
     [BsonElement("mentorName")]
     public string? MentorName { get; set; }
-
-    [BsonElement("dmName")]
-    public string? DMName { get; set; }
-
-    [BsonElement("joiningDate")]
-    public DateTime? JoiningDate { get; set; }
-
-    [BsonElement("validationPeriod")]
-    public string? ValidationPeriod { get; set; } = "6 Months";
 
     [BsonElement("ratings")]
     public PerformanceRatings Ratings { get; set; } = new();

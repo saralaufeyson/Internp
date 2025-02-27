@@ -34,7 +34,7 @@
 .learning-path-card h3 {
   font-size: 1rem;
   /* Further decrease font-size */
-  color: rgb(27, 62, 156);
+  color: #0095FF;
   margin-bottom: 8px;
   /* Decrease margin-bottom */
 }
@@ -58,7 +58,7 @@ textarea {
   display: block;
   margin: 15px auto;
   /* Decrease margin */
-  background: rgb(27, 62, 156);
+  background: #0095FF;
   color: white;
   text-decoration: none;
   padding: 8px 16px;
@@ -70,7 +70,12 @@ textarea {
 }
 
 .start-learning-btn:hover {
-  background: rgb(19, 45, 114);
+  background: #0095FF;
+}
+
+.text-center {
+  text-align: center !important;
+  font-size: 1.5rem;
 }
 
 .text-center {
@@ -94,7 +99,7 @@ textarea {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgb(27, 62, 156);
+  background-color: #0095FF;
   color: white;
   padding: 10px 20px;
   /* Decrease padding */

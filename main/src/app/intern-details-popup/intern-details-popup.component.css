@@ -55,5 +55,5 @@ button[mat-button] {
 }
 
 button[mat-button]:hover {
-    background-color: #0056b3; /* Darker background on hover */
+    background-color: #0095FF; /* Darker background on hover */
 }

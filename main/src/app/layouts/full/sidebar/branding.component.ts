@@ -7,15 +7,22 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule],
   template: `
     <div class="branding">
-      <a [routerLink]="['/']">
-        <img
-          src="./assets/images/logos/dark-logo.svg"
-          class="align-middle m-2"
-          alt="logo"
-        />
-      </a>
+      <img
+        src="./assets/images/logos/dark-logo.svg"
+        class="align-middle m-2 img-responsive"
+        alt="logo"
+      />
     </div>
   `,
+  styles: [`
+    .branding {
+      width: 100%;
+    }
+    .img-responsive {
+      max-width: 100%;
+      height: auto;
+    }
+  `]
 })
 export class BrandingComponent {
   constructor() {}

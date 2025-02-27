@@ -41,12 +41,16 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId') || '';
+    
 
     if (this.userId) {
       this.userService.getUserProfile(this.userId).subscribe(
         (data) => {
-          this.userProfile = data;
+            this.userProfile = data;
+            console.log('User Name:', this.userProfile.name);
+            
           this.userProfile.role = data.role || 'No role assigned';
+          
         },
         (error) => {
           console.error('Error fetching user profile:', error);

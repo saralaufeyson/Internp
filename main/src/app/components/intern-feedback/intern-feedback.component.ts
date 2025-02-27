@@ -13,6 +13,9 @@ import { HttpClient } from '@angular/common/http';
 export class InternFeedbackComponent {
   feedbackForm: FormGroup;
   apiUrl = 'http://localhost:5180/api/InternFeedback/submit'; // Replace with your actual backend URL
+  mentor = localStorage.getItem('user');
+  
+  
 
   ratingCriteria = [
     { key: 'domainKnowledge', label: 'Domain Knowledge' },
@@ -37,6 +40,7 @@ export class InternFeedbackComponent {
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.createForm();
+    
   }
 
   get taskForms() {
@@ -47,12 +51,9 @@ export class InternFeedbackComponent {
     this.feedbackForm = this.fb.group({
       internId: [''],
       fullName: [''],
-      projectBU: [''],
-      skillSet: [''],
+      
       mentorName: [''],
-      dmName: [''],
-      joiningDate: [''],
-      validationPeriod: ['6 Months'],
+      
       ratings: this.fb.group(
         this.ratingCriteria.reduce((acc, criteria) => ({
           ...acc,
@@ -71,7 +72,53 @@ export class InternFeedbackComponent {
       areasOfImprovement: [''],
       feedback: ['']
     });
-  }
+    this.loadInterns();
+    }
+
+    interns: any[] = [];
+
+    loadInterns() {
+    const mentorId = localStorage.getItem('userId');
+    console.log('Mentor:', this.mentor);
+    
+    // Retrieve mentor ID from local storage
+    if (mentorId) {
+      this.http.get(`http://localhost:5180/api/user/getUserProfile/${mentorId}`).subscribe({
+      next: (response: any) => {
+        const mentorName = response.username;
+        localStorage.setItem('userName', mentorName);
+      },
+      error: (error) => {
+        console.error('Error retrieving mentor details:', error);
+      }
+      });
+    }
+    if (mentorId) {
+      this.http.get(`http://localhost:5180/api/mentor/${mentorId}/interns`).subscribe({
+      next: (response: any) => {
+        this.interns = response;
+      },
+      error: (error) => {
+        console.error('Error loading interns:', error);
+      }
+      });
+    } else {
+      console.error('Mentor ID not found in local storage');
+    }
+    }
+
+    onInternSelect(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const internId = selectElement.value;
+    const selectedIntern = this.interns.find(intern => intern.username === internId);
+    if (selectedIntern) {
+      this.feedbackForm.patchValue({
+        internId: selectedIntern.id,
+        fullName: selectedIntern.username,
+        mentorName: this.mentor, // Use the mentor variable from loadInterns function
+      });
+    }
+    }
 
   createMonthlyTaskGroup() {
     return this.fb.group({
