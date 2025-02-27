@@ -29,6 +29,7 @@
 .login-header img {
   width: 350px;
   margin-bottom: 20px;
+  margin-left: -20px;
   /* Add margin below the logo */
 }
 
@@ -79,6 +80,16 @@ button:hover {
 
 button:hover {
   background-color: #1c60bd;
+}
+
+button[type="button"] {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Register Link */

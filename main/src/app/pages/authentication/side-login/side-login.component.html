@@ -16,9 +16,12 @@
       <!-- Password Input -->
       <div class="input-container">
         <label for="password">Password*</label>
-        <input id="password" formControlName="password" type="password"
+        <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" id="password"
           [placeholder]="f.password.touched && f.password.errors?.['required'] ? 'Password is required' : 'Enter your password'"
           [ngClass]="{'is-invalid': f.password.touched && f.password.invalid, 'error-text': f.password.touched && f.password.invalid}" />
+        <button type="button" (click)="togglePasswordVisibility()">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
       </div>
 
       <!-- Remember Me -->
