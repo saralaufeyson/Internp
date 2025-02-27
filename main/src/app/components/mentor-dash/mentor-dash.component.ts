@@ -21,6 +21,7 @@ export class MentorDashComponent implements OnInit {
   internLearningPaths: { [key: string]: any[] } = {};
   learningPaths: any[] = [];
   userId: string = localStorage.getItem('userId') || '';
+  selectedIntern: any;
 
   constructor(private http: HttpClient, private dialog: MatDialog) {}
 
@@ -30,6 +31,7 @@ export class MentorDashComponent implements OnInit {
     this.getInterns();
     this.getInternGoals();
     this.getInternLearningPaths();
+
   }
 
   getMentorGoals(): void {
@@ -94,7 +96,7 @@ export class MentorDashComponent implements OnInit {
   }
 
   getInternLearningPaths(): void {
-    this.http.get<any[]>('http://localhost:5180/api/Mentor/67aefbdd2145678ce80127ab/interns-learning-paths').subscribe(
+    this.http.get<any[]>(`http://localhost:5180/api/Mentor/${this.userId}/interns-learning-paths`).subscribe(
       (response) => {
         this.internLearningPaths = response.reduce((acc, path) => {
           if (!acc[path.userId]) {
@@ -117,7 +119,10 @@ export class MentorDashComponent implements OnInit {
       data: { internId: intern.id }  // Pass internId to the popup
     });
   }
-  
+
+  selectIntern(intern: any): void {
+    this.selectedIntern = intern;
+  }
 
   createPieChart(): void {
     const ctx = document.getElementById('pocPieChart') as HTMLCanvasElement;

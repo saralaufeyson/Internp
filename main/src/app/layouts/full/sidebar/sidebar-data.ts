@@ -84,25 +84,13 @@ export const navItems: NavItem[] = [
     roles: ['mentor']
   },
   {
-    displayName: 'Intern Reviews',
+    displayName: 'Intern Evaluation Summary',
     iconName: 'users',
     route: '/dashboard/admin-reviews',
     roles: ['admin']
 
   },
-  {
-    navCap: 'Auth',
-  },
-  {
-    displayName: 'Login',
-    iconName: 'login',
-    route: '/authentication/login',
-  },
-  {
-    displayName: 'Register',
-    iconName: 'user-plus',
-    route: '/authentication/register',
-  },
+  
 ];
 export const internNavItems: NavItem[] = navItems.filter(item => item.roles?.includes('intern'));
 export const adminNavItems: NavItem[] = navItems.filter(item => item.roles?.includes('admin'));

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PocService } from 'src/app/services/poc.service';
 
 @Component({
   selector: 'app-poc-projects',
@@ -17,7 +17,7 @@ export class PocProjectsComponent implements OnInit {
   userId: string = ''; // Get the logged-in user's ID here (e.g., from LocalStorage or an AuthService)
   errorMessage: string = '';  // For storing error messages
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private pocService: PocService) {
     this.pocForm = this.fb.group({
       projectName: ['', Validators.required],
       description: ['', Validators.required],
@@ -28,75 +28,63 @@ export class PocProjectsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Get the logged-in user's ID (replace with your actual logic to get the user ID)
-    this.userId = localStorage.getItem('userId') || ''; // Assume the user ID is saved in localStorage
+    this.userId = localStorage.getItem('userId') || '';
 
-    //Check if userId is available, if not, log an error or handle the missing user ID scenario
     if (this.userId) {
-      // Load the user's PoC Projects only if userId is valid
       this.loadPocProjects();
     } else {
       console.error('No user ID found in localStorage. User is not logged in.');
       this.errorMessage = 'No user ID found. Please log in.';
-      // Optionally, you could redirect to a login page or show a warning message
     }
   }
 
-  // Fetch user's PoC Projects
   loadPocProjects() {
-    this.http.get(`http://localhost:5180/api/userdata/getPocProjects/${this.userId}`)
-      .subscribe(
-        (response: any) => {
-          console.log("PoC Projects fetched:", response);
-          this.pocs = response || [];
-
-          // Log each project to check if `_id` is present
-         
-        },
-        (error) => {
-          console.error('Error fetching PoC Projects', error);
-        }
-      );
+    this.pocService.getPocProjects(this.userId).subscribe(
+      (response: any) => {
+        console.log("PoC Projects fetched:", response);
+        this.pocs = response || [];
+      },
+      (error) => {
+        console.error('Error fetching PoC Projects', error);
+      }
+    );
   }
 
-
-  // Handle form submission
   onSubmit() {
     if (this.pocForm.valid) {
       const newPoc = this.pocForm.value;
-      console.log('Form Data:', newPoc); // Log form data
+      console.log('Form Data:', newPoc);
 
-      // Adjust the request to match backend expectations (projectName instead of title)
-      this.http.post(`http://localhost:5180/api/userdata/addPocProject`, {
-        userId: this.userId,  // Use actual userId instead of hardcoding
-        projectName: newPoc.projectName,  // 'title' changed to 'projectName'
+      this.pocService.addPocProject({
+        userId: this.userId,
+        projectName: newPoc.projectName,
         description: newPoc.description,
         status: newPoc.status,
         startDate: newPoc.startDate,
-        endDate: newPoc.status === 'completed' ? newPoc.endDate : null  // endDate is only set if the status is completed
-      }, { responseType: 'text' })  // Add responseType: 'text' to handle plain text response
-        .subscribe(
-          (response: string) => {
-            console.log('PoC Project added successfully', response);
-            this.pocs.push({
-              ...newPoc,
-              endDate: newPoc.status === 'completed' ? newPoc.endDate : null
-            });
-            this.pocForm.reset({
-              status: 'inProgress',
-              startDate: '',
-              endDate: ''
-            });
-          },
-          (error) => {
-            console.error('Error adding PoC Project', error);
-            this.errorMessage = 'Error adding PoC Project. Please try again later.';
-          }
-        );
+        endDate: newPoc.status === 'completed' ? newPoc.endDate : null
+      }).subscribe(
+        (response: string) => {
+          console.log('PoC Project added successfully', response);
+          this.pocs.push({
+            ...newPoc,
+            endDate: newPoc.status === 'completed' ? newPoc.endDate : null
+          });
+          this.pocForm.reset({
+            status: 'inProgress',
+            startDate: '',
+            endDate: ''
+          });
+        },
+        (error) => {
+          console.error('Error adding PoC Project', error);
+          this.errorMessage = 'Error adding PoC Project. Please try again later.';
+        }
+      );
     } else {
       this.errorMessage = 'Please fill out the form correctly before submitting.';
     }
   }
+
   deletePocProject(projectId: string): void {
     console.log("Attempting to delete PoC Project with ID:", projectId);
 
@@ -110,37 +98,35 @@ export class PocProjectsComponent implements OnInit {
       return;
     }
 
-    this.http.delete(`http://localhost:5180/api/userdata/deletePocProject/${projectId}`)
-      .subscribe({
-        next: () => {
-          console.log('PoC Project deleted successfully');
-          this.pocs = this.pocs.filter(poc => poc._id !== projectId);
-        },
-        error: (error) => {
-          console.error('Error deleting PoC Project', error);
-          this.errorMessage = 'Error deleting PoC Project. Please try again later.';
-        }
-      });
+    this.pocService.deletePocProject(projectId).subscribe({
+      next: () => {
+        console.log('PoC Project deleted successfully');
+        this.pocs = this.pocs.filter(poc => poc._id !== projectId);
+      },
+      error: (error) => {
+        console.error('Error deleting PoC Project', error);
+        this.errorMessage = 'Error deleting PoC Project. Please try again later.';
+      }
+    });
   }
 
   updatePocStatus(projectId: string, status: string, endDate: string | null) {
     const updatedPoc = { status, endDate };
-    this.http.put(`http://localhost:5180/api/userdata/updatePocProject/${projectId}`, updatedPoc)
-      .subscribe(
-        (response: any) => {
-          console.log('PoC Project status updated successfully', response);
-          const poc = this.pocs.find(p => p._id === projectId);
-          if (poc) {
-            poc.status = status;
-            poc.endDate = status === 'completed' ? endDate : null;
-            poc.isEditing = false; // Close the edit box
-          }
-        },
-        (error) => {
-          console.error('Error updating PoC Project status', error);
-          this.errorMessage = 'Error updating PoC Project status. Please try again later.';
+    this.pocService.updatePocProject(projectId, updatedPoc).subscribe(
+      (response: any) => {
+        console.log('PoC Project status updated successfully', response);
+        const poc = this.pocs.find(p => p._id === projectId);
+        if (poc) {
+          poc.status = status;
+          poc.endDate = status === 'completed' ? endDate : null;
+          poc.isEditing = false; // Close the edit box
         }
-      );
+      },
+      (error) => {
+        console.error('Error updating PoC Project status', error);
+        this.errorMessage = 'Error updating PoC Project status. Please try again later.';
+      }
+    );
   }
 
   editPoc(poc: any) {

@@ -5,35 +5,45 @@
   <!-- Mentees Section -->
   <div class="card">
     <h1>Your Mentees</h1>
-    <div *ngIf="interns.length > 0">
-      <div *ngFor="let intern of interns" class="card">
-        <h2>{{ intern.username }}</h2> <i class="bi bi-person large-icon" (click)="openInternDetails(intern)"></i>
-        <p>{{ intern.email }}</p>
-        <div *ngIf="internLearningPaths[intern.id] && internLearningPaths[intern.id].length > 0">
-          <h3>Learning Paths</h3>
-          <div class="learning-paths-grid">
-            <div *ngFor="let path of internLearningPaths[intern.id]" class="learning-path-card">
-              <h4>{{ path.title }}</h4>
-              <p>{{ path.description }}</p>
-              <a [href]="path.link" target="_blank">View Course</a>
-              <div>
-                <label>Subtopics:</label>
-                <ul>
-                  <li *ngFor="let subtopic of path.subtopics">
-                    <input type="checkbox" [checked]="subtopic.completed" disabled /> {{ subtopic.name }}
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <label>Progress:</label>
-                <progress [value]="path.progress" max="100"></progress>
-                {{ path.progress.toFixed(1) }}%
+    <div class="tabs">
+      <ul class="nav nav-tabs">
+        <li *ngFor="let intern of interns" class="nav-item">
+          <a class="nav-link" [class.active]="selectedIntern === intern" (click)="selectIntern(intern)">
+            {{ intern.username }}
+          </a>
+        </li>
+      </ul>
+      <div *ngIf="selectedIntern" class="tab-content">
+        <div class="tab-pane active">
+          <h2>{{ selectedIntern.username }}</h2>
+          <p>{{ selectedIntern.email }}</p>
+          <div *ngIf="internLearningPaths[selectedIntern.id] && internLearningPaths[selectedIntern.id].length > 0">
+            <h3>Learning Paths</h3>
+            <div class="learning-paths-grid">
+              <div *ngFor="let path of internLearningPaths[selectedIntern.id]" class="learning-path-card">
+                <h4>{{ path.title }}</h4>
+                <p>{{ path.description }}</p>
+                <a [href]="path.link" target="_blank">View Course</a>
+                <div>
+                  <label>Subtopics:</label>
+                  <ul class="no-bullets">
+                    <li *ngFor="let subtopic of path.subtopics">
+                      <span *ngIf="subtopic.completed" class="tick-mark">&#10003;</span>
+                      <span *ngIf="!subtopic.completed" class="hollow-circle">&#9675;</span> {{ subtopic.name }}
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <label>Progress:</label>
+                  <progress [value]="path.progress" max="100"></progress>
+                  {{ path.progress.toFixed(1) }}%
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div *ngIf="!internLearningPaths[intern.id]?.length">
-          <p>No learning paths found</p>
+          <div *ngIf="!internLearningPaths[selectedIntern.id]?.length">
+            <p>No learning paths found</p>
+          </div>
         </div>
       </div>
     </div>
@@ -41,6 +51,19 @@
       <p class="error-message">No interns found</p>
     </div>
   </div>
+
+  <style>
+    .no-bullets {
+      list-style-type: none;
+      padding: 0;
+    }
+    .tick-mark {
+      color: green;
+    }
+    .hollow-circle {
+      color: red;
+    }
+  </style>
 
   <!-- Mentor Goals Section -->
   <div class="card">
