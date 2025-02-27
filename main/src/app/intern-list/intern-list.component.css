@@ -12,7 +12,7 @@
 /* Table Title Styling */
 .intern-list-title {
   text-align: center;
-  color: rgb(27, 62, 156);
+  color: #0095FF;
   /* Dark blue */
   margin-bottom: 20px;
   font-size: 2rem;
@@ -43,7 +43,7 @@
 
 /* Header Styling */
 .intern-table th {
-  background: rgb(27, 62, 156);
+  background: #0095FF;
   /* Blue header */
   color: white;
   padding: 15px;

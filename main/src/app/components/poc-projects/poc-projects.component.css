@@ -51,7 +51,7 @@ textarea {
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: rgb(27, 62, 156);
+  border-color: #0095FF;
   outline: none;
 }
 
@@ -76,11 +76,11 @@ button {
 }
 
 button:hover {
-  background: rgb(27, 62, 156);
+  background: #0095FF;
 }
 
 button:disabled {
-  background: rgb(134, 159, 227);
+  background: #86d7e3;
   cursor: not-allowed;
 }
 

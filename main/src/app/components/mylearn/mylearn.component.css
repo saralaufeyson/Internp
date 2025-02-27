@@ -21,7 +21,7 @@
 
 .learning-status-container h2 {
     font-size: 1.8rem;
-    color: rgb(27, 62, 156);
+    color: #0095FF;
     margin-bottom: 20px;
 }
 
@@ -50,7 +50,7 @@
 
 /* Card Header */
 .card-header {
-    background: rgb(27, 62, 156);
+    background: #0095FF;
     color: white;
     padding: 15px;
     font-size: 1.2rem;
@@ -71,13 +71,13 @@
 }
 
 .card-body p strong {
-    color: rgb(27, 62, 156);
+    color: #0095FF;
 }
 
 /* Start Learning Button */
 .card-body .btn {
     display: inline-block;
-    background: rgb(27, 62, 156);
+    background: #0095FF;
     color: white;
     text-decoration: none;
     padding: 10px 15px;
@@ -87,7 +87,7 @@
 }
 
 .card-body .btn:hover {
-    background: rgb(19, 45, 114);
+    background: #132d72;
 }
 
 /* Adjust the remove button to use Bootstrap styles */

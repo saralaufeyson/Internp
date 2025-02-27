@@ -25,7 +25,7 @@ body {
 }
 
 .mentor-table th {
-  background-color: #193b8c;
+  background-color: #0095FF;
   color: white;
   padding: 12px;
   text-align: left;
@@ -66,7 +66,7 @@ body {
 
 /* Button Styling */
 .assign-btn {
-  background-color: rgb(27, 62, 156);
+  background-color: #0095FF;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -99,6 +99,6 @@ body {
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 15px;
-  color: rgb(27, 62, 156);
+  color: #0095FF;
   padding-left: 10px;
 }

@@ -14,7 +14,7 @@
   /* Header Style */
   h4 {
     font-size: 1.5rem;
-    color: rgb(27, 62, 156);
+    color: #0095FF;
     margin-bottom: 20px;
     text-align: center;
     text-transform: uppercase; /* Add emphasis to header */
@@ -35,7 +35,7 @@
   
   /* Edit Button Styling */
   button.btn-primary {
-    background: rgb(27, 62, 156);
+    background: #0095FF;
     color: white;
     padding: 12px 18px; /* Slightly bigger button */
     border-radius: 5px;
@@ -48,7 +48,7 @@
   }
   
   button.btn-primary:hover {
-    background: rgb(19, 45, 114);
+    background: #132d72;
   }
   
   /* Form Styling */
@@ -75,7 +75,7 @@
   }
   
   input.form-control:focus {
-    border-color: rgb(27, 62, 156);
+    border-color: #0095FF;
     outline: none;
     background-color: #fff; /* White background on focus */
   }
@@ -94,7 +94,7 @@
   
   /* Submit Button */
   button[type="submit"].btn-success {
-    background: rgb(27, 62, 156);
+    background: #0095FF;
     color: white;
     padding: 12px 18px;
     border-radius: 5px;
@@ -105,14 +105,14 @@
   }
   
   button[type="submit"].btn-success:hover {
-    background: rgb(19, 45, 114);
+    background: #132d72;
   }
   
   /* Secondary Button */
   button[type="button"].btn-secondary {
     background: transparent;
-    color: rgb(27, 62, 156);
-    border: 2px solid rgb(27, 62, 156);
+    color: #0095FF;
+    border: 2px solid #0095FF;
     padding: 10px 15px;
     border-radius: 5px;
     font-size: 1rem;
@@ -122,7 +122,7 @@
   }
   
   button[type="button"].btn-secondary:hover {
-    background: rgb(27, 62, 156);
+    background: #0095FF;
     color: white;
   }
   

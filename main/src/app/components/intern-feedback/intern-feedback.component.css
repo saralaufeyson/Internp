@@ -11,7 +11,7 @@
 h2,
 h3,
 h4 {
-  color: #193b8c;
+  color: #0095FF;
 }
 
 /* Form Sections */
@@ -43,7 +43,7 @@ h4 {
 label {
   font-weight: bold;
   margin-bottom: 5px;
-  color: #193b8c;
+  color: #0095FF;
 }
 
 input,
@@ -92,7 +92,7 @@ textarea {
 }
 
 .rating-buttons button.selected {
-  background-color: #193b8c;
+  background-color: #0095FF;
   color: white;
   border: none;
 }
@@ -105,15 +105,65 @@ textarea {
 .rating-slider {
   display: flex;
   align-items: center;
-  gap: 5px; /* Further adjusted gap to accommodate longer text */
+  gap: 5px;
+  /* Further adjusted gap to accommodate longer text */
 }
 
 .rating-slider input[type="range"] {
   flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  /* Further adjusted height */
+  border-radius: 5px;
+  background: linear-gradient(to right, red 0%, orange 25%, yellow 50%, lightgreen 75%, darkgreen 100%);
+  outline: none;
+  transition: background 0.3s ease-in-out;
+}
+
+.rating-slider input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(to right, red 0%, orange 25%, yellow 50%, lightgreen 75%, darkgreen 100%);
+}
+
+.rating-slider input[type="range"]::-moz-range-track {
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(to right, red 0%, orange 25%, yellow 50%, lightgreen 75%, darkgreen 100%);
+}
+
+.rating-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  /* Further adjusted width */
+  height: 12px;
+  /* Further adjusted height */
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  margin-top: -2px;
+  /* Moved the thumb down */
+}
+
+.rating-slider input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  /* Further adjusted width */
+  height: 12px;
+  /* Further adjusted height */
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  margin-top: -2px;
+  /* Moved the thumb down */
 }
 
 .rating-slider span {
-  min-width: 140px; /* Further adjusted width to accommodate longer text */
+  min-width: 140px;
+  /* Further adjusted width to accommodate longer text */
   text-align: center;
 }
 
@@ -132,7 +182,7 @@ td {
 }
 
 th {
-  background-color: #193b8c;
+  background-color: #0095FF;
   color: white;
   padding: 10px;
   text-align: left;
@@ -144,7 +194,7 @@ td {
 
 /* Submit Button */
 .submit-btn {
-  background-color: #193b8c;
+  background-color: #0095FF;
   color: white;
   border: none;
   padding: 12px 20px;
