@@ -1,63 +1,66 @@
-<div class="learning-paths-container">
-    <h2 class="text-center">Intern Development Plans</h2>
-  
-    <div class="card">
-      <div class="learning-path-card">
-        <h3>6 Months Plan</h3>
-        <textarea [(ngModel)]="sixMonthPlan" class="form-control" placeholder="Enter your 6-month plan"></textarea>
+<div class="plans-container">
+  <div class="shadow-box">
+    <div class="learning-paths-container">
+      <h2 class="text-center">Intern Development Plans</h2>
+
+      <div class="card">
+        <div class="learning-path-card">
+          <h3>6 Months Plan</h3>
+          <textarea [(ngModel)]="sixMonthPlan" class="form-control" placeholder="Enter your 6-month plan"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="learning-path-card">
+          <h3>1 Year Plan</h3>
+          <textarea [(ngModel)]="oneYearPlan" class="form-control" placeholder="Enter your 1-year plan"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="learning-path-card">
+          <h3>3 Years Plan</h3>
+          <textarea [(ngModel)]="threeYearPlan" class="form-control" placeholder="Enter your 3-year plan"></textarea>
+        </div>
       </div>
     </div>
-  
-    <div class="card">
-      <div class="learning-path-card">
-        <h3>1 Year Plan</h3>
-        <textarea [(ngModel)]="oneYearPlan" class="form-control" placeholder="Enter your 1-year plan"></textarea>
-      </div>
-    </div>
-  
-    <div class="card">
-      <div class="learning-path-card">
-        <h3>3 Years Plan</h3>
-        <textarea [(ngModel)]="threeYearPlan" class="form-control" placeholder="Enter your 3-year plan"></textarea>
-      </div>
-    </div>
+
+    <button class="start-learning-btn mt-3" (click)="submitPlan()">Save Plans</button>
   </div>
-  
-  <button class="start-learning-btn mt-3" (click)="submitPlan()">Save Plans</button>
-  
-  <hr>
-  
-  <h3 class="mt-4 text-center">Your Saved Plans</h3>
-  
-  <div *ngIf="savedPlans; else noPlans" class="saved-plans-container">
-    <div class="card">
-      <div class="learning-path-card">
-        <h3>6 Months Plan</h3>
-        <p>{{ savedPlans.sixMonthPlan }}</p>
+
+  <div class="shadow-box">
+    <h3 class="mt-4 text-center">Your Saved Plans</h3>
+
+    <div *ngIf="savedPlans; else noPlans" class="saved-plans-container">
+      <div class="card">
+        <div class="learning-path-card">
+          <h3>6 Months Plan</h3>
+          <p>{{ savedPlans.sixMonthPlan }}</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="learning-path-card">
+          <h3>1 Year Plan</h3>
+          <p>{{ savedPlans.oneYearPlan }}</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="learning-path-card">
+          <h3>3 Years Plan</h3>
+          <p>{{ savedPlans.threeYearPlan }}</p>
+        </div>
       </div>
     </div>
-  
-    <div class="card">
-      <div class="learning-path-card">
-        <h3>1 Year Plan</h3>
-        <p>{{ savedPlans.oneYearPlan }}</p>
-      </div>
-    </div>
-  
-    <div class="card">
-      <div class="learning-path-card">
-        <h3>3 Years Plan</h3>
-        <p>{{ savedPlans.threeYearPlan }}</p>
-      </div>
-    </div>
+
+    <ng-template #noPlans>
+      <p class="text-muted text-center">No plans available. Start adding your goals above!</p>
+    </ng-template>
   </div>
-  
-  <ng-template #noPlans>
-    <p class="text-muted text-center">No plans available. Start adding your goals above!</p>
-  </ng-template>
-  
-  <!-- Notification -->
-  <div *ngIf="showNotification" class="notification">
-    ✅ Plans saved successfully!
-  </div>
-  
+</div>
+
+<!-- Notification -->
+<div *ngIf="showNotification" class="notification">
+  ✅ Plans saved successfully!
+</div>

@@ -1,27 +1,33 @@
 .card {
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 20px;
+  padding: 10px;
+  /* Reduced padding */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  margin: 20px;
+  margin: 10px;
+  /* Reduced margin */
   display: inline-block;
   max-width: 100%;
   text-align: center;
 }
 
 .card h1 {
-  font-size: 24px;
-  margin-bottom: 16px;
+  font-size: 18px;
+  /* Reduced font size */
+  margin-bottom: 8px;
+  /* Reduced margin */
 }
 
-.card + .card {
+.card+.card {
   margin-top: 20px;
 }
 
 .card p {
-  font-size: 18px;
-  margin: 8px 0;
+  font-size: 14px;
+  /* Reduced font size */
+  margin: 4px 0;
+  /* Reduced margin */
   color: rgb(28, 36, 27);
 }
 
@@ -29,21 +35,26 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
+  /* Reduced gap */
 }
 
 .dashboard-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  /* Reduced margin */
 }
 
 .dashboard-header h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
+  font-size: 20px;
+  /* Reduced font size */
+  margin-bottom: 5px;
+  /* Reduced margin */
 }
 
 .dashboard-header h3 {
-  font-size: 20px;
+  font-size: 14px;
+  /* Reduced font size */
   font-style: italic;
   color: #555;
 }
@@ -52,12 +63,15 @@
   background-color: rgb(27, 62, 156);
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 5px 10px;
+  /* Reduced padding */
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
+  /* Reduced font size */
   transition: background-color 0.3s ease;
 }
+
 
 .continue-learning-button a {
   color: white;
@@ -66,4 +80,31 @@
 
 .continue-learning-button:hover {
   background-color: rgb(20, 46, 116);
+}
+
+.pie-chart {
+  width: 80px;
+  /* Further reduced width */
+  height: 80px;
+  /* Further reduced height */
+  margin: 0 auto;
+}
+
+.goals-count-card {
+  width: 100%;
+  max-width: 300px;
+  /* Adjust the width as needed */
+  margin: 10px auto;
+}
+
+.charts-box {
+  margin-left: px;
+}
+
+.continue-learning-card {
+  height: 100%;
+  padding: 5px;
+  /* Adjust padding to fit the text */
+  margin: 10px;
+  /* Adjust margin if necessary */
 }
