@@ -34,7 +34,7 @@
 .card-header h3 {
   font-size: 1rem;
   /* Adjusted font size */
-  color: #474747;
+  color: #000000;
   margin-bottom: 10px;
 }
 
@@ -72,7 +72,7 @@
 /* Add to Learning Path Button */
 .add-learning-path-btn {
   background: transparent;
-  color: #D2E5F6;
+  color: #000000;
   border: 2px solid #D2E5F6;
   padding: 10px 15px;
   border-radius: 5px;

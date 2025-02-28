@@ -43,7 +43,7 @@ h4 {
 label {
   font-weight: bold;
   margin-bottom: 5px;
-  color: #0095FF;
+  color: #000000;
 }
 
 input,
@@ -63,7 +63,7 @@ textarea {
 /* Performance Ratings */
 .rating-scale {
   font-size: 14px;
-  color: #555;
+  color: #000;
   margin-bottom: 10px;
 }
 
@@ -92,13 +92,13 @@ textarea {
 }
 
 .rating-buttons button.selected {
-  background-color: #0095FF;
-  color: white;
+  background-color: #D2E5F6;
+  color: black;
   border: none;
 }
 
 .rating-buttons button:hover {
-  background-color: #0056b3;
+  background-color: #cee5f9;
   color: white;
 }
 
@@ -182,7 +182,7 @@ td {
 }
 
 th {
-  background-color: #0095FF;
+  background-color: #474747;
   color: white;
   padding: 10px;
   text-align: left;
@@ -194,8 +194,8 @@ td {
 
 /* Submit Button */
 .submit-btn {
-  background-color: #0095FF;
-  color: white;
+  background-color: #D2E5F6;
+  color: black;
   border: none;
   padding: 12px 20px;
   cursor: pointer;
@@ -207,5 +207,5 @@ td {
 }
 
 .submit-btn:hover {
-  background-color: #0056b3;
+  background-color: #cee6ff;
 }

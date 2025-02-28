@@ -15,18 +15,14 @@
           <label for="internId">Intern ID</label>
           <input id="internId" type="text" formControlName="internId" readonly>
         </div>
-        
-            </div>
+      </div>
 
-            <div class="form-row">
+      <div class="form-row">
         <div class="form-group">
           <label for="mentorName">Mentor Name</label>
           <input id="mentorName" type="text" formControlName="mentorName" readonly>
         </div>
-
-            </div>
-
-      
+      </div>
     </div>
 
     <!-- Performance Ratings -->
@@ -42,11 +38,8 @@
             <span>{{ getRatingText(feedbackForm.get('ratings')?.get(rating.key)?.value) }}</span>
           </div>
         </div>
+        <span class="overall-rating">Overall Rating: {{ feedbackForm.get('ratings')?.get('overallRating')?.value | number: '1.1-1' }}</span>
       </div>
-    </div>
-
-    <div class="overall-rating">
-      <h3>Overall Performance Rating: {{ overallRating | number: '1.1-1' }}</h3>
     </div>
 
     <!-- Monthly Tasks -->
@@ -97,6 +90,7 @@
               </select>
             </div>
           </div>
+          <hr> <!-- Add horizontal line after each task -->
         </div>
       </div>
       <button type="button" (click)="addTask()">Add New Task</button>

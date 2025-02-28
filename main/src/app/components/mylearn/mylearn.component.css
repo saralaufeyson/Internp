@@ -16,7 +16,7 @@
 .learning-status-container h3 {
     font-size: 1.2rem;
     /* Further reduced font size */
-    color: rgb(242, 242, 243);
+    color:black;
     margin-bottom: 20px;
 }
 
@@ -54,7 +54,7 @@
 /* Card Header */
 .card-header {
     background: #D2E5F6;
-    color: #474747;
+    color: black;
     padding: 15px;
     font-size: 0.7rem;
     /* Further reduced font size */
@@ -76,7 +76,7 @@
 }
 
 .card-body p strong {
-    color: #474747;
+    color: #000000;
 }
 
 /* Subtopics */
@@ -89,7 +89,7 @@
 .card-body .btn {
     display: inline-block;
     background: #D2E5F6;
-    color: white;
+    color: black;
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 5px;
