@@ -29,5 +29,8 @@ namespace YourNamespace.Models
 
         [BsonElement("profileImage")]
         public byte[]? ProfileImage { get; set; }
+
+        [BsonElement("about")]
+        public string? About { get; set; }
     }
 }

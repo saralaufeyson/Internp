@@ -747,5 +747,42 @@ namespace YourNamespace.Controllers
 
             return File(user.ProfileImage, "image/jpeg"); // Assuming the image is in JPEG format
         }
+
+        [HttpPost("updateAboutSection/{userId}")]
+        public async Task<IActionResult> UpdateAboutSection(string userId, [FromBody] JsonElement requestBody)
+        {
+            if (!ObjectId.TryParse(userId, out var objectId))
+            {
+                return BadRequest(new { message = "Invalid user ID format." });
+            }
+
+            if (!requestBody.TryGetProperty("about", out JsonElement aboutElement) || aboutElement.ValueKind != JsonValueKind.String)
+            {
+                return BadRequest(new { message = "Invalid about section value." });
+            }
+
+            var about = aboutElement.GetString();
+            var update = Builders<User>.Update.Set(u => u.About, about);
+            var result = await _userCollection.UpdateOneAsync(u => u.Id == userId, update);
+
+            if (result.ModifiedCount > 0)
+            {
+                return Ok(new { message = "About section updated successfully." });
+            }
+
+            return NotFound(new { message = "User not found." });
+        }
+
+        [HttpGet("getAboutSection/{userId}")]
+        public async Task<IActionResult> GetAboutSection(string userId)
+        {
+            var user = await _userCollection.Find(u => u.Id == userId).FirstOrDefaultAsync();
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+
+            return Ok(new { about = user.About });
+        }
     }
 }

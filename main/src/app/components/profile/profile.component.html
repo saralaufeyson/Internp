@@ -19,11 +19,33 @@
     </div>
   </div>
 
-  <div class="section-container">
-    <app-user-details [userName]="userProfile.name"></app-user-details>
+  <!-- Tab Bar -->
+  <div class="tab-bar">
+    <button [class.active]="activeTab === 'about'" (click)="setActiveTab('about')">About</button>
+    <button [class.active]="activeTab === 'details'" (click)="setActiveTab('details')">Details</button>
+    <button [class.active]="activeTab === 'experience'" (click)="setActiveTab('experience')">Experience</button>
+    <button [class.active]="activeTab === 'skills'" (click)="setActiveTab('skills')">Skills</button>
   </div>
 
-  
-
-  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <!-- Tab Content -->
+  <div class="tab-content">
+    <div *ngIf="activeTab === 'about'">
+      <h4>About</h4>
+      <textarea [(ngModel)]="userProfile.about" rows="5" cols="50" placeholder="Enter about information..."></textarea>
+      <button (click)="saveAboutSection()">Save</button>
+      <div *ngIf="notificationMessage" class="notification-message">{{ notificationMessage }}</div>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    </div>
+    <div *ngIf="activeTab === 'details'">
+      <app-user-details [userName]="userProfile.name"></app-user-details>
+    </div>
+    <div *ngIf="activeTab === 'experience'">
+      <h4>Experience</h4>
+      <p>{{ userProfile.experience }}</p>
+    </div>
+    <div *ngIf="activeTab === 'skills'">
+      <h4>Skills</h4>
+      <p>{{ userProfile.skills }}</p>
+    </div>
+  </div>
 </div>
