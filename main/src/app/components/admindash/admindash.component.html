@@ -1,24 +1,25 @@
 <div class="admin-dashboard">
   <h2>Insight HQ</h2>
- 
-<div class="card">
+
+  <div class="card">
     <h1>Proof of Concepts </h1>
     <div *ngIf="totalPocs !== undefined">
-        <div class="card">
-            <p>Total PoCs: {{ totalPocs }}</p>
-        </div>
-        <div class="card">
-            <p>In Progress: {{ inProgressPocs }}</p>
-        </div>
-        <div class="card">
-            <p>Completed: {{ completedPocs }}</p>
-        </div>
+      <div class="card">
+        <p>Total PoCs: {{ totalPocs }}</p>
+      </div>
+      <div class="card">
+        <p>In Progress: {{ inProgressPocs }}</p>
+      </div>
+      <div class="card">
+        <p>Completed: {{ completedPocs }}</p>
+      </div>
     </div>
     <div *ngIf="totalPocs === undefined">
-        <p style="color: red;">Something's wrong... try reloading</p>
+      <p style="color: red;">Something's wrong... try reloading</p>
     </div>
-</div>
-<div class="card">
+  </div>
+
+  <div class="card">
     <h1>OverAll Goal Count</h1>
     <h4>Interns</h4>
     <div *ngIf="allGoalsCount !== undefined">
@@ -28,11 +29,32 @@
       <p style="color: red;">Something's wrong... try reloading</p>
     </div>
   </div>
+
+  <div class="card">
+    <h1>Total Interns</h1>
+    <div *ngIf="totalInterns !== undefined">
+      <p>{{ totalInterns }}</p>
+    </div>
+    <div *ngIf="totalInterns === undefined">
+      <p style="color: red;">Something's wrong... try reloading</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h1>Total Mentors</h1>
+    <div *ngIf="totalMentors !== undefined">
+      <p>{{ totalMentors }}</p>
+    </div>
+    <div *ngIf="totalMentors === undefined">
+      <p style="color: red;">Something's wrong... try reloading</p>
+    </div>
+  </div>
+
   <div class="card">
     <h1>Proof of Concepts status</h1>
     <canvas id="pocPieChart"></canvas>
   </div>
-  
+
   <div class="chart-container card">
     <h1>Interns Goals Distribution</h1>
     <canvas id="userGoalsRadarChart"></canvas>
