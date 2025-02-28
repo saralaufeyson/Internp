@@ -14,8 +14,7 @@ export class InternFeedbackComponent {
   feedbackForm: FormGroup;
   apiUrl = 'http://localhost:5180/api/InternFeedback/submit'; // Replace with your actual backend URL
   mentor = localStorage.getItem('user');
-  
-  
+  overallRating: number = 0;
 
   ratingCriteria = [
     { key: 'domainKnowledge', label: 'Domain Knowledge' },
@@ -38,9 +37,11 @@ export class InternFeedbackComponent {
     5: 'Excellent'
   };
 
+  
+
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.createForm();
-    
+    this.onRatingsChange();
   }
 
   get taskForms() {
@@ -60,14 +61,7 @@ export class InternFeedbackComponent {
           [criteria.key]: [0]
         }), {})
       ),
-      tasks: this.fb.array([
-        this.createMonthlyTaskGroup(),
-        this.createMonthlyTaskGroup(),
-        this.createMonthlyTaskGroup(),
-        this.createMonthlyTaskGroup(),
-        this.createMonthlyTaskGroup(),
-        this.createMonthlyTaskGroup()
-      ]),
+      tasks: this.fb.array([]), // Initialize with an empty array
       recommendation: [''],
       areasOfImprovement: [''],
       feedback: ['']
@@ -76,6 +70,10 @@ export class InternFeedbackComponent {
     }
 
     interns: any[] = [];
+    months :any[]= [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
 
     loadInterns() {
     const mentorId = localStorage.getItem('userId');
@@ -119,7 +117,7 @@ export class InternFeedbackComponent {
       });
     }
     }
-
+  
   createMonthlyTaskGroup() {
     return this.fb.group({
       taskDetails: [''],
@@ -128,8 +126,12 @@ export class InternFeedbackComponent {
       priority: [''],
       weightage: [0],
       status: ['Yet to start'],
-      dmRating: [0]
+      month:['']
     });
+  }
+
+  addTask() {
+    this.taskForms.push(this.createMonthlyTaskGroup());
   }
 
   setRating(event: any, criteriaKey: string) {
@@ -141,8 +143,21 @@ export class InternFeedbackComponent {
     return this.ratingTextMap[value] || '';
   }
 
+  onRatingsChange() {
+    this.feedbackForm.get('ratings')?.valueChanges.subscribe(() => {
+      this.calculateOverallRating();
+    });
+  }
+
+  calculateOverallRating() {
+    const ratings = this.feedbackForm.get('ratings')?.value;
+    const total = Object.values(ratings).reduce((acc: number, rating: unknown) => acc + (rating as number), 0);
+    this.overallRating = total / this.ratingCriteria.length;
+  }
+
   onSubmit() {
     if (this.feedbackForm.valid) {
+      this.feedbackForm.patchValue({ overallRating: this.overallRating });
       this.http.post(this.apiUrl, this.feedbackForm.value).subscribe({
         next: (response) => {
           console.log('Feedback submitted successfully:', response);

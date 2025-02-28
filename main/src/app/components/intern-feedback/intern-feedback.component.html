@@ -13,18 +13,18 @@
         </div>
         <div class="form-group">
           <label for="internId">Intern ID</label>
-          <input id="internId" type="text" formControlName="internId">
+          <input id="internId" type="text" formControlName="internId" readonly>
         </div>
         
-      </div>
+            </div>
 
-      <div class="form-row">
+            <div class="form-row">
         <div class="form-group">
           <label for="mentorName">Mentor Name</label>
-          <input id="mentorName" type="text" formControlName="mentorName">
+          <input id="mentorName" type="text" formControlName="mentorName" readonly>
         </div>
 
-      </div>
+            </div>
 
       
     </div>
@@ -45,44 +45,61 @@
       </div>
     </div>
 
+    <div class="overall-rating">
+      <h3>Overall Performance Rating: {{ overallRating | number: '1.1-1' }}</h3>
+    </div>
+
     <!-- Monthly Tasks -->
     <div class="monthly-tasks">
       <h3>Monthly Tasks</h3>
       <div formArrayName="tasks">
         <div *ngFor="let taskGroup of taskForms.controls; let i=index" [formGroupName]="i" class="task-group">
-          <h4>Month {{i + 1}}</h4>
-          <table>
-            <thead>
-              <tr>
-                <th>Task Details</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Priority</th>
-                <th>Weightage</th>
-                <th>Status</th>
-                <th>DM Rating</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><input type="text" formControlName="taskDetails"></td>
-                <td><input type="date" formControlName="startDate"></td>
-                <td><input type="date" formControlName="endDate"></td>
-                <td><input type="number" formControlName="priority"></td>
-                <td><input type="number" formControlName="weightage"></td>
-                <td>
-                  <select formControlName="status">
-                    <option value="Completed">Completed</option>
-                    <option value="Incomplete">Incomplete</option>
-                    <option value="In Progress">In Progress</option>
-                  </select>
-                </td>
-                <td><input type="number" formControlName="dmRating"></td>
-              </tr>
-            </tbody>
-          </table>
+          <h4>Task {{i + 1}}</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="month">Month</label>
+              <select id="month" formControlName="month">
+                <option *ngFor="let month of months" [value]="month">{{month}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="taskDetails">Task Details</label>
+              <input id="taskDetails" type="text" formControlName="taskDetails">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="startDate">Start Date</label>
+              <input id="startDate" type="date" formControlName="startDate">
+            </div>
+            <div class="form-group">
+              <label for="endDate">End Date</label>
+              <input id="endDate" type="date" formControlName="endDate">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="priority">Priority</label>
+              <input id="priority" type="number" formControlName="priority">
+            </div>
+            <div class="form-group">
+              <label for="weightage">Weightage</label>
+              <input id="weightage" type="number" formControlName="weightage">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select id="status" formControlName="status">
+                <option value="Completed">Completed</option>
+                <option value="Incomplete">Incomplete</option>
+                <option value="In Progress">In Progress</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
+      <button type="button" (click)="addTask()">Add New Task</button>
     </div>
 
     <!-- Feedback Section -->

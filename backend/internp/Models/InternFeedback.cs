@@ -13,8 +13,6 @@ public class InternFeedback
     [BsonElement("fullName")]
     public string? FullName { get; set; }
 
- 
-
     [BsonElement("mentorName")]
     public string? MentorName { get; set; }
 
@@ -32,6 +30,28 @@ public class InternFeedback
 
     [BsonElement("feedback")]
     public string? Feedback { get; set; } = "";
+
+    [BsonElement("overallRating")]
+    public double OverallRating { get; set; }
+
+    public void CalculateOverallRating()
+    {
+        var ratings = new List<int?>
+        {
+            Ratings.DomainKnowledge,
+            Ratings.FunctionalKnowledge,
+            Ratings.ProcessAdherence,
+            Ratings.TeamWork,
+            Ratings.LearningCapabilities,
+            Ratings.AttentionToDetail,
+            Ratings.Communication,
+            Ratings.CuriosityAndProactiveness,
+            Ratings.ProblemSolving,
+            Ratings.Delivery
+        };
+
+        OverallRating = ratings.Average(r => r ?? 0);
+    }
 }
 
 // Models/PerformanceRatings.cs
@@ -89,6 +109,6 @@ public class MonthlyTask
     [BsonElement("status")]
     public string? Status { get; set; } = "Yet to start";
 
-    [BsonElement("dmRating")]
-    public int? DMRating { get; set; }
+    [BsonElement("month")]
+    public string? Month { get; set; } = "";
 }
