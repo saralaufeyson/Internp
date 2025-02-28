@@ -255,4 +255,26 @@ h6 {
   height: 600px;
   /* Increase the height */
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-textarea {
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+.save-button {
+  background-color: #193b8c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #0095FF;
 }

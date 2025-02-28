@@ -29,10 +29,10 @@
 
   <!-- Tab Content -->
   <div class="tab-content">
-    <div *ngIf="activeTab === 'about'">
+    <div *ngIf="activeTab === 'about'" class="about-section">
       <h4>About</h4>
-      <textarea [(ngModel)]="userProfile.about" rows="5" cols="50" placeholder="Enter about information..."></textarea>
-      <button (click)="saveAboutSection()">Save</button>
+      <textarea [(ngModel)]="userProfile.about" rows="10" cols="80" placeholder="Enter about information..." class="about-textarea"></textarea>
+      <button (click)="saveAboutSection()" class="save-button">Save</button>
       <div *ngIf="notificationMessage" class="notification-message">{{ notificationMessage }}</div>
       <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     </div>
