@@ -12,7 +12,7 @@
 /* Table Title Styling */
 .intern-list-title {
   text-align: center;
-  color: #0095FF;
+  color: #000000;
   /* Dark blue */
   margin-bottom: 20px;
   font-size: 2rem;
@@ -79,6 +79,7 @@
 
 /* Responsive Table */
 @media (max-width: 768px) {
+
   .intern-table th,
   .intern-table td {
     padding: 10px;

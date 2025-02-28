@@ -11,7 +11,7 @@
 /* Table Title Styling */
 h2 {
   text-align: center;
-  color: #0095FF;
+  color: #000000;
   margin-bottom: 20px;
   font-size: 2rem;
   font-weight: 600;
@@ -73,6 +73,7 @@ h2 {
 
 /* Responsive Table */
 @media (max-width: 768px) {
+
   .table th,
   .table td {
     padding: 10px;
