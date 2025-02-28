@@ -1,183 +1,114 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+.login-container {
+  display: flex;
+  height: 100vh;
 }
 
-/* Full Page Layout */
-.blank-layout-container {
+.login-box {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  margin-left: 50px;
+  padding: 2rem;
+  background: #fff;
+}
+
+.login-image {
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f8fafc;
+  background: #f7f7f7;
 }
 
-/* Auth Box */
-.boxed-auth {
-  background: white;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-  width: 400px;
-  text-align: center;
+.login-image img {
+  max-width: 100%;
+  height: 100%;
 }
 
-/* Logo */
 .login-header img {
-  width: 350px;
-  margin-bottom: 20px;
-  margin-left: -20px;
-  /* Add margin below the logo */
+  width: 300px;
+  /* Further increase the size of the logo */
+  height: auto;
+  margin-bottom: 50px;
+  margin-left: -40px;
 }
 
-/* Form Inputs */
-form div {
-  text-align: left;
-  margin-bottom: 20px;
-  /* Add margin between each field */
-}
-
-input {
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
   width: 100%;
-  padding: 12px;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
+  /* Ensure full width for consistency */
 }
 
-.input-container.password-container {
+.input-container label {
+  font-weight: 600;
+  /* Make labels bold */
+  margin-bottom: 0.5rem;
+}
+
+.input-container input {
+  padding: 0.75rem;
+  /* Adjust padding */
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 70%;
+  height: 40px;
+}
+
+.password-container {
   position: relative;
 }
 
-.input-container.password-container input {
-  padding-right: 40px;
-  /* Add padding to make space for the button */
+.password-container input {
+  width: 70%;
 }
 
-.input-container.password-container button {
+.password-container button {
   position: absolute;
   right: 10px;
+  margin-top: 17px;
+  margin-right: 85px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
 }
 
-.input-container.password-container button mat-icon {
-  font-size: 20px;
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Align with 'Forgot password?' */
+  width: 40%;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
 }
 
-input.is-invalid {
-  border-color: red;
+.checkbox-container label {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+  /* Move label next to checkbox */
 }
 
-/* Checkbox */
-input[type="checkbox"] {
-  width: auto;
-  margin-right: 8px;
-}
-
-/* Button */
-button {
-  width: 100%;
-  padding: 12px;
-  background-color: #2f80ed;
-  border: none;
+.login-btn {
+  width: 70%;
+  padding: 0.75rem;
+  background: #4c6ef5;
+  /* Adjust button color to match */
   color: white;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background-color: #1c60bd;
-}
-
-button:hover {
-  background-color: #1c60bd;
-}
-
-button[type="button"] {
-  background: none;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 0;
+  font-weight: 600;
 }
 
-button[type="button"] mat-icon {
-  font-size: 20px;
-}
-
-/* Register Link */
-.f-w-500 {
-  font-weight: 500;
-  margin-top: 20px;
-}
-
-.text-primary {
-  color: #2f80ed;
-}
-
-/* Error Snackbar */
-.error-snackbar {
-  background-color: red;
-  color: white;
-}
-
-/* Make border red and background light red when invalid */
-.is-invalid {
-  border: 1px solid red !important;
-  background-color: #ffe6e6 !important;
-}
-
-/* Change placeholder text color to red */
-.error-text::placeholder {
-  color: red !important;
-  opacity: 1;
-  /* Ensures the color is visible in all browsers */
-}
-
-/* Change the input text color to red when invalid */
-.error-text {
-  color: red !important;
-}
-
-form[_ngcontent-ng-c1927182847] div[_ngcontent-ng-c1927182847] {
-  text-align: left;
-  margin-bottom: 5px;
-}
-
-.input-container.password-container[_ngcontent-ng-c1927182847] button[_ngcontent-ng-c1927182847] {
-  position: absolute;
-  height: 15px;
-  width: 20px;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-button[type="button"][_ngcontent-ng-c1927182847] {
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  color: black;
-  transform: translateY(-50%);
-  padding: 0;
+.register-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
 }
