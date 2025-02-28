@@ -78,7 +78,7 @@ button {
   width: 100%;
   padding: 10px;
   background: #D2E5F6;
-  color: white;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -125,13 +125,13 @@ button:disabled {
 
 .btn-primary {
   background-color: #D2E5F6;
-  color: white;
+  color: black;
   border: none;
 }
 
 .btn-primary:hover {
   background-color: #c5dff5;
-  color:#D2E5F6;
+  color:#000000;
   /* Change text color to blue on hover */
   border: 1px solid #D2E5F6;
   /* Add border to make it more interactive */
