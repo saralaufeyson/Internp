@@ -31,6 +31,16 @@ export class UserService {
     return this.http.get<User[]>(`${this.apiUrl}/getMentors`);
   }
 
+  // Get count of all interns
+  getAllInternsCount(): Observable<{ count: number }> {
+    return this.http.get<{ count: number }>(`${this.apiUrl}/getAllInternsCount`);
+  }
+
+  // Get count of all mentors
+  getAllMentorsCount(): Observable<{ count: number }> {
+    return this.http.get<{ count: number }>(`${this.apiUrl}/getAllMentorsCount`);
+  }
+
   // Assign intern to mentor
   assignInternsToMentor(mentorId: string, internIds: string[]): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/assignInternsToMentor`, { mentorId, internIds });

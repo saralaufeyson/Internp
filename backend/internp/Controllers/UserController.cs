@@ -572,6 +572,20 @@ namespace YourNamespace.Controllers
             return Ok(interns); // Return only interns
         }
 
+        [HttpGet("getAllInternsCount")]
+        public async Task<IActionResult> GetAllInternsCount()
+        {
+            var internCount = await _userCollection.CountDocumentsAsync(u => u.Role == "Intern");
+            return Ok(new { count = internCount });
+        }
+
+        [HttpGet("getAllMentorsCount")]
+        public async Task<IActionResult> GetAllMentorsCount()
+        {
+            var mentorCount = await _userCollection.CountDocumentsAsync(u => u.Role == "Mentor");
+            return Ok(new { count = mentorCount });
+        }
+
         [HttpPost("assignInternsToMentor")]
         public async Task<IActionResult> AssignInternsToMentor([FromBody] AssignInternsRequest request)
         {

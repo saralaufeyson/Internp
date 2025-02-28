@@ -12,7 +12,7 @@
 /* Table Title Styling */
 .intern-list-title {
   text-align: center;
-  color: #0095FF;
+  color: #474747;
   /* Dark blue */
   margin-bottom: 20px;
   font-size: 2rem;
@@ -23,7 +23,8 @@
 .alert {
   padding: 12px;
   color: white;
-  background: #dc3545;
+  background: #ed7f8a;
+  border: red;
   /* Red alert for errors */
   border-radius: 5px;
   text-align: center;
@@ -43,9 +44,9 @@
 
 /* Header Styling */
 .intern-table th {
-  background: #0095FF;
+  border-bottom: 2PX solid #474747;
   /* Blue header */
-  color: white;
+  color: 474747;
   padding: 15px;
   text-align: left;
   font-weight: bold;
@@ -59,7 +60,7 @@
   padding: 12px 15px;
   border-bottom: 1px solid #ddd;
   background-color: #f9f9f9;
-  color: #333;
+  color: #000;
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
@@ -79,6 +80,7 @@
 
 /* Responsive Table */
 @media (max-width: 768px) {
+
   .intern-table th,
   .intern-table td {
     padding: 10px;

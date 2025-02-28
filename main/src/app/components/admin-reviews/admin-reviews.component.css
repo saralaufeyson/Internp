@@ -1,41 +1,44 @@
 .container {
-    width: 90%;
-    margin: auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .page-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #0095FF;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .reviews-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .reviews-table th, .reviews-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  .reviews-table th {
-    background-color: #0095FF;
-    color: white;
-  }
-  
-  .reviews-table tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  ul {
-    padding-left: 15px;
-  }
-  
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #474747;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.reviews-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reviews-table th,
+.reviews-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.reviews-table th {
+  border-bottom: 2px solid #474747;
+  color:#474747;
+}
+
+.reviews-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+ul {
+  padding-left: 15px;
+}
+td{
+  color: #000;
+}

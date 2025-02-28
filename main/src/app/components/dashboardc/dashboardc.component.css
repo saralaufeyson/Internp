@@ -14,6 +14,7 @@
 
 .card h1 {
   font-size: 18px;
+  color: #474747;
   /* Reduced font size */
   margin-bottom: 8px;
   /* Reduced margin */
@@ -28,7 +29,7 @@
   /* Reduced font size */
   margin: 4px 0;
   /* Reduced margin */
-  color: rgb(28, 36, 27);
+  color: rgb(0, 0, 0);
 }
 
 .dashboard-container {
@@ -56,12 +57,12 @@
   font-size: 14px;
   /* Reduced font size */
   font-style: italic;
-  color: #555;
+  color: #000;
 }
 
 .continue-learning-button {
-  background-color: #0095FF;
-  color: white;
+  background-color: #D2E5F6;
+  color: black;
   border: none;
   padding: 5px 10px;
   /* Reduced padding */
@@ -74,12 +75,12 @@
 
 
 .continue-learning-button a {
-  color: white;
+  color: black;
   text-decoration: none;
 }
 
 .continue-learning-button:hover {
-  background-color: #0095FF;
+  background-color: #D2E5F6;
 }
 
 .pie-chart {

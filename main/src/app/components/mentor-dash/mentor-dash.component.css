@@ -1,6 +1,6 @@
 /* Mentor Dashboard Styles */
 .mentor-dashboard {
-  font-family: 'Roboto', sans-serif;
+  
   padding: 20px;
   background-color: #ffffff;
   display: flex;
@@ -30,8 +30,8 @@
 .card h1 {
   font-size: 28px;
   margin-bottom: 16px;
-  color: #0095FF;
-  border-bottom: 2px solid #0095FF;
+  color: #474747;
+  border-bottom: 2px solid #474747;
   padding-bottom: 8px;
 }
 
@@ -44,7 +44,7 @@
 .card p {
   font-size: 18px;
   margin: 8px 0;
-  color: #333;
+  color: #000;
 }
 
 /* Error Message */
@@ -79,18 +79,18 @@
 .learning-path-card h2 {
   font-size: 22px;
   margin-bottom: 8px;
-  color: #0095FF;
+  color: #474747;
 }
 
 .learning-path-card p {
   font-size: 16px;
   margin-bottom: 8px;
-  color: #555;
+  color: #000;
 }
 
 .learning-path-card a {
   font-size: 16px;
-  color: #0095FF;
+  color: #D2E5F6;
   text-decoration: none;
   font-weight: bold;
 }
@@ -112,20 +112,20 @@ canvas {
 /* Mentor Dashboard Header */
 .mentor-dashboard h2 {
   font-size: 36px;
-  color: #0095FF;
+  color: #474747;
   margin-bottom: 10px;
 }
 
 .mentor-dashboard h5 {
   font-size: 18px;
-  color: #555;
+  color: #000;
   margin-bottom: 20px;
   font-style: italic;
 }
 
 /* Button Styling */
 button {
-  background-color: #0095FF;
+  background-color: #D2E5F6;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -135,7 +135,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #c6e0f7;
 }
 
 button:focus {
@@ -151,7 +151,7 @@ button:focus {
 }
 
 .large-icon:hover {
-  color: #0056b3; /* Change to desired hover color */
+  color: #D2E5F6; /* Change to desired hover color */
 }
 
 /* Tabs Styling */
@@ -168,7 +168,7 @@ button:focus {
   border: 1px solid transparent;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
-  color: #0095FF;
+  color: #474747;
   cursor: pointer;
   
   padding: 10px 15px; /* Add padding */
@@ -179,7 +179,7 @@ button:focus {
 }
 
 .nav-link.active {
-  color: #495057;
+  color: #000000;
   background-color: #fff;
   border-color: #ddd #ddd #fff;
   font-size: 1.4rem; /* Increase font size for active tab */
