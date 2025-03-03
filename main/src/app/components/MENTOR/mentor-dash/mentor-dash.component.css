@@ -1,12 +1,13 @@
 /* Mentor Dashboard Styles */
-.mentor-dashboard {
-  
+.mentor-dashboard  {
+  font-size: 16px;
   padding: 20px;
-  background-color: #ffffff;
+  
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
 }
+
 
 /* Card Styling */
 .card {
@@ -46,7 +47,7 @@
 
 /* Card Heading */
 .card h1 {
-  font-size: 28px;
+  font-size: 14px;
   margin-bottom: 16px;
   color: #474747;
   border-bottom: 2px solid #474747;
@@ -60,7 +61,7 @@
 
 /* Card Paragraph */
 .card p {
-  font-size: 18px;
+  font-size: 12px;
   margin: 8px 0;
   color: #000;
 }
@@ -95,19 +96,19 @@
 }
 
 .learning-path-card h2 {
-  font-size: 22px;
+  font-size: 16px;
   margin-bottom: 8px;
   color: #474747;
 }
 
 .learning-path-card p {
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 8px;
   color: #000;
 }
 
 .learning-path-card a {
-  font-size: 16px;
+  font-size: 12px;
   color: #D2E5F6;
   text-decoration: none;
   font-weight: bold;
@@ -129,7 +130,7 @@ canvas {
 
 /* Mentor Dashboard Header */
 .mentor-dashboard h2 {
-  font-size: 36px;
+  font-size: 16px;
   color: #474747;
   margin-bottom: 10px;
 }
@@ -200,7 +201,7 @@ button:focus {
   color: #000000;
   background-color: #fff;
   border-color: #ddd #ddd #fff;
-  font-size: 1.4rem; /* Increase font size for active tab */
+  font-size: 1.01rem; /* Increase font size for active tab */
   font-weight: bold; /* Make text bold */
 }
 

@@ -44,7 +44,12 @@
 
     <!-- Monthly Tasks -->
     <div class="monthly-tasks">
-      <h3>Monthly Tasks</h3>
+      
+        <h3>Monthly Tasks</h3>
+        <button type="button" class="add-task-btn" (click)="addTask()">
+          <mat-icon>add</mat-icon>Create Task
+        </button>
+      
       <div formArrayName="tasks">
         <div *ngFor="let taskGroup of taskForms.controls; let i=index" [formGroupName]="i" class="task-group">
           <h4>Task {{i + 1}}</h4>
@@ -93,7 +98,6 @@
           <hr> <!-- Add horizontal line after each task -->
         </div>
       </div>
-      <button type="button" (click)="addTask()">Add New Task</button>
     </div>
 
     <!-- Feedback Section -->
@@ -114,6 +118,8 @@
       </div>
     </div>
 
-    <button type="submit" class="submit-btn">Submit Review</button>
+    <div class="submit-btn-container">
+      <button type="submit" class="submit-btn">Submit Review</button>
+    </div>
   </form>
 </div>

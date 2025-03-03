@@ -201,11 +201,40 @@ td {
   cursor: pointer;
   border-radius: 4px;
   transition: background 0.3s;
-  width: 100%;
+  
   font-size: 16px;
   font-weight: bold;
 }
 
 .submit-btn:hover {
   background-color: #cee6ff;
+}
+
+/* Style for the submit button container */
+.submit-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Style for the add task icon button */
+.add-task-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.add-task-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.add-task-btn mat-icon {
+  font-size: 24px;
+  color: #474747;
 }
