@@ -23,7 +23,7 @@ h3 {
   font-size: 20px;
   /* Reduced from 24px */
   font-weight: bold;
-  color: #1e293b;
+  color: #474747;
   margin-bottom: 15px;
 }
 
@@ -35,7 +35,7 @@ h3 {
 
 label {
   font-weight: bold;
-  color: #334155;
+  color: #474747;
   display: block;
   margin-bottom: 5px;
   font-size: 12px;
@@ -62,7 +62,7 @@ textarea {
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: #0095FF;
+  border-color: #D2E5F6;
   outline: none;
 }
 
@@ -77,8 +77,8 @@ select:focus {
 button {
   width: 100%;
   padding: 10px;
-  background: rgb(27, 62, 156);
-  color: white;
+  background: #D2E5F6;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -87,11 +87,11 @@ button {
 }
 
 button:hover {
-  background: #0095FF;
+  background:#D2E5F6;
 }
 
 button:disabled {
-  background: #86d7e3;
+  background: grey;
   cursor: not-allowed;
 }
 
@@ -124,23 +124,23 @@ button:disabled {
 }
 
 .btn-primary {
-  background-color: rgb(27, 62, 156);
-  color: white;
+  background-color: #D2E5F6;
+  color: black;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
-  color: blue;
+  background-color: #c5dff5;
+  color:#000000;
   /* Change text color to blue on hover */
-  border: 1px solid blue;
+  border: 1px solid #D2E5F6;
   /* Add border to make it more interactive */
 }
 
 /* Icon Styling */
 .btn-danger i:hover,
 .btn-primary i:hover {
-  color: blue;
+  color: #D2E5F6;
   /* Change icon color to blue on hover */
 }
 
@@ -158,14 +158,14 @@ button:disabled {
   font-size: 16px;
   /* Reduced from 18px */
   font-weight: bold;
-  color: #1e293b;
+  color: #474747;
   margin-bottom: 5px;
 }
 
 .poc p {
   font-size: 12px;
   /* Reduced from 14px */
-  color: #475569;
+  color: #000 ;
   margin: 3px 0;
 }
 
@@ -212,7 +212,7 @@ button:disabled {
   font-size: 18px;
   /* Reduced from 20px */
   font-weight: bold;
-  color: #1e293b;
+  color: #000000;
   margin-bottom: 15px;
 }
 

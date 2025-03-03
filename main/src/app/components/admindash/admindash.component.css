@@ -1,8 +1,8 @@
 /* Admin Dashboard Styles */
 .admin-dashboard {
-  font-family: Arial, sans-serif;
+ 
   padding: 20px;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 }
 
 /* Card Styling */
@@ -19,9 +19,9 @@
 
 /* Card Heading */
 .card h1 {
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 16px;
-  color: #333;
+  color: #474747
 }
 
 /* Spacing Between Cards */
@@ -33,12 +33,12 @@
 .card p {
   font-size: 18px;
   margin: 8px 0;
-  color: rgb(28, 36, 27); /* Text color */
+  color: black;
 }
 
 /* Error Message */
 .error-message {
-  color: red;
+  color: rgb(243, 138, 138);
   font-size: 18px;
   margin-top: 10px;
 }

@@ -34,14 +34,14 @@
 .card-header h3 {
   font-size: 1rem;
   /* Adjusted font size */
-  color: #0095FF;
+  color: #000000;
   margin-bottom: 10px;
 }
 
 .card-header p {
   font-size: 0.8rem;
   /* Adjusted font size */
-  color: #444;
+  color: #000;
   line-height: 1.5;
 }
 
@@ -55,8 +55,8 @@
 
 /* Start Learning Button */
 .start-learning-btn {
-  background: #0095FF;
-  color: white;
+  background: #D2E5F6;
+  color: black;
   text-decoration: none;
   padding: 10px 15px;
   border-radius: 5px;
@@ -66,14 +66,14 @@
 }
 
 .start-learning-btn:hover {
-  background: #0095FF;
+  background: #D2E5F6;
 }
 
 /* Add to Learning Path Button */
 .add-learning-path-btn {
   background: transparent;
-  color: #0095FF;
-  border: 2px solid #0095FF;
+  color: #000000;
+  border: 2px solid #D2E5F6;
   padding: 10px 15px;
   border-radius: 5px;
   font-size: 0.8rem;
@@ -83,7 +83,7 @@
 }
 
 .add-learning-path-btn:hover {
-  background: #0095FF;
+  background: #D2E5F6;
   color: white;
 }
 
@@ -107,7 +107,7 @@
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #0095FF;
+  background-color: black;
   color: white;
   padding: 20px 40px;
   border-radius: 5px;

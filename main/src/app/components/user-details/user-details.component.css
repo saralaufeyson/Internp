@@ -14,7 +14,7 @@
   /* Header Style */
   h4 {
     font-size: 1.5rem;
-    color: #0095FF;
+    color: #474747;
     margin-bottom: 20px;
     text-align: center;
     text-transform: uppercase; /* Add emphasis to header */
@@ -24,7 +24,7 @@
   /* Display User Details */
   .user-details p {
     font-size: 1.1rem;
-    color: #444;
+    color: #000;
     line-height: 1.5;
     margin-bottom: 15px;
     background-color: #fff; /* White background for details */
@@ -36,6 +36,7 @@
   /* Edit Button Styling */
   button.btn-primary {
     background: #0095FF;
+    border: 1PX solid #D2E5F6;
     color: white;
     padding: 12px 18px; /* Slightly bigger button */
     border-radius: 5px;
@@ -88,7 +89,7 @@
   
   .form-group label {
     font-size: 1rem;
-    color: #333;
+    color: #474747;
     margin-bottom: 5px;
   }
   

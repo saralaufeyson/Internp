@@ -44,7 +44,7 @@
   display: block;
   font-weight: bold;
   margin-bottom: 8px;
-  color: #334155;
+  color: #474747;
 }
 
 .form-input {
@@ -57,7 +57,7 @@
 }
 
 .form-input:focus {
-  border-color: rgb(27, 62, 156);
+  border-color: #D2E5F6 ;
   outline: none;
 }
 
@@ -78,8 +78,8 @@
   /* Adjust width */
   padding: 8px 16px;
   /* Reduced padding */
-  background: #0095FF;
-  color: white;
+  background: #D2E5F6;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -89,11 +89,11 @@
 }
 
 .submit-button:hover {
-  background: #0095FF;
+  background: #D2E5F6;
 }
 
 .submit-button:disabled {
-  background: #86d7e3;
+  background: grey;
   cursor: not-allowed;
 }
 
@@ -154,21 +154,21 @@
 
 .goal-label {
   font-weight: bold;
-  color: #0095FF;
+  color: #474747;
 }
 
 .goal-description,
 .goal-created {
   margin-top: 8px;
   font-size: 15px;
-  color: #475569;
+  color: #000000;
 }
 
 /* No Goals Message */
 .no-goals-message {
   margin-top: 20px;
   font-style: italic;
-  color: #64748b;
+  color: #474747;
   font-size: 15px;
 }
 

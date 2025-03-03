@@ -1,8 +1,36 @@
 <div class="admin-dashboard">
-  <h2>Insight HQ</h2>
-
+  <h1>Admin Hub</h1>
   <div class="card">
-    <h1>Proof of Concepts </h1>
+    <div class="card">
+      <h1>Total Interns</h1>
+      <div *ngIf="totalInterns !== undefined">
+        <p>{{ totalInterns }}</p>
+      </div>
+      <div *ngIf="totalInterns === undefined">
+        <p class="error-container">Something's wrong... try reloading</p>
+      </div>
+    </div>
+    <div class="card">
+      <h1>Total Mentors</h1>
+      <div *ngIf="totalMentors !== undefined">
+        <p>{{ totalMentors }}</p>
+      </div>
+      <div *ngIf="totalMentors === undefined">
+        <p class="error-container">Something's wrong... try reloading</p>
+      </div>
+    </div>
+    <div class="card">
+      <h1>Aggregate Intern Goals</h1>
+      <div *ngIf="allGoalsCount !== undefined">
+        <p>{{ allGoalsCount }}</p>
+      </div>
+      <div *ngIf="allGoalsCount === undefined">
+        <p class="error-container">Something's wrong... try reloading</p>
+      </div>
+    </div>
+  
+  <div class="card">
+    <h1>POCS</h1>
     <div *ngIf="totalPocs !== undefined">
       <div class="card">
         <p>Total PoCs: {{ totalPocs }}</p>
@@ -15,48 +43,22 @@
       </div>
     </div>
     <div *ngIf="totalPocs === undefined">
-      <p style="color: red;">Something's wrong... try reloading</p>
+      <p class="error-container" >Something's wrong... try reloading</p>
     </div>
   </div>
-
-  <div class="card">
-    <h1>OverAll Goal Count</h1>
-    <h4>Interns</h4>
-    <div *ngIf="allGoalsCount !== undefined">
-      <p>{{ allGoalsCount }}</p>
-    </div>
-    <div *ngIf="allGoalsCount === undefined">
-      <p style="color: red;">Something's wrong... try reloading</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <h1>Total Interns</h1>
-    <div *ngIf="totalInterns !== undefined">
-      <p>{{ totalInterns }}</p>
-    </div>
-    <div *ngIf="totalInterns === undefined">
-      <p style="color: red;">Something's wrong... try reloading</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <h1>Total Mentors</h1>
-    <div *ngIf="totalMentors !== undefined">
-      <p>{{ totalMentors }}</p>
-    </div>
-    <div *ngIf="totalMentors === undefined">
-      <p style="color: red;">Something's wrong... try reloading</p>
-    </div>
-  </div>
-
   <div class="card">
     <h1>Proof of Concepts status</h1>
     <canvas id="pocPieChart"></canvas>
   </div>
 
-  <div class="chart-container card">
+  
+
+  
+</div>
+  
+
+  <!-- <div class="chart-container card">
     <h1>Interns Goals Distribution</h1>
     <canvas id="userGoalsRadarChart"></canvas>
-  </div>
+  </div> -->
 </div>

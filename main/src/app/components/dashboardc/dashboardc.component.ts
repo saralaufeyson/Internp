@@ -99,6 +99,22 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
 
       if (this.pocCount) {
         this.pieChart = new Chart(canvas, {
+          type: 'doughnut', // Change 'pie' to 'doughnut'
+          data: {
+        labels: ['In Progress POCs', 'Completed POCs'],
+        datasets: [{
+          data: [this.pocCount.inProgressPocs, this.pocCount.completedPocs],
+          backgroundColor: ['#00e6e6', '#1B3E9C'],
+          hoverBackgroundColor: ['#00e6e6', '#1B3E9C']
+        }]
+          },
+          options: {
+        responsive: true,
+        maintainAspectRatio: false // Ensure chart resizes properly
+          }
+        });
+      
+        this.pieChart = new Chart(canvas, {
           type: 'pie',
           data: {
             labels: ['In Progress POCs', 'Completed POCs'],

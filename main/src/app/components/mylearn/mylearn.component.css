@@ -16,14 +16,14 @@
 .learning-status-container h3 {
     font-size: 1.2rem;
     /* Further reduced font size */
-    color: rgb(242, 242, 243);
+    color:black;
     margin-bottom: 20px;
 }
 
 .learning-status-container h2 {
     font-size: 1.5rem;
     /* Further reduced font size */
-    color: #0095FF;
+    color: #474747;
     margin-bottom: 20px;
 }
 
@@ -53,8 +53,8 @@
 
 /* Card Header */
 .card-header {
-    background: #0095FF;
-    color: white;
+    background: #D2E5F6;
+    color: black;
     padding: 15px;
     font-size: 0.7rem;
     /* Further reduced font size */
@@ -69,14 +69,14 @@
 }
 
 .card-body p {
-    color: #444;
+    color: #000;
     font-size: 0.8rem;
     /* Reduced font size */
     margin-bottom: 10px;
 }
 
 .card-body p strong {
-    color: #0095FF;
+    color: #000000;
 }
 
 /* Subtopics */
@@ -88,8 +88,8 @@
 /* Start Learning Button */
 .card-body .btn {
     display: inline-block;
-    background: #0095FF;
-    color: white;
+    background: #D2E5F6;
+    color: black;
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -99,7 +99,7 @@
 }
 
 .card-body .btn:hover {
-    background: #132d72;
+    background: #c6e1f8;
 }
 
 /* Adjust the remove button to use Bootstrap styles */
@@ -126,7 +126,7 @@
 }
 
 .card-body .bi-trash:hover {
-    color: blue;
+    color: #D2E5F6;
 }
 
 /* Card Footer */
@@ -135,7 +135,7 @@
     padding: 10px;
     font-size: 0.7rem;
     /* Reduced font size */
-    color: #555;
+    color: #000;
     text-align: center;
 }
 

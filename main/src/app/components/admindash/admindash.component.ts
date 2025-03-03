@@ -59,7 +59,7 @@ export class AdmindashComponent implements OnInit {
       (response) => {
         const usernames = response.map(user => user.username);
         const goalCounts = response.map(user => user.goalCount);
-        this.createRadarChart(usernames, goalCounts);
+        // this.createRadarChart(usernames, goalCounts);
       },
       (error) => {
         console.error('Error fetching user goals:', error);
@@ -92,68 +92,68 @@ export class AdmindashComponent implements OnInit {
   createPieChart(): void {
     const ctx = document.getElementById('pocPieChart') as HTMLCanvasElement;
     new Chart(ctx, {
-      type: 'pie',
+      type: 'doughnut',
       data: {
-        labels: ['In Progress', 'Completed'],
-        datasets: [{
-          data: [this.inProgressPocs, this.completedPocs],
-          backgroundColor: ['#00e6e6', '#1B3E9C'],
-          hoverBackgroundColor: ['#00e6e6', '#1B3E9C']
-        }]
+      labels: ['In Progress', 'Completed'],
+      datasets: [{
+        data: [this.inProgressPocs, this.completedPocs],
+        backgroundColor: ['#00e6e6', '#1B3E9C'],
+        hoverBackgroundColor: ['#00e6e6', '#1B3E9C']
+      }]
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false
+      responsive: true,
+      maintainAspectRatio: false
       }
     });
   }
 
-  createRadarChart(usernames: string[], goalCounts: number[]): void {
-    const ctx = document.getElementById('userGoalsRadarChart') as HTMLCanvasElement;
-    new Chart(ctx, {
-      type: 'radar',
-      data: {
-        labels: usernames,
-        datasets: [{
-          label: 'Total Goals',
-          data: goalCounts,
-          backgroundColor: 'rgba(0, 230, 230, 0.2)',
-          borderColor: '#00bfbf',
-          pointBackgroundColor: '#00bfbf',
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#ff9f40',
-          pointHoverBorderColor: '#333'
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          r: {
-            angleLines: {
-              display: true
-            },
-            suggestedMin: 0,
-            suggestedMax: Math.max(...goalCounts) + 1
-          }
-        },
-        plugins: {
-          legend: {
-            display: true,
-            position: 'top'
-          },
-          tooltip: {
-            callbacks: {
-              label: function (context) {
-                const label = context.label || '';
-                const value = context.raw || 0;
-                return `${label}: ${value}`;
-              }
-            }
-          }
-        }
-      }
-    });
+  // createRadarChart(usernames: string[], goalCounts: number[]): void {
+  //   const ctx = document.getElementById('userGoalsRadarChart') as HTMLCanvasElement;
+  //   new Chart(ctx, {
+  //     type: 'radar',
+  //     data: {
+  //       labels: usernames,
+  //       datasets: [{
+  //         label: 'Total Goals',
+  //         data: goalCounts,
+  //         backgroundColor: 'rgba(0, 230, 230, 0.2)',
+  //         borderColor: '#00bfbf',
+  //         pointBackgroundColor: '#00bfbf',
+  //         pointBorderColor: '#fff',
+  //         pointHoverBackgroundColor: '#ff9f40',
+  //         pointHoverBorderColor: '#333'
+  //       }]
+  //     },
+  //     options: {
+  //       responsive: true,
+  //       maintainAspectRatio: false,
+  //       scales: {
+  //         r: {
+  //           angleLines: {
+  //             display: true
+  //           },
+  //           suggestedMin: 0,
+  //           suggestedMax: Math.max(...goalCounts) + 1
+  //         }
+  //       },
+  //       plugins: {
+  //         legend: {
+  //           display: true,
+  //           position: 'top'
+  //         },
+  //         tooltip: {
+  //           callbacks: {
+  //             label: function (context) {
+  //               const label = context.label || '';
+  //               const value = context.raw || 0;
+  //               return `${label}: ${value}`;
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   });
   }
-}
+
 

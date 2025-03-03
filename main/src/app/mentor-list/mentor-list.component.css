@@ -1,11 +1,12 @@
 /* General Styles */
 body {
-  font-family: Arial, sans-serif;
+  
   background-color: #f8f9fa;
   margin: 0;
   padding: 0;
 }
 
+ 
 .container {
   width: 90%;
   margin: auto;
@@ -16,6 +17,8 @@ body {
 /* Table Styling */
 .mentor-table {
   width: 100%;
+  border-radius: 20%;
+
   border-collapse: collapse;
   background: #fff;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -25,8 +28,8 @@ body {
 }
 
 .mentor-table th {
-  background-color: #0095FF;
-  color: white;
+  border-bottom: 1px solid #646464;
+  color: #474747;
   padding: 12px;
   text-align: left;
 }
@@ -66,8 +69,8 @@ body {
 
 /* Button Styling */
 .assign-btn {
-  background-color: #0095FF;
-  color: white;
+  background-color: #D2E5F6;
+  color: rgb(0, 0, 0);
   border: none;
   padding: 8px 16px;
   cursor: pointer;
@@ -79,6 +82,7 @@ body {
 
 .assign-btn:hover {
   background-color: #0056b3;
+  color: whitesmoke;
 }
 
 .dropdown-toggle {
@@ -99,6 +103,6 @@ body {
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 15px;
-  color: #000000;
+  color: #474747;
   padding-left: 10px;
 }

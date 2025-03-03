@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-intern-feedback',
@@ -59,7 +60,9 @@ export class InternFeedbackComponent {
         this.ratingCriteria.reduce((acc, criteria) => ({
           ...acc,
           [criteria.key]: [0]
-        }), {})
+        }), {
+          overallRating: [0] // Add overallRating inside the ratings form group
+        })
       ),
       tasks: this.fb.array([]), // Initialize with an empty array
       recommendation: [''],
@@ -144,7 +147,7 @@ export class InternFeedbackComponent {
   }
 
   onRatingsChange() {
-    this.feedbackForm.get('ratings')?.valueChanges.subscribe(() => {
+    this.feedbackForm.get('ratings')?.valueChanges.pipe(distinctUntilChanged()).subscribe(() => {
       this.calculateOverallRating();
     });
   }
@@ -153,11 +156,12 @@ export class InternFeedbackComponent {
     const ratings = this.feedbackForm.get('ratings')?.value;
     const total = Object.values(ratings).reduce((acc: number, rating: unknown) => acc + (rating as number), 0);
     this.overallRating = total / this.ratingCriteria.length;
+    this.feedbackForm.get('ratings')?.get('overallRating')?.setValue(this.overallRating, { emitEvent: false });
   }
 
   onSubmit() {
     if (this.feedbackForm.valid) {
-      this.feedbackForm.patchValue({ overallRating: this.overallRating });
+      this.calculateOverallRating();
       this.http.post(this.apiUrl, this.feedbackForm.value).subscribe({
         next: (response) => {
           console.log('Feedback submitted successfully:', response);
