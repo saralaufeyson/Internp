@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { AllGoalsComponent } from '../components/ADMIN/all-goals/all-goals.component';
-import { StarterComponent } from './starter/starter.component';
 import { ProfileComponent } from '../components/profile/profile.component';
 import { LearningPathComponent } from '../components/INTERN/learning-path/learning-path.component';
 import { GoalsComponent } from '../components/INTERN/goals/goals.component';
@@ -21,14 +20,6 @@ import { InternFeedbackComponent } from '../components/MENTOR/intern-feedback/in
 import { AdminReviewsComponent } from '../components/ADMIN/admin-reviews/admin-reviews.component';
 
 export const PagesRoutes: Routes = [
-  {
-    path: '',
-    component: StarterComponent,
-    data: {
-      title: 'Dashboard',
-      urls: [{ title: 'Dashboard', url: '/dashboard' }],
-    },
-  },
   {
     path: 'profile',
     component: ProfileComponent,
