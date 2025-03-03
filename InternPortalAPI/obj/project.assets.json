@@ -976,9 +976,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\internp.csproj",
-      "projectName": "internp",
-      "projectPath": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\internp.csproj",
+      "projectUniqueName": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
+      "projectName": "InternPortal",
+      "projectPath": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
       "packagesPath": "C:\\Users\\dneelam\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\obj\\",
       "projectStyle": "PackageReference",
