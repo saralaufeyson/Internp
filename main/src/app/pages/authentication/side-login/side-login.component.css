@@ -9,7 +9,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: left;
-  margin-left: 50px;
   padding: 2rem;
   background: #fff;
 }
@@ -32,7 +31,6 @@
   /* Further increase the size of the logo */
   height: auto;
   margin-bottom: 50px;
-  margin-left: -40px;
 }
 
 .input-container {

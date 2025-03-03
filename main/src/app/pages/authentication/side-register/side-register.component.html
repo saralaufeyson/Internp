@@ -1,82 +1,72 @@
-<div class="blank-layout-container justify-content-center align-items-center bg-light" style="padding: 20px 0;">
-  <div class="position-relative row w-100 h-100 bg-gredient justify-content-center">
-    <div class="col-lg-4 d-flex align-items-center" style="max-width: 100%;">
-      <div class="cardWithShadow boxed-auth" style="width: 100%;">
-        <div class="p-32">
-          <div class="text-center">
-            <img src="./assets/images/logos/dark-logo.svg" class="align-middle m-2" alt="logo"
-              style="width: 350px; height: auto;" />
-          </div>
-          <h2 class="f-w-600 text-center m-b-10" style="font-size: 1.2rem;">Create New Account</h2>
-          <form (ngSubmit)="submit()" [formGroup]="form" class="m-t-30">
-            <div class="form-group">
-              <label for="username" class="f-s-14 f-w-600">Name *</label>
-              <input type="text" id="username" class="form-control" formControlName="username" required
-                [ngClass]="{'is-invalid': form.get('username')?.invalid && form.get('username')?.touched}" />
-              <div *ngIf="form.get('username')?.invalid && form.get('username')?.touched" class="invalid-feedback">
-                Name is required
-              </div>
-            </div>
+<div class="register-container">
+  <div class="register-box">
+    <div class="register-header">
+      <img src="./assets/images/logos/dark-logo.svg" alt="InternPortal Logo" />
+    </div>
 
-            <div class="form-group">
-              <label for="email" class="f-s-14 f-w-600">Email Address *</label>
-              <input type="email" id="email" class="form-control" formControlName="email" required
-                [ngClass]="{'is-invalid': form.get('email')?.invalid && form.get('email')?.touched}" />
-              <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="invalid-feedback">
-                Valid email is required
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="password" class="f-s-14 f-w-600">Password *</label>
-              <input type="password" id="password" class="form-control" formControlName="password" required
-                [ngClass]="{'is-invalid': form.get('password')?.invalid && form.get('password')?.touched}" />
-              <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="invalid-feedback">
-                Password is required
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="confirmPassword" class="f-s-14 f-w-600">Confirm Password *</label>
-              <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword"
-                required
-                [ngClass]="{'is-invalid': form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched}" />
-              <div *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched"
-                class="invalid-feedback">
-                Confirm Password is required
-              </div>
-              <div
-                *ngIf="form.get('password')?.value !== form.get('confirmPassword')?.value && form.get('confirmPassword')?.touched"
-                class="invalid-feedback">
-                Passwords do not match
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="role" class="f-s-14 f-w-600">Role *</label>
-              <select id="role" class="form-control" formControlName="role" required style="margin-bottom: 15px;">
-                <option value="Intern">Intern</option>
-                <option value="Mentor">Mentor</option>
-                <option value="Admin">Admin</option>
-              </select>
-            </div>
-
-            <div class="button-container" style="padding: 20px 0;">
-              <button type="submit" class="w-100 f-s-14 d-block btn btn-primary"
-                style="background-color: #0095FF;">
-                Create Account and Login
-              </button>
-            </div>
-
-          </form>
-
-          <span class="d-block f-w-500 text-center m-t-24">Already have an Account?
-            <a [routerLink]="['/authentication/login']" class="text-decoration-none text-primary f-w-500 f-s-14">
-              Sign In</a>
-          </span>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="input-container">
+        <label for="username">Name *</label>
+        <input id="username" formControlName="username" type="text"
+          [ngClass]="{'is-invalid': form.get('username')?.invalid && form.get('username')?.touched}" />
+        <div *ngIf="form.get('username')?.invalid && form.get('username')?.touched" class="invalid-feedback">
+          Name is required
         </div>
       </div>
-    </div>
+
+      <div class="input-container">
+        <label for="email">Email Address *</label>
+        <input id="email" formControlName="email" type="email"
+          [ngClass]="{'is-invalid': form.get('email')?.invalid && form.get('email')?.touched}" />
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="invalid-feedback">
+          Valid email is required
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="password">Password *</label>
+        <input id="password" formControlName="password" type="password"
+          [ngClass]="{'is-invalid': form.get('password')?.invalid && form.get('password')?.touched}" />
+        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="invalid-feedback">
+          Password is required
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="confirmPassword">Confirm Password *</label>
+        <input id="confirmPassword" formControlName="confirmPassword" type="password"
+          [ngClass]="{'is-invalid': form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched}" />
+        <div *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched"
+          class="invalid-feedback">
+          Confirm Password is required
+        </div>
+        <div
+          *ngIf="form.get('password')?.value !== form.get('confirmPassword')?.value && form.get('confirmPassword')?.touched"
+          class="invalid-feedback">
+          Passwords do not match
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="role">Role *</label>
+        <select id="role" formControlName="role">
+          <option value="Intern">Intern</option>
+          <option value="Mentor">Mentor</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </div>
+
+      <button type="submit" class="register-btn">Create Account and Login</button>
+    </form>
+
+    <span class="register-text">
+      Already have an Account?
+      <a [routerLink]="['/authentication/login']" class="text-primary">Sign In</a>
+    </span>
+  </div>
+
+  <div class="register-image">
+    <img src="./assets/images/login-image.png" alt="Register Illustration" />
   </div>
 </div>
 
