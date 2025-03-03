@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class MylearnService {
-  private apiUrl = `${environment.apiUrl}/UserData`;
+  private apiUrl = `${environment.apiUrl}/learningpath`; // Updated base URL
 
   constructor(private http: HttpClient) { }
 

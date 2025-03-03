@@ -47,7 +47,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
       console.error('User ID is not defined');
       return;
     }
-    this.http.get(`http://localhost:5180/api/UserData/getGoalCount/${this.userId}`)
+    this.http.get(`http://localhost:5180/api/goal/getGoalCount/${this.userId}`)
       .subscribe({
         next: (response: any) => {
           this.goalCount = response.count;
