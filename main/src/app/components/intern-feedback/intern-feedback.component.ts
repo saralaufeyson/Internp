@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { distinctUntilChanged } from 'rxjs/operators';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-intern-feedback',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatIconModule, MatDialogModule],
   templateUrl: './intern-feedback.component.html',
   styleUrls: ['./intern-feedback.component.css']
 })
@@ -38,9 +41,7 @@ export class InternFeedbackComponent {
     5: 'Excellent'
   };
 
-  
-
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private dialog: MatDialog) {
     this.createForm();
     this.onRatingsChange();
   }
@@ -160,22 +161,28 @@ export class InternFeedbackComponent {
   }
 
   onSubmit() {
-    if (this.feedbackForm.valid) {
-      this.calculateOverallRating();
-      this.http.post(this.apiUrl, this.feedbackForm.value).subscribe({
-        next: (response) => {
-          console.log('Feedback submitted successfully:', response);
-          alert('Feedback submitted successfully!');
-          this.feedbackForm.reset(); // Reset form after submission
-        },
-        error: (error) => {
-          console.error('Error submitting feedback:', error);
-          alert('Failed to submit feedback. Please try again.');
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (this.feedbackForm.valid) {
+          this.calculateOverallRating();
+          this.http.post(this.apiUrl, this.feedbackForm.value).subscribe({
+            next: (response) => {
+              console.log('Feedback submitted successfully:', response);
+              alert('Feedback submitted successfully!');
+              this.feedbackForm.reset(); // Reset form after submission
+            },
+            error: (error) => {
+              console.error('Error submitting feedback:', error);
+              alert('Failed to submit feedback. Please try again.');
+            }
+          });
+        } else {
+          this.markFormGroupTouched(this.feedbackForm);
         }
-      });
-    } else {
-      this.markFormGroupTouched(this.feedbackForm);
-    }
+      }
+    });
   }
 
   markFormGroupTouched(formGroup: FormGroup | FormArray) {

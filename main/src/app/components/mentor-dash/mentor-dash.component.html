@@ -1,6 +1,6 @@
 <div class="mentor-dashboard">
-  <h2>Guidance Nexus</h2>
-  <h5><i>Empowering mentors, tracking growth, shaping futures.</i></h5>
+  <h2 style="font-size: 16px;">Guidance Nexus</h2>
+  <h5 style="font-size: 12px;"><i>Empowering mentors, tracking growth, shaping futures.</i></h5>
   
 
   <!-- Intern Goals Bar Chart -->
@@ -71,19 +71,19 @@
         <!-- <h2>{{ selectedIntern.username }}</h2> -->
         <p>{{ selectedIntern.email }}</p>
         <div *ngIf="internLearningPaths[selectedIntern.id] && internLearningPaths[selectedIntern.id].length > 0">
-          <h3>Learning Paths</h3>
+            <h3 style="font-size: 14px;">Learning Paths</h3>
           <div class="learning-paths-grid">
             <div *ngFor="let path of internLearningPaths[selectedIntern.id]" class="learning-path-card">
               <h4>{{ path.title }}</h4>
-              <p>{{ path.description }}</p>
+                <p style="font-size: 12px;">{{ path.description }}</p>
               <a [href]="path.link" target="_blank">View Course</a>
               <div>
                 <label>Subtopics:</label>
                 <ul class="no-bullets">
-                  <li *ngFor="let subtopic of path.subtopics">
+                    <li *ngFor="let subtopic of path.subtopics" style="font-size: 10px;">
                     <span *ngIf="subtopic.completed" class="tick-mark">&#10003;</span>
                     <span *ngIf="!subtopic.completed" class="hollow-circle">&#9675;</span> {{ subtopic.name }}
-                  </li>
+                    </li>
                 </ul>
               </div>
               <div>

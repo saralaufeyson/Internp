@@ -1,7 +1,7 @@
 /* Admin Dashboard Styles */
-.admin-dashboard {
- 
-  padding: 20px;
+.admin-dashboard h1 {
+ font-size: 16px;
+  padding: 8px;
   /* background-color: #ffffff; */
 }
 
@@ -19,7 +19,7 @@
 
 /* Card Heading */
 .card h1 {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 16px;
   color: #474747
 }
