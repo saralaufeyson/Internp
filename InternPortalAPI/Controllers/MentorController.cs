@@ -30,13 +30,13 @@ namespace Internp.Controllers
         public async Task<ActionResult<IEnumerable<User>>> GetInternsUnderMentor(string mentorId)
         {
             var mentor = await _usersCollection.Find(u => u.Id == mentorId).FirstOrDefaultAsync();
-            
+
             if (mentor == null || mentor.AssignedInterns == null || !mentor.AssignedInterns.Any())
             {
                 return NotFound("No interns assigned to this mentor.");
             }
 
-            var interns = await _usersCollection.Find(u => mentor.AssignedInterns != null && mentor.AssignedInterns.Contains(u.Id)).ToListAsync();
+            var interns = await _usersCollection.Find(u => mentor.AssignedInterns != null && u.Id != null && mentor.AssignedInterns.Contains(u.Id)).ToListAsync();
             return Ok(interns);
         }
 
@@ -45,10 +45,10 @@ namespace Internp.Controllers
         public async Task<ActionResult> GetTotalInternGoals(string mentorId)
         {
             var mentor = await _usersCollection.Find(u => u.Id == mentorId).FirstOrDefaultAsync();
-            
+
             if (mentor == null || mentor.AssignedInterns == null || !mentor.AssignedInterns.Any())
             {
-            return NotFound("No interns assigned to this mentor.");
+                return NotFound("No interns assigned to this mentor.");
             }
 
             var internsGoals = await _goalsCollection
@@ -59,10 +59,10 @@ namespace Internp.Controllers
 
             long totalGoals = internsGoals.Sum(g => g.GoalCount);
 
-            return Ok(new 
-            { 
-            InternsGoals = internsGoals,
-            TotalGoals = totalGoals 
+            return Ok(new
+            {
+                InternsGoals = internsGoals,
+                TotalGoals = totalGoals
             });
         }
 
@@ -71,7 +71,7 @@ namespace Internp.Controllers
         public async Task<ActionResult<int>> GetTotalInternPocs(string mentorId)
         {
             var mentor = await _usersCollection.Find(u => u.Id == mentorId).FirstOrDefaultAsync();
-            
+
             if (mentor == null || mentor.AssignedInterns == null || !mentor.AssignedInterns.Any())
             {
                 return NotFound("No interns assigned to this mentor.");
@@ -82,48 +82,49 @@ namespace Internp.Controllers
         }
 
         // ✅ API: Get in-progress POCs for assigned interns
-    [HttpGet("{mentorId}/poc-project-stats")]
-public async Task<IActionResult> GetPocProjectStats(string mentorId)
-{
-    var mentor = await _usersCollection.Find(u => u.Id == mentorId).FirstOrDefaultAsync();
+        [HttpGet("{mentorId}/poc-project-stats")]
+        public async Task<IActionResult> GetPocProjectStats(string mentorId)
+        {
+            var mentor = await _usersCollection.Find(u => u.Id == mentorId).FirstOrDefaultAsync();
 
-    if (mentor == null || mentor.AssignedInterns == null || !mentor.AssignedInterns.Any())
-    {
-        return NotFound("No interns assigned to this mentor.");
+            if (mentor == null || mentor.AssignedInterns == null || !mentor.AssignedInterns.Any())
+            {
+                return NotFound("No interns assigned to this mentor.");
+            }
+
+            var totalPocs = await _pocsCollection.CountDocumentsAsync(p => mentor.AssignedInterns.Contains(p.UserId));
+            var inProgressPocs = await _pocsCollection.CountDocumentsAsync(p => mentor.AssignedInterns.Contains(p.UserId) && p.Status.ToLower() == "inprogress");
+            var completedPocs = await _pocsCollection.CountDocumentsAsync(p => mentor.AssignedInterns.Contains(p.UserId) && p.Status.ToLower() == "completed");
+
+            return Ok(new
+            {
+                totalPocs,
+                inProgressPocs,
+                completedPocs
+            });
+        }
+        [HttpGet("{mentorId}/interns-learning-paths")]
+        public async Task<IActionResult> GetInternsLearningPaths(string mentorId)
+        {
+            var mentor = await _usersCollection.Find(u => u.Id == mentorId).FirstOrDefaultAsync();
+
+            if (mentor == null || mentor.AssignedInterns == null || !mentor.AssignedInterns.Any())
+            {
+                return NotFound("No interns assigned to this mentor.");
+            }
+
+            var learningPaths = await _learningPathCollection
+                .Find(lp => mentor.AssignedInterns.Contains(lp.UserId))
+                .ToListAsync();
+
+            if (learningPaths == null || !learningPaths.Any())
+            {
+                return NotFound("No learning paths found for assigned interns.");
+            }
+
+            return Ok(learningPaths);
+        }
+
+
     }
-
-    var totalPocs = await _pocsCollection.CountDocumentsAsync(p => mentor.AssignedInterns.Contains(p.UserId));
-    var inProgressPocs = await _pocsCollection.CountDocumentsAsync(p => mentor.AssignedInterns.Contains(p.UserId) && p.Status.ToLower() == "inprogress");
-    var completedPocs = await _pocsCollection.CountDocumentsAsync(p => mentor.AssignedInterns.Contains(p.UserId) && p.Status.ToLower() == "completed");
-
-    return Ok(new
-    {
-        totalPocs,
-        inProgressPocs,
-        completedPocs
-    });
 }
-[HttpGet("{mentorId}/interns-learning-paths")]
-public async Task<IActionResult> GetInternsLearningPaths(string mentorId)
-{
-    var mentor = await _usersCollection.Find(u => u.Id == mentorId).FirstOrDefaultAsync();
-
-    if (mentor == null || mentor.AssignedInterns == null || !mentor.AssignedInterns.Any())
-    {
-        return NotFound("No interns assigned to this mentor.");
-    }
-
-    var learningPaths = await _learningPathCollection
-        .Find(lp => mentor.AssignedInterns.Contains(lp.UserId))
-        .ToListAsync();
-
-    if (learningPaths == null || !learningPaths.Any())
-    {
-        return NotFound("No learning paths found for assigned interns.");
-    }
-
-    return Ok(learningPaths);
-}
-
-
-}}
