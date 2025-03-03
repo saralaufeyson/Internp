@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JwEvpLOysvY=",
+  "dgSpecHash": "h31SWUkA7PY=",
   "success": true,
-  "projectFilePath": "c:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
+  "projectFilePath": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dneelam\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\dneelam\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\9.0.1\\microsoft.aspnetcore.authentication.jwtbearer.9.0.1.nupkg.sha512",
