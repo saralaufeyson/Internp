@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PocService {
-  private baseUrl = 'http://localhost:5180/api/userdata';
+  private baseUrl = `${environment.apiUrl}/userdata`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getPocProjects(userId: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/getPocProjects/${userId}`);
