@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { MentorService } from '../../../services/mentor.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { InternDetailsPopupComponent } from '../../ADMIN/intern-list/intern-details-popup/intern-details-popup.component';
 import { Chart } from 'chart.js';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-mentor-dash',
@@ -23,7 +23,7 @@ export class MentorDashComponent implements OnInit {
   userId: string = localStorage.getItem('userId') || '';
   selectedIntern: any;
 
-  constructor(private http: HttpClient, private dialog: MatDialog) { }
+  constructor(private mentorService: MentorService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getMentorGoals();
@@ -31,11 +31,10 @@ export class MentorDashComponent implements OnInit {
     this.getInterns();
     this.getInternGoals();
     this.getInternLearningPaths();
-
   }
 
   getMentorGoals(): void {
-    this.http.get<{ totalGoals: number }>(`http://localhost:5180/api/Mentor/${this.userId}/total-goals`).subscribe(
+    this.mentorService.getMentorGoals(this.userId).subscribe(
       (response) => {
         this.mentorGoals = response.totalGoals;
       },
@@ -46,7 +45,7 @@ export class MentorDashComponent implements OnInit {
   }
 
   getPocStats(): void {
-    this.http.get<{ totalPocs: number, inProgressPocs: number, completedPocs: number }>(`http://localhost:5180/api/mentor/${this.userId}/poc-project-stats`).subscribe(
+    this.mentorService.getPocStats(this.userId).subscribe(
       (response) => {
         this.totalPocs = response.totalPocs;
         this.inProgressPocs = response.inProgressPocs;
@@ -60,7 +59,7 @@ export class MentorDashComponent implements OnInit {
   }
 
   getInterns(): void {
-    this.http.get<{ id: string, username: string, email: string }[]>(`http://localhost:5180/api/mentor/${this.userId}/interns`).subscribe(
+    this.mentorService.getInterns(this.userId).subscribe(
       (response) => {
         this.interns = response;
       },
@@ -71,10 +70,10 @@ export class MentorDashComponent implements OnInit {
   }
 
   getInternGoals(): void {
-    this.http.get<{ id: string, username: string, email: string }[]>(`http://localhost:5180/api/mentor/${this.userId}/interns`).subscribe(
+    this.mentorService.getInterns(this.userId).subscribe(
       (internsResponse) => {
         this.interns = internsResponse;
-        this.http.get<{ internsGoals: { userId: string, goalCount: number }[], totalGoals: number }>(`http://localhost:5180/api/Mentor/${this.userId}/total-goals`).subscribe(
+        this.mentorService.getInternGoals(this.userId).subscribe(
           (goalsResponse) => {
             const internNames = this.interns.map(intern => intern.username);
             const goalCounts = this.interns.map(intern => {
@@ -96,7 +95,7 @@ export class MentorDashComponent implements OnInit {
   }
 
   getInternLearningPaths(): void {
-    this.http.get<any[]>(`http://localhost:5180/api/Mentor/${this.userId}/interns-learning-paths`).subscribe(
+    this.mentorService.getInternLearningPaths(this.userId).subscribe(
       (response) => {
         this.internLearningPaths = response.reduce((acc, path) => {
           if (!acc[path.userId]) {
@@ -105,7 +104,7 @@ export class MentorDashComponent implements OnInit {
           acc[path.userId].push(path);
           return acc;
         }, {});
-        this.learningPaths = response; // Assign response to learningPaths
+        this.learningPaths = response;
       },
       (error) => {
         console.error('Error fetching intern learning paths:', error);
