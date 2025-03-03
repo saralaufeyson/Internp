@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Chart } from 'chart.js';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-admindash',
@@ -94,16 +94,16 @@ export class AdmindashComponent implements OnInit {
     new Chart(ctx, {
       type: 'doughnut',
       data: {
-      labels: ['In Progress', 'Completed'],
-      datasets: [{
-        data: [this.inProgressPocs, this.completedPocs],
-        backgroundColor: ['#00e6e6', '#1B3E9C'],
-        hoverBackgroundColor: ['#00e6e6', '#1B3E9C']
-      }]
+        labels: ['In Progress', 'Completed'],
+        datasets: [{
+          data: [this.inProgressPocs, this.completedPocs],
+          backgroundColor: ['#00e6e6', '#1B3E9C'],
+          hoverBackgroundColor: ['#00e6e6', '#1B3E9C']
+        }]
       },
       options: {
-      responsive: true,
-      maintainAspectRatio: false
+        responsive: true,
+        maintainAspectRatio: false
       }
     });
   }
@@ -154,6 +154,6 @@ export class AdmindashComponent implements OnInit {
   //       }
   //     }
   //   });
-  }
+}
 
 

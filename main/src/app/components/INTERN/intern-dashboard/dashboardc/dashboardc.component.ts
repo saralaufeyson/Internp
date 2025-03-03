@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, OnDestroy, Input } from '@angular/cor
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Chart } from 'chart.js/auto';
-import { UserDetailsService } from '../../services/user-details.service';
+import { UserDetailsService } from '../../../../services/user-details.service';
 import { RouterModule } from '@angular/router'; // Import RouterModule
 
 @Component({
@@ -101,19 +101,19 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         this.pieChart = new Chart(canvas, {
           type: 'doughnut', // Change 'pie' to 'doughnut'
           data: {
-        labels: ['In Progress POCs', 'Completed POCs'],
-        datasets: [{
-          data: [this.pocCount.inProgressPocs, this.pocCount.completedPocs],
-          backgroundColor: ['#00e6e6', '#1B3E9C'],
-          hoverBackgroundColor: ['#00e6e6', '#1B3E9C']
-        }]
+            labels: ['In Progress POCs', 'Completed POCs'],
+            datasets: [{
+              data: [this.pocCount.inProgressPocs, this.pocCount.completedPocs],
+              backgroundColor: ['#00e6e6', '#1B3E9C'],
+              hoverBackgroundColor: ['#00e6e6', '#1B3E9C']
+            }]
           },
           options: {
-        responsive: true,
-        maintainAspectRatio: false // Ensure chart resizes properly
+            responsive: true,
+            maintainAspectRatio: false // Ensure chart resizes properly
           }
         });
-      
+
         this.pieChart = new Chart(canvas, {
           type: 'pie',
           data: {

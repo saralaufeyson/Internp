@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LearningPathService } from '../../services/learning-path.service';
+import { LearningPathService } from '../../../services/learning-path.service';
 import { CommonModule } from '@angular/common';
 import { LearningPath } from 'src/app/models/learning-path.model';
 

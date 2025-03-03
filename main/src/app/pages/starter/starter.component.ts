@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { MaterialModule } from 'src/app/material.module'; // Import MaterialModule here
 import { CommonModule } from '@angular/common'; // Import CommonModule here
 
-import { DashboardcComponent } from 'src/app/components/dashboardc/dashboardc.component';
+import { DashboardcComponent } from 'src/app/components/INTERN/intern-dashboard/dashboardc/dashboardc.component';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-starter',
@@ -12,4 +12,4 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./starter.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class StarterComponent {}
+export class StarterComponent { }

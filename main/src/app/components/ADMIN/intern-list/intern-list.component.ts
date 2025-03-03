@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { UserService } from '../services/user.service'; // Corrected import path
-import { User } from '../models/user.model'; // Corrected import path
+import { UserService } from '../../../services/user.service'; // Corrected import path
+import { User } from '../../../models/user.model'; // Corrected import path
 import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog'; // Import MatDialog and MatDialogModule
-import { InternDetailsPopupComponent } from '../intern-details-popup/intern-details-popup.component'; // Import the new popup component
+import { InternDetailsPopupComponent } from './intern-details-popup/intern-details-popup.component'; // Import the new popup component
 
 @Component({
   standalone: true,

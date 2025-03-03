@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { UserService } from '../services/user.service';
-import { UserDetailsService } from '../services/user-details.service';
-import { DashboardcComponent } from '../components/dashboardc/dashboardc.component';
+import { UserService } from '../../../../services/user.service';
+import { UserDetailsService } from '../../../../services/user-details.service';
+import { DashboardcComponent } from '../../../INTERN/intern-dashboard/dashboardc/dashboardc.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
