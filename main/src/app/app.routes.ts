@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
-import { UserDetailsComponent } from './pages/user-details/user-details.component';
+import { UserDetailsComponent } from './components/profile/user-role/user-details.component';
 import { AllGoalsComponent } from './components/ADMIN/all-goals/all-goals.component';
 import { InternListComponent } from './components/ADMIN/intern-list/intern-list.component';
 import { MentorListComponent } from './components/ADMIN/mentor-list/mentor-list.component'; // Import MentorListComponent
