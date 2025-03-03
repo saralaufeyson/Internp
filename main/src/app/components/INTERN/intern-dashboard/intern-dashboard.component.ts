@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardcComponent } from '../dashboardc/dashboardc.component';
+import { DashboardcComponent } from './dashboardc/dashboardc.component';
 
 @Component({
     selector: 'app-intern-dashboard',

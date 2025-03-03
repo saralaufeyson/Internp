@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserDetailsService } from '../../services/user-details.service'; // Make sure to import your service
+import { UserDetailsService } from '../../../services/user-details.service'; // Make sure to import your service
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -27,7 +27,7 @@ export class UserDetailsComponent implements OnInit {
   isNewUser: boolean = true; // Flag to check if the user details are new
   userId: string = ''; // This will be retrieved from localStorage or route parameter
 
-  constructor(private userDetailsService: UserDetailsService, private route: ActivatedRoute) {}
+  constructor(private userDetailsService: UserDetailsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId') || '';

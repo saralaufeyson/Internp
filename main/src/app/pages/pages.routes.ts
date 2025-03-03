@@ -1,24 +1,24 @@
 import { Routes } from '@angular/router';
-import { AllGoalsComponent } from '../components/all-goals/all-goals.component';
+import { AllGoalsComponent } from '../components/ADMIN/all-goals/all-goals.component';
 import { StarterComponent } from './starter/starter.component';
 import { ProfileComponent } from '../components/profile/profile.component';
-import { LearningPathComponent } from '../components/learning-path/learning-path.component';
-import { GoalsComponent } from '../components/goals/goals.component';
-import { PocProjectsComponent } from '../components/poc-projects/poc-projects.component';
-import { InternListComponent } from '../intern-list/intern-list.component';
+import { LearningPathComponent } from '../components/INTERN/learning-path/learning-path.component';
+import { GoalsComponent } from '../components/INTERN/goals/goals.component';
+import { PocProjectsComponent } from '../components/INTERN/poc-projects/poc-projects.component';
+import { InternListComponent } from '../components/ADMIN/intern-list/intern-list.component';
 import { InternGuard } from '../guards/intern.guard'; // Import InternGuard
 import { AdminGuard } from '../guards/admin.guard'; // Import AdminGuard
-import { MentorListComponent } from '../mentor-list/mentor-list.component'; // Import MentorListComponent
-import { MentorsWithInternsComponent } from '../components/mentors-with-interns/mentors-with-interns.component'; // Import the new component
-import { MylearnComponent } from '../components/mylearn/mylearn.component'; // Import MyLearnComponent
-import { AdmindashComponent } from '../components/admindash/admindash.component';
-import { InternPlansComponent } from '../components/intern-plans/intern-plans.component';
+import { MentorListComponent } from '../components/ADMIN/mentor-list/mentor-list.component'; // Import MentorListComponent
+import { MentorsWithInternsComponent } from '../components/ADMIN/mentors-with-interns/mentors-with-interns.component'; // Import the new component
+import { MylearnComponent } from '../components/INTERN/mylearn/mylearn.component'; // Import MyLearnComponent
+import { AdmindashComponent } from '../components/ADMIN/admindash/admindash.component';
+import { InternPlansComponent } from '../components/INTERN/intern-plans/intern-plans.component';
 import { MentorGuard } from '../guards/mentor.guard'; // Import MentorGuard
-import { InternDashboardComponent } from '../components/intern-dashboard/intern-dashboard.component';
-import { MentorDashComponent } from '../components/mentor-dash/mentor-dash.component';
+import { InternDashboardComponent } from '../components/INTERN/intern-dashboard/intern-dashboard.component';
+import { MentorDashComponent } from '../components/MENTOR/mentor-dash/mentor-dash.component';
 import { internNavItems } from '../layouts/full/sidebar/sidebar-data';
-import { InternFeedbackComponent } from '../components/intern-feedback/intern-feedback.component';
-import { AdminReviewsComponent } from '../components/admin-reviews/admin-reviews.component';
+import { InternFeedbackComponent } from '../components/MENTOR/intern-feedback/intern-feedback.component';
+import { AdminReviewsComponent } from '../components/ADMIN/admin-reviews/admin-reviews.component';
 
 export const PagesRoutes: Routes = [
   {
@@ -189,7 +189,7 @@ export const PagesRoutes: Routes = [
     path: 'mentor',
     component: MentorDashComponent,
     canActivate: [MentorGuard], // Apply MentorGuard
-   
+
     data: {
       title: 'MENTOR Dashboard',
       urls: [
@@ -202,7 +202,7 @@ export const PagesRoutes: Routes = [
     path: 'admin-reviews',
     component: AdminReviewsComponent,
     canActivate: [AdminGuard], // Apply MentorGuard
-   
+
     data: {
       title: 'Admin Reviews',
       urls: [
@@ -211,5 +211,5 @@ export const PagesRoutes: Routes = [
       ],
     },
   },
-  
+
 ];

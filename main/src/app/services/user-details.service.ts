@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 interface UserDetails {
   _id?: string; // Make _id optional
@@ -17,9 +18,9 @@ interface UserDetails {
   providedIn: 'root'
 })
 export class UserDetailsService {
-  private apiUrl = 'http://localhost:5180/api/userdetails'; // Base API URL
+  private apiUrl = `${environment.apiUrl}/userdetails`; // Base API URL
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Get user details by userId
   getUserDetails(userId: string): Observable<UserDetails> {
@@ -34,9 +35,9 @@ export class UserDetailsService {
   // Update user details
   updateUserDetails(userId: string, details: UserDetails): Observable<any> {
     const userDetailsWithId = { ...details, _id: userId };
-  
+
     console.log('User Details to be updated:', userDetailsWithId);
-  
+
     return this.http.put(`${this.apiUrl}/${userId}`, userDetailsWithId)
       .pipe(
         tap((response) => {

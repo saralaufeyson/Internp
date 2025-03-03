@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { User } from '../models/user.model';
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../models/user.model';
 import { CommonModule } from '@angular/common';
 
 @Component({

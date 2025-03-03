@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { InternDetailsPopupComponent } from '../../intern-details-popup/intern-details-popup.component';
+import { InternDetailsPopupComponent } from '../../ADMIN/intern-list/intern-details-popup/intern-details-popup.component';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -23,7 +23,7 @@ export class MentorDashComponent implements OnInit {
   userId: string = localStorage.getItem('userId') || '';
   selectedIntern: any;
 
-  constructor(private http: HttpClient, private dialog: MatDialog) {}
+  constructor(private http: HttpClient, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getMentorGoals();
