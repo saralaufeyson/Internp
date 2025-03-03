@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Chart } from 'chart.js';
 import { CommonModule } from '@angular/common';
+import { GoalsService } from '../../../services/goals.service'; // Import GoalsService
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class AdmindashComponent implements OnInit {
   totalInterns: number = 0;
   totalMentors: number = 0; // Add property to store total number of mentors
 
-  constructor(private http: HttpClient, private userService: UserService) { }
+  constructor(private http: HttpClient, private goalsService: GoalsService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.getAllGoalsCount();
@@ -30,7 +31,7 @@ export class AdmindashComponent implements OnInit {
   }
 
   getAllGoalsCount(): void {
-    this.http.get<{ count: number }>('http://localhost:5180/api/userdata/getAllGoalsCount').subscribe(
+    this.goalsService.getAllGoalsCount().subscribe(
       (response) => {
         this.allGoalsCount = response.count;
       },

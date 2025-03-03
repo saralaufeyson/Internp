@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { GoalsService } from '../../../services/goals.service'; // Import GoalsService
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -15,7 +15,7 @@ export class GoalsComponent implements OnInit {
   goals: any[] = []; // Array to store saved goals
   userId: string = '';  // Get the logged-in user ID here (e.g., from LocalStorage or an AuthService)
 
-  constructor(private http: HttpClient) {
+  constructor(private goalsService: GoalsService) {
     // Initialize the form with goalName and goalDescription fields
     this.form = new FormGroup({
       goalName: new FormControl('', [Validators.required]),
@@ -43,17 +43,16 @@ export class GoalsComponent implements OnInit {
       return;
     }
 
-    this.http.get(`http://localhost:5180/api/goal/getGoals/${this.userId}`)
-      .subscribe(
-        (response: any) => {
-          console.log('Fetched goals:', response);
-          // Update the component's goals state with the fetched data
-          this.goals = response || []; // If no goals, set an empty array
-        },
-        (error) => {
-          console.error('Failed to fetch goals:', error);
-        }
-      );
+    this.goalsService.getGoals(this.userId).subscribe(
+      (response: any) => {
+        console.log('Fetched goals:', response);
+        // Update the component's goals state with the fetched data
+        this.goals = response || []; // If no goals, set an empty array
+      },
+      (error) => {
+        console.error('Failed to fetch goals:', error);
+      }
+    );
   }
 
   // Submit the goal form
@@ -69,48 +68,45 @@ export class GoalsComponent implements OnInit {
       };
 
       // Make API call to store the new goal
-      this.http.post(`http://localhost:5180/api/goal/addGoal`, goalData)
-        .subscribe(
-          (response) => {
-            console.log('Goal saved successfully', response);
-            // Optionally add the newly created goal to the component's goals list
-            this.goals.push(goalData);
-            this.form.reset();  // Reset the form after submission
-            this.updateGoalCount(); // Update the goal count after adding a new goal
-          },
-          (error) => {
-            console.error('Error saving goal:', error);
-          }
-        );
+      this.goalsService.addGoal(goalData).subscribe(
+        (response) => {
+          console.log('Goal saved successfully', response);
+          // Optionally add the newly created goal to the component's goals list
+          this.goals.push(goalData);
+          this.form.reset();  // Reset the form after submission
+          this.updateGoalCount(); // Update the goal count after adding a new goal
+        },
+        (error) => {
+          console.error('Error saving goal:', error);
+        }
+      );
     }
   }
 
   // Method to update the goal count
   updateGoalCount() {
-    this.http.get(`http://localhost:5180/api/goal/getGoalsCount/${this.userId}`)
-      .subscribe(
-        (response: any) => {
-          console.log('Goal count:', response.count);
-        },
-        (error) => {
-          console.error('Failed to fetch goal count:', error);
-        }
-      );
+    this.goalsService.getGoalsCount(this.userId).subscribe(
+      (response: any) => {
+        console.log('Goal count:', response.count);
+      },
+      (error) => {
+        console.error('Failed to fetch goal count:', error);
+      }
+    );
   }
 
   // Method to delete a goal
   deleteGoal(goalId: string) {
-    this.http.delete(`http://localhost:5180/api/goal/deleteGoal/${goalId}`)
-      .subscribe(
-        (response) => {
-          console.log('Goal deleted successfully', response);
-          // Remove the deleted goal from the goals array
-          this.goals = this.goals.filter(goal => goal._id !== goalId);
-          this.updateGoalCount(); // Update the goal count after deleting a goal
-        },
-        (error) => {
-          console.error('Error deleting goal:', error);
-        }
-      );
+    this.goalsService.deleteGoal(goalId).subscribe(
+      (response) => {
+        console.log('Goal deleted successfully', response);
+        // Remove the deleted goal from the goals array
+        this.goals = this.goals.filter(goal => goal._id !== goalId);
+        this.updateGoalCount(); // Update the goal count after deleting a goal
+      },
+      (error) => {
+        console.error('Error deleting goal:', error);
+      }
+    );
   }
 }
