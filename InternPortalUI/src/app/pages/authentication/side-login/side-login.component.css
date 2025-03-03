@@ -1,6 +1,8 @@
 .login-container {
   display: flex;
   height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-box {
@@ -8,7 +10,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
   padding: 2rem;
   background: #fff;
 }
@@ -23,42 +24,50 @@
 
 .login-image img {
   max-width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 .login-header img {
-  width: 300px;
-  /* Further increase the size of the logo */
+  width: 250px;
   height: auto;
   margin-bottom: 50px;
+  max-width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
 }
 
 .input-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-bottom: 1rem;
   width: 100%;
-  /* Ensure full width for consistency */
 }
 
 .input-container label {
   font-weight: 600;
-  /* Make labels bold */
   margin-bottom: 0.5rem;
+  text-align: left;
+  width: 70%; /* Match the width of the input */
 }
 
 .input-container input {
   padding: 0.75rem;
-  /* Adjust padding */
   font-size: 0.8rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 70%;
   height: 40px;
+  text-align: left;
 }
 
 .password-container {
   position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .password-container input {
@@ -79,10 +88,10 @@
 
 .checkbox-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* Align with 'Forgot password?' */
-  width: 40%;
+  /* align-items: center; */
+  justify-content: flex-start;
+  padding-left: 3em;
+  width: 100%;
   margin-bottom: 20px;
   font-size: 0.9rem;
 }
@@ -90,23 +99,25 @@
 .checkbox-container label {
   display: flex;
   align-items: center;
-  margin-left: 0;
-  /* Move label next to checkbox */
+  margin-left: 0.5em;
 }
+
 
 .login-btn {
   width: 70%;
   padding: 0.75rem;
   background: #4c6ef5;
-  /* Adjust button color to match */
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: 600;
+  display: block;
+  margin: 0 auto;
 }
 
 .register-text {
   margin-top: 1rem;
   font-size: 0.9rem;
+  text-align: center;
 }
