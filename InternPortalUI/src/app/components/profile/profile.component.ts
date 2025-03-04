@@ -46,7 +46,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId') || '';
 
-
     if (this.userId) {
       this.userService.getUserProfile(this.userId).subscribe(
         (data) => {
@@ -65,7 +64,6 @@ export class ProfileComponent implements OnInit {
 
       this.loadProfileImage();
 
-
     } else {
       console.error('No user ID found in localStorage. User is not logged in.');
       this.errorMessage = 'No user ID found. Please log in.';
@@ -73,7 +71,7 @@ export class ProfileComponent implements OnInit {
   }
 
   loadProfileImage(): void {
-    this.http.get(`http://localhost:5180/api/user/getProfileImage/${this.userId}`, { responseType: 'blob' })
+    this.userDataService.getProfileImage(this.userId)
       .subscribe(
         (response) => {
           const url = URL.createObjectURL(response);
@@ -87,7 +85,7 @@ export class ProfileComponent implements OnInit {
   }
 
   loadAboutSection(): void {
-    this.http.get(`http://localhost:5180/api/user/getAboutSection/${this.userId}`, { responseType: 'text' })
+    this.userDataService.getAboutSection(this.userId)
       .subscribe(
         (response) => {
           try {
@@ -107,7 +105,7 @@ export class ProfileComponent implements OnInit {
 
   saveAboutSection(): void {
     this.errorMessage = ''; // Clear any previous error messages
-    this.http.post(`http://localhost:5180/api/user/updateAboutSection/${this.userId}`, { about: this.userProfile.about }, { responseType: 'text' })
+    this.userDataService.updateAboutSection(this.userId, this.userProfile.about)
       .subscribe(
         (response) => {
           console.log('About section saved successfully:', response);
@@ -139,7 +137,7 @@ export class ProfileComponent implements OnInit {
       const formData = new FormData();
       formData.append('image', this.selectedFile);
 
-      this.http.post(`http://localhost:5180/api/user/uploadImage/${this.userId}`, formData, { responseType: 'text' })
+      this.userDataService.uploadImage(this.userId, formData)
         .subscribe(
           (response) => {
             console.log('Image uploaded successfully:', response);
