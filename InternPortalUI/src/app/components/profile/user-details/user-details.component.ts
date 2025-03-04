@@ -22,8 +22,6 @@ export class UserDetailsComponent implements OnInit {
     tenthGrade: '',
     twelfthGrade: '',
     btechCgpa: '', // Ensure this field is correctly defined
-    experinece:[''],
-    skills: ['']
   };
   isEditMode: boolean = false;
   isNewUser: boolean = true; // Flag to check if the user details are new
