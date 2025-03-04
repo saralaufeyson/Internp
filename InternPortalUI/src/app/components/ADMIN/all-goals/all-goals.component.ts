@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { GoalsService } from '../../../services/goals.service'; // Import GoalsService
 import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
+
 interface Goal {
   goalName: string;
   description: string;
@@ -20,15 +21,15 @@ interface Goal {
 export class AllGoalsComponent implements OnInit {
   goals: Goal[] = [];
   errorMessage: string = '';
-  private apiUrl = 'http://localhost:5180/api/goal/getAllGoals';
-  constructor(private http: HttpClient) { }
+
+  constructor(private goalsService: GoalsService) { }
 
   ngOnInit(): void {
     this.fetchAllGoals();
   }
 
   fetchAllGoals(): void {
-    this.http.get<Goal[]>(this.apiUrl).subscribe(
+    this.goalsService.getAllGoals().subscribe(
       (data) => {
         this.goals = data;
       },

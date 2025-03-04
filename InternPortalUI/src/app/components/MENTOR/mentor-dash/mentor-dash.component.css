@@ -109,7 +109,7 @@
 
 .learning-path-card a {
   font-size: 12px;
-  color: #D2E5F6;
+  color: #1B3E9C;
   text-decoration: none;
   font-weight: bold;
 }
@@ -121,7 +121,7 @@
 /* Adjust the size of the graphs */
 canvas {
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
   max-width: 300px; /* Increase max-width */
   max-height: 300px; /* Increase max-height */
   display: block;
@@ -250,6 +250,49 @@ button:focus {
 }
 
 .poc-status-card .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Flex Container for Intern Goals Bar Chart and PoC Status Cards */
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  height: 100%;
+}
+
+/* Mentor Goals Card */
+.mentor-goals-card {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  margin: 16px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mentor-goals-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* PoCs Card */
+.pocs-card {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  margin: 16px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pocs-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }

@@ -54,13 +54,7 @@
     </div>
     <div *ngIf="activeTab === 'experience'" class="experience-section">
       <h4>Experience</h4>
-      <ul>
-        <li *ngFor="let exp of userProfile.experience">{{ exp }}</li>
-      </ul>
-      <div class="input-group">
-        <input [(ngModel)]="newExperience" placeholder="Add new experience" />
-        <button (click)="addExperience()">Add</button>
-      </div>
+      <app-experience></app-experience>
     </div>
     <div *ngIf="activeTab === 'skills'" class="skills-section">
       <h4>Skills</h4>

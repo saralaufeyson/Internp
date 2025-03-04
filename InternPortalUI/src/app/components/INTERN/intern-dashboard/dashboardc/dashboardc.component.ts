@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Chart } from 'chart.js/auto';
 import { UserDetailsService } from '../../../../services/user-details.service';
-import { RouterModule } from '@angular/router'; // Import RouterModule
+import { RouterModule } from '@angular/router';
+import { GoalsService } from '../../../../services/goals.service'; // Import GoalsService
 
 @Component({
   selector: 'app-dashboardc',
   standalone: true,
-  imports: [CommonModule, RouterModule], // Add RouterModule to imports
+  imports: [CommonModule, RouterModule],
   templateUrl: './dashboardc.component.html',
   styleUrls: ['./dashboardc.component.css']
 })
@@ -17,9 +18,9 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
   dashboardData: any;
   goalCount: number | undefined;
   pocCount: { totalPocs: number; inProgressPocs: number; completedPocs: number } | undefined;
-  pieChart: Chart | undefined; // Ensure it's properly typed
+  pieChart: Chart | undefined;
 
-  constructor(private http: HttpClient, private userDetailsService: UserDetailsService) { }
+  constructor(private http: HttpClient, private userDetailsService: UserDetailsService, private goalsService: GoalsService) { }
 
   ngOnInit() {
     if (this.userId) {
@@ -47,16 +48,15 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
       console.error('User ID is not defined');
       return;
     }
-    this.http.get(`http://localhost:5180/api/goal/getGoalCount/${this.userId}`)
-      .subscribe({
-        next: (response: any) => {
-          this.goalCount = response.count;
-          console.log('Goal count:', response.count);
-        },
-        error: (error: any) => {
-          console.error('Failed to fetch goal count:', error);
-        }
-      });
+    this.goalsService.getGoalCount(this.userId).subscribe({
+      next: (response: any) => {
+        this.goalCount = response.count;
+        console.log('Goal count:', response.count);
+      },
+      error: (error: any) => {
+        console.error('Failed to fetch goal count:', error);
+      }
+    });
   }
 
   updatePocCount() {

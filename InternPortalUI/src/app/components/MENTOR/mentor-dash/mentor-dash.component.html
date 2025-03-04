@@ -1,50 +1,36 @@
 <div class="mentor-dashboard">
   <h2 style="font-size: 16px;">Guidance Nexus</h2>
   <h5 style="font-size: 12px;"><i>Empowering mentors, tracking growth, shaping futures.</i></h5>
-  
 
-  <!-- Intern Goals Bar Chart -->
-  <div class="card mentor-goals-card">
-    
-    <p>Total Intern Goals</p>
-    <div *ngIf="mentorGoals !== undefined">
-      <p>{{ mentorGoals }}</p>
+  <!-- Flex Container for Intern Goals Bar Chart and PoC Status Cards -->
+  <div class="flex-container">
+    <!-- Intern Goals Bar Chart -->
+    <div class="card mentor-goals-card">
+      
+      
+      <div *ngIf="mentorGoals === undefined">
+        <p class="error-message">Something's wrong... try reloading</p>
+      </div>
+      <h1>Intern Goals Bar Chart</h1>
+      <div *ngIf="mentorGoals !== undefined">
+        <p>Total Goals:{{ mentorGoals }}</p>
+      </div>
+      <canvas id="internGoalsBarChart"></canvas>
     </div>
-    <div *ngIf="mentorGoals === undefined">
-      <p class="error-message">Something's wrong... try reloading</p>
-    </div>
-  
-    <h1>Intern Goals Bar Chart</h1>
-    <canvas id="internGoalsBarChart"></canvas>
-  </div>
 
-  <!-- Proof of Concepts Section -->
-  
-
-  <!-- Proof of Concepts Pie Chart -->
-  <div class="card pocs-card" style="display: flex; justify-content: left;">
-    
+    <!-- Proof of Concepts Pie Chart -->
+    <div class="card pocs-card">
       <h1>Proof of Concepts Status</h1>
-     
       <div *ngIf="totalPocs !== undefined">
-        <div class="card">
-          <p>Total PoCs: {{ totalPocs }}</p>
-        </div>
-        <div class="card">
-          <p>In Progress: {{ inProgressPocs }}</p>
-        </div>
-        <div class="card">
-          <p>Completed: {{ completedPocs }}</p>
-        </div>
+        
+            <p style="text-align: left; margin-top: 0; margin-bottom: 0;">Total PoCs: {{ totalPocs }}</p>
+       
       </div>
       <div *ngIf="totalPocs === undefined">
         <p class="error-message">Something's wrong... try reloading</p>
       </div>
-  
-    
-    <canvas id="pocPieChart"></canvas>
-    
-    
+      <canvas id="pocPieChart"></canvas>
+    </div>
   </div>
 </div>
 
