@@ -206,14 +206,7 @@ h6 {
   border-radius: 5px;
 }
 
-.tab-bar button.active {
-  background: #0095FF;
-  color: white;
-}
 
-.tab-bar button:hover {
-  background: #ddd;
-}
 
 /* Tab Content */
 .tab-content {
@@ -237,7 +230,6 @@ h6 {
 /* About Section */
 .about-section {
   height: 600px;
-  /* Increase the height */
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -250,6 +242,59 @@ h6 {
 }
 
 .save-button {
+  background-color: #D2E5F6;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #c6e4ff;
+}
+
+/* Edit Button Container */
+.edit-button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-button mat-icon {
+  font-size: 18px;
+  color: #474747;
+  transition: color 0.3s ease;
+}
+
+.edit-button:hover mat-icon {
+  color: #000;
+}
+
+/* Input Group */
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.input-group input {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  flex-grow: 1;
+}
+
+.input-group button {
   background-color: #193b8c;
   color: white;
   border: none;
@@ -259,6 +304,6 @@ h6 {
   transition: background-color 0.3s ease;
 }
 
-.save-button:hover {
+.input-group button:hover {
   background-color: #0095FF;
 }

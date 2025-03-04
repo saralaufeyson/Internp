@@ -7,11 +7,12 @@ import { UserService } from 'src/app/services/user.service';
 import { PocService } from 'src/app/services/poc.service';
 import { UserDetailsComponent } from "./user-details/user-details.component";
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserDetailsComponent],
+  imports: [CommonModule, FormsModule, UserDetailsComponent, MatIconModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -22,7 +23,9 @@ export class ProfileComponent implements OnInit {
     status: '',
     joinedDate: '',
     role: '',
-    about: '' // Initialize about field
+    about: '', // Initialize about field
+    experience: [], // Initialize experience field
+    skills: [] // Initialize skills field
   };
 
   userId: string = ''; // Get the logged-in user's ID here (e.g., from LocalStorage or an AuthService)
@@ -34,6 +37,9 @@ export class ProfileComponent implements OnInit {
   isUploaded: boolean = false;
   pocs: Array<any> = [];
   activeTab: string = 'about'; // Track the active tab
+  isEditingAbout: boolean = false; // Track if the about section is in edit mode
+  newExperience: string = ''; // Track new experience input
+  newSkill: string = ''; // Track new skill input
 
   constructor(
     private userDataService: UserDataService,
@@ -110,6 +116,7 @@ export class ProfileComponent implements OnInit {
         (response) => {
           console.log('About section saved successfully:', response);
           this.notificationMessage = 'About section saved successfully.';
+          this.isEditingAbout = false; // Exit edit mode
           this.cdr.detectChanges(); // Trigger change detection
           setTimeout(() => {
             this.notificationMessage = ''; // Clear the notification after 3 seconds
@@ -155,5 +162,23 @@ export class ProfileComponent implements OnInit {
 
   setActiveTab(tab: string): void {
     this.activeTab = tab;
+  }
+
+  toggleEditAbout(): void {
+    this.isEditingAbout = !this.isEditingAbout;
+  }
+
+  addExperience(): void {
+    if (this.newExperience.trim()) {
+      this.userProfile.experience.push(this.newExperience.trim());
+      this.newExperience = '';
+    }
+  }
+
+  addSkill(): void {
+    if (this.newSkill.trim()) {
+      this.userProfile.skills.push(this.newSkill.trim());
+      this.newSkill = '';
+    }
   }
 }

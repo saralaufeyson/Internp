@@ -20,32 +20,57 @@
   </div>
 
   <!-- Tab Bar -->
-  <div class="tab-bar">
-    <button [class.active]="activeTab === 'about'" (click)="setActiveTab('about')">About</button>
-    <button [class.active]="activeTab === 'details'" (click)="setActiveTab('details')">Details</button>
-    <button [class.active]="activeTab === 'experience'" (click)="setActiveTab('experience')">Experience</button>
-    <button [class.active]="activeTab === 'skills'" (click)="setActiveTab('skills')">Skills</button>
-  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="navbar-nav">
+        <a class="nav-link" [class.active]="activeTab === 'about'" (click)="setActiveTab('about')" style="cursor: pointer;">About</a>
+        <a class="nav-link" [class.active]="activeTab === 'details'" (click)="setActiveTab('details')" style="cursor: pointer;">Details</a>
+        <a class="nav-link" [class.active]="activeTab === 'experience'" (click)="setActiveTab('experience')" style="cursor: pointer;">Experience</a>
+        <a class="nav-link" [class.active]="activeTab === 'skills'" (click)="setActiveTab('skills')" style="cursor: pointer;">Skills</a>
+      </div>
+    </div>
+  </nav>
 
   <!-- Tab Content -->
   <div class="tab-content">
     <div *ngIf="activeTab === 'about'" class="about-section">
-      <h4>About</h4>
-      <textarea [(ngModel)]="userProfile.about" rows="10" cols="80" placeholder="Enter about information..." class="about-textarea"></textarea>
-      <button (click)="saveAboutSection()" class="save-button">Save</button>
+      <div class="edit-button-container">
+        <button (click)="toggleEditAbout()" class="edit-button">
+          <mat-icon>{{ isEditingAbout ? 'close' : 'edit' }}</mat-icon>
+        </button>
+      </div>
+      <div *ngIf="isEditingAbout">
+        <textarea [(ngModel)]="userProfile.about" rows="10" cols="80" placeholder="Enter about information..." class="about-textarea"></textarea>
+        <button (click)="saveAboutSection()" class="save-button">Save</button>
+      </div>
+      <div *ngIf="!isEditingAbout">
+        <p>{{ userProfile.about }}</p>
+      </div>
       <div *ngIf="notificationMessage" class="notification-message">{{ notificationMessage }}</div>
       <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     </div>
     <div *ngIf="activeTab === 'details'">
       <app-user-details [userName]="userProfile.name"></app-user-details>
     </div>
-    <div *ngIf="activeTab === 'experience'">
+    <div *ngIf="activeTab === 'experience'" class="experience-section">
       <h4>Experience</h4>
-      <p>{{ userProfile.experience }}</p>
+      <ul>
+        <li *ngFor="let exp of userProfile.experience">{{ exp }}</li>
+      </ul>
+      <div class="input-group">
+        <input [(ngModel)]="newExperience" placeholder="Add new experience" />
+        <button (click)="addExperience()">Add</button>
+      </div>
     </div>
-    <div *ngIf="activeTab === 'skills'">
+    <div *ngIf="activeTab === 'skills'" class="skills-section">
       <h4>Skills</h4>
-      <p>{{ userProfile.skills }}</p>
+      <ul>
+        <li *ngFor="let skill of userProfile.skills">{{ skill }}</li>
+      </ul>
+      <div class="input-group">
+        <input [(ngModel)]="newSkill" placeholder="Add new skill" />
+        <button (click)="addSkill()">Add</button>
+      </div>
     </div>
   </div>
 </div>
