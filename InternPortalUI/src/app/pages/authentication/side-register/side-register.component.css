@@ -55,10 +55,10 @@ form select {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
+  align-items: center;
   margin-left: 0;
   /* Removed left margin */
-  padding: 2rem;
+  padding: 0rem 2rem;
   background: #fff;
 }
 
@@ -123,4 +123,5 @@ form select {
 .register-text {
   margin-top: 1rem;
   font-size: 0.9rem;
+  text-align: center;
 }

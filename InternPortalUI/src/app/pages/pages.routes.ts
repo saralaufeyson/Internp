@@ -16,8 +16,8 @@ import { MentorGuard } from '../guards/mentor.guard'; // Import MentorGuard
 import { InternDashboardComponent } from '../components/INTERN/intern-dashboard/intern-dashboard.component';
 import { MentorDashComponent } from '../components/MENTOR/mentor-dash/mentor-dash.component';
 import { internNavItems } from '../layouts/full/sidebar/sidebar-data';
-import { InternFeedbackComponent } from '../components/MENTOR/intern-feedback/intern-feedback.component';
 import { AdminReviewsComponent } from '../components/ADMIN/admin-reviews/admin-reviews.component';
+import { InternFeedbackComponent } from '../components/MENTOR/intern-feedback/intern-feedback.component';
 
 export const PagesRoutes: Routes = [
   {
