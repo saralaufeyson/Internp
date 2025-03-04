@@ -29,10 +29,6 @@ namespace YourNamespace.Models
 
         [BsonElement("btechCgpa")]
         public required string BTechCgpa { get; set; }
-        [BsonElement("experience")]
-        public List<string> Experience { get; set; } = new List<string>();
-
-        [BsonElement("skills")]
-        public List<string> Skills { get; set; } = new List<string>();
+        
     }
 }
