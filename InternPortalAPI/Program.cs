@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
+using YourNamespace.Repositories;
 using YourNamespace.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +24,8 @@ builder.Services.AddSingleton<IMongoClient>(mongoClient);
 // Register Services
 builder.Services.AddSingleton<AuthService>();
 builder.Services.AddScoped<UserDetailsService>();  // ✅ Register UserDetailsService
-
+builder.Services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();  // ✅ Register IUserDetailsRepository
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 // Configure Authentication using JWT
 builder.Services.AddAuthentication(options =>
 {

@@ -1,4 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 21c1ffa29425cf7872cb040090bb9381f800851d
 C:\Users\lkanchi\Downloads\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\lkanchi\Downloads\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\appsettings.json
 C:\Users\lkanchi\Downloads\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\InternPortal.staticwebassets.endpoints.json
@@ -47,8 +51,12 @@ C:\Users\lkanchi\Downloads\internportal3\Internp\InternPortalAPI\obj\Debug\net9.
 C:\Users\lkanchi\Downloads\internportal3\Internp\InternPortalAPI\obj\Debug\net9.0\InternPortal.pdb
 C:\Users\lkanchi\Downloads\internportal3\Internp\InternPortalAPI\obj\Debug\net9.0\InternPortal.genruntimeconfig.cache
 C:\Users\lkanchi\Downloads\internportal3\Internp\InternPortalAPI\obj\Debug\net9.0\ref\InternPortal.dll
+<<<<<<< HEAD
 =======
 >>>>>>> d54ede4b261e50532502c97695c8cb19ba800038
+=======
+>>>>>>> a2f6081106900703ce337e2ab5f05f148cf43474
+>>>>>>> 21c1ffa29425cf7872cb040090bb9381f800851d
 c:\Users\dneelam\InternPortal\InternPortalAPI\bin\Debug\net9.0\appsettings.Development.json
 c:\Users\dneelam\InternPortal\InternPortalAPI\bin\Debug\net9.0\appsettings.json
 c:\Users\dneelam\InternPortal\InternPortalAPI\bin\Debug\net9.0\InternPortal.staticwebassets.endpoints.json
@@ -97,8 +105,12 @@ c:\Users\dneelam\InternPortal\InternPortalAPI\obj\Debug\net9.0\refint\InternPort
 c:\Users\dneelam\InternPortal\InternPortalAPI\obj\Debug\net9.0\InternPortal.pdb
 c:\Users\dneelam\InternPortal\InternPortalAPI\obj\Debug\net9.0\InternPortal.genruntimeconfig.cache
 c:\Users\dneelam\InternPortal\InternPortalAPI\obj\Debug\net9.0\ref\InternPortal.dll
+<<<<<<< HEAD
 >>>>>>> abf0e7c36608110d07ffe92ef8120faa63143802
+=======
+>>>>>>> 21c1ffa29425cf7872cb040090bb9381f800851d
 >>>>>>> 00910012fff701ab6fa7b8743072f59a23e83333
+>>>>>>> abf0e7c36608110d07ffe92ef8120faa63143802
 C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\InternPortalAPI\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\InternPortalAPI\bin\Debug\net9.0\appsettings.json
 C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\InternPortalAPI\bin\Debug\net9.0\InternPortal.staticwebassets.endpoints.json
@@ -147,3 +159,7 @@ C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\InternPortalAPI\obj\De
 C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\InternPortalAPI\obj\Debug\net9.0\InternPortal.pdb
 C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\InternPortalAPI\obj\Debug\net9.0\InternPortal.genruntimeconfig.cache
 C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\InternPortalAPI\obj\Debug\net9.0\ref\InternPortal.dll
+<<<<<<< HEAD
+=======
+>>>>>>> d54ede4b261e50532502c97695c8cb19ba800038
+>>>>>>> 21c1ffa29425cf7872cb040090bb9381f800851d

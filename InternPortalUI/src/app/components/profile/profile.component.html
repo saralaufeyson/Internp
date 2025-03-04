@@ -23,10 +23,14 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <div class="navbar-nav">
-        <a class="nav-link" [class.active]="activeTab === 'about'" (click)="setActiveTab('about')" style="cursor: pointer;">About</a>
-        <a class="nav-link" [class.active]="activeTab === 'details'" (click)="setActiveTab('details')" style="cursor: pointer;">Details</a>
-        <a class="nav-link" [class.active]="activeTab === 'experience'" (click)="setActiveTab('experience')" style="cursor: pointer;">Experience</a>
-        <a class="nav-link" [class.active]="activeTab === 'skills'" (click)="setActiveTab('skills')" style="cursor: pointer;">Skills</a>
+        <a class="nav-link" [class.active]="activeTab === 'about'" (click)="setActiveTab('about')"
+          style="cursor: pointer;">About</a>
+        <a class="nav-link" [class.active]="activeTab === 'details'" (click)="setActiveTab('details')"
+          style="cursor: pointer;">Details</a>
+        <a class="nav-link" [class.active]="activeTab === 'experience'" (click)="setActiveTab('experience')"
+          style="cursor: pointer;">Experience</a>
+        <a class="nav-link" [class.active]="activeTab === 'skills'" (click)="setActiveTab('skills')"
+          style="cursor: pointer;">Skills</a>
       </div>
     </div>
   </nav>
@@ -40,7 +44,8 @@
         </button>
       </div>
       <div *ngIf="isEditingAbout">
-        <textarea [(ngModel)]="userProfile.about" rows="10" cols="80" placeholder="Enter about information..." class="about-textarea"></textarea>
+        <textarea [(ngModel)]="userProfile.about" rows="10" cols="80" placeholder="Enter about information..."
+          class="about-textarea"></textarea>
         <button (click)="saveAboutSection()" class="save-button">Save</button>
       </div>
       <div *ngIf="!isEditingAbout">
