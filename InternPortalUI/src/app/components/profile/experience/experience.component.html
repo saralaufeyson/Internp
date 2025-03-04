@@ -1,0 +1,21 @@
+<div class="experience-container">
+    <h2>Experience</h2>
+    <button class="add-btn" (click)="addExperience()">+</button>
+  
+    <div class="new-experience-form">
+      <input type="text" placeholder="Title" [(ngModel)]="newExperience.title">
+      <input type="text" placeholder="Company" [(ngModel)]="newExperience.company">
+      <input type="text" placeholder="Duration" [(ngModel)]="newExperience.duration">
+      <input type="text" placeholder="Location" [(ngModel)]="newExperience.location">
+    </div>
+  
+    <div *ngFor="let exp of experiences; let i = index" class="experience-card" [ngClass]="{'hidden': !exp || !exp.title || !exp.company || !exp.duration || !exp.location}">
+      <div class="exp-header">
+        <h3>{{ exp.title }}</h3>
+        <button class="edit-btn">✏️</button>
+        <button class="delete-btn" (click)="deleteExperience(i)">🗑️</button>
+      </div>
+      <p><strong>{{ exp.company }}</strong> • {{ exp.duration }}</p>
+      <p>{{ exp.location }}</p>
+    </div>
+  </div>

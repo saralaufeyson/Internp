@@ -7,12 +7,13 @@ import { UserService } from 'src/app/services/user.service';
 import { PocService } from 'src/app/services/poc.service';
 import { UserDetailsComponent } from "./user-details/user-details.component";
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ExperienceComponent } from "./experience/experience.component";
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserDetailsComponent, MatIconModule],
+  imports: [CommonModule, FormsModule, UserDetailsComponent, ExperienceComponent,MatIconModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
