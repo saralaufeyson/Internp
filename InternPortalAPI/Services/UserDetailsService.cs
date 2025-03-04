@@ -22,29 +22,11 @@ namespace YourNamespace.Services
             await _userDetailsCollection.InsertOneAsync(userDetails);
 
         // ✅ Update User Details (Edit)
-
-        public async Task UpdateUserDetailsAsync(string userId, UserDetails userDetails)
+        public async Task<bool> UpdateUserDetailsAsync(string userId, UserDetails userDetails)
         {
-            // Ensure _id is not part of the update data
-            var updateDefinition = Builders<UserDetails>.Update
-                .Set(u => u.PhoneNumber, userDetails.PhoneNumber)
-                .Set(u => u.Email, userDetails.Email)
-                .Set(u => u.Address, userDetails.Address)
-                .Set(u => u.TenthGrade, userDetails.TenthGrade)
-                .Set(u => u.TwelfthGrade, userDetails.TwelfthGrade)
-                .Set(u => u.BTechCgpa, userDetails.BTechCgpa);
-
-            var result = await _userDetailsCollection.UpdateOneAsync(
-                u => u.UserId == userId, // Filter by userId
-                updateDefinition // Update the fields
-            );
-
-            if (result.MatchedCount == 0)
-            {
-                throw new Exception("User details not found.");
-            }
+            var result = await _userDetailsCollection.ReplaceOneAsync(ud => ud.UserId == userId, userDetails);
+            return result.IsAcknowledged && result.ModifiedCount > 0;
         }
-
 
         // ✅ Delete User Details
         public async Task DeleteUserDetailsAsync(string userId) =>

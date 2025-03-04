@@ -1,8 +1,26 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
 
 namespace YourNamespace.Models
 {
+    public class Experience
+    {
+        [BsonElement("title")]
+        public required string Title { get; set; }
+
+        [BsonElement("company")]
+        public required string Company { get; set; }
+
+        [BsonElement("duration")]
+        public required string Duration { get; set; } // e.g., "Jan 2025 - Present"
+
+        [BsonElement("location")]
+        public required string Location { get; set; }
+
+        // Removed the skills field
+    }
+
     public class UserDetails
     {
         [BsonId]
@@ -10,7 +28,7 @@ namespace YourNamespace.Models
         public string? Id { get; set; }
 
         [BsonElement("userId")]
-        public required string UserId { get; set; } // Mapping to the User collection
+        public required string UserId { get; set; }
 
         [BsonElement("phoneNumber")]
         public required string PhoneNumber { get; set; }
@@ -29,5 +47,8 @@ namespace YourNamespace.Models
 
         [BsonElement("btechCgpa")]
         public required string BTechCgpa { get; set; }
+
+        [BsonElement("experiences")]
+        public List<Experience> Experiences { get; set; } = new List<Experience>();
     }
 }

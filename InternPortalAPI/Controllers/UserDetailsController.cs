@@ -63,5 +63,43 @@ namespace YourNamespace.Controllers
             await _userDetailsService.DeleteUserDetailsAsync(userId);
             return Ok("User details deleted successfully.");
         }
+
+        [HttpPost("{userId}/experience")]
+        public async Task<IActionResult> AddExperience(string userId, [FromBody] Experience experience)
+        {
+            var userDetails = await _userDetailsService.GetUserDetailsAsync(userId);
+            if (userDetails == null) return NotFound("User details not found.");
+
+            userDetails.Experiences.Add(experience);
+            await _userDetailsService.UpdateUserDetailsAsync(userId, userDetails);
+
+            return Ok(userDetails);
+        }
+
+        // ✅ Update an Existing Experience
+        [HttpPut("{userId}/experience/{index}")]
+        public async Task<IActionResult> UpdateExperience(string userId, int index, [FromBody] Experience experience)
+        {
+            var userDetails = await _userDetailsService.GetUserDetailsAsync(userId);
+            if (userDetails == null) return NotFound("User details not found.");
+            if (index < 0 || index >= userDetails.Experiences.Count) return BadRequest("Invalid experience index.");
+
+            userDetails.Experiences[index] = experience;
+            await _userDetailsService.UpdateUserDetailsAsync(userId, userDetails);
+            return Ok(userDetails);
+        }
+
+        // ✅ Delete an Experience
+        [HttpDelete("{userId}/experience/{index}")]
+        public async Task<IActionResult> DeleteExperience(string userId, int index)
+        {
+            var userDetails = await _userDetailsService.GetUserDetailsAsync(userId);
+            if (userDetails == null) return NotFound("User details not found.");
+            if (index < 0 || index >= userDetails.Experiences.Count) return BadRequest("Invalid experience index.");
+
+            userDetails.Experiences.RemoveAt(index);
+            await _userDetailsService.UpdateUserDetailsAsync(userId, userDetails);
+            return Ok(userDetails);
+        }
     }
 }
