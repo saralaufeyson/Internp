@@ -214,4 +214,12 @@ export class InternFeedbackComponent {
     else if (value == 5) color = 'darkgreen';
     slider.style.background = color;
   }
+  getSliderColor(value: number): string {
+    if (value === 1) return 'low';
+    if (value === 2) return 'medium';
+    if (value === 3) return 'average';
+    if (value === 4) return 'good';
+    if (value === 5) return 'excellent';
+    return '';
+  }
 }

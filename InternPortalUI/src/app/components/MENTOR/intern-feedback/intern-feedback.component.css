@@ -109,28 +109,36 @@ textarea {
   /* Further adjusted gap to accommodate longer text */
 }
 
-.rating-slider input[type="range"] {
-  flex: 1;
+.rating-slider input {
+  width: 100%;
   -webkit-appearance: none;
   appearance: none;
-  height: 4px;
+  height: 8px;
   border-radius: 5px;
-  background: #ddd;
   outline: none;
-  transition: background 0.3s ease-in-out;
+  transition: background 0.3s;
 }
 
-.rating-slider input[type="range"]::-webkit-slider-runnable-track {
-  height: 8px;
-  border-radius: 5px;
-  background: #ddd;
+.low {
+  background: red;
 }
 
-.rating-slider input[type="range"]::-moz-range-track {
-  height: 8px;
-  border-radius: 5px;
-  background: #ddd;
+.medium {
+  background: orange;
 }
+
+.average {
+  background: yellow;
+}
+
+.good {
+  background: lightgreen;
+}
+
+.excellent {
+  background: green;
+}
+
 
 .rating-slider input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;

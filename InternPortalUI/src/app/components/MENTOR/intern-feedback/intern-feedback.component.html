@@ -28,28 +28,32 @@
     <!-- Performance Ratings -->
     <div class="performance-ratings">
       <h3>Performance Ratings</h3>
-      <p class="rating-scale">Scale Indicative: Poor -1 , Need Improvement - 2, Average - 3 , Good - 4 , Excellent -5</p>
+      <p class="rating-scale">Scale Indicative: Poor -1 , Need Improvement - 2, Average - 3 , Good - 4 , Excellent -5
+      </p>
 
       <div formGroupName="ratings">
         <div class="rating-row" *ngFor="let rating of ratingCriteria">
           <label [for]="rating.key">{{rating.label}}</label>
           <div class="rating-slider">
-            <input type="range" min="1" max="5" [id]="rating.key" [formControlName]="rating.key" (input)="setRating($event, rating.key)">
+            <input type="range" min="1" max="5" [id]="rating.key" [formControlName]="rating.key"
+              (input)="setRating($event, rating.key)"
+              [ngClass]="getSliderColor(feedbackForm.get('ratings')?.get(rating.key)?.value)">
             <span>{{ getRatingText(feedbackForm.get('ratings')?.get(rating.key)?.value) }}</span>
           </div>
         </div>
-        <span class="overall-rating">Overall Rating: {{ feedbackForm.get('ratings')?.get('overallRating')?.value | number: '1.1-1' }}</span>
+        <span class="overall-rating">Overall Rating: {{ feedbackForm.get('ratings')?.get('overallRating')?.value |
+          number: '1.1-1' }}</span>
       </div>
     </div>
 
     <!-- Monthly Tasks -->
     <div class="monthly-tasks">
-      
-        <h3>Monthly Tasks</h3>
-        <button type="button" class="add-task-btn" (click)="addTask()">
-          <mat-icon>add</mat-icon>Create Task
-        </button>
-      
+
+      <h3>Monthly Tasks</h3>
+      <button type="button" class="add-task-btn" (click)="addTask()">
+        <mat-icon>add</mat-icon>Create Task
+      </button>
+
       <div formArrayName="tasks">
         <div *ngFor="let taskGroup of taskForms.controls; let i=index" [formGroupName]="i" class="task-group">
           <h4>Task {{i + 1}}</h4>
