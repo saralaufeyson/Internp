@@ -81,12 +81,16 @@ export class ProfileComponent implements OnInit {
     this.http.get(`http://localhost:5180/api/user/getProfileImage/${this.userId}`, { responseType: 'blob' })
       .subscribe(
         (response) => {
-          const url = URL.createObjectURL(response);
-          this.profileImage = this.sanitizer.bypassSecurityTrustUrl(url);
+          if (response.size === 0) {
+            this.profileImage = null; // Ensure profileImage is null if the response is empty
+          } else {
+            const url = URL.createObjectURL(response);
+            this.profileImage = this.sanitizer.bypassSecurityTrustUrl(url);
+          }
         },
         (error) => {
           console.error('Error fetching profile image:', error);
-          this.profileImage = this.sanitizer.bypassSecurityTrustUrl('../../../assets/images/profile/profile.jpg'); // Fallback image
+          this.profileImage = null; // Ensure profileImage is null if there's an error
         }
       );
   }
