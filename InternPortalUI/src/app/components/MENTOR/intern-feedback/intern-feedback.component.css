@@ -114,9 +114,8 @@ textarea {
   -webkit-appearance: none;
   appearance: none;
   height: 4px;
-  /* Further adjusted height */
   border-radius: 5px;
-  background: linear-gradient(to right, red 0%, orange 25%, yellow 50%, lightgreen 75%, darkgreen 100%);
+  background: #ddd;
   outline: none;
   transition: background 0.3s ease-in-out;
 }
@@ -124,46 +123,64 @@ textarea {
 .rating-slider input[type="range"]::-webkit-slider-runnable-track {
   height: 8px;
   border-radius: 5px;
-  background: linear-gradient(to right, red 0%, orange 25%, yellow 50%, lightgreen 75%, darkgreen 100%);
+  background: #ddd;
 }
 
 .rating-slider input[type="range"]::-moz-range-track {
   height: 8px;
   border-radius: 5px;
-  background: linear-gradient(to right, red 0%, orange 25%, yellow 50%, lightgreen 75%, darkgreen 100%);
+  background: #ddd;
 }
 
 .rating-slider input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 12px;
-  /* Further adjusted width */
   height: 12px;
-  /* Further adjusted height */
   border-radius: 50%;
   background: #fff;
   cursor: pointer;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
   margin-top: -2px;
-  /* Moved the thumb down */
 }
 
 .rating-slider input[type="range"]::-moz-range-thumb {
   width: 12px;
-  /* Further adjusted width */
   height: 12px;
-  /* Further adjusted height */
   border-radius: 50%;
   background: #fff;
   cursor: pointer;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
   margin-top: -2px;
-  /* Moved the thumb down */
+}
+
+.rating-slider input[type="range"].red::-webkit-slider-runnable-track,
+.rating-slider input[type="range"].red::-moz-range-track {
+  background: red;
+}
+
+.rating-slider input[type="range"].orange::-webkit-slider-runnable-track,
+.rating-slider input[type="range"].orange::-moz-range-track {
+  background: orange;
+}
+
+.rating-slider input[type="range"].yellow::-webkit-slider-runnable-track,
+.rating-slider input[type="range"].yellow::-moz-range-track {
+  background: yellow;
+}
+
+.rating-slider input[type="range"].lightgreen::-webkit-slider-runnable-track,
+.rating-slider input[type="range"].lightgreen::-moz-range-track {
+  background: lightgreen;
+}
+
+.rating-slider input[type="range"].darkgreen::-webkit-slider-runnable-track,
+.rating-slider input[type="range"].darkgreen::-moz-range-track {
+  background: darkgreen;
 }
 
 .rating-slider span {
   min-width: 140px;
-  /* Further adjusted width to accommodate longer text */
   text-align: center;
 }
 
@@ -201,7 +218,7 @@ td {
   cursor: pointer;
   border-radius: 4px;
   transition: background 0.3s;
-  
+
   font-size: 16px;
   font-weight: bold;
 }

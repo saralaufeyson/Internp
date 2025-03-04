@@ -6,7 +6,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
- 
+
 @Component({
   selector: 'app-intern-feedback',
   standalone: true,
@@ -19,7 +19,7 @@ export class InternFeedbackComponent {
   apiUrl = 'http://localhost:5180/api/InternFeedback/submit'; // Replace with your actual backend URL
   mentor = localStorage.getItem('user');
   overallRating: number = 0;
- 
+
   ratingCriteria = [
     { key: 'domainKnowledge', label: 'Domain Knowledge' },
     { key: 'functionalKnowledge', label: 'Functional Knowledge' },
@@ -32,7 +32,7 @@ export class InternFeedbackComponent {
     { key: 'problemSolving', label: 'Problem Solving' },
     { key: 'delivery', label: 'Delivery' }
   ];
- 
+
   ratingTextMap: { [key: number]: string } = {
     1: 'Poor',
     2: 'Need Improvement',
@@ -40,23 +40,24 @@ export class InternFeedbackComponent {
     4: 'Good',
     5: 'Excellent'
   };
- 
+
   constructor(private fb: FormBuilder, private http: HttpClient, private dialog: MatDialog) {
     this.createForm();
     this.onRatingsChange();
+    this.initializeSliderColors();
   }
- 
+
   get taskForms() {
     return this.feedbackForm.get('tasks') as FormArray;
   }
- 
+
   createForm() {
     this.feedbackForm = this.fb.group({
       internId: [''],
       fullName: [''],
- 
+
       mentorName: [''],
- 
+
       ratings: this.fb.group(
         this.ratingCriteria.reduce((acc, criteria) => ({
           ...acc,
@@ -72,17 +73,17 @@ export class InternFeedbackComponent {
     });
     this.loadInterns();
   }
- 
+
   interns: any[] = [];
   months: any[] = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
- 
+
   loadInterns() {
     const mentorId = localStorage.getItem('userId');
     console.log('Mentor:', this.mentor);
- 
+
     // Retrieve mentor ID from local storage
     if (mentorId) {
       this.http.get(`http://localhost:5180/api/user/getUserProfile/${mentorId}`).subscribe({
@@ -108,7 +109,7 @@ export class InternFeedbackComponent {
       console.error('Mentor ID not found in local storage');
     }
   }
- 
+
   onInternSelect(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     const internId = selectElement.value;
@@ -121,7 +122,7 @@ export class InternFeedbackComponent {
       });
     }
   }
- 
+
   createMonthlyTaskGroup() {
     return this.fb.group({
       taskDetails: [''],
@@ -133,36 +134,37 @@ export class InternFeedbackComponent {
       month: ['']
     });
   }
- 
+
   addTask() {
     this.taskForms.push(this.createMonthlyTaskGroup());
   }
- 
+
   setRating(event: any, criteriaKey: string) {
     const value = event.target.value;
     this.feedbackForm.get('ratings')?.get(criteriaKey)?.setValue(value);
+    this.updateSliderColor(event.target);
   }
- 
+
   getRatingText(value: number): string {
     return this.ratingTextMap[value] || '';
   }
- 
+
   onRatingsChange() {
     this.feedbackForm.get('ratings')?.valueChanges.pipe(distinctUntilChanged()).subscribe(() => {
       this.calculateOverallRating();
     });
   }
- 
+
   calculateOverallRating() {
     const ratings = this.feedbackForm.get('ratings')?.value;
     const total = Object.values(ratings).reduce((acc: number, rating: unknown) => acc + (rating as number), 0);
     this.overallRating = total / this.ratingCriteria.length;
     this.feedbackForm.get('ratings')?.get('overallRating')?.setValue(this.overallRating, { emitEvent: false });
   }
- 
+
   onSubmit() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent);
- 
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (this.feedbackForm.valid) {
@@ -184,14 +186,32 @@ export class InternFeedbackComponent {
       }
     });
   }
- 
+
   markFormGroupTouched(formGroup: FormGroup | FormArray) {
     Object.values(formGroup.controls).forEach(control => {
       control.markAsTouched();
- 
+
       if (control instanceof FormGroup || control instanceof FormArray) {
         this.markFormGroupTouched(control);
       }
     });
+  }
+
+  initializeSliderColors() {
+    setTimeout(() => {
+      const sliders = document.querySelectorAll('.rating-slider input[type="range"]');
+      sliders.forEach(slider => this.updateSliderColor(slider));
+    }, 0);
+  }
+
+  updateSliderColor(slider: any) {
+    const value = slider.value;
+    let color = '#ddd';
+    if (value == 1) color = 'red';
+    else if (value == 2) color = 'orange';
+    else if (value == 3) color = 'yellow';
+    else if (value == 4) color = 'lightgreen';
+    else if (value == 5) color = 'darkgreen';
+    slider.style.background = color;
   }
 }
