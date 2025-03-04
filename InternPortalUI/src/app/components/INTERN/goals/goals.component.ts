@@ -43,7 +43,7 @@ export class GoalsComponent implements OnInit {
       return;
     }
 
-    this.http.get(`http://localhost:5180/api/userdata/getGoals/${this.userId}`)
+    this.http.get(`http://localhost:5180/api/goal/getGoals/${this.userId}`)
       .subscribe(
         (response: any) => {
           console.log('Fetched goals:', response);
@@ -69,7 +69,7 @@ export class GoalsComponent implements OnInit {
       };
 
       // Make API call to store the new goal
-      this.http.post(`http://localhost:5180/api/userdata/addGoal`, goalData)
+      this.http.post(`http://localhost:5180/api/goal/addGoal`, goalData)
         .subscribe(
           (response) => {
             console.log('Goal saved successfully', response);
@@ -87,7 +87,7 @@ export class GoalsComponent implements OnInit {
 
   // Method to update the goal count
   updateGoalCount() {
-    this.http.get(`http://localhost:5180/api/userdata/getGoalsCount/${this.userId}`)
+    this.http.get(`http://localhost:5180/api/goal/getGoalsCount/${this.userId}`)
       .subscribe(
         (response: any) => {
           console.log('Goal count:', response.count);
@@ -100,7 +100,7 @@ export class GoalsComponent implements OnInit {
 
   // Method to delete a goal
   deleteGoal(goalId: string) {
-    this.http.delete(`http://localhost:5180/api/userdata/deleteGoal/${goalId}`)
+    this.http.delete(`http://localhost:5180/api/goal/deleteGoal/${goalId}`)
       .subscribe(
         (response) => {
           console.log('Goal deleted successfully', response);

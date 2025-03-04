@@ -20,7 +20,7 @@ interface Goal {
 export class AllGoalsComponent implements OnInit {
   goals: Goal[] = [];
   errorMessage: string = '';
-  private apiUrl = 'http://localhost:5180/api/userdata/getAllGoals';
+  private apiUrl = 'http://localhost:5180/api/goal/getAllGoals';
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
