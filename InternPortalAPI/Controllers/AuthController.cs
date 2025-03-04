@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
 using YourNamespace.Models;
+using YourNamespace.Repositories;
 using System.Threading.Tasks;
 
 namespace YourNamespace.Controllers
@@ -9,51 +9,50 @@ namespace YourNamespace.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly IMongoCollection<User> _usersCollection;
+        private readonly IUserRepository _userRepository;
 
-        public AuthController(IMongoClient mongoClient)
+        public AuthController(IUserRepository userRepository)
         {
-            var database = mongoClient.GetDatabase("database0");
-            _usersCollection = database.GetCollection<User>("Users");
+            _userRepository = userRepository;
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] User user)
         {
-            var existingUser = await _usersCollection.Find(u => u.Email == user.Email).FirstOrDefaultAsync();
-            if (existingUser != null)
+            var result = await _userRepository.RegisterUserAsync(user);
+            if (result == "User with this email already exists.")
             {
-                return Conflict("User with this email already exists.");
+                return Conflict(result);
             }
-
-            // Use the role from the request
-            user.Role = user.Role ?? "Intern"; // Default role is Intern if not provided
-
-            await _usersCollection.InsertOneAsync(user);
-            return Ok("User registered successfully.");
+            return Ok(result);
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var existingUser = await _usersCollection.Find(u => u.Email == request.Email && u.Password == request.Password).FirstOrDefaultAsync();
-            if (existingUser == null)
+            var (success, message, user) = await _userRepository.LoginUserAsync(request);
+            if (!success)
             {
-                return Unauthorized("Invalid email or password.");
+                return Unauthorized(message);
             }
 
-            return Ok(new { Message = "Login successful.", UserId = existingUser.Id, Role = existingUser.Role , Username = existingUser.Username});
+            if (user == null)
+            {
+                return Unauthorized("User not found.");
+            }
+
+            return Ok(new { Message = message, UserId = user.Id, Role = user.Role, Username = user.Username });
         }
 
         [HttpGet("role/{userId}")]
         public async Task<IActionResult> GetUserRole(string userId)
         {
-            var user = await _usersCollection.Find(u => u.Id == userId).FirstOrDefaultAsync();
-            if (user == null)
+            var role = await _userRepository.GetUserRoleAsync(userId);
+            if (role == "User not found.")
             {
-                return NotFound("User not found.");
+                return NotFound(role);
             }
-            return Ok(user.Role);
+            return Ok(role);
         }
     }
 }
