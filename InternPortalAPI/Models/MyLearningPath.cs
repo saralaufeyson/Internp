@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 
-namespace YourNamespace.Models
+namespace InternPortal.Models
 {
     public class myLearningPath
     {

@@ -1,7 +1,7 @@
-using YourNamespace.Models;
+using InternPortal.Models;
 using System.Threading.Tasks;
 
-namespace YourNamespace.Repositories
+namespace InternPortal.Repositories
 {
     public interface IUserDetailsRepository
     {

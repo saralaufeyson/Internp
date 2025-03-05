@@ -8,8 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
-using YourNamespace.Repositories;
-using YourNamespace.Services;
+using InternPortal.Repositories;
+using InternPortal.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

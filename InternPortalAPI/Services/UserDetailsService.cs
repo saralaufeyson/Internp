@@ -1,7 +1,7 @@
 using MongoDB.Driver;
-using YourNamespace.Models;
+using InternPortal.Models;
 
-namespace YourNamespace.Services
+namespace InternPortal.Services
 {
     public class UserDetailsService
     {

@@ -1,10 +1,10 @@
-using YourNamespace.Models;
+using InternPortal.Models;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using System.Text.Json;
 
-namespace YourNamespace.Repositories
+namespace InternPortal.Repositories
 {
     public interface IUserRepository
     {

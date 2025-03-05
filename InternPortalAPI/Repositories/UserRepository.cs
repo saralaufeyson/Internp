@@ -1,11 +1,11 @@
-using YourNamespace.Models;
+using InternPortal.Models;
 using MongoDB.Driver;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System;
 using System.Text.Json;
 
-namespace YourNamespace.Repositories
+namespace InternPortal.Repositories
 {
     public class UserRepository : IUserRepository
     {
