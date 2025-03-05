@@ -37,9 +37,11 @@ public class Startup
         // Add controllers
         services.AddControllers();
 
-        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IPocProjectRepository, PocProjectRepository>();
         services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();
         services.AddScoped<IUserRepository, UserRepository>();// ✅ Register IUserDetailsRepository
+        services.AddScoped<IMentorRepository, MentorRepository>();
+
     }
 
     // ...existing code...

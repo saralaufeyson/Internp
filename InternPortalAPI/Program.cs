@@ -23,6 +23,8 @@ builder.Services.AddSingleton<IMongoClient>(mongoClient);
 // Register Services
 builder.Services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();  // ✅ Register IUserDetailsRepository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPocProjectRepository, PocProjectRepository>();
+builder.Services.AddScoped<IMentorRepository, MentorRepository>();
 // Configure Authentication using JWT
 builder.Services.AddAuthentication(options =>
 {
