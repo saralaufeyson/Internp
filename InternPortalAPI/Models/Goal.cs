@@ -2,7 +2,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 
-namespace YourNamespace.Models
+namespace InternPortal.Models
 {
     public class Goal
     {

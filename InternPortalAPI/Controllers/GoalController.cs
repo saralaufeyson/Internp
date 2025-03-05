@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using YourNamespace.Models;
+using InternPortal.Models;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 
-namespace YourNamespace.Controllers
+namespace InternPortal.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

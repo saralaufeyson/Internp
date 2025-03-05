@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using YourNamespace.Models;
-using YourNamespace.Repositories;
+using InternPortal.Models;
+using InternPortal.Repositories;
 using System.Threading.Tasks;
 
-namespace YourNamespace.Controllers
+namespace InternPortal.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -58,6 +58,7 @@ namespace YourNamespace.Controllers
             return Ok("User details deleted successfully.");
         }
 
+        // Experience Endpoints
         [HttpPost("{userId}/experience")]
         public async Task<IActionResult> AddExperience(string userId, [FromBody] Experience experience)
         {
@@ -93,5 +94,42 @@ namespace YourNamespace.Controllers
             await _userDetailsRepository.UpdateUserDetailsAsync(userId, userDetails);
             return Ok(userDetails);
         }
+
+        // Skills Endpoints
+        [HttpPost("{userId}/skills")]
+        public async Task<IActionResult> AddSkill(string userId, [FromBody] SkillRequest request)
+        {
+            var userDetails = await _userDetailsRepository.GetUserDetailsAsync(userId);
+            if (userDetails == null) return NotFound("User details not found.");
+
+            string skill = request.Skill; // Extract skill from request body
+            if (string.IsNullOrEmpty(skill)) return BadRequest("Skill cannot be empty.");
+
+            userDetails.Skills.Add(skill);
+            await _userDetailsRepository.UpdateUserDetailsAsync(userId, userDetails);
+
+            return Ok("Skill added successfully.");
+        }
+
+
+        [HttpDelete("{userId}/skills/{skill}")]
+        public async Task<IActionResult> DeleteSkill(string userId, string skill)
+        {
+            var userDetails = await _userDetailsRepository.GetUserDetailsAsync(userId);
+            if (userDetails == null) return NotFound("User details not found.");
+
+            if (userDetails.Skills.Contains(skill))
+            {
+                userDetails.Skills.Remove(skill);
+                await _userDetailsRepository.UpdateUserDetailsAsync(userId, userDetails);
+            }
+
+            return Ok(userDetails);
+        }
     }
+}
+
+public class SkillRequest
+{
+    public string Skill { get; set; } = string.Empty; // Initialize with a default value
 }

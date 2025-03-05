@@ -1,6 +1,6 @@
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace YourNamespace.Models
+namespace InternPortal.Models
 {
     public class Subtopic
     {

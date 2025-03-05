@@ -2,7 +2,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
 
-namespace YourNamespace.Models
+namespace InternPortal.Models
 {
     public class Experience
     {
@@ -17,8 +17,6 @@ namespace YourNamespace.Models
 
         [BsonElement("location")]
         public required string Location { get; set; }
-
-        // Removed the skills field
     }
 
     public class UserDetails
@@ -50,5 +48,8 @@ namespace YourNamespace.Models
 
         [BsonElement("experiences")]
         public List<Experience> Experiences { get; set; } = new List<Experience>();
+
+        [BsonElement("skills")]
+        public List<string> Skills { get; set; } = new List<string>(); // New field for skills
     }
 }

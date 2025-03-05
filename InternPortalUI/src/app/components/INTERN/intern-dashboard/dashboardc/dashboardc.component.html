@@ -1,44 +1,41 @@
-<div class="dashboard-header">
-  <h1>Via-Aspire</h1>
-  <h3><i>InternVision – See the Progress, Be the Change.</i></h3>
-</div>
-
 <div class="dashboard-container">
-  <div class="stats-box">
-    <div class="card">
-      <h1>Goals Count</h1>
+  <!-- Header -->
+  <!-- <h2 class="dashboard-title">Via-Aspire</h2>
+  <p class="dashboard-subtitle">InternVision - See the Progress, Be the Change.</p> -->
+
+  <!-- Top Widgets (Styled Like Tapeli) -->
+  <div class="dashboard-widgets">
+    <div class="widget">
+      <p class="widget-title">Goals Count</p>
       <div *ngIf="goalCount !== undefined">
-        <p>{{ goalCount }}</p>
+        <h2 class="widget-value">{{ goalCount }}</h2>
       </div>
       <div *ngIf="goalCount === undefined">
         <p style="color: red;">Error!Connect backend</p>
       </div>
     </div>
-
-    <div class="card">
-      <h1>Total POCs</h1>
+    <div class="widget">
+      <p class="widget-title">Total POCs</p>
       <div *ngIf="pocCount !== undefined">
-        <p>{{ pocCount.totalPocs }}</p>
+        <h2 class="widget-value">{{ pocCount.totalPocs }}</h2>
       </div>
       <div *ngIf="pocCount === undefined">
         <p style="color: red;">Error!Connect backend</p>
       </div>
     </div>
-
-    <div class="card">
-      <h1>In Progress POCs</h1>
+    <div class="widget">
+      <p class="widget-title">In Progress POCs</p>
       <div *ngIf="pocCount !== undefined">
-        <p>{{ pocCount.inProgressPocs }}</p>
+        <h2 class="widget-value">{{ pocCount.inProgressPocs }}</h2>
       </div>
       <div *ngIf="pocCount === undefined">
         <p style="color: red;">Error!Connect backend</p>
       </div>
     </div>
-
-    <div class="card">
-      <h1>Completed POCs</h1>
+    <div class="widget">
+      <p class="widget-title">Completed POCs</p>
       <div *ngIf="pocCount !== undefined">
-        <p>{{ pocCount.completedPocs }}</p>
+        <h2 class="widget-value">{{ pocCount.completedPocs }}</h2>
       </div>
       <div *ngIf="pocCount === undefined">
         <p style="color: red;">Error!Connect backend</p>
@@ -46,16 +43,14 @@
     </div>
   </div>
 
-  <div class="charts-box">
-    <div class="card pie-chart-card">
-      <h1>POC Status Distribution</h1>
-      <div *ngIf="pocCount">
-        <canvas id="pocPieChart"></canvas>
-      </div>
-      <div *ngIf="!pocCount">
-        <p style="color: red;">Error!Connect backend</p>
-      </div>
+  <!-- Graph Section (Aligned Like Tapeli’s Monthly Sales) -->
+  <div class="graph-container">
+    <h3 class="graph-title">POC Status Distribution</h3>
+    <div *ngIf="pocCount">
+      <canvas id="pocPieChart"></canvas>
+    </div>
+    <div *ngIf="!pocCount">
+      <p style="color: red;">Error!Connect backend</p>
     </div>
   </div>
-  
 </div>

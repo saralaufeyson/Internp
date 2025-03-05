@@ -25,6 +25,16 @@ export class HeaderComponent {
   @Output() toggleMobileNav = new EventEmitter<void>();
   @Output() toggleMobileFilterNav = new EventEmitter<void>();
   @Output() toggleCollapsedChange = new EventEmitter<void>();
+  @Output() darkModeChange = new EventEmitter<boolean>();
+
+  isDarkMode = false;
+  static darkModeChange: any;
+
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+    document.body.classList.toggle('dark-mode', this.isDarkMode);
+    this.darkModeChange.emit(this.isDarkMode);
+  }
 
   // Ensure toggleChecked is used to control the visibility of the "Internportal" text
 }
