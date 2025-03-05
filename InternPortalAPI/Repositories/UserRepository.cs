@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System;
 using System.Text.Json;
-using MongoDB.Bson;
 
 namespace InternPortal.Repositories
 {
@@ -121,7 +120,7 @@ namespace InternPortal.Repositories
                 var internIds = mentor.AssignedInterns ?? new List<string>();
 
                 // Fetch interns using a separate query
-                var interns = await _users.Find(u => internIds.Contains(u.Id)).ToListAsync();
+                var interns = await _users.Find(u => u.Id != null && internIds.Contains(u.Id)).ToListAsync();
 
                 mentorDetails.Add(new
                 {

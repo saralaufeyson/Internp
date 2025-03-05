@@ -971,31 +971,19 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\dneelam\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\ashaik\\.nuget\\packages\\": {}
->>>>>>> a61957c0ec0de5273c77cd92f8bca840682c3807
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
-=======
-      "projectUniqueName": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\InternPortalAPI\\InternPortal.csproj",
->>>>>>> a61957c0ec0de5273c77cd92f8bca840682c3807
       "projectName": "InternPortal",
       "projectPath": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
       "packagesPath": "C:\\Users\\dneelam\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-<<<<<<< HEAD
         "C:\\Users\\dneelam\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-        "C:\\Users\\ashaik\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> a61957c0ec0de5273c77cd92f8bca840682c3807
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -1060,5 +1048,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
