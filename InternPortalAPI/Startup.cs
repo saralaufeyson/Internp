@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
+using YourNamespace.Repositories;
 
 public class Startup
 {
@@ -21,7 +22,7 @@ public class Startup
         });
 
         // Add authorization services
-       
+
 
         // Add CORS policy
         services.AddCors(options =>
@@ -36,7 +37,9 @@ public class Startup
         // Add controllers
         services.AddControllers();
 
-        // ...existing code...
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();// ✅ Register IUserDetailsRepository
     }
 
     // ...existing code...

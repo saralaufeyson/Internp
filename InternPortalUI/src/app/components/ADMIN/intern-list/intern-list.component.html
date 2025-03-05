@@ -1,15 +1,28 @@
 <div class="container">
-  <h2 class="intern-list-title">ViaAspire Interns </h2>
+  <h2 class="intern-list-title">ViaAspire Interns</h2>
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  <div class="actions-row">
+    <div class="search-icon" (click)="toggleSearchBar()">
+      <i class="material-icons">search</i>
+    </div>
+    <input *ngIf="showSearchBar" type="text" placeholder="Search interns..." [(ngModel)]="searchQuery" (input)="filterInterns()" class="search-bar">
+    <div class="filter-button" (click)="toggleSortOrder()">
+      <button mat-button>Sort by Name: {{ sortOrder === 'asc' ? 'A-Z' : 'Z-A' }}</button>
+    </div>
+  </div>
   <table class="intern-table table table-striped">
     <thead>
       <tr>
+        <th>Profile Picture</th>
         <th>Name</th>
         <th>Email</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let intern of interns" (click)="openInternDetails(intern.id)">
+      <tr *ngFor="let intern of filteredInterns" (click)="openInternDetails(intern.id)">
+        <td>
+          <img [src]="intern.profileImage && intern.profileImage.trim() !== '' ? 'data:image/png;base64,' + intern.profileImage : '../../../../assets/images/profile/profile.jpg'" alt="{{ intern.username }}" class="profile-photo">
+        </td>
         <td>{{ intern.username }}</td>
         <td>{{ intern.email }}</td>
       </tr>

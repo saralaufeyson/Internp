@@ -1,0 +1,17 @@
+<div class="card p-3 shadow-sm">
+  
+
+  <!-- Skill Input -->
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" [(ngModel)]="newSkill" placeholder="Add a skill">
+    <button class="btn btn-primary" (click)="addSkill()">Add</button>
+  </div>
+
+  <!-- Skills List -->
+  <div class="skills-list">
+    <span *ngFor="let skill of skills" class="badge bg-primary me-2">
+      {{ skill }}
+      <i class="bi bi-x-circle ms-1" (click)="removeSkill(skill)"></i>
+    </span>
+  </div>
+</div>

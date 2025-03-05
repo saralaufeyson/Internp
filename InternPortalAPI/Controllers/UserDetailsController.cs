@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using YourNamespace.Models;
-using YourNamespace.Services;
+using YourNamespace.Repositories;
+using System.Threading.Tasks;
 
 namespace YourNamespace.Controllers
 {
@@ -8,23 +9,21 @@ namespace YourNamespace.Controllers
     [Route("api/[controller]")]
     public class UserDetailsController : ControllerBase
     {
-        private readonly UserDetailsService _userDetailsService;
+        private readonly IUserDetailsRepository _userDetailsRepository;
 
-        public UserDetailsController(UserDetailsService userDetailsService)
+        public UserDetailsController(IUserDetailsRepository userDetailsRepository)
         {
-            _userDetailsService = userDetailsService;
+            _userDetailsRepository = userDetailsRepository;
         }
 
-        // ✅ Get User Details by userId
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetUserDetails(string userId)
         {
-            var userDetails = await _userDetailsService.GetUserDetailsAsync(userId);
+            var userDetails = await _userDetailsRepository.GetUserDetailsAsync(userId);
             if (userDetails == null) return NotFound("User details not found.");
             return Ok(userDetails);
         }
 
-        // ✅ Create User Details (Add new)
         [HttpPost("adddetails")]
         public async Task<IActionResult> CreateUserDetails([FromBody] UserDetails userDetails)
         {
@@ -33,73 +32,104 @@ namespace YourNamespace.Controllers
                 return BadRequest("Invalid user details.");
             }
 
-            await _userDetailsService.CreateUserDetailsAsync(userDetails);
+            await _userDetailsRepository.CreateUserDetailsAsync(userDetails);
             return CreatedAtAction(nameof(GetUserDetails), new { userId = userDetails.UserId }, userDetails);
         }
 
-        // ✅ Update User Details (Edit)
         [HttpPut("{userId}")]
         public async Task<IActionResult> UpdateUserDetails(string userId, [FromBody] UserDetails userDetails)
         {
-            var existingDetails = await _userDetailsService.GetUserDetailsAsync(userId);
+            var existingDetails = await _userDetailsRepository.GetUserDetailsAsync(userId);
             if (existingDetails == null) return NotFound("User details not found.");
 
-            // Update the user details using the service
-            await _userDetailsService.UpdateUserDetailsAsync(userId, userDetails);
+            await _userDetailsRepository.UpdateUserDetailsAsync(userId, userDetails);
+            var updatedDetails = await _userDetailsRepository.GetUserDetailsAsync(userId);
 
-            // Return the updated user details
-            var updatedDetails = await _userDetailsService.GetUserDetailsAsync(userId);
-
-            return Ok(updatedDetails); // Return the updated user details in the response
+            return Ok(updatedDetails);
         }
 
-        // ✅ Delete User Details
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteUserDetails(string userId)
         {
-            var existingDetails = await _userDetailsService.GetUserDetailsAsync(userId);
+            var existingDetails = await _userDetailsRepository.GetUserDetailsAsync(userId);
             if (existingDetails == null) return NotFound("User details not found.");
 
-            await _userDetailsService.DeleteUserDetailsAsync(userId);
+            await _userDetailsRepository.DeleteUserDetailsAsync(userId);
             return Ok("User details deleted successfully.");
         }
 
+        // Experience Endpoints
         [HttpPost("{userId}/experience")]
         public async Task<IActionResult> AddExperience(string userId, [FromBody] Experience experience)
         {
-            var userDetails = await _userDetailsService.GetUserDetailsAsync(userId);
+            var userDetails = await _userDetailsRepository.GetUserDetailsAsync(userId);
             if (userDetails == null) return NotFound("User details not found.");
 
             userDetails.Experiences.Add(experience);
-            await _userDetailsService.UpdateUserDetailsAsync(userId, userDetails);
+            await _userDetailsRepository.UpdateUserDetailsAsync(userId, userDetails);
 
             return Ok(userDetails);
         }
 
-        // ✅ Update an Existing Experience
         [HttpPut("{userId}/experience/{index}")]
         public async Task<IActionResult> UpdateExperience(string userId, int index, [FromBody] Experience experience)
         {
-            var userDetails = await _userDetailsService.GetUserDetailsAsync(userId);
+            var userDetails = await _userDetailsRepository.GetUserDetailsAsync(userId);
             if (userDetails == null) return NotFound("User details not found.");
             if (index < 0 || index >= userDetails.Experiences.Count) return BadRequest("Invalid experience index.");
 
             userDetails.Experiences[index] = experience;
-            await _userDetailsService.UpdateUserDetailsAsync(userId, userDetails);
+            await _userDetailsRepository.UpdateUserDetailsAsync(userId, userDetails);
             return Ok(userDetails);
         }
 
-        // ✅ Delete an Experience
         [HttpDelete("{userId}/experience/{index}")]
         public async Task<IActionResult> DeleteExperience(string userId, int index)
         {
-            var userDetails = await _userDetailsService.GetUserDetailsAsync(userId);
+            var userDetails = await _userDetailsRepository.GetUserDetailsAsync(userId);
             if (userDetails == null) return NotFound("User details not found.");
             if (index < 0 || index >= userDetails.Experiences.Count) return BadRequest("Invalid experience index.");
 
             userDetails.Experiences.RemoveAt(index);
-            await _userDetailsService.UpdateUserDetailsAsync(userId, userDetails);
+            await _userDetailsRepository.UpdateUserDetailsAsync(userId, userDetails);
+            return Ok(userDetails);
+        }
+
+        // Skills Endpoints
+        [HttpPost("{userId}/skills")]
+        public async Task<IActionResult> AddSkill(string userId, [FromBody] SkillRequest request)
+        {
+            var userDetails = await _userDetailsRepository.GetUserDetailsAsync(userId);
+            if (userDetails == null) return NotFound("User details not found.");
+
+            string skill = request.Skill; // Extract skill from request body
+            if (string.IsNullOrEmpty(skill)) return BadRequest("Skill cannot be empty.");
+
+            userDetails.Skills.Add(skill);
+            await _userDetailsRepository.UpdateUserDetailsAsync(userId, userDetails);
+
+            return Ok("Skill added successfully.");
+        }
+
+
+        [HttpDelete("{userId}/skills/{skill}")]
+        public async Task<IActionResult> DeleteSkill(string userId, string skill)
+        {
+            var userDetails = await _userDetailsRepository.GetUserDetailsAsync(userId);
+            if (userDetails == null) return NotFound("User details not found.");
+
+            if (userDetails.Skills.Contains(skill))
+            {
+                userDetails.Skills.Remove(skill);
+                await _userDetailsRepository.UpdateUserDetailsAsync(userId, userDetails);
+            }
+
             return Ok(userDetails);
         }
     }
+}
+
+public class SkillRequest
+{
+    public string Skill { get; set; }
 }

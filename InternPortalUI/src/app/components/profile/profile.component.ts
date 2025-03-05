@@ -9,11 +9,12 @@ import { UserDetailsComponent } from "./user-details/user-details.component";
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ExperienceComponent } from "./experience/experience.component";
 import { MatIconModule } from '@angular/material/icon';
+import { SkillsComponent } from "./skills/skills.component";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserDetailsComponent, ExperienceComponent,MatIconModule],
+  imports: [CommonModule, FormsModule, UserDetailsComponent, ExperienceComponent, MatIconModule, SkillsComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -81,8 +82,12 @@ export class ProfileComponent implements OnInit {
     this.userDataService.getProfileImage(this.userId)
       .subscribe(
         (response) => {
-          const url = URL.createObjectURL(response);
-          this.profileImage = this.sanitizer.bypassSecurityTrustUrl(url);
+          if (response.size === 0) {
+            this.profileImage = null; // Ensure profileImage is null if the response is empty
+          } else {
+            const url = URL.createObjectURL(response);
+            this.profileImage = this.sanitizer.bypassSecurityTrustUrl(url);
+          }
         },
         (error) => {
           console.error('Error fetching profile image:', error);
