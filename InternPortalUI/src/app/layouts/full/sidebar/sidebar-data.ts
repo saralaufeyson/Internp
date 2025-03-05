@@ -90,6 +90,16 @@ export const navItems: NavItem[] = [
     roles: ['admin']
 
   },
+  {
+    navCap: 'Additional Links',
+  },
+  {
+    displayName: 'Profile',
+    iconName: 'User',
+    route: '/dashboard/profile',
+    roles: ['intern', 'admin', 'mentor']
+  }
+
   
 ];
 export const internNavItems: NavItem[] = navItems.filter(item => item.roles?.includes('intern'));

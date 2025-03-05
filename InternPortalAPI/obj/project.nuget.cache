@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KbQ8jWnwneY=",
+  "dgSpecHash": "r5WF9iDW2bs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\lkanchi\\Downloads\\internportal3\\Internp\\InternPortalAPI\\InternPortal.csproj",
+  "projectFilePath": "C:\\Users\\lkanchi\\OneDrive - ViaPlus\\Documents\\internportal3\\Internp\\InternPortalAPI\\InternPortal.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lkanchi\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\lkanchi\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\9.0.1\\microsoft.aspnetcore.authentication.jwtbearer.9.0.1.nupkg.sha512",
@@ -29,12 +29,5 @@
     "C:\\Users\\lkanchi\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
     "C:\\Users\\lkanchi\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\lkanchi\\Downloads\\internportal3\\Internp\\InternPortalAPI\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
