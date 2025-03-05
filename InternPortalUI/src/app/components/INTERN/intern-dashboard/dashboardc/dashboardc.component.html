@@ -53,4 +53,15 @@
       <p style="color: red;">Error!Connect backend</p>
     </div>
   </div>
+
+  <!-- Radar Chart Section -->
+  <div class="graph-container">
+    <h3 class="graph-title">Mentor feedback</h3>
+    <div *ngIf="userId">
+      <canvas id="internRadarChart"></canvas>
+    </div>
+    <div *ngIf="!userId">
+      <p style="color: red;">Error!Connect backend</p>
+    </div>
+  </div>
 </div>
