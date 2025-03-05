@@ -25,6 +25,7 @@ builder.Services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();  //
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPocProjectRepository, PocProjectRepository>();
 builder.Services.AddScoped<IMentorRepository, MentorRepository>();
+builder.Services.AddScoped<ILearningPathRepository, LearningPathRepository>(); // ✅ Register IAuthService
 // Configure Authentication using JWT
 builder.Services.AddAuthentication(options =>
 {

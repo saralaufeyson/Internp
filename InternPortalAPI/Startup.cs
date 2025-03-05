@@ -42,6 +42,7 @@ public class Startup
         services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMentorRepository, MentorRepository>();
+        services.AddScoped<ILearningPathRepository, LearningPathRepository>();
 
     }
 
