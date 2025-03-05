@@ -17,8 +17,6 @@ namespace InternPortal.Models
 
         [BsonElement("location")]
         public required string Location { get; set; }
-
-        // Removed the skills field
     }
 
     public class UserDetails
@@ -50,5 +48,8 @@ namespace InternPortal.Models
 
         [BsonElement("experiences")]
         public List<Experience> Experiences { get; set; } = new List<Experience>();
+
+        [BsonElement("skills")]
+        public List<string> Skills { get; set; } = new List<string>(); // New field for skills
     }
 }

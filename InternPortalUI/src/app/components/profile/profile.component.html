@@ -64,12 +64,9 @@
     <div *ngIf="activeTab === 'skills'" class="skills-section">
       <h4>Skills</h4>
       <ul>
-        <li *ngFor="let skill of userProfile.skills">{{ skill }}</li>
+       <app-skills></app-skills>
       </ul>
-      <div class="input-group">
-        <input [(ngModel)]="newSkill" placeholder="Add new skill" />
-        <button (click)="addSkill()">Add</button>
-      </div>
+      
     </div>
   </div>
 </div>

@@ -1,0 +1,30 @@
+.card {
+  max-width: 500px;
+  margin: auto;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.badge .bi-x-circle {
+  margin-left: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.badge .bi-x-circle:hover {
+  color: #dc3545;
+}
