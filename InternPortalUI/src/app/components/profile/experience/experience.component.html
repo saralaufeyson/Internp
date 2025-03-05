@@ -1,19 +1,23 @@
 <div class="experience-container">
   <h2>Experience</h2>
-  <button class="add-btn" (click)="addExperience()">+</button>
+  <button class="add-btn" (click)="showForm = true">+</button>
 
-  <div class="new-experience-form">
+  <div *ngIf="showForm" class="new-experience-form">
     <input type="text" placeholder="Title" [(ngModel)]="newExperience.title">
     <input type="text" placeholder="Company" [(ngModel)]="newExperience.company">
     <input type="text" placeholder="Duration" [(ngModel)]="newExperience.duration">
     <input type="text" placeholder="Location" [(ngModel)]="newExperience.location">
+    <button class="submit-btn" (click)="addExperience()">Add</button>
+    <button class="cancel-btn" (click)="showForm = false">Cancel</button>
   </div>
 
   <div *ngFor="let exp of experiences; let i = index" class="experience-card" [ngClass]="{'hidden': !exp || !exp.title || !exp.company || !exp.duration || !exp.location}">
     <div class="exp-header">
       <h3>{{ exp.title }}</h3>
-      <button class="edit-btn">✏️</button>
-      <button class="delete-btn" (click)="deleteExperience(i)">🗑️</button>
+      <div class="exp-actions">
+        <button class="edit-btn"><i class="bi bi-pencil"></i></button>
+        <button class="delete-btn" (click)="deleteExperience(i)"><i class="bi bi-trash"></i></button>
+      </div>
     </div>
     <p><strong>{{ exp.company }}</strong> • {{ exp.duration }}</p>
     <p>{{ exp.location }}</p>

@@ -18,6 +18,7 @@ import { MentorDashComponent } from '../components/MENTOR/mentor-dash/mentor-das
 import { internNavItems } from '../layouts/full/sidebar/sidebar-data';
 import { AdminReviewsComponent } from '../components/ADMIN/admin-reviews/admin-reviews.component';
 import { InternFeedbackComponent } from '../components/MENTOR/intern-feedback/intern-feedback.component';
+import { MyfeedbackComponent } from '../components/MENTOR/myfeedback/myfeedback.component'; // Import MyfeedbackComponent
 
 export const PagesRoutes: Routes = [
   {
@@ -199,6 +200,18 @@ export const PagesRoutes: Routes = [
       urls: [
         { title: 'Dashboard', url: '/dashboard' },
         { title: 'Intern Dashboard' },
+      ],
+    },
+  },
+  {
+    path: 'my-feedback',
+    component: MyfeedbackComponent,
+    canActivate: [MentorGuard], // Apply MentorGuard
+    data: {
+      title: 'My Feedback',
+      urls: [
+        { title: 'Dashboard', url: '/dashboard' },
+        { title: 'My Feedback' },
       ],
     },
   },
