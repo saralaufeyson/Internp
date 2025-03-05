@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using YourNamespace.Models;
-using YourNamespace.Repositories;
+using InternPortal.Models;
+using InternPortal.Repositories;
 using System.Threading.Tasks;
 
-namespace YourNamespace.Controllers
+namespace InternPortal.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -131,5 +131,5 @@ namespace YourNamespace.Controllers
 
 public class SkillRequest
 {
-    public string Skill { get; set; }
+    public string Skill { get; set; } = string.Empty; // Initialize with a default value
 }

@@ -1,8 +1,8 @@
-using YourNamespace.Models;
+using InternPortal.Models;
 using MongoDB.Driver;
 using System.Threading.Tasks;
 
-namespace YourNamespace.Repositories
+namespace InternPortal.Repositories
 {
     public class UserDetailsRepository : IUserDetailsRepository
     {

@@ -3,7 +3,7 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using YourNamespace.Models;
+using InternPortal.Models;
 
 namespace Internp.Controllers
 {

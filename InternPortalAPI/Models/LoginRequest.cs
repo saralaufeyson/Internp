@@ -1,4 +1,4 @@
-namespace YourNamespace.Models
+namespace InternPortal.Models
 {
     public class LoginRequest
     {

@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using YourNamespace.Models;
-using YourNamespace.Repositories;
+using InternPortal.Models;
+using InternPortal.Repositories;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Text.Json;
 
-namespace YourNamespace.Controllers
+namespace InternPortal.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

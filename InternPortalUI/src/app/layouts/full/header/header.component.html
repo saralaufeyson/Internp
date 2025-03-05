@@ -4,28 +4,26 @@
   <button mat-icon-button (click)="toggleMobileNav.emit()" class="d-flex justify-content-center">
     <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
   </button>
-  <!-- Search Bar -->
-  
-  
 
   <span class="flex-1-auto"></span>
 
-  <!-- --------------------------------------------------------------- -->
-  <!-- profile Dropdown -->
-  <!-- --------------------------------------------------------------- -->
-  
+  <!-- Dark Mode Toggle -->
+  <button mat-icon-button (click)="toggleDarkMode()" aria-label="Toggle Dark Mode">
+    <mat-icon>{{ isDarkMode ? 'brightness_7' : 'brightness_4' }}</mat-icon>
+  </button>
+
+  <!-- Profile Dropdown -->
   <button mat-icon-button [matMenuTriggerFor]="profilemenu" aria-label="Notifications">
     <img src="../../../../assets/images/profile/profile.jpg" class="rounded-circle object-cover" width="35" />
   </button>
   <mat-menu #profilemenu="matMenu" class="cardWithShadow">
-  
     <button mat-menu-item>
       <mat-icon class="d-flex align-items-center"><i-tabler name="mail" class="icon-18 d-flex"></i-tabler></mat-icon>
-     <a [routerLink]="['/dashboard/profile']" class="no-underline profile-link">Profile</a>
+      <a [routerLink]="['/dashboard/profile']" class="no-underline profile-link">Profile</a>
     </button>
-    
     <div class="p-x-12 m-t-12">
-      <a [routerLink]="['/authentication/login']" mat-stroked-button color="primary" class="w-100" style="color: black;">Logout</a>  
+      <a [routerLink]="['/authentication/login']" mat-stroked-button color="primary" class="w-100"
+        style="color: black;">Logout</a>
     </div>
   </mat-menu>
 </mat-toolbar>
