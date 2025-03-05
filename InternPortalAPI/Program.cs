@@ -9,7 +9,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using InternPortal.Repositories;
-using InternPortal.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,8 +21,6 @@ var mongoClient = new MongoClient(mongoConnectionString);
 builder.Services.AddSingleton<IMongoClient>(mongoClient);
 
 // Register Services
-builder.Services.AddSingleton<AuthService>();
-builder.Services.AddScoped<UserDetailsService>();  // ✅ Register UserDetailsService
 builder.Services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();  // ✅ Register IUserDetailsRepository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 // Configure Authentication using JWT
