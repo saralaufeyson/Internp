@@ -121,8 +121,8 @@ tbody tr {
 }
 
 .profile-photo {
-  width: 40px; /* Smaller width */
-  height: 40px; /* Smaller height */
+  width: 50px; /* Smaller width */
+  height: 50px; /* Smaller height */
   border-radius: 50%;
   object-fit: cover;
 }

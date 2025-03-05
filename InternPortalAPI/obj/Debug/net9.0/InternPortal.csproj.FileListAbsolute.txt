@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 21c1ffa29425cf7872cb040090bb9381f800851d
 C:\Users\lkanchi\Downloads\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\appsettings.Development.json
@@ -101,6 +102,8 @@ c:\Users\dneelam\InternPortal\InternPortalAPI\obj\Debug\net9.0\InternPortal.genr
 c:\Users\dneelam\InternPortal\InternPortalAPI\obj\Debug\net9.0\ref\InternPortal.dll
 >>>>>>> abf0e7c36608110d07ffe92ef8120faa63143802
 >>>>>>> 00910012fff701ab6fa7b8743072f59a23e83333
+=======
+>>>>>>> a61957c0ec0de5273c77cd92f8bca840682c3807
 C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\InternPortalAPI\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\InternPortalAPI\bin\Debug\net9.0\appsettings.json
 C:\Users\ashaik\OneDrive - ViaPlus\Desktop\Intern\Internp\InternPortalAPI\bin\Debug\net9.0\InternPortal.staticwebassets.endpoints.json

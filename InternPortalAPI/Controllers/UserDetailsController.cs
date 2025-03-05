@@ -131,5 +131,5 @@ namespace InternPortal.Controllers
 
 public class SkillRequest
 {
-    public string Skill { get; set; }
+    public string Skill { get; set; } = string.Empty; // Initialize with a default value
 }

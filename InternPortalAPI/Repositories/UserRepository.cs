@@ -1,5 +1,6 @@
 using InternPortal.Models;
 using MongoDB.Driver;
+using MongoDB.Bson; // Add this import for ObjectId
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System;
@@ -81,30 +82,31 @@ namespace InternPortal.Repositories
         public async Task<List<User>> GetUsersByRoleAsync(string role) =>
             await _users.Find(u => u.Role == role).ToListAsync();
 
-        public async Task<long> GetUsersCountByRoleAsync(string role) =>
-            await _users.CountDocumentsAsync(u => u.Role == role);
-
         public async Task<bool> AssignInternsToMentorAsync(string mentorId, List<string> internIds)
         {
-            var mentor = await _users.Find(u => u.Id == mentorId && u.Role == "Mentor").FirstOrDefaultAsync();
+            if (!ObjectId.TryParse(mentorId, out ObjectId mentorObjectId))
+            {
+                return false;
+            }
+
+            var mentor = await _users.Find(u => u.Id == mentorObjectId.ToString() && u.Role == "Mentor").FirstOrDefaultAsync();
             if (mentor == null)
             {
                 return false;
             }
 
-            if (internIds == null)
-            {
-                return false;
-            }
+            var internObjectIds = internIds.Where(id => ObjectId.TryParse(id, out _))
+                                           .Select(id => ObjectId.Parse(id))
+                                           .ToList();
 
-            var interns = await _users.Find(u => u.Id != null && internIds.Contains(u.Id) && u.Role == "Intern").ToListAsync();
+            var interns = await _users.Find(u => internObjectIds.Contains(ObjectId.Parse(u.Id)) && u.Role == "Intern").ToListAsync();
             if (interns.Count != internIds.Count)
             {
                 return false;
             }
 
             var update = Builders<User>.Update.Set(u => u.AssignedInterns, internIds);
-            var result = await _users.UpdateOneAsync(u => u.Id == mentorId, update);
+            var result = await _users.UpdateOneAsync(u => u.Id == mentorObjectId.ToString(), update);
 
             return result.IsAcknowledged && result.ModifiedCount > 0;
         }
@@ -117,7 +119,9 @@ namespace InternPortal.Repositories
             foreach (var mentor in mentors)
             {
                 var internIds = mentor.AssignedInterns ?? new List<string>();
-                var interns = await _users.Find(u => internIds != null && internIds.Contains(u.Id ?? string.Empty)).ToListAsync();
+
+                // Fetch interns using a separate query
+                var interns = await _users.Find(u => internIds.Contains(u.Id)).ToListAsync();
 
                 mentorDetails.Add(new
                 {
@@ -211,5 +215,8 @@ namespace InternPortal.Repositories
             var user = await _users.Find(u => u.Id == userId).FirstOrDefaultAsync();
             return user?.About ?? string.Empty;
         }
+
+        public async Task<long> GetUsersCountByRoleAsync(string role) =>
+            await _users.CountDocumentsAsync(u => u.Role == role);
     }
 }
