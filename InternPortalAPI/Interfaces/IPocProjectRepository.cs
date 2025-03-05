@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace InternPortal.Repositories
+namespace InternPortal.Interfaces
 {
     public interface IPocProjectRepository
     {

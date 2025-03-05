@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using System.Text.Json;
 
-namespace InternPortal.Repositories
+namespace InternPortal.Interfaces
 {
     public interface IUserRepository
     {

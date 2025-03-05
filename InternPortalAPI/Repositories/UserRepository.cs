@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System;
 using System.Text.Json;
+using InternPortal.Interfaces;
 
 namespace InternPortal.Repositories
 {

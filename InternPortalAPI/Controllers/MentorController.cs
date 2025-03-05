@@ -2,8 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using InternPortal.Models;
-using InternPortal.Repositories;
-
+using InternPortal.Interfaces;
 namespace Internp.Controllers
 {
     [Route("api/[controller]")]

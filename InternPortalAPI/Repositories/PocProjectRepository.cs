@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using InternPortal.Interfaces;
 
 namespace InternPortal.Repositories
 {

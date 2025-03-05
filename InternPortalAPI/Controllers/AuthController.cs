@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using InternPortal.Models;
-using InternPortal.Repositories;
 using System.Threading.Tasks;
+using InternPortal.Interfaces;
 
 namespace InternPortal.Controllers
 {

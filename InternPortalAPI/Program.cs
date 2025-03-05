@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using InternPortal.Repositories;
-
+using InternPortal.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 // Load configuration

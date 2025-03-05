@@ -2,7 +2,7 @@ using InternPortal.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace InternPortal.Repositories
+namespace InternPortal.Interfaces
 {
     public interface IMentorRepository
     {

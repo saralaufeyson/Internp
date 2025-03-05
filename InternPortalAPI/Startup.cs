@@ -2,6 +2,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using InternPortal.Repositories;
+using InternPortal.Interfaces;
 
 public class Startup
 {
@@ -39,7 +40,7 @@ public class Startup
 
         services.AddScoped<IPocProjectRepository, PocProjectRepository>();
         services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();// ✅ Register IUserDetailsRepository
+        services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMentorRepository, MentorRepository>();
 
     }
