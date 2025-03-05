@@ -971,11 +971,25 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
+    "C:\\Users\\lkanchi\\.nuget\\packages\\": {}
+=======
     "C:\\Users\\dneelam\\.nuget\\packages\\": {}
+>>>>>>> 21c1ffa29425cf7872cb040090bb9381f800851d
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
+      "projectUniqueName": "C:\\Users\\lkanchi\\Downloads\\internportal3\\Internp\\InternPortalAPI\\InternPortal.csproj",
+      "projectName": "InternPortal",
+      "projectPath": "C:\\Users\\lkanchi\\Downloads\\internportal3\\Internp\\InternPortalAPI\\InternPortal.csproj",
+      "packagesPath": "C:\\Users\\lkanchi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lkanchi\\Downloads\\internportal3\\Internp\\InternPortalAPI\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\lkanchi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
       "projectUniqueName": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
       "projectName": "InternPortal",
       "projectPath": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
@@ -984,6 +998,7 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dneelam\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> 21c1ffa29425cf7872cb040090bb9381f800851d
       ],
       "originalTargetFrameworks": [
         "net9.0"
