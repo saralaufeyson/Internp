@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\lkanchi\\Downloads\\internportal3\\Internp\\InternPortalAPI\\InternPortal.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lkanchi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\InternPortalAPI\\InternPortal.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\InternPortalAPI\\InternPortal.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\InternPortalAPI\\InternPortal.csproj",
+        "projectName": "InternPortal",
+        "projectPath": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\InternPortalAPI\\InternPortal.csproj",
+        "packagesPath": "C:\\Users\\ashaik\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\InternPortalAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ashaik\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> 34c9ab26a5e5c32b561eb57a6459868c450267e8
         ],
         "originalTargetFrameworks": [
           "net9.0"

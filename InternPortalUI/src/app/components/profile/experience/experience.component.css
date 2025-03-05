@@ -1,32 +1,155 @@
+/* Experience Container */
 .experience-container {
-    max-width: 600px;
-    margin: auto;
-    padding: 10px;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .experience-card {
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-  }
-  
-  .exp-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .add-btn, .edit-btn, .delete-btn {
-    cursor: pointer;
-    background: none;
-    border: none;
-    font-size: 18px;
-  }
-  
-  .add-btn {
-    float: right;
-    font-size: 22px;
-  }
-  
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 750px;
+  margin: 20px auto;
+  text-align: left;
+  font-family: Arial, sans-serif;
+}
+
+.experience-container h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Add Button */
+.add-btn {
+  background: #0073b1;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 20px;
+}
+
+.add-btn:hover {
+  background: #005b8c;
+}
+
+/* New Experience Form */
+.new-experience-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  z-index: 1000;
+}
+
+.new-experience-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.new-experience-form input:focus {
+  border-color: #0073b1;
+  outline: none;
+}
+
+.submit-btn, .cancel-btn {
+  background: #0073b1;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: #005b8c;
+}
+
+.cancel-btn {
+  background: #d93025;
+}
+
+.cancel-btn:hover {
+  background: #b1271c;
+}
+
+/* Experience Cards */
+.experience-card {
+  background: #f3f3f3;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+  text-align: left;
+  position: relative;
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exp-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.exp-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Action Buttons */
+.edit-btn, .delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666;
+  transition: color 0.3s;
+}
+
+.edit-btn:hover {
+  color: #0073b1;
+}
+
+.delete-btn:hover {
+  color: #d93025;
+}
+
+/* Experience Details */
+.experience-card p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Hidden Class */
+.hidden {
+  display: none;
+}
