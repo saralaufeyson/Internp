@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-reviews',
   standalone: true,
-  imports: [CommonModule, HttpClientModule], // Import HttpClientModule
+  imports: [CommonModule, HttpClientModule, FormsModule], // Import FormsModule
   templateUrl: './admin-reviews.component.html',
   styleUrls: ['./admin-reviews.component.css']
 })
 export class AdminReviewsComponent implements OnInit {
-  [x: string]: any;
   reviews: any[] = []; // Store reviews
+  filteredReviews: any[] = []; // Store filtered reviews
+  searchQuery: string = ''; // Store search query
+  showSearchBar: boolean = false; // Control the visibility of the search bar
+  sortKey: string = ''; // Store the key to sort by
+  sortDirection: 'asc' | 'desc' = 'asc'; // Store the sort direction
 
   ratingCriteria = [
     { key: 'domainKnowledge', label: 'Domain Knowledge' },
@@ -41,6 +46,7 @@ export class AdminReviewsComponent implements OnInit {
             ratingKeys: Object.keys(review.ratings),
             overallRating: review.overallRating // Ensure overallRating is fetched
           }));
+          this.filteredReviews = this.reviews; // Initialize filtered reviews
         },
         error: (err) => {
           console.error('Error fetching reviews:', err);
@@ -62,5 +68,37 @@ export class AdminReviewsComponent implements OnInit {
       case 1: return 'Poor';
       default: return 'Unknown';
     }
+  }
+
+  toggleSearchBar() {
+    this.showSearchBar = !this.showSearchBar;
+  }
+
+  filterReviews() {
+    this.filteredReviews = this.reviews.filter(review =>
+      review.fullName.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  }
+
+  sortReviews(key: string) {
+    if (this.sortKey === key) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortKey = key;
+      this.sortDirection = 'asc';
+    }
+
+    this.filteredReviews.sort((a, b) => {
+      const valueA = a[key];
+      const valueB = b[key];
+
+      if (valueA < valueB) {
+        return this.sortDirection === 'asc' ? -1 : 1;
+      } else if (valueA > valueB) {
+        return this.sortDirection === 'asc' ? 1 : -1;
+      } else {
+        return 0;
+      }
+    });
   }
 }

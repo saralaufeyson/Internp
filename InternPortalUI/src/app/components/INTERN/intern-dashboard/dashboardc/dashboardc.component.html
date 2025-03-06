@@ -1,41 +1,44 @@
-<div class="dashboard-container">
-  <!-- Header -->
-  <!-- <h2 class="dashboard-title">Via-Aspire</h2>
-  <p class="dashboard-subtitle">InternVision - See the Progress, Be the Change.</p> -->
+<div class="dashboard-header">
+  <h1>Via-Aspire</h1>
+  <h3><i>InternVision – See the Progress, Be the Change.</i></h3>
+</div>
 
-  <!-- Top Widgets (Styled Like Tapeli) -->
-  <div class="dashboard-widgets">
-    <div class="widget">
-      <p class="widget-title">Goals Count</p>
+<div class="dashboard-container">
+  <div class="stats-box">
+    <div class="card">
+      <h1>Goals Count</h1>
       <div *ngIf="goalCount !== undefined">
-        <h2 class="widget-value">{{ goalCount }}</h2>
+        <p>{{ goalCount }}</p>
       </div>
       <div *ngIf="goalCount === undefined">
         <p style="color: red;">Error!Connect backend</p>
       </div>
     </div>
-    <div class="widget">
-      <p class="widget-title">Total POCs</p>
+
+    <div class="card">
+      <h1>Total POCs</h1>
       <div *ngIf="pocCount !== undefined">
-        <h2 class="widget-value">{{ pocCount.totalPocs }}</h2>
+        <p>{{ pocCount.totalPocs }}</p>
       </div>
       <div *ngIf="pocCount === undefined">
         <p style="color: red;">Error!Connect backend</p>
       </div>
     </div>
-    <div class="widget">
-      <p class="widget-title">In Progress POCs</p>
+
+    <div class="card">
+      <h1>In Progress POCs</h1>
       <div *ngIf="pocCount !== undefined">
-        <h2 class="widget-value">{{ pocCount.inProgressPocs }}</h2>
+        <p>{{ pocCount.inProgressPocs }}</p>
       </div>
       <div *ngIf="pocCount === undefined">
         <p style="color: red;">Error!Connect backend</p>
       </div>
     </div>
-    <div class="widget">
-      <p class="widget-title">Completed POCs</p>
+
+    <div class="card">
+      <h1>Completed POCs</h1>
       <div *ngIf="pocCount !== undefined">
-        <h2 class="widget-value">{{ pocCount.completedPocs }}</h2>
+        <p>{{ pocCount.completedPocs }}</p>
       </div>
       <div *ngIf="pocCount === undefined">
         <p style="color: red;">Error!Connect backend</p>
@@ -43,56 +46,16 @@
     </div>
   </div>
 
-  <!-- Graph Section (Aligned Like Tapeli’s Monthly Sales) -->
-
-
-  <!-- Radar Chart Section -->
-  <div class="graph-container intern-radar-chart-container">
-    <h3 class="graph-title">Mentor feedback</h3>
-    <div *ngIf="userId">
-      <canvas id="internRadarChart"></canvas>
-    </div>
-    <div *ngIf="!userId">
-      <p style="color: red;">Error!Connect backend</p>
+  <div class="charts-box">
+    <div class="card pie-chart-card">
+      <h1>POC Status Distribution</h1>
+      <div *ngIf="pocCount">
+        <canvas id="pocPieChart"></canvas>
+      </div>
+      <div *ngIf="!pocCount">
+        <p style="color: red;">Error!Connect backend</p>
+      </div>
     </div>
   </div>
-
-  <!-- Semi-Pie Chart Section -->
-  <div class="graph-container">
-    <h3 class="graph-title">OverAll Learning Path Progress</h3>
-    <div *ngIf="learningPathProgress !== undefined">
-      <canvas id="learningPathPieChart"></canvas>
-      
-    </div>
-    <div *ngIf="learningPathProgress === undefined">
-      <p style="color: red;">Error!Connect backend</p>
-    </div>
-  </div>
-
-  <div class="graph-container poc-pie-chart-container">
-    <h3 class="graph-title">POC Status Distribution</h3>
-    <div *ngIf="pocCount">
-      <canvas id="pocPieChart"></canvas>
-    </div>
-    <div *ngIf="!pocCount">
-      <p style="color: red;">Error!Connect backend</p>
-    </div>
-  </div>
-  <!-- Incomplete POCs Section -->
-  <div class="graph-container incomplete-pocs-container">
-    <h3 class="graph-title">Incomplete POCs</h3>
-    <div *ngIf="pocCount && pocCount.inProgressPocs > 0">
-      <ul>
-        <ng-container *ngFor="let poc of pocs">
-            <li *ngIf="poc.status === 'inProgress'" style="text-align: left;">
-           <b> {{ poc.projectName }}</b> :{{ poc.description }}
-            </li>
-        </ng-container>
-      </ul>
-    <a routerLink="/dashboard/pocProjects" style="color: darkblue;"><b>Lets complete it!</b></a>
-    </div>
-    <div *ngIf="!pocCount || pocCount.inProgressPocs === 0">
-      <p>No incomplete POCs found.</p>
-    </div>
-  </div>
+  
 </div>

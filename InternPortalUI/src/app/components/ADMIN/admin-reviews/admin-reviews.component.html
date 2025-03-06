@@ -1,26 +1,30 @@
 <div class="container">
   <h2 class="page-title">Intern Performance Reviews</h2>
 
+  <!-- Collapsible Search Bar -->
+  <div class="search-bar-container">
+    <i class="bi bi-search search-icon" (click)="toggleSearchBar()"></i>
+    <div *ngIf="showSearchBar" class="search-bar">
+      <input type="text" [(ngModel)]="searchQuery" (input)="filterReviews()" placeholder="Search by name..." />
+    </div>
+  </div>
+
   <table class="reviews-table">
     <thead>
       <tr>
-        <th>Intern ID</th>
-        <th>Full Name</th>
-
-        <th>Mentor</th>
-
+        <th (click)="sortReviews('internId')">Intern ID</th>
+        <th (click)="sortReviews('fullName')">Full Name</th>
+        <th (click)="sortReviews('mentorName')">Mentor</th>
         <th>Ratings</th>
         <th>Feedback</th>
-        <th>Overall Rating</th>
+        <th (click)="sortReviews('overallRating')">Overall Rating</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let review of reviews">
+      <tr *ngFor="let review of filteredReviews">
         <td>{{ review.internId }}</td>
         <td>{{ review.fullName }}</td>
-
         <td>{{ review.mentorName }}</td>
-
         <td>
           <ul>
             <li *ngFor="let key of review.ratingKeys">
