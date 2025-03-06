@@ -57,7 +57,7 @@
 }
 
 .form-input:focus {
-  border-color: #D2E5F6 ;
+  border-color: #D2E5F6;
   outline: none;
 }
 
@@ -199,4 +199,25 @@
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.plus-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.plus-icon:hover {
+  color: blue;
+}
+
+.goals-form-container {
+  display: none;
+}
+
+.goals-form-container.active {
+  display: block;
 }
