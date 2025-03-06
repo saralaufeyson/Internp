@@ -30,6 +30,27 @@
         </div>
       </div>
 
+      <!-- Goal Status -->
+      <div class="form-group">
+        <label for="status" class="form-label">Status <span style="color: red;">*</span>:</label>
+        <select id="status" formControlName="status" class="form-input">
+          <option value="inProgress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+
+      <!-- Start Date -->
+      <div class="form-group">
+        <label for="startDate" class="form-label">Start Date <span style="color: red;">*</span>:</label>
+        <input id="startDate" formControlName="startDate" type="date" class="form-input" />
+      </div>
+
+      <!-- End Date (only show if status is completed) -->
+      <div class="form-group" *ngIf="form.get('status')?.value === 'completed'">
+        <label for="endDate" class="form-label">End Date <span style="color: red;">*</span>:</label>
+        <input id="endDate" formControlName="endDate" type="date" class="form-input" />
+      </div>
+
       <!-- Submit Button -->
       <div class="form-actions">
         <button type="submit" class="submit-button">Save Goal</button>
@@ -45,14 +66,39 @@
         <div class="goal-name">
           <strong class="goal-label">Goal Name:</strong> <strong>{{ goal.goalName }}</strong>
         </div>
-
+        <i class="bi bi-pencil" (click)="editGoal(goal)"></i>
         <i class="bi bi-trash" (click)="deleteGoal(goal._id)"></i>
-
       </div>
       <div class="goal-description"><strong>Description:</strong> {{ goal.description }}</div>
+      <div class="goal-status"><strong>Status:</strong> {{ goal.status }}</div>
+      <div class="goal-start-date"><strong>Start Date:</strong> {{ goal.startDate | date: 'shortDate' }}</div>
+      <div class="goal-end-date" *ngIf="goal.status === 'completed'"><strong>End Date:</strong> {{ goal.endDate | date:
+        'shortDate' }}</div>
       <div class="goal-created"><strong>Created At:</strong> {{ goal.createdAt | date: 'short' }}</div>
     </div>
   </div>
+
+  <!-- Form to edit goal -->
+  <div *ngIf="editingGoal" class="edit-goal-form">
+    <h3>Edit Goal</h3>
+    <form [formGroup]="editForm" (ngSubmit)="updateGoal()">
+      <div class="form-group">
+        <label for="editStatus" class="form-label">Status <span style="color: red;">*</span>:</label>
+        <select id="editStatus" formControlName="status" class="form-input">
+          <option value="inProgress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+      <div class="form-group" *ngIf="editForm.get('status')?.value === 'completed'">
+        <label for="editEndDate" class="form-label">End Date <span style="color: red;">*</span>:</label>
+        <input id="editEndDate" formControlName="endDate" type="date" class="form-input" />
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="submit-button">Update Goal</button>
+      </div>
+    </form>
+  </div>
+
   <!-- Show message when no goals are available -->
   <div *ngIf="goals.length === 0" class="no-goals-message">
     You have not set any goals yet. Start by adding a goal above!

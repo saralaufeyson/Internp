@@ -9,6 +9,9 @@ interface Goal {
   userId: string;
   username: string; // Add username property
   createdAt: string;
+  status: string; // Add status property
+  startDate: string; // Add startDate property
+  endDate: string; // Add endDate property
 }
 
 @Component({

@@ -38,4 +38,8 @@ export class GoalsService {
     getGoalCount(userId: string): Observable<{ count: number }> {
         return this.http.get<{ count: number }>(`${this.apiUrl}/getGoalCount/${userId}`);
     }
+
+    updateGoal(goalId: string, goalData: any): Observable<any> {
+        return this.http.put<any>(`${this.apiUrl}/updateGoal/${goalId}`, goalData);
+    }
 }
