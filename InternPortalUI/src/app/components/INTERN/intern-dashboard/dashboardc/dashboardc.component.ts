@@ -6,6 +6,7 @@ import { UserDetailsService } from '../../../../services/user-details.service';
 import { RouterModule } from '@angular/router';
 import { GoalsService } from '../../../../services/goals.service'; // Import GoalsService
 import { LearningPathService } from '../../../../services/learning-path.service'; // Import LearningPathService
+import { PocService } from '../../../../services/poc.service'; // Import PocService
 
 Chart.register(...registerables);
 
@@ -21,6 +22,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
   dashboardData: any;
   goalCount: number | undefined;
   pocCount: { totalPocs: number; inProgressPocs: number; completedPocs: number } | undefined;
+  pocs: any[] = [];
   pieChart: Chart | undefined;
   radarChart: Chart<'radar'> | undefined;
   semiPieChart: Chart | undefined;
@@ -30,7 +32,8 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
     private http: HttpClient,
     private userDetailsService: UserDetailsService,
     private goalsService: GoalsService,
-    private learningPathService: LearningPathService
+    private learningPathService: LearningPathService,
+    private pocService: PocService
   ) { }
 
   ngOnInit() {
@@ -41,6 +44,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
       this.fetchDashboardData();
       this.fetchInternFeedback();
       this.fetchLearningPathProgress();
+      this.fetchPocs();
     } else {
       console.error('DashboardcComponent initialized without userId');
     }
@@ -196,14 +200,17 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         data: radarChartData,
         options: {
           responsive: true,
-          maintainAspectRatio: false,
+          maintainAspectRatio: true,
           scales: {
             r: {
               angleLines: {
                 display: false
               },
               suggestedMin: 0,
-              suggestedMax: 5
+              suggestedMax: 5,
+              ticks: {
+                backdropColor: 'transparent' // Ensure ticks are not trimmed
+              }
             }
           }
         }
@@ -253,7 +260,9 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
           datasets: [{
             data: [completed, yetToComplete],
             backgroundColor: ['#1B3E9C', '#00e6e6'],
-            hoverBackgroundColor: ['#1B3E9C', '#00e6e6']
+            hoverBackgroundColor: ['#1B3E9C', '#00e6e6'],
+            borderWidth: 1,
+             // Make the pie thinner
           }]
         },
         options: {
@@ -264,5 +273,18 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
     }, 300);
+  }
+
+  fetchPocs(): void {
+    if (this.userId) {
+      this.pocService.getPocProjects(this.userId).subscribe({
+        next: (response: any) => {
+          this.pocs = response;
+        },
+        error: (error: any) => {
+          console.error('Error fetching POCs:', error);
+        }
+      });
+    }
   }
 }

@@ -5,7 +5,7 @@
     <!-- Form for adding a POC -->
     <form [formGroup]="pocForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="projectName">POC Title:</label>
+        <label for="projectName">POC Title:<span style="color: red;">*</span></label>
         <input id="projectName" formControlName="projectName" type="text" placeholder="Enter POC title" />
         <div *ngIf="
             pocForm.get('projectName')?.invalid &&
@@ -16,7 +16,7 @@
       </div>
 
       <div class="form-group">
-        <label for="description">Description:</label>
+        <label for="description">Description:<span style="color: red;">*</span></label>
         <textarea id="description" formControlName="description" placeholder="Enter POC description"></textarea>
         <div *ngIf="
             pocForm.get('description')?.invalid &&
@@ -27,7 +27,7 @@
       </div>
 
       <div class="form-group">
-        <label for="status">Status:</label>
+        <label for="status">Status:<span style="color: red;">*</span></label>
         <select id="status" formControlName="status">
           <option value="inProgress">In Progress</option>
           <option value="completed">Completed</option>
@@ -35,16 +35,16 @@
       </div>
 
       <div class="form-group">
-        <label for="startDate">Start Date:</label>
+        <label for="startDate">Start Date:<span style="color: red;">*</span></label>
         <input id="startDate" formControlName="startDate" type="date" />
       </div>
 
       <div *ngIf="pocForm.get('status')?.value === 'completed'" class="form-group">
-        <label for="endDate">End Date:</label>
+        <label for="endDate">End Date:<span style="color: red;">*</span></label>
         <input id="endDate" formControlName="endDate" type="date" />
       </div>
 
-      <button type="submit" [disabled]="pocForm.invalid">Save POC</button>
+      <button type="submit" >Save POC</button>
     </form>
   </div>
 
