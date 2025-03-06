@@ -1,3 +1,4 @@
+using InternPortal.Interfaces;
 using InternPortal.Models;
 using MongoDB.Driver;
 using System.Threading.Tasks;

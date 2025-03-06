@@ -1,7 +1,7 @@
 using InternPortal.Models;
 using System.Threading.Tasks;
 
-namespace InternPortal.Repositories
+namespace InternPortal.Interfaces
 {
     public interface IUserDetailsRepository
     {

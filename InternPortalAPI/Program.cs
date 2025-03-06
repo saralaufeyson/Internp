@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using InternPortal.Repositories;
-
+using InternPortal.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 // Load configuration
@@ -23,6 +23,9 @@ builder.Services.AddSingleton<IMongoClient>(mongoClient);
 // Register Services
 builder.Services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();  // ✅ Register IUserDetailsRepository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPocProjectRepository, PocProjectRepository>();
+builder.Services.AddScoped<IMentorRepository, MentorRepository>();
+builder.Services.AddScoped<ILearningPathRepository, LearningPathRepository>(); // ✅ Register IAuthService
 // Configure Authentication using JWT
 builder.Services.AddAuthentication(options =>
 {

@@ -11,15 +11,17 @@
     <button class="cancel-btn" (click)="showForm = false">Cancel</button>
   </div>
 
-  <div *ngFor="let exp of experiences; let i = index" class="experience-card" [ngClass]="{'hidden': !exp || !exp.title || !exp.company || !exp.duration || !exp.location}">
-    <div class="exp-header">
-      <h3>{{ exp.title }}</h3>
-      <div class="exp-actions">
-        <button class="edit-btn"><i class="bi bi-pencil"></i></button>
-        <button class="delete-btn" (click)="deleteExperience(i)"><i class="bi bi-trash"></i></button>
+  <div class="timeline">
+    <div *ngFor="let exp of experiences; let i = index" class="timeline-item">
+      <div class="timeline-content">
+        <h3>{{ exp.title }}</h3>
+        <p><strong>{{ exp.company }}</strong> • {{ exp.duration }} years</p>
+        <p>{{ exp.location }}</p>
+        <div class="exp-actions">
+          <button class="edit-btn"><i class="bi bi-pencil"></i></button>
+          <button class="delete-btn" (click)="deleteExperience(i)"><i class="bi bi-trash"></i></button>
+        </div>
       </div>
     </div>
-    <p><strong>{{ exp.company }}</strong> • {{ exp.duration }}</p>
-    <p>{{ exp.location }}</p>
   </div>
 </div>
