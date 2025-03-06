@@ -16,5 +16,10 @@ namespace InternPortal.Models
         public required string Description { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        // New properties
+        public string Status { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 }
