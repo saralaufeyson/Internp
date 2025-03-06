@@ -64,4 +64,15 @@
       <p style="color: red;">Error!Connect backend</p>
     </div>
   </div>
+
+  <!-- Semi-Pie Chart Section -->
+  <div class="graph-container">
+    <h3 class="graph-title">Learning Path Progress</h3>
+    <div *ngIf="learningPathProgress !== undefined">
+      <canvas id="learningPathPieChart"></canvas>
+    </div>
+    <div *ngIf="learningPathProgress === undefined">
+      <p style="color: red;">Error!Connect backend</p>
+    </div>
+  </div>
 </div>

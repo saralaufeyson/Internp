@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using InternPortal.Models;
-using InternPortal.Repositories;
+using InternPortal.Interfaces;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Text.Json;

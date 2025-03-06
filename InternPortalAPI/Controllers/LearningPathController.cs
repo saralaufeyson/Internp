@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
+using InternPortal.Interfaces;
 using InternPortal.Models;
 using System.Threading.Tasks;
-using MongoDB.Bson;
 using System.Text.Json;
+using MongoDB.Bson;
 
 namespace InternPortal.Controllers
 {
@@ -11,64 +11,37 @@ namespace InternPortal.Controllers
     [Route("api/[controller]")]
     public class LearningPathController : ControllerBase
     {
-        private readonly IMongoCollection<LearningPath> _learningPathCollection;
-        private readonly IMongoCollection<myLearningPath> _myLearningPathCollection;
+        private readonly ILearningPathRepository _learningPathRepository;
 
-        public LearningPathController(IMongoClient mongoClient)
+        public LearningPathController(ILearningPathRepository learningPathRepository)
         {
-            var database = mongoClient.GetDatabase("database0");
-            _learningPathCollection = database.GetCollection<LearningPath>("LearningPaths");
-            _myLearningPathCollection = database.GetCollection<myLearningPath>("myLearningPath");
+            _learningPathRepository = learningPathRepository;
         }
 
         [HttpPost("addLearningPathStatus")]
         public async Task<IActionResult> AddLearningPathStatus([FromBody] myLearningPath learningPathStatus)
         {
-            if (learningPathStatus == null)
+            if (learningPathStatus == null || string.IsNullOrEmpty(learningPathStatus.UserId) || string.IsNullOrEmpty(learningPathStatus.LearningPathId))
             {
-                return BadRequest("Learning Path Status data is required.");
+                return BadRequest("Invalid Learning Path Status data.");
             }
 
-            if (string.IsNullOrEmpty(learningPathStatus.UserId) || string.IsNullOrEmpty(learningPathStatus.LearningPathId))
-            {
-                return BadRequest("UserId and LearningPathId are required.");
-            }
-
-            // Set the creation time of the learning path status
-            learningPathStatus.CreatedAt = DateTime.UtcNow;
-
-            // Fetch the learning path to get subtopics
-            var learningPath = await _learningPathCollection.Find(lp => lp.Id == learningPathStatus.LearningPathId).FirstOrDefaultAsync();
-            if (learningPath != null)
-            {
-                learningPathStatus.Subtopics = learningPath.Subtopics;
-            }
-
-            // Store the learning path status
-            await _myLearningPathCollection.InsertOneAsync(learningPathStatus);
-            Console.WriteLine($"Learning Path Status added to the database for UserId: {learningPathStatus.UserId}");
+            await _learningPathRepository.AddLearningPathStatusAsync(learningPathStatus);
             return Ok(new { message = "Learning Path Status added successfully." });
         }
 
         [HttpGet("getLearningPathStatus/{userId}")]
         public async Task<IActionResult> GetLearningPathStatus(string userId)
         {
-            Console.WriteLine($"Fetching Learning Path Status for UserId: {userId}");
-
-            var userLearningPathCollection = _learningPathCollection.Database.GetCollection<myLearningPath>("myLearningPath");
-            var learningPathStatuses = await userLearningPathCollection
-                .Find(lp => lp.UserId == userId)
-                .ToListAsync();
-
-            if (learningPathStatuses.Count == 0)
+            var learningPathStatuses = await _learningPathRepository.GetLearningPathStatusAsync(userId);
+            if (learningPathStatuses == null || !learningPathStatuses.Any())
             {
-                Console.WriteLine("No Learning Path Status found.");
                 return NotFound(new { message = "No Learning Path Status found for this user." });
             }
 
             var result = learningPathStatuses.Select(lp => new
             {
-                id = lp.Id.ToString(), // Ensure id is included in the response
+                id = lp.Id.ToString(),
                 lp.UserId,
                 lp.LearningPathId,
                 lp.Status,
@@ -77,10 +50,9 @@ namespace InternPortal.Controllers
                 lp.Link,
                 lp.CreatedAt,
                 lp.Progress,
-                lp.Subtopics // Ensure subtopics are included in the response
+                lp.Subtopics
             });
 
-            Console.WriteLine($"Found {learningPathStatuses.Count} learning path statuses for UserId: {userId}");
             return Ok(result);
         }
 
@@ -92,9 +64,8 @@ namespace InternPortal.Controllers
                 return BadRequest(new { message = "Invalid learning path status ID format." });
             }
 
-            var result = await _myLearningPathCollection.DeleteOneAsync(lp => lp.Id == objectId);
-
-            if (result.DeletedCount > 0)
+            var success = await _learningPathRepository.DeleteLearningPathStatusAsync(learningPathStatusId);
+            if (success)
             {
                 return Ok(new { message = "Learning Path Status deleted successfully." });
             }
@@ -105,10 +76,8 @@ namespace InternPortal.Controllers
         [HttpGet("getLearningPaths")]
         public async Task<IActionResult> GetLearningPaths()
         {
-            var learningPaths = await _learningPathCollection.Find(lp => true).ToListAsync();
-
-            // If no learning paths are found, return a NotFound status
-            if (learningPaths.Count == 0)
+            var learningPaths = await _learningPathRepository.GetLearningPathsAsync();
+            if (learningPaths == null || !learningPaths.Any())
             {
                 return NotFound(new { message = "No learning paths found." });
             }
@@ -122,7 +91,7 @@ namespace InternPortal.Controllers
                 lp.Subtopics
             });
 
-            return Ok(result);  // Return the learning paths as JSON
+            return Ok(result);
         }
 
         [HttpPost("addLearningPath")]
@@ -133,27 +102,20 @@ namespace InternPortal.Controllers
                 return BadRequest("Learning Path data is required.");
             }
 
-            await _learningPathCollection.InsertOneAsync(learningPath);
+            await _learningPathRepository.AddLearningPathAsync(learningPath);
             return Ok(new { message = "Learning Path added successfully." });
         }
 
         [HttpPut("updateLearningPathProgress/{learningPathStatusId}")]
         public async Task<IActionResult> UpdateLearningPathProgress(string learningPathStatusId, [FromBody] JsonElement requestBody)
         {
-            if (!ObjectId.TryParse(learningPathStatusId, out var objectId))
+            if (!ObjectId.TryParse(learningPathStatusId, out var objectId) || !requestBody.TryGetProperty("progress", out JsonElement progressElement) || !progressElement.TryGetDouble(out double progress))
             {
-                return BadRequest(new { message = "Invalid learning path status ID format." });
+                return BadRequest(new { message = "Invalid request data." });
             }
 
-            if (!requestBody.TryGetProperty("progress", out JsonElement progressElement) || !progressElement.TryGetDouble(out double progress))
-            {
-                return BadRequest(new { message = "Invalid progress value." });
-            }
-
-            var update = Builders<myLearningPath>.Update.Set(lp => lp.Progress, progress);
-            var result = await _myLearningPathCollection.UpdateOneAsync(lp => lp.Id == objectId, update);
-
-            if (result.ModifiedCount > 0)
+            var success = await _learningPathRepository.UpdateLearningPathProgressAsync(learningPathStatusId, progress);
+            if (success)
             {
                 return Ok(new { message = "Learning path progress updated successfully." });
             }
@@ -164,27 +126,13 @@ namespace InternPortal.Controllers
         [HttpPut("updateSubtopicStatus/{learningPathStatusId}/{subtopicName}")]
         public async Task<IActionResult> UpdateSubtopicStatus(string learningPathStatusId, string subtopicName, [FromBody] JsonElement requestBody)
         {
-            if (!ObjectId.TryParse(learningPathStatusId, out var objectId))
+            if (!ObjectId.TryParse(learningPathStatusId, out var objectId) || !requestBody.TryGetProperty("completed", out JsonElement completedElement) || (completedElement.ValueKind != JsonValueKind.True && completedElement.ValueKind != JsonValueKind.False))
             {
-                return BadRequest(new { message = "Invalid learning path status ID format." });
+                return BadRequest(new { message = "Invalid request data." });
             }
 
-            if (!requestBody.TryGetProperty("completed", out JsonElement completedElement) ||
-                (completedElement.ValueKind != JsonValueKind.True && completedElement.ValueKind != JsonValueKind.False))
-            {
-                return BadRequest(new { message = "Invalid completed value." });
-            }
-
-            var filter = Builders<myLearningPath>.Filter.And(
-                Builders<myLearningPath>.Filter.Eq(lp => lp.Id, objectId),
-                Builders<myLearningPath>.Filter.ElemMatch(lp => lp.Subtopics, st => st.Name == subtopicName)
-            );
-
-            var update = Builders<myLearningPath>.Update.Set("Subtopics.$.Completed", completedElement.GetBoolean());
-
-            var result = await _myLearningPathCollection.UpdateOneAsync(filter, update);
-
-            if (result.ModifiedCount > 0)
+            var success = await _learningPathRepository.UpdateSubtopicStatusAsync(learningPathStatusId, subtopicName, completedElement.GetBoolean());
+            if (success)
             {
                 return Ok(new { message = "Subtopic status updated successfully." });
             }
