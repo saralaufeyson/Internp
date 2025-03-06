@@ -92,8 +92,12 @@ export class GoalsComponent implements OnInit {
       this.goalsService.addGoal(goalData).subscribe(
         (response) => {
           console.log('Goal saved successfully', response);
-          // Optionally add the newly created goal to the component's goals list
-          this.goals.push(response);
+          // Add the newly created goal to the component's goals list
+          const newGoal = {
+            _id: response._id, // Ensure the response contains the new goal's ID
+            ...goalData
+          };
+          this.goals.push(newGoal);
           this.form.reset();  // Reset the form after submission
           this.updateGoalCount(); // Update the goal count after adding a new goal
         },
@@ -157,8 +161,7 @@ export class GoalsComponent implements OnInit {
           if (index !== -1) {
             this.goals[index] = { ...this.goals[index], ...updatedGoalData };
           }
-          this.editingGoal = null; // Clear the editing goal
-          this.updateGoalCount(); // Update the goal count if necessary
+          this.editingGoal = null; // Reset editingGoal after update
         },
         (error) => {
           console.error('Error updating goal:', error);

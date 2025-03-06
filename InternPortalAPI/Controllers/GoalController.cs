@@ -128,6 +128,16 @@ namespace InternPortal.Controllers
             return Ok(new { count = goalCount });
         }
 
+        [HttpGet("getGoalsCount/{userId}")]
+        public async Task<IActionResult> GetGoalsCount(string userId)
+        {
+            // Count the number of goals for the given userId
+            var goalCount = await _goalCollection.CountDocumentsAsync(g => g.UserId == userId);
+
+            // Return the count with an OK status
+            return Ok(new { count = goalCount });
+        }
+
         [HttpGet("getAllGoalsCount")]
         public async Task<IActionResult> GetAllGoalsCount()
         {
