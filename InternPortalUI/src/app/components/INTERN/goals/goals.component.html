@@ -12,7 +12,7 @@
 
       <!-- Goal Name -->
       <div class="form-group">
-        <label for="goalName" class="form-label">Goal Name <span style="color: red;">*</span>:</label>
+        <label for="goalName" class="form-label">Goal Name :<span style="color: red;">*</span></label>
         <input id="goalName" formControlName="goalName" type="text" class="form-input"
           placeholder="Enter your goal name" />
         <div *ngIf="form.get('goalName')?.invalid && form.get('goalName')?.touched" class="error-message">
