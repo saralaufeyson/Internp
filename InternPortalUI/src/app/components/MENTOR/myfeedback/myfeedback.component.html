@@ -1,0 +1,56 @@
+<div class="container">
+  <h2>My Feedback</h2>
+  <div *ngFor="let feedback of feedbacks" class="feedback-card">
+    <div class="card-header">
+      <h3>{{ feedback.fullName }}</h3>
+      <i class="bi bi-trash delete-icon" (click)="deleteFeedback(feedback.internId)"></i>
+    </div>
+    
+    <table class="feedback-table">
+      <tr>
+        <td><strong>Domain Knowledge:</strong> {{ getRatingText(feedback.ratings.domainKnowledge) }}</td>
+        <td><strong>Functional Knowledge:</strong> {{ getRatingText(feedback.ratings.functionalKnowledge) }}</td>
+        <td><strong>Process Adherence:</strong> {{ getRatingText(feedback.ratings.processAdherence) }}</td>
+      </tr>
+      <tr>
+        <td><strong>Team Work:</strong> {{ getRatingText(feedback.ratings.teamWork) }}</td>
+        <td><strong>Learning Capabilities:</strong> {{ getRatingText(feedback.ratings.learningCapabilities) }}</td>
+        <td><strong>Attention to Detail:</strong> {{ getRatingText(feedback.ratings.attentionToDetail) }}</td>
+      </tr>
+      <tr>
+        <td><strong>Communication:</strong> {{ getRatingText(feedback.ratings.communication) }}</td>
+        <td><strong>Curiosity and Proactiveness:</strong> {{ getRatingText(feedback.ratings.curiosityAndProactiveness) }}</td>
+        <td><strong>Problem Solving:</strong> {{ getRatingText(feedback.ratings.problemSolving) }}</td>
+      </tr>
+      <tr>
+        <td><strong>Delivery:</strong> {{ getRatingText(feedback.ratings.delivery) }}</td>
+      </tr>
+    </table>
+    
+    <div>
+      <h4>Tasks Assigned</h4>
+      <div *ngIf="feedback.tasks && feedback.tasks.length > 0; else noTasks">
+        <div *ngFor="let task of feedback.tasks">
+          <p><strong>Task Details:</strong> {{ task.taskDetails }}</p>
+          <p><strong>Start Date:</strong> {{ task.startDate | date }}</p>
+          <p><strong>End Date:</strong> {{ task.endDate | date }}</p>
+          <p><strong>Priority:</strong> {{ task.priority }}</p>
+          <p><strong>Weightage:</strong> {{ task.weightage }}</p>
+          <p><strong>Status:</strong> {{ task.status }}</p>
+          <p><strong>Month:</strong> {{ task.month }}</p>
+        </div>
+      </div>
+      <ng-template #noTasks>
+        <p>No tasks available</p>
+      </ng-template>
+    </div>
+    
+    <div>
+      <h4>Overall Recommendation</h4>
+      <p><strong>Recommendation:</strong> {{ feedback.recommendation }}</p>
+      <p><strong>Areas of Improvement:</strong> {{ feedback.areasOfImprovement }}</p>
+      <p><strong>Feedback:</strong> {{ feedback.feedback }}</p>
+      <p><strong>Overall Rating:</strong> {{ feedback.overallRating }}</p>
+    </div>
+  </div>
+</div>

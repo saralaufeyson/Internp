@@ -2,11 +2,9 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 10px;
-  /* Reduced padding */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   margin: 10px;
-  /* Reduced margin */
   display: inline-block;
   max-width: 100%;
   text-align: center;
@@ -15,47 +13,41 @@
 .card h1 {
   font-size: 18px;
   color: #474747;
-  /* Reduced font size */
   margin-bottom: 8px;
-  /* Reduced margin */
-}
-
-.card+.card {
-  margin-top: 20px;
 }
 
 .card p {
   font-size: 14px;
-  /* Reduced font size */
   margin: 4px 0;
-  /* Reduced margin */
   color: rgb(0, 0, 0);
 }
 
+/* General Dashboard Styling */
 .dashboard-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  /* Reduced gap */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f8f9fc;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-header {
   text-align: center;
   margin-bottom: 20px;
-  /* Reduced margin */
 }
 
 .dashboard-header h1 {
   font-size: 20px;
-  /* Reduced font size */
   margin-bottom: 5px;
-  /* Reduced margin */
 }
 
 .dashboard-header h3 {
   font-size: 14px;
-  /* Reduced font size */
   font-style: italic;
   color: #000;
 }
@@ -65,14 +57,11 @@
   color: black;
   border: none;
   padding: 5px 10px;
-  /* Reduced padding */
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
-  /* Reduced font size */
   transition: background-color 0.3s ease;
 }
-
 
 .continue-learning-button a {
   color: black;
@@ -84,17 +73,14 @@
 }
 
 .pie-chart {
-  width: 80px;
-  /* Further reduced width */
-  height: 80px;
-  /* Further reduced height */
+  width: 100%;
+  max-width: 400px;
   margin: 0 auto;
 }
 
 .goals-count-card {
   width: 100%;
   max-width: 300px;
-  /* Adjust the width as needed */
   margin: 10px auto;
 }
 
@@ -105,34 +91,76 @@
 .continue-learning-card {
   height: 100%;
   padding: 5px;
-  /* Adjust padding to fit the text */
   margin: 10px;
-  /* Adjust margin if necessary */
 }
 
-.pie-chart {
-  width: 80px;
-  /* Further reduced width */
-  height: 80px;
-  /* Further reduced height */
-  margin: 0 auto;
-}
-
-.goals-count-card {
+.stats-box {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   width: 100%;
-  max-width: 300px;
-  /* Adjust the width as needed */
-  margin: 10px auto;
 }
 
-.charts-box {
-  margin-left: px;
+/* Dashboard Title */
+.dashboard-title {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.continue-learning-card {
-  height: 100%;
-  padding: 5px;
-  /* Adjust padding to fit the text */
-  margin: 10px;
-  /* Adjust margin if necessary */
+.dashboard-subtitle {
+  text-align: center;
+  color: #7b8a8b;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* Widget Container (Top 4 Cards) */
+.dashboard-widgets {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.widget {
+  flex: 1;
+  min-width: 200px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+}
+
+.widget-title {
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.widget-value {
+  font-size: 22px;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+/* Graph Section */
+.graph-container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.graph-title {
+  font-size: 18px;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-weight: bold;
 }

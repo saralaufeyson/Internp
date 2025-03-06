@@ -22,8 +22,8 @@
 
 /* Add Button */
 .add-btn {
-  background: #0073b1;
-  color: white;
+  background: #D2E5F6;
+  color: black;
   border: none;
   border-radius: 50%;
   width: 30px;
@@ -67,13 +67,13 @@
 }
 
 .new-experience-form input:focus {
-  border-color: #0073b1;
+  border-color: #474747;
   outline: none;
 }
 
 .submit-btn, .cancel-btn {
-  background: #0073b1;
-  color: white;
+  background: #D2E5F6;
+  color: black;
   border: none;
   padding: 10px;
   border-radius: 5px;
@@ -95,33 +95,75 @@
   background: #b1271c;
 }
 
-/* Experience Cards */
-.experience-card {
+/* Timeline */
+.timeline {
+  position: relative;
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline:before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #ddd;
+}
+
+.timeline-item {
+  position: relative;
+  margin: 20px 0;
+}
+
+.timeline-item:before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #D2E5F6;
+  transform: translateX(-50%);
+}
+
+.timeline-content {
+  position: relative;
+  width: 45%;
+  padding: 20px;
   background: #f3f3f3;
-  padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 15px;
-  text-align: left;
-  position: relative;
 }
 
-.exp-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.timeline-item:nth-child(odd) .timeline-content {
+  left: 0;
 }
 
-.exp-header h3 {
+.timeline-item:nth-child(even) .timeline-content {
+  left: 55%;
+}
+
+.timeline-content h3 {
   margin: 0;
   font-size: 18px;
   font-weight: bold;
   color: #333;
 }
 
+.timeline-content p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #555;
+}
+
 .exp-actions {
   display: flex;
   gap: 8px;
+  margin-top: 10px;
 }
 
 /* Action Buttons */
@@ -140,13 +182,6 @@
 
 .delete-btn:hover {
   color: #d93025;
-}
-
-/* Experience Details */
-.experience-card p {
-  margin: 4px 0;
-  font-size: 14px;
-  color: #555;
 }
 
 /* Hidden Class */
