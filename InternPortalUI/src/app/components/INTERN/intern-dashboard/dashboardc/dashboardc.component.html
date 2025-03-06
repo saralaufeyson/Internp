@@ -85,11 +85,11 @@
       <ul>
         <ng-container *ngFor="let poc of pocs">
             <li *ngIf="poc.status === 'inProgress'" style="text-align: left;">
-            {{ poc.projectName }}
+           <b> {{ poc.projectName }}</b> :{{ poc.description }}
             </li>
         </ng-container>
       </ul>
-      <a routerLink="/dashboard/pocProjects" >Lets complete it!</a>
+    <a routerLink="/dashboard/pocProjects" style="color: darkblue;"><b>Lets complete it!</b></a>
     </div>
     <div *ngIf="!pocCount || pocCount.inProgressPocs === 0">
       <p>No incomplete POCs found.</p>

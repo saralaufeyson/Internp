@@ -1,45 +1,41 @@
 <div class="mentor-dashboard">
-  <h2 style="font-size: 16px;">Guidance Nexus</h2>
-  <h5 style="font-size: 12px;"><i>Empowering mentors, tracking growth, shaping futures.</i></h5>
+  <!-- Header -->
+  <h2 class="dashboard-title">Via-Aspire</h2>
+  <p class="dashboard-subtitle">InternVision - See the Progress, Be the Change.</p>
 
-  <!-- Flex Container for Intern Goals Bar Chart and PoC Status Cards -->
+  <!-- Top Widgets (Styled Like Tapeli) -->
+  <div class="dashboard-widgets">
+    <div class="widget">
+      <p class="widget-title">Goals Count</p>
+      <h2 class="widget-value">{{ mentorGoals }}</h2>
+    </div>
+    <div class="widget">
+      <p class="widget-title">Total POCs</p>
+      <h2 class="widget-value">{{ totalPocs }}</h2>
+    </div>
+    <div class="widget">
+      <p class="widget-title">In Progress POCs</p>
+      <h2 class="widget-value">{{ inProgressPocs }}</h2>
+    </div>
+    <div class="widget">
+      <p class="widget-title">Completed POCs</p>
+      <h2 class="widget-value">{{ completedPocs }}</h2>
+    </div>
+  </div>
+
+  <!-- Graph Section (Aligned Like Tapeli’s Monthly Sales) -->
   <div class="flex-container">
-    <!-- Intern Goals Bar Chart -->
-    <div class="card mentor-goals-card">
-      
-      
-      <div *ngIf="mentorGoals === undefined">
-        <p class="error-message">Something's wrong... try reloading</p>
-      </div>
-      <h1>Intern Goals Bar Chart</h1>
-      <div *ngIf="mentorGoals !== undefined">
-        <p>Total Goals:{{ mentorGoals }}</p>
-      </div>
-      <canvas id="internGoalsBarChart"></canvas>
+    <div class="graph-container poc-pie-chart-container">
+      <h3 class="graph-title">POC Status Distribution</h3>
+      <canvas id="pocPieChart"></canvas>
     </div>
 
-    <!-- Proof of Concepts Pie Chart -->
-    <div class="card pocs-card">
-      <h1>Proof of Concepts Status</h1>
-      <div *ngIf="totalPocs !== undefined">
-        
-            <p style="text-align: left; margin-top: 0; margin-bottom: 0;">Total PoCs: {{ totalPocs }}</p>
-       
-      </div>
-      <div *ngIf="totalPocs === undefined">
-        <p class="error-message">Something's wrong... try reloading</p>
-      </div>
-      <canvas id="pocPieChart"></canvas>
+    <div class="graph-container intern-goals-bar-chart-container">
+      <h3 class="graph-title">Intern Goals</h3>
+      <canvas id="internGoalsBarChart"></canvas>
     </div>
   </div>
 </div>
-
-<style>
-  .large-icon {
-    font-size: 2em; /* Adjust the size as needed */
-    cursor: pointer;
-  }
-</style>
 
 <!-- Mentees Section -->
 <div class="card">
@@ -54,22 +50,21 @@
     </ul>
     <div *ngIf="selectedIntern" class="tab-content">
       <div class="tab-pane active">
-        <!-- <h2>{{ selectedIntern.username }}</h2> -->
         <p>{{ selectedIntern.email }}</p>
         <div *ngIf="internLearningPaths[selectedIntern.id] && internLearningPaths[selectedIntern.id].length > 0">
-            <h3 style="font-size: 14px;">Learning Paths</h3>
+          <h3 style="font-size: 14px;">Learning Paths</h3>
           <div class="learning-paths-grid">
             <div *ngFor="let path of internLearningPaths[selectedIntern.id]" class="learning-path-card">
               <h4>{{ path.title }}</h4>
-                <p style="font-size: 12px;">{{ path.description }}</p>
+              <p style="font-size: 12px;">{{ path.description }}</p>
               <a [href]="path.link" target="_blank">View Course</a>
               <div>
                 <label>Subtopics:</label>
                 <ul class="no-bullets">
-                    <li *ngFor="let subtopic of path.subtopics" style="font-size: 10px;">
+                  <li *ngFor="let subtopic of path.subtopics" style="font-size: 10px;">
                     <span *ngIf="subtopic.completed" class="tick-mark">&#10003;</span>
                     <span *ngIf="!subtopic.completed" class="hollow-circle">&#9675;</span> {{ subtopic.name }}
-                    </li>
+                  </li>
                 </ul>
               </div>
               <div>
