@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using InternPortal.Models;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using System.Text.Json;
 
 namespace InternPortal.Controllers
 {
@@ -30,7 +31,6 @@ namespace InternPortal.Controllers
 
             // Store the goal with the user's ID
             await _goalCollection.InsertOneAsync(goal);
-            Console.WriteLine("Goal added to the database.");
             return Ok(new { message = "Goal added successfully." });
         }
 
@@ -62,6 +62,9 @@ namespace InternPortal.Controllers
                 Username = userDictionary.TryGetValue(g.UserId, out var username) ? username : "Unknown",
                 g.GoalName,
                 g.Description,
+                g.Status,
+                g.StartDate,
+                g.EndDate,
                 g.CreatedAt
             });
 
@@ -105,6 +108,9 @@ namespace InternPortal.Controllers
                 g.UserId,
                 g.GoalName,
                 g.Description,
+                g.Status,
+                g.StartDate,
+                g.EndDate,
                 g.CreatedAt
             });
 
@@ -114,6 +120,16 @@ namespace InternPortal.Controllers
 
         [HttpGet("getGoalCount/{userId}")]
         public async Task<IActionResult> GetGoalCount(string userId)
+        {
+            // Count the number of goals for the given userId
+            var goalCount = await _goalCollection.CountDocumentsAsync(g => g.UserId == userId);
+
+            // Return the count with an OK status
+            return Ok(new { count = goalCount });
+        }
+
+        [HttpGet("getGoalsCount/{userId}")]
+        public async Task<IActionResult> GetGoalsCount(string userId)
         {
             // Count the number of goals for the given userId
             var goalCount = await _goalCollection.CountDocumentsAsync(g => g.UserId == userId);
@@ -147,6 +163,40 @@ namespace InternPortal.Controllers
             }
 
             return Ok(userGoalCounts);
+        }
+
+        [HttpPut("updateGoal/{goalId}")]
+        public async Task<IActionResult> UpdateGoal(string goalId, [FromBody] JsonElement requestBody)
+        {
+            if (!ObjectId.TryParse(goalId, out var objectId))
+            {
+                return BadRequest(new { message = "Invalid goal ID format." });
+            }
+
+            var updateDefinition = new UpdateDefinitionBuilder<Goal>();
+
+            var updates = new List<UpdateDefinition<Goal>>();
+
+            if (requestBody.TryGetProperty("status", out var statusElement))
+            {
+                updates.Add(updateDefinition.Set(g => g.Status, statusElement.GetString()));
+            }
+
+            if (requestBody.TryGetProperty("endDate", out var endDateElement) && endDateElement.TryGetDateTime(out var endDate))
+            {
+                updates.Add(updateDefinition.Set(g => g.EndDate, endDate));
+            }
+
+            var update = updateDefinition.Combine(updates);
+
+            var result = await _goalCollection.UpdateOneAsync(g => g.Id == objectId, update);
+
+            if (result.ModifiedCount > 0)
+            {
+                return Ok(new { message = "Goal updated successfully." });
+            }
+
+            return NotFound(new { message = "Goal not found or no changes were made." });
         }
     }
 }

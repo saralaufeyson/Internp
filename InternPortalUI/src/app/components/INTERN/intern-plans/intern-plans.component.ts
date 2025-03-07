@@ -16,6 +16,7 @@ export class InternPlansComponent implements OnInit {
   threeYearPlan: string = '';
   savedPlans: any = null;
   showNotification = false;
+  showForm = false;
 
   constructor(private http: HttpClient) {}
 
@@ -32,6 +33,15 @@ export class InternPlansComponent implements OnInit {
         this.savedPlans = null; // No plans found
       }
     );
+  }
+
+  openForm() {
+    if (this.savedPlans) {
+      this.sixMonthPlan = this.savedPlans.sixMonthPlan;
+      this.oneYearPlan = this.savedPlans.oneYearPlan;
+      this.threeYearPlan = this.savedPlans.threeYearPlan;
+    }
+    this.showForm = true;
   }
 
   submitPlan() {
@@ -55,6 +65,7 @@ export class InternPlansComponent implements OnInit {
         }, 3000);
 
         this.loadPlans(); // Reload plans after saving
+        this.showForm = false; // Hide form after saving
       },
       (error) => {
         console.error('Error submitting plan:', error);

@@ -1,6 +1,6 @@
 <div class="experience-container">
   <h2>Experience</h2>
-  <button class="add-btn" (click)="showForm = true">+</button>
+  <button class="add-btn" (click)="showForm = true">Add</button>
 
   <div *ngIf="showForm" class="new-experience-form">
     <input type="text" placeholder="Title" [(ngModel)]="newExperience.title">
@@ -11,11 +11,11 @@
     <button class="cancel-btn" (click)="showForm = false">Cancel</button>
   </div>
 
-  <div class="timeline">
-    <div *ngFor="let exp of experiences; let i = index" class="timeline-item">
-      <div class="timeline-content">
+  <div class="experience-cards">
+    <div *ngFor="let exp of experiences; let i = index" class="experience-card">
+      <div class="experience-content">
         <h3>{{ exp.title }}</h3>
-        <p><strong>{{ exp.company }}</strong> • {{ exp.duration }} years</p>
+        <p><strong>{{ exp.company }}</strong> • {{ exp.duration }}</p>
         <p>{{ exp.location }}</p>
         <div class="exp-actions">
           <button class="edit-btn"><i class="bi bi-pencil"></i></button>

@@ -5,8 +5,11 @@
     <thead>
       <tr>
         <th>Username</th>
-        <th>Description</th>
         <th>Goal Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Start Date</th>
+        <th>End Date</th>
         <th>Created At</th>
       </tr>
     </thead>
@@ -15,6 +18,9 @@
         <td>{{ goal.username }}</td>
         <td>{{ goal.goalName }}</td>
         <td>{{ goal.description }}</td>
+        <td>{{ goal.status }}</td>
+        <td>{{ goal.startDate | date:'shortDate' }}</td>
+        <td>{{ goal.endDate | date:'shortDate' }}</td>
         <td>{{ goal.createdAt | date:'short' }}</td>
       </tr>
     </tbody>

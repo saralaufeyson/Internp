@@ -15,11 +15,26 @@ export class GoalsComponent implements OnInit {
   goals: any[] = []; // Array to store saved goals
   userId: string = '';  // Get the logged-in user ID here (e.g., from LocalStorage or an AuthService)
 
+  // New properties for editing goals
+  editingGoal: any = null;
+  editForm: FormGroup;
+
+  showForm: boolean = false;
+
   constructor(private goalsService: GoalsService) {
-    // Initialize the form with goalName and goalDescription fields
+    // Initialize the form with goalName, goalDescription, status, startDate, and endDate fields
     this.form = new FormGroup({
       goalName: new FormControl('', [Validators.required]),
       goalDescription: new FormControl('', [Validators.required]),
+      status: new FormControl('inProgress', [Validators.required]),
+      startDate: new FormControl('', [Validators.required]),
+      endDate: new FormControl(''),
+    });
+
+    // Initialize the edit form
+    this.editForm = new FormGroup({
+      status: new FormControl('', [Validators.required]),
+      endDate: new FormControl('')
     });
   }
 
@@ -47,7 +62,12 @@ export class GoalsComponent implements OnInit {
       (response: any) => {
         console.log('Fetched goals:', response);
         // Update the component's goals state with the fetched data
-        this.goals = response || []; // If no goals, set an empty array
+        this.goals = response.map((goal: any) => ({
+          ...goal,
+          status: goal.status,
+          startDate: goal.startDate,
+          endDate: goal.endDate
+        })) || []; // If no goals, set an empty array
       },
       (error) => {
         console.error('Failed to fetch goals:', error);
@@ -58,11 +78,14 @@ export class GoalsComponent implements OnInit {
   // Submit the goal form
   onSubmit() {
     if (this.form.valid) {
-      const { goalName, goalDescription } = this.form.value;
+      const { goalName, goalDescription, status, startDate, endDate } = this.form.value;
 
       const goalData = {
         goalName: goalName,
         description: goalDescription,
+        status: status,
+        startDate: startDate,
+        endDate: status === 'completed' ? endDate : null,
         userId: this.userId,
         createdAt: new Date(),
       };
@@ -71,8 +94,12 @@ export class GoalsComponent implements OnInit {
       this.goalsService.addGoal(goalData).subscribe(
         (response) => {
           console.log('Goal saved successfully', response);
-          // Optionally add the newly created goal to the component's goals list
-          this.goals.push(goalData);
+          // Add the newly created goal to the component's goals list
+          const newGoal = {
+            _id: response._id, // Ensure the response contains the new goal's ID
+            ...goalData
+          };
+          this.goals.push(newGoal);
           this.form.reset();  // Reset the form after submission
           this.updateGoalCount(); // Update the goal count after adding a new goal
         },
@@ -108,5 +135,49 @@ export class GoalsComponent implements OnInit {
         console.error('Error deleting goal:', error);
       }
     );
+  }
+
+  // Method to set the goal to be edited
+  editGoal(goal: any) {
+    if (this.editingGoal && this.editingGoal._id === goal._id) {
+      this.editingGoal = null; // Deselect the goal if it's already selected
+    } else {
+      this.editingGoal = goal;
+      this.editForm.setValue({
+        status: goal.status,
+        endDate: goal.endDate || ''
+      });
+    }
+  }
+
+  // Method to update the goal
+  updateGoal() {
+    if (this.editForm.valid && this.editingGoal) {
+      const { status, endDate } = this.editForm.value;
+      const updatedGoalData = {
+        status: status,
+        endDate: status === 'completed' ? endDate : null
+      };
+
+      this.goalsService.updateGoal(this.editingGoal._id, updatedGoalData).subscribe(
+        (response) => {
+          console.log('Goal updated successfully', response);
+          // Update the goal in the goals array
+          const index = this.goals.findIndex(goal => goal._id === this.editingGoal._id);
+          if (index !== -1) {
+            this.goals[index] = { ...this.goals[index], ...updatedGoalData };
+          }
+          this.editingGoal = null; // Reset editingGoal after update
+        },
+        (error) => {
+          console.error('Error updating goal:', error);
+        }
+      );
+    }
+  }
+
+  // Method to toggle the form visibility
+  toggleForm() {
+    this.showForm = !this.showForm;
   }
 }
