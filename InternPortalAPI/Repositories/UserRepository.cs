@@ -95,11 +95,9 @@ namespace InternPortal.Repositories
                 return false;
             }
 
-            var internObjectIds = internIds.Where(id => ObjectId.TryParse(id, out _))
-                                           .Select(id => ObjectId.Parse(id))
-                                           .ToList();
+            var internObjectIds = internIds.Where(id => ObjectId.TryParse(id, out _)).ToList();
 
-            var interns = await _users.Find(u => internObjectIds.Contains(ObjectId.Parse(u.Id)) && u.Role == "Intern").ToListAsync();
+            var interns = await _users.Find(u => internObjectIds.Contains(u.Id) && u.Role == "Intern").ToListAsync();
             if (interns.Count != internIds.Count)
             {
                 return false;
