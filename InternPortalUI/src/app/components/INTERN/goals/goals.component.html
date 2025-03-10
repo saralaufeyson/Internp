@@ -53,61 +53,56 @@
   </div>
 
   <div class="add-goal-container">
-    <button class="btn btn-primary" (click)="toggleForm()">
+    <!-- Remove the toggleForm button and use togglePopup instead -->
+    <button class="btn btn-primary" (click)="togglePopup()">
       <i class="bi bi-plus"></i>
     </button>
-    <!-- Form to set goals -->
-    <div class="goals-form-container" [class.active]="showForm">
-      <h2 class="goals-title">Set Your Goals</h2>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="goals-form">
-
-        <!-- Goal Name -->
-        <div class="form-group">
-          <label for="goalName" class="form-label">Goal Name :<span style="color: red;">*</span></label>
-          <input id="goalName" formControlName="goalName" type="text" class="form-input"
-            placeholder="Enter your goal name" />
-          <div *ngIf="form.get('goalName')?.invalid && form.get('goalName')?.touched" class="error-message">
-            Goal name is required.
-          </div>
-        </div>
-
-        <!-- Goal Description -->
-        <div class="form-group">
-          <label for="goalDescription" class="form-label">Goal Description:<span style="color: red;">*</span></label>
-          <input id="goalDescription" formControlName="goalDescription" type="text" class="form-input"
-            placeholder="Enter goal description" />
-          <div *ngIf="form.get('goalDescription')?.invalid && form.get('goalDescription')?.touched"
-            class="error-message">
-            Goal description is required.
-          </div>
-        </div>
-
-        <!-- Goal Status -->
-        <div class="form-group">
-          <label for="status" class="form-label">Status <span style="color: red;">*</span>:</label>
-          <select id="status" formControlName="status" class="form-input">
-            <option value="inProgress">In Progress</option>
-            <option value="completed">Completed</option>
-          </select>
-        </div>
-
-        <!-- Start Date -->
-        <div class="form-group">
-          <label for="startDate" class="form-label">Start Date <span style="color: red;">*</span>:</label>
-          <input id="startDate" formControlName="startDate" type="date" class="form-input" />
-        </div>
-
-        <!-- End Date (only show if status is completed) -->
-        <div class="form-group" *ngIf="form.get('status')?.value === 'completed'">
-          <label for="endDate" class="form-label">End Date <span style="color: red;">*</span>:</label>
-          <input id="endDate" formControlName="endDate" type="date" class="form-input" />
-        </div>
-
-        <!-- Submit Button -->
-        <div class="form-actions">
-          <button type="submit" class="submit-button">Save Goal</button>
-        </div>
-      </form>
-    </div>
   </div>
+</div>
+
+<!-- Popup Form -->
+<div *ngIf="showPopup" class="popup-overlay" (click)="togglePopup()"></div>
+<div *ngIf="showPopup" class="popup">
+  <span class="popup-close" (click)="togglePopup()">&times;</span>
+  <h2 class="goals-title">Set Your Goals</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="goals-form">
+    <!-- Goal Name -->
+    <div class="form-group">
+      <label for="goalName" class="form-label">Goal Name :<span style="color: red;">*</span></label>
+      <input id="goalName" formControlName="goalName" type="text" class="form-input" placeholder="Enter your goal name" />
+      <div *ngIf="form.get('goalName')?.invalid && form.get('goalName')?.touched" class="error-message">
+        Goal name is required.
+      </div>
+    </div>
+    <!-- Goal Description -->
+    <div class="form-group">
+      <label for="goalDescription" class="form-label">Goal Description:<span style="color: red;">*</span></label>
+      <input id="goalDescription" formControlName="goalDescription" type="text" class="form-input" placeholder="Enter goal description" />
+      <div *ngIf="form.get('goalDescription')?.invalid && form.get('goalDescription')?.touched" class="error-message">
+        Goal description is required.
+      </div>
+    </div>
+    <!-- Goal Status -->
+    <div class="form-group">
+      <label for="status" class="form-label">Status <span style="color: red;">*</span>:</label>
+      <select id="status" formControlName="status" class="form-input">
+        <option value="inProgress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
+    </div>
+    <!-- Start Date -->
+    <div class="form-group">
+      <label for="startDate" class="form-label">Start Date <span style="color: red;">*</span>:</label>
+      <input id="startDate" formControlName="startDate" type="date" class="form-input" />
+    </div>
+    <!-- End Date (only show if status is completed) -->
+    <div class="form-group" *ngIf="form.get('status')?.value === 'completed'">
+      <label for="endDate" class="form-label">End Date <span style="color: red;">*</span>:</label>
+      <input id="endDate" formControlName="endDate" type="date" class="form-input" />
+    </div>
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <button type="submit" class="submit-button">Save Goal</button>
+    </div>
+  </form>
 </div>
