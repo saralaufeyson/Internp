@@ -43,56 +43,57 @@
     </div>
   </div>
 
-  <!-- Graph Section (Aligned Like Tapeli’s Monthly Sales) -->
+  <!-- Graph Sections -->
+  <div class="graph-sections">
+    <!-- Mentor Feedback -->
+    <div class="graph-container intern-radar-chart-container">
+      <h3 class="widget-title">Mentor feedback</h3>
+      <div *ngIf="userId">
+        <canvas id="internRadarChart"></canvas>
+      </div>
+      <div *ngIf="!userId">
+        <p style="color: red;">Error!Connect backend</p>
+      </div>
+    </div>
 
+    <!-- Learning Path Progress -->
+    <div class="graph-container">
+      <h3 class="graph-title">OverAll Learning Path Progress</h3>
+      <div *ngIf="learningPathProgress !== undefined">
+        <canvas id="learningPathPieChart"></canvas>
+      </div>
+      <div *ngIf="learningPathProgress === undefined">
+        <p style="color: red;">Error!Connect backend</p>
+      </div>
+    </div>
 
-  <!-- Radar Chart Section -->
-  <div class="graph-container intern-radar-chart-container">
-    <h3 class="graph-title">Mentor feedback</h3>
-    <div *ngIf="userId">
-      <canvas id="internRadarChart"></canvas>
+    <!-- POC Status Distribution -->
+    <div class="graph-container poc-pie-chart-container">
+      <h3 class="graph-title">POC Status Distribution</h3>
+      <div *ngIf="pocCount">
+        <canvas id="pocPieChart"></canvas>
+      </div>
+      <div *ngIf="!pocCount">
+        <p style="color: red;">Error!Connect backend</p>
+      </div>
     </div>
-    <div *ngIf="!userId">
-      <p style="color: red;">Error!Connect backend</p>
-    </div>
-  </div>
 
-  <!-- Semi-Pie Chart Section -->
-  <div class="graph-container">
-    <h3 class="graph-title">OverAll Learning Path Progress</h3>
-    <div *ngIf="learningPathProgress !== undefined">
-      <canvas id="learningPathPieChart"></canvas>
-      
-    </div>
-    <div *ngIf="learningPathProgress === undefined">
-      <p style="color: red;">Error!Connect backend</p>
-    </div>
-  </div>
-
-  <div class="graph-container poc-pie-chart-container">
-    <h3 class="graph-title">POC Status Distribution</h3>
-    <div *ngIf="pocCount">
-      <canvas id="pocPieChart"></canvas>
-    </div>
-    <div *ngIf="!pocCount">
-      <p style="color: red;">Error!Connect backend</p>
-    </div>
-  </div>
-  <!-- Incomplete POCs Section -->
-  <div class="graph-container incomplete-pocs-container">
-    <h3 class="graph-title">Incomplete POCs</h3>
-    <div *ngIf="pocCount && pocCount.inProgressPocs > 0">
-      <ul>
-        <ng-container *ngFor="let poc of pocs">
+    <!-- Incomplete POCs -->
+    <div class="graph-container incomplete-pocs-container">
+      <h3 class="graph-title">Incomplete POCs</h3>
+      <div *ngIf="pocCount && pocCount.inProgressPocs > 0">
+        <ul>
+          <ng-container *ngFor="let poc of pocs">
             <li *ngIf="poc.status === 'inProgress'" style="text-align: left;">
-            {{ poc.projectName }}
+              {{ poc.projectName }}
             </li>
-        </ng-container>
-      </ul>
-      <a routerLink="/dashboard/pocProjects" >Lets complete it!</a>
-    </div>
-    <div *ngIf="!pocCount || pocCount.inProgressPocs === 0">
-      <p>No incomplete POCs found.</p>
+          </ng-container>
+        </ul>
+        <a routerLink="/dashboard/pocProjects">Lets complete it!</a>
+      </div>
+      <div *ngIf="!pocCount || pocCount.inProgressPocs === 0">
+        <p>No incomplete POCs found.</p>
+      </div>
     </div>
   </div>
 </div>
