@@ -7,7 +7,7 @@
   <div class="saved-goals-container">
     <!-- Display saved goals -->
     <div *ngIf="goals.length > 0">
-      <h3 class="saved-goals-title">Your Saved Goals:</h3>
+      <h3 class="saved-goals-title">Your Saved Goals</h3>
       <div *ngFor="let goal of goals" class="goal">
         <div class="goal-header">
           <div class="goal-name">
@@ -68,23 +68,25 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="goals-form">
     <!-- Goal Name -->
     <div class="form-group">
-      <label for="goalName" class="form-label">Goal Name :<span style="color: red;">*</span></label>
-      <input id="goalName" formControlName="goalName" type="text" class="form-input" placeholder="Enter your goal name" />
+      <label for="goalName" class="form-label">Goal Name<span style="color: red;">*</span></label>
+      <input id="goalName" formControlName="goalName" type="text" class="form-input"
+        placeholder="Enter your goal name" />
       <div *ngIf="form.get('goalName')?.invalid && form.get('goalName')?.touched" class="error-message">
         Goal name is required.
       </div>
     </div>
     <!-- Goal Description -->
     <div class="form-group">
-      <label for="goalDescription" class="form-label">Goal Description:<span style="color: red;">*</span></label>
-      <input id="goalDescription" formControlName="goalDescription" type="text" class="form-input" placeholder="Enter goal description" />
+      <label for="goalDescription" class="form-label">Goal Description<span style="color: red;">*</span></label>
+      <input id="goalDescription" formControlName="goalDescription" type="text" class="form-input"
+        placeholder="Enter goal description" />
       <div *ngIf="form.get('goalDescription')?.invalid && form.get('goalDescription')?.touched" class="error-message">
         Goal description is required.
       </div>
     </div>
     <!-- Goal Status -->
     <div class="form-group">
-      <label for="status" class="form-label">Status <span style="color: red;">*</span>:</label>
+      <label for="status" class="form-label">Status<span style="color: red;">*</span></label>
       <select id="status" formControlName="status" class="form-input">
         <option value="inProgress">In Progress</option>
         <option value="completed">Completed</option>
@@ -92,7 +94,7 @@
     </div>
     <!-- Start Date -->
     <div class="form-group">
-      <label for="startDate" class="form-label">Start Date <span style="color: red;">*</span>:</label>
+      <label for="startDate" class="form-label">Start Date<span style="color: red;">*</span></label>
       <input id="startDate" formControlName="startDate" type="date" class="form-input" />
     </div>
     <!-- End Date (only show if status is completed) -->
