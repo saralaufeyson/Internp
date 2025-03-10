@@ -1,13 +1,66 @@
 /* Mentor Dashboard Styles */
-.mentor-dashboard  {
-  font-size: 16px;
+.mentor-dashboard {
   padding: 20px;
-  
-  display: flex;
-  flex-direction: column;
-  align-items: left;
+  background-color: #f8f9fc;
 }
 
+/* Dashboard Title */
+.dashboard-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.dashboard-subtitle {
+  text-align: center;
+  font-style: italic;
+  color: #7b8a8b;
+  margin-bottom: 20px;
+}
+
+/* Widget Container (Top 4 Cards) */
+.dashboard-widgets {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.widget {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.widget-title {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.widget-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Graph Section */
+.graph-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.graph-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
 
 /* Card Styling */
 .card {
@@ -295,4 +348,13 @@ button:focus {
 .pocs-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific Graph Containers */
+.poc-pie-chart-container {
+  flex: 1 1 40%; /* 40% width */
+}
+
+.intern-goals-bar-chart-container {
+  flex: 1 1 60%; /* 60% width */
 }

@@ -1,12 +1,11 @@
 <div class="learning-paths-container">
-  <div *ngFor="let path of learningPaths">
-    <div class="card">
+  <div class="grid">
+    <div *ngFor="let path of learningPaths" class="card">
       <div class="learning-path-card">
         <div class="card-header">
           <h3>{{ path.title }}</h3>
           <p>{{ path.description }}</p>
         </div>
-
         <div class="card-actions">
           <a href="{{ path.link }}" class="start-learning-btn" target="_blank">Start Learning</a>
           <button class="add-learning-path-btn" (click)="addLearningPathStatus(path)">Add to Learning Path</button>

@@ -1,6 +1,6 @@
 /* Admin Dashboard Styles */
 .admin-dashboard h1 {
- font-size: 16px;
+  font-size: 16px;
   padding: 8px;
   /* background-color: #ffffff; */
 }
@@ -9,31 +9,39 @@
 .card {
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 16px;
+  padding: 10px;
+  /* Reduced padding */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  margin: 16px 0;
-  display: inline-block; /* Makes the card wrap around the text */
-  max-width: 100%; /* Ensures the card does not exceed the container width */
+  margin: 10px;
+  /* Reduced margin */
+  display: inline-block;
+  max-width: 100%;
+  text-align: center;
+  width: auto; /* Ensure the card wraps around the text */
 }
 
 /* Card Heading */
 .card h1 {
   font-size: 18px;
-  margin-bottom: 16px;
-  color: #474747
+  color: #474747;
+  /* Reduced font size */
+  margin-bottom: 8px;
+  /* Reduced margin */
 }
 
 /* Spacing Between Cards */
 .card + .card {
-  margin: 16px;
+  margin-top: 20px;
 }
 
 /* Card Paragraph */
 .card p {
-  font-size: 18px;
-  margin: 8px 0;
-  color: black;
+  font-size: 14px;
+  /* Reduced font size */
+  margin: 4px 0;
+  /* Reduced margin */
+  color: rgb(0, 0, 0);
 }
 
 /* Error Message */
@@ -54,4 +62,408 @@ canvas {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  /* Reduced gap */
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 20px;
+  /* Reduced margin */
+}
+
+.dashboard-header h1 {
+  font-size: 20px;
+  /* Reduced font size */
+  margin-bottom: 5px;
+  /* Reduced margin */
+}
+
+.dashboard-header h3 {
+  font-size: 14px;
+  /* Reduced font size */
+  font-style: italic;
+  color: #000;
+}
+
+.continue-learning-button {
+  background-color: #D2E5F6;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  /* Reduced padding */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  /* Reduced font size */
+  transition: background-color 0.3s ease;
+}
+
+.continue-learning-button a {
+  color: black;
+  text-decoration: none;
+}
+
+.continue-learning-button:hover {
+  background-color: #D2E5F6;
+}
+
+.pie-chart {
+  width: 80px;
+  /* Further reduced width */
+  height: 80px;
+  /* Further reduced height */
+  margin: 0 auto;
+}
+
+.goals-count-card {
+  width: 100%;
+  max-width: 300px;
+  /* Adjust the width as needed */
+  margin: 10px auto;
+}
+
+.charts-box {
+  margin-left: px;
+}
+
+.continue-learning-card {
+  height: 100%;
+  padding: 5px;
+  /* Adjust padding to fit the text */
+  margin: 10px;
+  /* Adjust margin if necessary */
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  flex-wrap: wrap; /* Ensure the cards wrap within the row */
+}
+
+.row .card {
+  flex: 1 1 calc(33.333% - 20px); /* Ensure three cards per row with spacing */
+  margin: 10px;
+}
+
+/* Mentor Dashboard Styles */
+.mentor-dashboard {
+  padding: 20px;
+  background-color: #f8f9fc;
+}
+
+/* Dashboard Title */
+.dashboard-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.dashboard-subtitle {
+  text-align: center;
+  font-style: italic;
+  color: #7b8a8b;
+  margin-bottom: 20px;
+}
+
+/* Widget Container (Top 4 Cards) */
+.dashboard-widgets {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.widget {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.widget-title {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.widget-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Graph Section */
+.graph-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.graph-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+/* Adjust the mentor goals card to wrap around the text */
+.mentor-goals-card {
+  display: inline-block;
+  width: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  margin: 16px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mentor-goals-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Learning Path Card Styling */
+.learning-path-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  margin: 16px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.learning-path-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.learning-paths-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.learning-path-card h2 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #474747;
+}
+
+.learning-path-card p {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.learning-path-card a {
+  font-size: 12px;
+  color: #1B3E9C;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.learning-path-card a:hover {
+  text-decoration: underline;
+}
+
+/* Adjust the size of the graphs */
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 300px; /* Increase max-width */
+  max-height: 300px; /* Increase max-height */
+  display: block;
+  margin: 0 auto;
+}
+
+/* Mentor Dashboard Header */
+.mentor-dashboard h2 {
+  font-size: 16px;
+  color: #474747;
+  margin-bottom: 10px;
+}
+
+.mentor-dashboard h5 {
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+/* Button Styling */
+button {
+  background-color: #D2E5F6;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #c6e0f7;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #0095FF80;
+}
+
+/* Large Icon Styling */
+.large-icon {
+  font-size: 2em; /* Adjust the size as needed */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.large-icon:hover {
+  color: #D2E5F6; /* Change to desired hover color */
+}
+
+/* Tabs Styling */
+.nav-tabs {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.nav-item {
+  margin-bottom: -1px;
+}
+
+.nav-link {
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  color: #474747;
+  cursor: pointer;
+  
+  padding: 10px 15px; /* Add padding */
+}
+
+.nav-link:hover {
+  border-color: #e9ecef #e9ecef #ddd;
+}
+
+.nav-link.active {
+  color: #000000;
+  background-color: #fff;
+  border-color: #ddd #ddd #fff;
+  font-size: 1.01rem; /* Increase font size for active tab */
+  font-weight: bold; /* Make text bold */
+}
+
+/* Adjust PoCs card to wrap around the text */
+.pocs-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.pocs-card .card {
+  display: inline-block;
+  width: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  margin: 5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pocs-card .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the PoC status card inside the chart container */
+.poc-status-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.poc-status-card .card {
+  display: inline-block;
+  width: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  margin: 5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.poc-status-card .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Flex Container for Intern Goals Bar Chart and PoC Status Cards */
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  height: 100%;
+}
+
+/* Mentor Goals Card */
+.mentor-goals-card {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  margin: 16px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mentor-goals-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* PoCs Card */
+.pocs-card {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  margin: 16px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pocs-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific Graph Containers */
+.poc-pie-chart-container {
+  flex: 1 1 40%; /* 40% width */
+}
+
+.intern-goals-bar-chart-container {
+  flex: 1 1 60%; /* 60% width */
 }
