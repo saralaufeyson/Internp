@@ -20,6 +20,7 @@ export class GoalsComponent implements OnInit {
   editForm: FormGroup;
 
   showForm: boolean = false;
+  showPopup: boolean = false;
 
   constructor(private goalsService: GoalsService) {
     // Initialize the form with goalName, goalDescription, status, startDate, and endDate fields
@@ -75,6 +76,11 @@ export class GoalsComponent implements OnInit {
     );
   }
 
+  // Method to toggle the popup form visibility
+  togglePopup() {
+    this.showPopup = !this.showPopup;
+  }
+
   // Submit the goal form
   onSubmit() {
     if (this.form.valid) {
@@ -102,6 +108,7 @@ export class GoalsComponent implements OnInit {
           this.goals.push(newGoal);
           this.form.reset();  // Reset the form after submission
           this.updateGoalCount(); // Update the goal count after adding a new goal
+          this.togglePopup(); // Close the popup form after submission
         },
         (error) => {
           console.error('Error saving goal:', error);
