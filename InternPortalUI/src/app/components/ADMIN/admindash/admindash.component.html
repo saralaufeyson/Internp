@@ -1,6 +1,10 @@
-<div class="admin-dashboard">
-  <h1>Admin Hub</h1>
-  <div class="card">
+<div class="dashboard-header">
+  <h1>Via-Aspire</h1>
+  <h3><i>InternVision – See the Progress, Be the Change.</i></h3>
+</div>
+
+<div class="dashboard-container">
+  <div class="stats-box row">
     <div class="card">
       <h1>Total Interns</h1>
       <div *ngIf="totalInterns !== undefined">
@@ -28,37 +32,45 @@
         <p class="error-container">Something's wrong... try reloading</p>
       </div>
     </div>
-  
-  <div class="card">
-    <h1>POCS</h1>
-    <div *ngIf="totalPocs !== undefined">
-      <div class="card">
-        <p>Total PoCs: {{ totalPocs }}</p>
+  </div>
+  <div class="stats-box row">
+    <div class="card">
+      <h1>Total POCs</h1>
+      <div *ngIf="totalPocs !== undefined">
+        <p>{{ totalPocs }}</p>
       </div>
-      <div class="card">
-        <p>In Progress: {{ inProgressPocs }}</p>
-      </div>
-      <div class="card">
-        <p>Completed: {{ completedPocs }}</p>
+      <div *ngIf="totalPocs === undefined">
+        <p class="error-container">Something's wrong... try reloading</p>
       </div>
     </div>
-    <div *ngIf="totalPocs === undefined">
-      <p class="error-container" >Something's wrong... try reloading</p>
+    <div class="card">
+      <h1>In Progress POCs</h1>
+      <div *ngIf="inProgressPocs !== undefined">
+        <p>{{ inProgressPocs }}</p>
+      </div>
+      <div *ngIf="inProgressPocs === undefined">
+        <p class="error-container">Something's wrong... try reloading</p>
+      </div>
+    </div>
+    <div class="card">
+      <h1>Completed POCs</h1>
+      <div *ngIf="completedPocs !== undefined">
+        <p>{{ completedPocs }}</p>
+      </div>
+      <div *ngIf="completedPocs === undefined">
+        <p class="error-container">Something's wrong... try reloading</p>
+      </div>
     </div>
   </div>
-  <div class="card">
-    <h1>Proof of Concepts status</h1>
-    <canvas id="pocPieChart"></canvas>
+  <div class="charts-box row">
+    <div class="card pie-chart-card">
+      <h1>POC Status Distribution</h1>
+      <div *ngIf="totalPocs !== undefined">
+        <canvas id="pocPieChart"></canvas>
+      </div>
+      <div *ngIf="totalPocs === undefined">
+        <p class="error-container">Something's wrong... try reloading</p>
+      </div>
+    </div>
   </div>
-
-  
-
-  
-</div>
-  
-
-  <!-- <div class="chart-container card">
-    <h1>Interns Goals Distribution</h1>
-    <canvas id="userGoalsRadarChart"></canvas>
-  </div> -->
 </div>

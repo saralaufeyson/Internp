@@ -131,8 +131,8 @@ export class MentorDashComponent implements OnInit {
         labels: ['In Progress', 'Completed'],
         datasets: [{
           data: [this.inProgressPocs, this.completedPocs],
-          backgroundColor: ['#00e6e6', '#0095FF'],
-          hoverBackgroundColor: ['#00e6e6', '#0095FF']
+          backgroundColor: ['#1B3E9C', '#00e6e6'],
+          hoverBackgroundColor: ['#1B3E9C', '#00e6e6']
         }]
       },
       options: {

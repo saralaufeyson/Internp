@@ -19,6 +19,8 @@ export class GoalsComponent implements OnInit {
   editingGoal: any = null;
   editForm: FormGroup;
 
+  showForm: boolean = false;
+
   constructor(private goalsService: GoalsService) {
     // Initialize the form with goalName, goalDescription, status, startDate, and endDate fields
     this.form = new FormGroup({
@@ -137,11 +139,15 @@ export class GoalsComponent implements OnInit {
 
   // Method to set the goal to be edited
   editGoal(goal: any) {
-    this.editingGoal = goal;
-    this.editForm.setValue({
-      status: goal.status,
-      endDate: goal.endDate || ''
-    });
+    if (this.editingGoal && this.editingGoal._id === goal._id) {
+      this.editingGoal = null; // Deselect the goal if it's already selected
+    } else {
+      this.editingGoal = goal;
+      this.editForm.setValue({
+        status: goal.status,
+        endDate: goal.endDate || ''
+      });
+    }
   }
 
   // Method to update the goal
@@ -168,5 +174,10 @@ export class GoalsComponent implements OnInit {
         }
       );
     }
+  }
+
+  // Method to toggle the form visibility
+  toggleForm() {
+    this.showForm = !this.showForm;
   }
 }

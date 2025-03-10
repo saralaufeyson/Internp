@@ -971,19 +971,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ashaik\\.nuget\\packages\\": {}
+    "C:\\Users\\lkanchi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\InternPortalAPI\\InternPortal.csproj",
+      "projectUniqueName": "C:\\Users\\lkanchi\\OneDrive - ViaPlus\\Documents\\internportal3\\Internp\\InternPortalAPI\\InternPortal.csproj",
       "projectName": "InternPortal",
-      "projectPath": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\InternPortalAPI\\InternPortal.csproj",
-      "packagesPath": "C:\\Users\\ashaik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\InternPortalAPI\\obj\\",
+      "projectPath": "C:\\Users\\lkanchi\\OneDrive - ViaPlus\\Documents\\internportal3\\Internp\\InternPortalAPI\\InternPortal.csproj",
+      "packagesPath": "C:\\Users\\lkanchi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lkanchi\\OneDrive - ViaPlus\\Documents\\internportal3\\Internp\\InternPortalAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ashaik\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\lkanchi\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -1048,13 +1048,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\InternPortalAPI\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
