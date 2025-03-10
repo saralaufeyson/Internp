@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj": {}
+    "c:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj": {
+    "c:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
+        "projectUniqueName": "c:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
         "projectName": "InternPortal",
-        "projectPath": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
+        "projectPath": "c:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
         "packagesPath": "C:\\Users\\dneelam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\obj\\",
+        "outputPath": "c:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dneelam\\AppData\\Roaming\\NuGet\\NuGet.Config"

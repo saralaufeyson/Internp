@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InternPortal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f3b82c8abfda4f83bf68a401735b24f714fa7fb7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d03ef8c05f9149b58264166b9b55b2222bb44dc")]
 [assembly: System.Reflection.AssemblyProductAttribute("InternPortal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InternPortal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
