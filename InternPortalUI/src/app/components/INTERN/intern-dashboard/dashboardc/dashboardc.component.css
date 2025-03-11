@@ -27,10 +27,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 0px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
   background: #f8f9fc;
   border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
@@ -139,6 +139,7 @@
 .widget-title {
   font-size: 14px;
   color: #6c757d;
+  display: inline;
   margin-bottom: 10px;
 }
 
@@ -159,6 +160,10 @@
   /* Ensure contents are not trimmed */
   box-sizing: border-box;
   /* Include padding and border in the element's total width and height */
+  flex: 1 1 calc(50% - 20px);
+  /* 50% width minus gap */
+  margin: 10px;
+  /* Add margin for spacing */
 }
 
 .internRadarChart .graph-container {
@@ -175,14 +180,29 @@
 
 /* Specific Graph Containers */
 .poc-pie-chart-container {
-  flex: 1 1 60%;
-  /* 60% width */
+  flex: 1 1 100%;
+  /* Occupy the whole container */
 }
 
 .intern-radar-chart-container {
-  flex: 1 1 40%;
-  /* 40% width */
+  flex: 1 1 calc(50% - 20px);
+  /* 50% width minus gap */
   display: flex;
   justify-content: center;
+  align-items: top;
+}
+
+/* Ensure the incomplete POCs container maintains the layout */
+.incomplete-pocs-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+
+/* Container for the graph sections */
+.graph-sections {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

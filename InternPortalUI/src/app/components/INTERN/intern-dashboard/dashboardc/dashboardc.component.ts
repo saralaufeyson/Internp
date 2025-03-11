@@ -26,7 +26,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
   pieChart: Chart | undefined;
   radarChart: Chart<'radar'> | undefined;
   semiPieChart: Chart | undefined;
-  learningPathProgress: number | undefined;
+  learningPathProgress: any[] = []; // Update to store individual progress
 
   constructor(
     private http: HttpClient,
@@ -224,10 +224,11 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.userId) {
       this.learningPathService.getLearningPathStatus(this.userId).subscribe({
         next: (response: any) => {
-          const progressValues = response.map((path: any) => path.progress);
-          const totalProgress = progressValues.reduce((acc: number, progress: number) => acc + progress, 0);
-          this.learningPathProgress = totalProgress / progressValues.length;
-          this.createSemiPieChart();
+          this.learningPathProgress = response.map((path: any) => ({
+            title: path.title,
+            progress: Math.round(path.progress / 10) * 10 // Round to nearest multiple of 10
+          }));
+          this.createBarChart();
         },
         error: (error: any) => {
           console.error('Error fetching learning path progress:', error);
@@ -236,7 +237,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  createSemiPieChart(): void {
+  createBarChart(): void {
     // Destroy previous chart instance if it exists
     if (this.semiPieChart) {
       this.semiPieChart.destroy();
@@ -246,30 +247,61 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
       const canvas = document.getElementById('learningPathPieChart') as HTMLCanvasElement | null;
       if (!canvas) {
-        console.error('Failed to find the canvas element for the semi-pie chart');
+        console.error('Failed to find the canvas element for the bar chart');
         return;
       }
 
-      const completed = this.learningPathProgress || 0;
-      const yetToComplete = 100 - completed;
+      const labels = this.learningPathProgress.map(path => path.title);
+      const data = this.learningPathProgress.map(path => path.progress);
 
       this.semiPieChart = new Chart(canvas, {
-        type: 'doughnut',
+        type: 'bar',
         data: {
-          labels: ['Completed', 'Yet to Complete'],
+          labels: labels,
           datasets: [{
-            data: [completed, yetToComplete],
-            backgroundColor: ['#1B3E9C', '#00e6e6'],
-            hoverBackgroundColor: ['#1B3E9C', '#00e6e6'],
-            borderWidth: 1,
-             // Make the pie thinner
+            label: 'Learning Path Progress',
+            data: data,
+            backgroundColor: '#1B3E9C',
+            borderColor: '#1B3E9C',
+            borderWidth: 1
           }]
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false,
-          rotation: -90,
-          circumference: 180
+          maintainAspectRatio: true,
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Learning Path'
+              }
+            },
+            y: {
+              beginAtZero: true,
+              max: 100, // Set the maximum value to 100
+              title: {
+                display: true,
+                text: 'Progress (%)'
+              },
+              ticks: {
+                stepSize: 10, // Show progress in multiples of 10
+                callback: function(value) {
+                  return value + '%';
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  const label = context.dataset.label || '';
+                  const value = context.raw;
+                  return `${label}: ${value}%`;
+                }
+              }
+            }
+          }
         }
       });
     }, 300);
