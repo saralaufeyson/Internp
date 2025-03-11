@@ -62,10 +62,10 @@
     <h3 class="graph-title">OverAll Learning Path Progress</h3>
     <div *ngIf="learningPathProgress !== undefined">
       <canvas id="learningPathPieChart"></canvas>
-      
+
     </div>
     <div *ngIf="learningPathProgress === undefined">
-      <p style="color: red;">Error!Connect backend</p>
+      <p style="color: rgb(95, 95, 95);">No Learning Paths Added</p>
     </div>
   </div>
 
@@ -84,12 +84,12 @@
     <div *ngIf="pocCount && pocCount.inProgressPocs > 0">
       <ul>
         <ng-container *ngFor="let poc of pocs">
-            <li *ngIf="poc.status === 'inProgress'" style="text-align: left;">
+          <li *ngIf="poc.status === 'inProgress'" style="text-align: left;">
             {{ poc.projectName }}
-            </li>
+          </li>
         </ng-container>
       </ul>
-      <a routerLink="/dashboard/pocProjects" >Lets complete it!</a>
+      <a routerLink="/dashboard/pocProjects">Lets complete it!</a>
     </div>
     <div *ngIf="!pocCount || pocCount.inProgressPocs === 0">
       <p>No incomplete POCs found.</p>
