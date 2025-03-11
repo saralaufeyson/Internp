@@ -157,10 +157,14 @@
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   padding: 10px;
   text-align: center;
-  overflow: visible; /* Ensure contents are not trimmed */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  flex: 1 1 calc(50% - 20px); /* 50% width minus gap */
-  margin: 10px; /* Add margin for spacing */
+  overflow: visible;
+  /* Ensure contents are not trimmed */
+  box-sizing: border-box;
+  /* Include padding and border in the element's total width and height */
+  flex: 1 1 calc(50% - 20px);
+  /* 50% width minus gap */
+  margin: 10px;
+  /* Add margin for spacing */
 }
 
 .internRadarChart .graph-container {
@@ -176,11 +180,13 @@
 
 /* Specific Graph Containers */
 .poc-pie-chart-container {
-  flex: 1 1 100%; /* Occupy the whole container */
+  flex: 1 1 100%;
+  /* Occupy the whole container */
 }
 
 .intern-radar-chart-container {
-  flex: 1 1 calc(50% - 20px); /* 50% width minus gap */
+  flex: 1 1 calc(50% - 20px);
+  /* 50% width minus gap */
   display: flex;
   justify-content: center;
   align-items: top;

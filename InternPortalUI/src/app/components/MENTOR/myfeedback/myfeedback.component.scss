@@ -27,6 +27,9 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .feedback-card h3 {
@@ -60,7 +63,8 @@ button[mat-button] {
 }
 
 button[mat-button]:hover {
-  background-color: #b0cde4;
+  background-color: #0056b3;
+  color: white;
 }
 
 .feedback-card div {
@@ -75,4 +79,34 @@ button[mat-button]:hover {
 .delete-icon {
   cursor: pointer;
   color: #ff0000;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.nav-item {
+  margin-bottom: -1px;
+}
+
+.nav-link {
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  color: #474747;
+  cursor: pointer;
+  padding: 10px 15px; /* Add padding */
+}
+
+.nav-link:hover {
+  border-color: #e9ecef #e9ecef #ddd;
+}
+
+.nav-link.active {
+  color: #000000;
+  background-color: #fff;
+  border-color: #ddd #ddd #fff;
+  font-size: 1.01rem; /* Increase font size for active tab */
+  font-weight: bold; /* Make text bold */
 }

@@ -24,7 +24,7 @@ public class InternFeedbackController : ControllerBase
         feedback.CalculateOverallRating();
 
         var existingFeedback = await _internFeedbacks
-            .Find(f => f.InternId == feedback.InternId)
+            .Find(f => f.InternId == feedback.InternId && f.ReviewMonth == feedback.ReviewMonth)
             .FirstOrDefaultAsync();
 
         if (existingFeedback == null)
@@ -41,9 +41,10 @@ public class InternFeedbackController : ControllerBase
                 .Set(f => f.Recommendation, feedback.Recommendation)
                 .Set(f => f.AreasOfImprovement, feedback.AreasOfImprovement)
                 .Set(f => f.Feedback, feedback.Feedback)
-                .Set(f => f.OverallRating, feedback.OverallRating);
+                .Set(f => f.OverallRating, feedback.OverallRating)
+                .Set(f => f.ReviewMonth, feedback.ReviewMonth);
 
-            await _internFeedbacks.UpdateOneAsync(f => f.InternId == feedback.InternId, update);
+            await _internFeedbacks.UpdateOneAsync(f => f.InternId == feedback.InternId && f.ReviewMonth == feedback.ReviewMonth, update);
         }
 
         return Ok(new { message = "Feedback saved successfully!" });
