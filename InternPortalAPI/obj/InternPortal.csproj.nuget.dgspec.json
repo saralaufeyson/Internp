@@ -1,22 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
-        "projectName": "InternPortal",
-        "projectPath": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
-        "packagesPath": "C:\\Users\\dneelam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\dneelam\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
     "C:\\Users\\ashaik\\OneDrive - ViaPlus\\Desktop\\Intern\\Internp\\InternPortalAPI\\InternPortal.csproj": {}
   },
   "projects": {
@@ -31,7 +15,6 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ashaik\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> 9be58c4c7cac59d1e227e45ef488e6c77ca951a9
         ],
         "originalTargetFrameworks": [
           "net9.0"
