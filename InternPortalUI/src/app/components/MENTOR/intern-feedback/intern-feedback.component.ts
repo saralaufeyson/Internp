@@ -55,9 +55,8 @@ export class InternFeedbackComponent {
     this.feedbackForm = this.fb.group({
       internId: [''],
       fullName: [''],
-
       mentorName: [''],
-
+      reviewMonth: [''], // Ensure reviewMonth is a string
       ratings: this.fb.group(
         this.ratingCriteria.reduce((acc, criteria) => ({
           ...acc,
@@ -168,6 +167,8 @@ export class InternFeedbackComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (this.feedbackForm.valid) {
+          const reviewMonth = this.feedbackForm.get('reviewMonth')?.value;
+          this.feedbackForm.patchValue({ reviewMonth: reviewMonth + '-01' }); // Append day to make it a valid date
           this.calculateOverallRating();
           this.http.post(this.apiUrl, this.feedbackForm.value).subscribe({
             next: (response) => {
