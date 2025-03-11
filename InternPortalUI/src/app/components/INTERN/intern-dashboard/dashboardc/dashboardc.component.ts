@@ -22,7 +22,6 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
   dashboardData: any;
   goalCount: number | undefined;
   pocCount: { totalPocs: number; inProgressPocs: number; completedPocs: number } | undefined;
-  pocs: any[] = [];
   pieChart: Chart | undefined;
   radarChart: Chart<'radar'> | undefined;
   semiPieChart: Chart | undefined;
@@ -44,7 +43,6 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
       this.fetchDashboardData();
       this.fetchInternFeedback();
       this.fetchLearningPathProgress();
-      this.fetchPocs();
     } else {
       console.error('DashboardcComponent initialized without userId');
     }
@@ -285,7 +283,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
               },
               ticks: {
                 stepSize: 10, // Show progress in multiples of 10
-                callback: function(value) {
+                callback: function (value) {
                   return value + '%';
                 }
               }
@@ -305,18 +303,5 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
     }, 300);
-  }
-
-  fetchPocs(): void {
-    if (this.userId) {
-      this.pocService.getPocProjects(this.userId).subscribe({
-        next: (response: any) => {
-          this.pocs = response;
-        },
-        error: (error: any) => {
-          console.error('Error fetching POCs:', error);
-        }
-      });
-    }
   }
 }
