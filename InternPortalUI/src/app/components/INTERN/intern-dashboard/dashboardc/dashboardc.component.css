@@ -140,6 +140,7 @@
 .widget-title {
   font-size: 14px;
   color: #6c757d;
+  display: inline;
   margin-bottom: 10px;
 }
 
@@ -175,11 +176,11 @@
 
 /* Specific Graph Containers */
 .poc-pie-chart-container {
-  flex: 1 1 60%; /* 60% width */
+  flex: 1 1 100%; /* Occupy the whole container */
 }
 
 .intern-radar-chart-container {
-  flex: 1 1 40%; /* 40% width */
+  flex: 1 1 calc(50% - 20px); /* 50% width minus gap */
   display: flex;
   justify-content: center;
   align-items: top;

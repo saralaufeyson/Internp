@@ -46,23 +46,23 @@
   <!-- Graph Sections -->
   <div class="graph-sections">
     <!-- Mentor Feedback -->
-    <div class="graph-container intern-radar-chart-container">
-      <h3 class="widget-title">Mentor feedback</h3>
+    <div class="graph-container ">
+      <p class="widget-title">Mentor feedback</p>
       <div *ngIf="userId">
         <canvas id="internRadarChart"></canvas>
       </div>
       <div *ngIf="!userId">
-        <p style="color: red;">Error!Connect backend</p>
+        <p style="color: #474747;">your mentor is yet to review you</p>
       </div>
     </div>
 
     <!-- Learning Path Progress -->
     <div class="graph-container">
-      <h3 class="graph-title">OverAll Learning Path Progress</h3>
-      <div *ngIf="learningPathProgress !== undefined">
+      <h3 class="graph-title">Individual Learning Path Progress</h3>
+      <div *ngIf="learningPathProgress.length > 0">
         <canvas id="learningPathPieChart"></canvas>
       </div>
-      <div *ngIf="learningPathProgress === undefined">
+      <div *ngIf="learningPathProgress.length === 0">
         <p style="color: red;">Error!Connect backend</p>
       </div>
     </div>
