@@ -61,6 +61,32 @@ button.btn-primary:hover {
   color: white;
 }
 
+.edit-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+button.btn-primary i {
+  font-size: 1.2rem;
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-button mat-icon {
+  font-size: 18px;
+  color: #474747;
+  transition: color 0.3s ease;
+}
+
+.edit-button:hover mat-icon {
+  color: #000;
+}
+
 /* Form Styling */
 form {
   display: grid;
@@ -149,4 +175,9 @@ button[type="button"].btn-secondary:hover {
   form {
     width: 100%;
   }
+}
+
+.spacer {
+  height: 20px;
+  /* Adjust the height as needed */
 }

@@ -18,9 +18,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
-.add-btn, .edit-btn, .delete-btn {
+.add-btn,
+.edit-btn,
+.delete-btn {
   cursor: pointer;
   background: none;
   border: none;
@@ -93,7 +96,8 @@
   outline: none;
 }
 
-.submit-btn, .cancel-btn {
+.submit-btn,
+.cancel-btn {
   background: #0078d4;
   color: white;
   border: none;
@@ -156,7 +160,8 @@
 }
 
 /* Action Buttons */
-.edit-btn, .delete-btn {
+.edit-btn,
+.delete-btn {
   background: none;
   border: none;
   cursor: pointer;
@@ -176,4 +181,82 @@
 /* Hidden Class */
 .hidden {
   display: none;
+}
+
+.add-btn,
+.submit-btn,
+.cancel-btn,
+.edit-btn,
+.delete-btn {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.add-btn {
+  background-color: #D2E5F6;
+  color: black;
+}
+
+.submit-btn {
+  background-color: #008CBA;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.edit-btn {
+  background-color: #ff9800;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #e91e63;
+  color: white;
+}
+
+.add-btn:hover,
+.submit-btn:hover,
+.cancel-btn:hover,
+.edit-btn:hover,
+.delete-btn:hover {
+  opacity: 0.8;
+}
+
+.new-experience-form input {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.exp-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.edit-button mat-icon {
+  font-size: 18px;
+  color: #474747;
+  transition: color 0.3s ease;
+}
+
+.edit-button:hover mat-icon {
+  color: #000;
 }

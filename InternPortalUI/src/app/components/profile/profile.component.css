@@ -176,6 +176,10 @@ h6 {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  align-self: center;
+  /* Center align the button */
+  margin-top: 10px;
+  /* Add some space above the button */
 }
 
 .save-button:hover {
