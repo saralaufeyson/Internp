@@ -63,7 +63,7 @@
         <canvas id="learningPathPieChart"></canvas>
       </div>
       <div *ngIf="learningPathProgress.length === 0">
-        <p style="color: red;">Error!Connect backend</p>
+        <p style="color:#474747;">No learning paths available</p>
       </div>
     </div>
 
@@ -79,7 +79,7 @@
     </div>
 
     <!-- Incomplete POCs -->
-    <div class="graph-container incomplete-pocs-container">
+    <!-- <div class="graph-container incomplete-pocs-container">
       <h3 class="graph-title">Incomplete POCs</h3>
       <div *ngIf="pocCount && pocCount.inProgressPocs > 0">
         <ul>
@@ -94,6 +94,6 @@
       <div *ngIf="!pocCount || pocCount.inProgressPocs === 0">
         <p>No incomplete POCs found.</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
