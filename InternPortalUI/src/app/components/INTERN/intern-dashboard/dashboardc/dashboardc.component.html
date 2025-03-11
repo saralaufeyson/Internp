@@ -59,12 +59,12 @@
     <!-- Learning Path Progress -->
     <div class="graph-container">
       <h3 class="graph-title">Individual Learning Path Progress</h3>
-      <div *ngIf="learningPathProgress.length > 0">
+     
+      <div *ngIf="learningPathProgress.length >= 0">
         <canvas id="learningPathPieChart"></canvas>
       </div>
-      <div *ngIf="learningPathProgress.length === 0">
-        <p style="color:#474747;">No learning paths available</p>
-      </div>
+      <!-- <p *ngIf="learningPathProgress.length === 0" style="color: #474747;">No learning paths available</p> -->
+       
     </div>
 
     <!-- POC Status Distribution -->
@@ -78,22 +78,6 @@
       </div>
     </div>
 
-    <!-- Incomplete POCs -->
-    <!-- <div class="graph-container incomplete-pocs-container">
-      <h3 class="graph-title">Incomplete POCs</h3>
-      <div *ngIf="pocCount && pocCount.inProgressPocs > 0">
-        <ul>
-          <ng-container *ngFor="let poc of pocs">
-            <li *ngIf="poc.status === 'inProgress'" style="text-align: left;">
-              {{ poc.projectName }}
-            </li>
-          </ng-container>
-        </ul>
-        <a routerLink="/dashboard/pocProjects">Lets complete it!</a>
-      </div>
-      <div *ngIf="!pocCount || pocCount.inProgressPocs === 0">
-        <p>No incomplete POCs found.</p>
-      </div>
-    </div> -->
+    
   </div>
 </div>

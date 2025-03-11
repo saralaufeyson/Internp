@@ -295,7 +295,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
               suggestedMin: 0,
               suggestedMax: 100,
               ticks: {
-                stepSize: 10, // Show progress in multiples of 10
+                stepSize: 20, // Show progress in multiples of 10
                 callback: function(value) {
                   return value + '%';
                 }
@@ -304,26 +304,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
           },
           plugins: {
             legend: {
-              display: true,
-              position: 'top',
-              labels: {
-                generateLabels: function(chart) {
-                  const labels = chart.data.labels as string[] | undefined;
-                  if (!labels) {
-                    return [];
-                  }
-                  return labels.map((label, index) => {
-                    const backgroundColor = chart.data.datasets[0].backgroundColor as string[] | undefined;
-                    const borderColor = chart.data.datasets[0].borderColor as string[] | undefined;
-                    return {
-                      text: label,
-                      fillStyle: backgroundColor ? backgroundColor[index] : '',
-                      strokeStyle: borderColor ? borderColor[index] : '',
-                      lineWidth: 1
-                    };
-                  });
-                }
-              }
+              display: false // Remove legends
             },
             tooltip: {
               callbacks: {

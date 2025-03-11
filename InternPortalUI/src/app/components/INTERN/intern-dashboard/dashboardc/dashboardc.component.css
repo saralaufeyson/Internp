@@ -206,3 +206,8 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+.chart-legend {
+  max-height: 100px;
+  overflow-y: auto;
+}
