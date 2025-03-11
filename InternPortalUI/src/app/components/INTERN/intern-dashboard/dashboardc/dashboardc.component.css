@@ -124,12 +124,11 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 15px;
-  margin-bottom: 30px;
 }
 
 .widget {
   flex: 1;
-  min-width: 200px;
+  min-width: 213px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
@@ -156,12 +155,15 @@
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   padding: 10px;
   text-align: center;
-  overflow: visible; /* Ensure contents are not trimmed */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  overflow: visible;
+  /* Ensure contents are not trimmed */
+  box-sizing: border-box;
+  /* Include padding and border in the element's total width and height */
 }
 
 .internRadarChart .graph-container {
-  width: 100%; /* Ensure the internRadarChart takes full width */
+  width: 100%;
+  /* Ensure the internRadarChart takes full width */
 }
 
 .graph-title {
@@ -173,11 +175,13 @@
 
 /* Specific Graph Containers */
 .poc-pie-chart-container {
-  flex: 1 1 60%; /* 60% width */
+  flex: 1 1 60%;
+  /* 60% width */
 }
 
 .intern-radar-chart-container {
-  flex: 1 1 40%; /* 40% width */
+  flex: 1 1 40%;
+  /* 40% width */
   display: flex;
   justify-content: center;
   align-items: center;
