@@ -156,10 +156,15 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.userId) {
       this.http.get(`http://localhost:5180/api/internfeedback/${this.userId}`).subscribe({
         next: (response: any) => {
-          this.createRadarChart(response.ratings);
+          if (response.ratings && Object.keys(response.ratings).length > 0) {
+            this.createRadarChart(response.ratings);
+          } else {
+            this.createRadarChart({});
+          }
         },
         error: (error: any) => {
           console.error('Error fetching intern feedback:', error);
+          this.createRadarChart({});
         }
       });
     }
@@ -179,8 +184,8 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         return;
       }
 
-      const labels = Object.keys(ratings);
-      const data = Object.values(ratings) as number[];
+      const labels = Object.keys(ratings).length > 0 ? Object.keys(ratings) : ['No Feedback'];
+      const data = Object.keys(ratings).length > 0 ? Object.values(ratings) as number[] : [0];
 
       const radarChartData: ChartData<'radar'> = {
         labels: labels,
@@ -202,12 +207,16 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
           scales: {
             r: {
               angleLines: {
-                display: false
+                display: true // Enable grid lines
               },
               suggestedMin: 0,
               suggestedMax: 5,
               ticks: {
-                backdropColor: 'transparent' // Ensure ticks are not trimmed
+                stepSize: 1, // Display only integers
+                backdropColor: 'transparent', // Ensure ticks are not trimmed
+                callback: function(value) {
+                  return Number.isInteger(value) ? value : null; // Show only integer values
+                }
               }
             }
           }
@@ -251,6 +260,9 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
 
       const labels = this.learningPathProgress.map(path => path.title);
       const data = this.learningPathProgress.map(path => path.progress);
+      const backgroundColors = [
+        '#1B3E9C', '#00e6e6', '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
+      ];
 
       this.semiPieChart = new Chart(canvas, {
         type: 'bar',
@@ -259,8 +271,8 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
           datasets: [{
             label: 'Learning Path Progress',
             data: data,
-            backgroundColor: '#1B3E9C',
-            borderColor: '#1B3E9C',
+            backgroundColor: backgroundColors.slice(0, data.length),
+            borderColor: backgroundColors.slice(0, data.length),
             borderWidth: 1
           }]
         },
@@ -269,10 +281,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
           maintainAspectRatio: true,
           scales: {
             x: {
-              title: {
-                display: true,
-                text: 'Learning Path'
-              }
+              display: false // Hide x-axis labels
             },
             y: {
               beginAtZero: true,
@@ -281,15 +290,21 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
                 display: true,
                 text: 'Progress (%)'
               },
+              suggestedMin: 0,
+              suggestedMax: 100,
               ticks: {
-                stepSize: 10, // Show progress in multiples of 10
-                callback: function (value) {
+                stepSize: 20, // Show progress in multiples of 10
+                callback: function(value) {
+               
                   return value + '%';
                 }
               }
             }
           },
           plugins: {
+            legend: {
+              display: false // Remove legends
+            },
             tooltip: {
               callbacks: {
                 label: function (context) {
