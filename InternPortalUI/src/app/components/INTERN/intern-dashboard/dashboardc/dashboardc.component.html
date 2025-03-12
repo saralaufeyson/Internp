@@ -59,12 +59,12 @@
     <!-- Learning Path Progress -->
     <div class="graph-container">
       <h3 class="graph-title">Individual Learning Path Progress</h3>
-     
-      <div *ngIf="learningPathProgress.length >= 0">
+      <div *ngIf="learningPathProgress.length > 0">
         <canvas id="learningPathPieChart"></canvas>
       </div>
-      <!-- <p *ngIf="learningPathProgress.length === 0" style="color: #474747;">No learning paths available</p> -->
-       
+      <div *ngIf="learningPathProgress.length === 0">
+        <p style="color: red;">Error!Connect backend</p>
+      </div>
     </div>
 
     <!-- POC Status Distribution -->
@@ -77,7 +77,5 @@
         <p style="color: red;">Error!Connect backend</p>
       </div>
     </div>
-
-    
   </div>
 </div>

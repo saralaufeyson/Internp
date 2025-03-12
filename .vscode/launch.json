@@ -4,7 +4,11 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+<<<<<<< HEAD
+        
+=======
     
+>>>>>>> 336690d13b3a5b8c38f8b9694246ea9231d8890a
         {
             "name": "Attach to Edge",
             "port": 4200,
