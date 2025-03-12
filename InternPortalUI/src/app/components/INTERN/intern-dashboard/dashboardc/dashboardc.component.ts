@@ -175,12 +175,20 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
 
   fetchInternFeedback(): void {
     if (this.userId && this.selectedMonth) {
-      const monthString = this.selectedMonth.toISOString();
+      const monthString = new Date(this.selectedMonth).toISOString();
       this.http.get(`http://localhost:5180/api/internfeedback/${this.userId}`).subscribe({
         next: (response: any) => {
           this.feedbackData = response;
-          if (response.ratings && Object.keys(response.ratings).length > 0) {
-            this.createRadarChart(response.ratings);
+          console.log('Intern feedback:', this.feedbackData);
+          
+          // Filter feedback data based on selected month
+          const filteredFeedback = response.find((feedback: any) => {
+            const feedbackMonth = new Date(feedback.reviewMonth).toISOString();
+            return feedbackMonth === monthString;
+          });
+
+          if (filteredFeedback && filteredFeedback.ratings && Object.keys(filteredFeedback.ratings).length > 0) {
+            this.createRadarChart(filteredFeedback.ratings);
           } else {
             this.createRadarChart({});
           }
