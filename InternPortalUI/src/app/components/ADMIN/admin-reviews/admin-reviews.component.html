@@ -18,6 +18,7 @@
         <th>Ratings</th>
         <th>Feedback</th>
         <th (click)="sortReviews('overallRating')">Overall Rating</th>
+        <th (click)="sortReviews('reviewMonth')">Review Month</th> <!-- Add Review Month column -->
       </tr>
     </thead>
     <tbody>
@@ -35,6 +36,7 @@
         </td>
         <td>{{ review.feedback }}</td>
         <td>{{ review.overallRating | number: '1.1-1' }}</td>
+        <td>{{ review.reviewMonth }}</td> <!-- Display Review Month -->
       </tr>
     </tbody>
   </table>
