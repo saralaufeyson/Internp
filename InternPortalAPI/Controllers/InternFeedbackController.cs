@@ -55,7 +55,7 @@ public class InternFeedbackController : ControllerBase
     {
         var feedback = await _internFeedbacks
             .Find(f => f.InternId == internId)
-            .FirstOrDefaultAsync();
+            .ToListAsync();
 
         if (feedback == null)
         {

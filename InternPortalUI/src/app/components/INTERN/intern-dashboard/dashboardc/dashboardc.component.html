@@ -49,6 +49,19 @@
     <div class="graph-container ">
       <p class="widget-title">Mentor feedback</p>
       <div *ngIf="userId">
+        <div>
+          <label for="monthSelect">Select Month:</label>
+          <select id="monthSelect" [(ngModel)]="selectedMonth" (change)="fetchInternFeedback()">
+            <option *ngFor="let month of availableMonths" [value]="month">{{ month | date: 'MMMM yyyy' }}</option>
+          </select>
+        </div>
+
+        <div *ngIf="feedbackData">
+          <h3>Feedback for {{ selectedMonth | date: 'MMMM yyyy' }}</h3>
+          <p>{{ feedbackData.feedback }}</p>
+          <!-- Add more fields as needed -->
+        </div>
+
         <canvas id="internRadarChart"></canvas>
       </div>
       <div *ngIf="!userId">
