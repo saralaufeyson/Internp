@@ -59,7 +59,7 @@ public class InternFeedbackController : ControllerBase
 
         if (feedback == null)
         {
-            return NotFound("No feedback found for this intern.");
+            return NotFound();
         }
 
         return Ok(feedback);

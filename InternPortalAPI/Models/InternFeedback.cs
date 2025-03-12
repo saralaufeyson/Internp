@@ -35,7 +35,7 @@ public class InternFeedback
     public double OverallRating { get; set; }
 
     [BsonElement("reviewMonth")]
-    public string ReviewMonth { get; set; } // Change to string to store month and year
+    public DateTime ReviewMonth { get; set; } // Ensure this is a string
 
     public void CalculateOverallRating()
     {
