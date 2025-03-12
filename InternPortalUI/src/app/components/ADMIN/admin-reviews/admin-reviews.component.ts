@@ -44,7 +44,8 @@ export class AdminReviewsComponent implements OnInit {
           this.reviews = data.map(review => ({
             ...review,
             ratingKeys: Object.keys(review.ratings),
-            overallRating: review.overallRating // Ensure overallRating is fetched
+            overallRating: review.overallRating, // Ensure overallRating is fetched
+            reviewMonth: this.formatReviewMonth(review.reviewMonth) // Format reviewMonth
           }));
           this.filteredReviews = this.reviews; // Initialize filtered reviews
         },
@@ -52,6 +53,12 @@ export class AdminReviewsComponent implements OnInit {
           console.error('Error fetching reviews:', err);
         }
       });
+  }
+
+  formatReviewMonth(dateString: string): string {
+    const date = new Date(dateString);
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' };
+    return date.toLocaleDateString(undefined, options);
   }
 
   getLabelForKey(key: string): string {
