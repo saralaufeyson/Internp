@@ -299,13 +299,13 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         type: 'bar',
         data: {
           labels: labels,
-          datasets: [{
-            label: 'Learning Path Progress',
-            data: data,
-            backgroundColor: backgroundColors.slice(0, data.length),
-            borderColor: backgroundColors.slice(0, data.length),
+          datasets: data.map((value, index) => ({
+            label: labels[index],
+            data: [value],
+            backgroundColor: backgroundColors[index],
+            borderColor: backgroundColors[index],
             borderWidth: 1
-          }]
+          }))
         },
         options: {
           responsive: true,
@@ -333,7 +333,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
           },
           plugins: {
             legend: {
-              display: false // Remove legends
+              display: true // Display legends
             },
             tooltip: {
               callbacks: {
