@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { Chart, ChartConfiguration, ChartData, ChartType, registerables } from 'chart.js';
 import { UserDetailsService } from '../../../../services/user-details.service';
 import { RouterModule } from '@angular/router';
@@ -13,7 +14,7 @@ Chart.register(...registerables);
 @Component({
   selector: 'app-dashboardc',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule], // Add FormsModule to imports
   templateUrl: './dashboardc.component.html',
   styleUrls: ['./dashboardc.component.css']
 })
@@ -22,11 +23,13 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
   dashboardData: any;
   goalCount: number | undefined;
   pocCount: { totalPocs: number; inProgressPocs: number; completedPocs: number } | undefined;
-  pocs: any[] = [];
   pieChart: Chart | undefined;
   radarChart: Chart<'radar'> | undefined;
   semiPieChart: Chart | undefined;
   learningPathProgress: any[] = []; // Update to store individual progress
+  availableMonths: Date[] = []; // Use dynamic list of months
+  selectedMonth: Date | null = null; // Add selected month
+  feedbackData: any = {}; // Add feedback data
 
   constructor(
     private http: HttpClient,
@@ -42,9 +45,8 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
       this.updateGoalCount();
       this.updatePocCount();
       this.fetchDashboardData();
-      this.fetchInternFeedback();
-      this.fetchLearningPathProgress();
-      this.fetchPocs();
+      this.fetchLearningPathProgress(); // Fetch learning path progress
+      this.fetchAvailableMonths(); // Fetch available months
     } else {
       console.error('DashboardcComponent initialized without userId');
     }
@@ -154,14 +156,46 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  fetchInternFeedback(): void {
+  fetchAvailableMonths(): void {
     if (this.userId) {
       this.http.get(`http://localhost:5180/api/internfeedback/${this.userId}`).subscribe({
         next: (response: any) => {
-          this.createRadarChart(response.ratings);
+          this.availableMonths = response.map((feedback: any) => new Date(feedback.reviewMonth));
+          if (this.availableMonths.length > 0) {
+            this.selectedMonth = this.availableMonths[0];
+            this.fetchInternFeedback();
+          }
+        },
+        error: (error: any) => {
+          console.error('Error fetching available months:', error);
+        }
+      });
+    }
+  }
+
+  fetchInternFeedback(): void {
+    if (this.userId && this.selectedMonth) {
+      const monthString = new Date(this.selectedMonth).toISOString();
+      this.http.get(`http://localhost:5180/api/internfeedback/${this.userId}`).subscribe({
+        next: (response: any) => {
+          this.feedbackData = response;
+          console.log('Intern feedback:', this.feedbackData);
+          
+          // Filter feedback data based on selected month
+          const filteredFeedback = response.find((feedback: any) => {
+            const feedbackMonth = new Date(feedback.reviewMonth).toISOString();
+            return feedbackMonth === monthString;
+          });
+
+          if (filteredFeedback && filteredFeedback.ratings && Object.keys(filteredFeedback.ratings).length > 0) {
+            this.createRadarChart(filteredFeedback.ratings);
+          } else {
+            this.createRadarChart({});
+          }
         },
         error: (error: any) => {
           console.error('Error fetching intern feedback:', error);
+          this.createRadarChart({});
         }
       });
     }
@@ -181,8 +215,8 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         return;
       }
 
-      const labels = Object.keys(ratings);
-      const data = Object.values(ratings) as number[];
+      const labels = Object.keys(ratings).length > 0 ? Object.keys(ratings) : ['No Feedback'];
+      const data = Object.keys(ratings).length > 0 ? Object.values(ratings) as number[] : [0];
 
       const radarChartData: ChartData<'radar'> = {
         labels: labels,
@@ -204,12 +238,16 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
           scales: {
             r: {
               angleLines: {
-                display: false
+                display: true // Enable grid lines
               },
               suggestedMin: 0,
               suggestedMax: 5,
               ticks: {
-                backdropColor: 'transparent' // Ensure ticks are not trimmed
+                stepSize: 1, // Display only integers
+                backdropColor: 'transparent', // Ensure ticks are not trimmed
+                callback: function(value) {
+                  return Number.isInteger(value) ? value : null; // Show only integer values
+                }
               }
             }
           }
@@ -253,28 +291,28 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
 
       const labels = this.learningPathProgress.map(path => path.title);
       const data = this.learningPathProgress.map(path => path.progress);
+      const backgroundColors = [
+        '#1B3E9C', '#00e6e6', '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
+      ];
 
       this.semiPieChart = new Chart(canvas, {
         type: 'bar',
         data: {
           labels: labels,
-          datasets: [{
-            label: 'Learning Path Progress',
-            data: data,
-            backgroundColor: '#1B3E9C',
-            borderColor: '#1B3E9C',
+          datasets: data.map((value, index) => ({
+            label: labels[index],
+            data: [value],
+            backgroundColor: backgroundColors[index],
+            borderColor: backgroundColors[index],
             borderWidth: 1
-          }]
+          }))
         },
         options: {
           responsive: true,
           maintainAspectRatio: true,
           scales: {
             x: {
-              title: {
-                display: true,
-                text: 'Learning Path'
-              }
+              display: false // Hide x-axis labels
             },
             y: {
               beginAtZero: true,
@@ -283,8 +321,10 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
                 display: true,
                 text: 'Progress (%)'
               },
+              suggestedMin: 0,
+              suggestedMax: 100,
               ticks: {
-                stepSize: 10, // Show progress in multiples of 10
+                stepSize: 20, // Show progress in multiples of 10
                 callback: function(value) {
                   return value + '%';
                 }
@@ -292,6 +332,9 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           },
           plugins: {
+            legend: {
+              display: true // Display legends
+            },
             tooltip: {
               callbacks: {
                 label: function (context) {
@@ -305,18 +348,5 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
     }, 300);
-  }
-
-  fetchPocs(): void {
-    if (this.userId) {
-      this.pocService.getPocProjects(this.userId).subscribe({
-        next: (response: any) => {
-          this.pocs = response;
-        },
-        error: (error: any) => {
-          console.error('Error fetching POCs:', error);
-        }
-      });
-    }
   }
 }

@@ -1,6 +1,10 @@
 <div class="experience-container">
-  <h2>Experience</h2>
-  <button class="add-btn" (click)="showForm = true">Add</button>
+  <div class="exp-header">
+    <h2></h2>
+    <button class="edit-button" (click)="showForm = true">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
 
   <div *ngIf="showForm" class="new-experience-form">
     <div class="form-group">
@@ -23,15 +27,13 @@
     <button class="cancel-btn" (click)="showForm = false">Cancel</button>
   </div>
 
-  <div class="experience-cards">
-    <div *ngFor="let exp of experiences; let i = index" class="experience-card">
-      <div class="experience-content">
-        <h3>{{ exp.title }}</h3>
-        <p><strong>{{ exp.company }}</strong> • {{ exp.duration }}</p>
-        <p>{{ exp.location }}</p>
-        <div class="exp-actions">
-          <i class="bi bi-trash" (click)="deleteExperience(i)"></i>
-        </div>
+  <div *ngFor="let exp of experiences; let i = index" class="experience-card">
+    <div class="experience-content">
+      <h3>{{ exp.title }}</h3>
+      <p><strong>{{ exp.company }}</strong> • {{ exp.duration }}</p>
+      <p>{{ exp.location }}</p>
+      <div class="exp-actions">
+        <i class="bi bi-trash" (click)="deleteExperience(i)"></i>
       </div>
     </div>
   </div>

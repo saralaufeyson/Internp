@@ -49,6 +49,10 @@ export class SideLoginComponent {
   }
 
   submit() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched(); // Mark all fields as touched to trigger validation messages
+      return;
+    }
     if (this.form.valid) {
       this.authService.login(this.form.value).subscribe(
         (response) => {

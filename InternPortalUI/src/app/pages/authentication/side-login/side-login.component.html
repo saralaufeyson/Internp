@@ -1,7 +1,8 @@
 <div class="login-container">
   <div class="login-box">
     <div class="login-header">
-      <img src="./assets/images/logos/dark-logo.svg" alt="InternPortal Logo" style="height: 50px; width: auto; align-items: center;"/>
+      <img src="./assets/images/logos/dark-logo.svg" alt="InternPortal Logo"
+        style="height: 50px; width: auto; align-items: center;" />
     </div>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
@@ -10,6 +11,8 @@
         <input id="email" formControlName="email" type="email"
           [placeholder]="f.email.touched && f.email.errors?.['required'] ? 'Email is required' : 'Enter your email'"
           [ngClass]="{'is-invalid': f.email.touched && f.email.invalid, 'error-text': f.email.touched && f.email.invalid}" />
+        <div *ngIf="f.email.touched && f.email.errors?.['required']" class="error-message">Email is required</div>
+        <div *ngIf="f.email.touched && f.email.errors?.['email']" class="error-message">Invalid email address</div>
       </div>
 
       <div class="input-container password-container">
@@ -18,15 +21,17 @@
           [placeholder]="f.password.touched && f.password.errors?.['required'] ? 'Password is required' : 'Enter your password'"
           [ngClass]="{'is-invalid': f.password.touched && f.password.invalid, 'error-text': f.password.touched && f.password.invalid}" />
         <button type="button" (click)="togglePasswordVisibility()" class="toggle-password-btn">
-         
-<mat-icon *ngIf="hidePassword" style="align-self: right;">visibility_off</mat-icon>
-<mat-icon *ngIf="!hidePassword" style="align-self: right;">visibility</mat-icon>
+
+          <mat-icon *ngIf="hidePassword" style="align-self: right;">visibility_off</mat-icon>
+          <mat-icon *ngIf="!hidePassword" style="align-self: right;">visibility</mat-icon>
         </button>
+        <div *ngIf="f.password.touched && f.password.errors?.['required']" class="error-message">Password is required
+        </div>
       </div>
 
       <div class="checkbox-container">
         <input id="remember" formControlName="remember" type="checkbox" />
-        <label for="remember">  Remember Me</label>
+        <label for="remember"> Remember Me</label>
       </div>
 
       <button type="submit" class="login-btn">Login</button>

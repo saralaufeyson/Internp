@@ -3,6 +3,7 @@ import { ExperienceService } from '../../../services/experience.service';
 import { UserDetailsService } from '../../../services/user-details.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 interface Experience {
   title: string;
@@ -13,7 +14,7 @@ interface Experience {
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,MatIconModule],
   selector: 'app-experience',
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.css']
