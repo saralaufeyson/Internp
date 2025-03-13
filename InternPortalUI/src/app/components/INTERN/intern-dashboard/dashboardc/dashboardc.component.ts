@@ -333,7 +333,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
           },
           plugins: {
             legend: {
-              display: false // Remove legends
+              display: true // Remove legends
             },
             tooltip: {
               callbacks: {

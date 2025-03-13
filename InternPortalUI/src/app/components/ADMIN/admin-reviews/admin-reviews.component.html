@@ -12,7 +12,7 @@
   <table class="reviews-table">
     <thead>
       <tr>
-        <th (click)="sortReviews('internId')">Intern ID</th>
+        
         <th (click)="sortReviews('fullName')">Full Name</th>
         <th (click)="sortReviews('mentorName')">Mentor</th>
         <th>Ratings</th>
@@ -23,7 +23,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let review of filteredReviews">
-        <td>{{ review.internId }}</td>
+        
         <td>{{ review.fullName }}</td>
         <td>{{ review.mentorName }}</td>
         <td>

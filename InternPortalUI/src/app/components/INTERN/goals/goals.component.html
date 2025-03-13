@@ -3,11 +3,20 @@
 <!-- Add this line to include Bootstrap Icons CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
 
-<div class="goals-container d-flex justify-content-between">
+<div class="goals-container">
+  <div class="d-flex justify-content-end">
+    <div class="add-goal-container">
+      <!-- Keep the Add Goal button to the right -->
+      <button class="btn btn-primary" (click)="togglePopup()">
+        <i class="bi bi-plus">Add Goal</i>
+      </button>
+    </div>
+  </div>
+
   <div class="saved-goals-container">
     <!-- Display saved goals -->
     <div *ngIf="goals.length > 0">
-      <h3 class="saved-goals-title">Your Saved Goals</h3>
+      <h3 class="saved-goals-title">Your Goals</h3>
       <div *ngFor="let goal of goals" class="goal">
         <div class="goal-header">
           <div class="goal-name">
@@ -19,9 +28,7 @@
         <div class="goal-description"><strong>Description:</strong> {{ goal.description }}</div>
         <div class="goal-status"><strong>Status:</strong> {{ goal.status }}</div>
         <div class="goal-start-date"><strong>Start Date:</strong> {{ goal.startDate | date: 'shortDate' }}</div>
-        <div class="goal-end-date" *ngIf="goal.status === 'completed'"><strong>End Date:</strong> {{ goal.endDate |
-          date:
-          'shortDate' }}</div>
+        <div class="goal-end-date" *ngIf="goal.status === 'completed'"><strong>End Date:</strong> {{ goal.endDate | date: 'shortDate' }}</div>
         <div class="goal-created"><strong>Created At:</strong> {{ goal.createdAt | date: 'short' }}</div>
 
         <!-- Edit form for the goal -->
@@ -51,13 +58,6 @@
       You have not set any goals yet. Start by adding a goal above!
     </div>
   </div>
-
-  <div class="add-goal-container">
-    <!-- Remove the toggleForm button and use togglePopup instead -->
-    <button class="btn btn-primary" (click)="togglePopup()">
-      <i class="bi bi-plus">Add Goal</i>
-    </button>
-  </div>
 </div>
 
 <!-- Popup Form -->
@@ -69,8 +69,7 @@
     <!-- Goal Name -->
     <div class="form-group">
       <label for="goalName" class="form-label">Goal Name<span style="color: red;">*</span></label>
-      <input id="goalName" formControlName="goalName" type="text" class="form-input"
-        placeholder="Enter your goal name" />
+      <input id="goalName" formControlName="goalName" type="text" class="form-input" placeholder="Enter your goal name" />
       <div *ngIf="form.get('goalName')?.invalid && form.get('goalName')?.touched" class="error-message">
         Goal name is required.
       </div>
@@ -78,8 +77,7 @@
     <!-- Goal Description -->
     <div class="form-group">
       <label for="goalDescription" class="form-label">Goal Description<span style="color: red;">*</span></label>
-      <input id="goalDescription" formControlName="goalDescription" type="text" class="form-input"
-        placeholder="Enter goal description" />
+      <input id="goalDescription" formControlName="goalDescription" type="text" class="form-input" placeholder="Enter goal description" />
       <div *ngIf="form.get('goalDescription')?.invalid && form.get('goalDescription')?.touched" class="error-message">
         Goal description is required.
       </div>

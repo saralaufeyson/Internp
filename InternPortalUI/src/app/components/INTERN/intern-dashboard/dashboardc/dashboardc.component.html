@@ -1,9 +1,5 @@
 <div class="dashboard-container">
-  <!-- Header -->
-  <!-- <h2 class="dashboard-title">Via-Aspire</h2>
-  <p class="dashboard-subtitle">InternVision - See the Progress, Be the Change.</p> -->
-
-  <!-- Top Widgets (Styled Like Tapeli) -->
+ 
   <div class="dashboard-widgets">
     <div class="widget">
       <p class="widget-title">Goals Count</p>
@@ -11,7 +7,7 @@
         <h2 class="widget-value">{{ goalCount }}</h2>
       </div>
       <div *ngIf="goalCount === undefined">
-        <p style="color: red;">Error!Connect backend</p>
+        <p style="color: #474747;">Opps! Somethings wrong</p>
       </div>
     </div>
     <div class="widget">
@@ -20,7 +16,7 @@
         <h2 class="widget-value">{{ pocCount.totalPocs }}</h2>
       </div>
       <div *ngIf="pocCount === undefined">
-        <p style="color: red;">Error!Connect backend</p>
+        <p style="color: #474747;">Opps! Somethings wrong</p>
       </div>
     </div>
     <div class="widget">
@@ -29,7 +25,7 @@
         <h2 class="widget-value">{{ pocCount.inProgressPocs }}</h2>
       </div>
       <div *ngIf="pocCount === undefined">
-        <p style="color: red;">Error!Connect backend</p>
+        <p style="color: #474747;">Opps! Somethings wrong</p>
       </div>
     </div>
     <div class="widget">
@@ -38,7 +34,7 @@
         <h2 class="widget-value">{{ pocCount.completedPocs }}</h2>
       </div>
       <div *ngIf="pocCount === undefined">
-        <p style="color: red;">Error!Connect backend</p>
+        <p style="color: #474747;">Opps! Somethings wrong</p>
       </div>
     </div>
   </div>
@@ -49,15 +45,16 @@
     <div class="graph-container ">
       <p class="widget-title">Mentor feedback</p>
       <div *ngIf="userId">
-        <div>
-          <label for="monthSelect">Select Month:</label>
-          <select id="monthSelect" [(ngModel)]="selectedMonth" (change)="fetchInternFeedback()">
+        <div style="margin-bottom: 20px;">
+          <label for="monthSelect" style=" margin-right: 10px;" >Select Month:</label>
+          <select id="monthSelect" [(ngModel)]="selectedMonth" (change)="fetchInternFeedback()" style="padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+            <option value="Select" selected disabled>Select Month</option>
             <option *ngFor="let month of availableMonths" [value]="month">{{ month | date: 'MMMM yyyy' }}</option>
           </select>
         </div>
 
         <div *ngIf="feedbackData">
-          <h3>Feedback for {{ selectedMonth | date: 'MMMM yyyy' }}</h3>
+          
           <p>{{ feedbackData.feedback }}</p>
           <!-- Add more fields as needed -->
         </div>
@@ -65,7 +62,7 @@
         <canvas id="internRadarChart"></canvas>
       </div>
       <div *ngIf="!userId">
-        <p style="color: #474747;">your mentor is yet to review you</p>
+        <p style="color: #474747;">Your mentor is yet to review you</p>
       </div>
     </div>
 
@@ -76,7 +73,7 @@
       <div *ngIf="learningPathProgress.length >= 0">
         <canvas id="learningPathPieChart"></canvas>
       </div>
-      <!-- <p *ngIf="learningPathProgress.length === 0" style="color: #474747;">No learning paths available</p> -->
+      <p *ngIf="learningPathProgress.length === 0" style="color: #474747;">No learning paths available</p> 
        
     </div>
 
@@ -87,7 +84,7 @@
         <canvas id="pocPieChart"></canvas>
       </div>
       <div *ngIf="!pocCount">
-        <p style="color: red;">Error!Connect backend</p>
+        <p style="color: #474747;">Opps! Somethings wrong</p>
       </div>
     </div>
 

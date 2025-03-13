@@ -5,34 +5,28 @@
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   max-width: 800px;
-  /* Expanded max-width */
   margin: 20px auto;
   text-align: center;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column; /* Change to column direction */
+  align-items: flex-end;
 }
 
 .goals-title {
   font-size: 20px;
-  /* Reduced font size */
   font-weight: bold;
   color: #1e293b;
   margin-bottom: 15px;
-  /* Reduced margin */
 }
 
 /* Form Styling */
 .goals-form {
   background: #ffffff;
   padding: 20px;
-  /* Reduced padding */
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   flex: 2;
-  /* Further increased width */
   margin-right: 15px;
-  /* Reduced margin */
 }
 
 .form-group {
@@ -75,16 +69,13 @@
 
 .submit-button {
   width: auto;
-  /* Adjust width */
   padding: 8px 16px;
-  /* Reduced padding */
   background: #D2E5F6;
   color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 15px;
-  /* Reduced font size */
   transition: 0.3s;
 }
 
@@ -99,15 +90,13 @@
 
 /* Saved Goals */
 .saved-goals-container {
-  flex: 0.8;
-  /* Reduced size */
+  flex: 1; /* Make the container fill the whole available width */
   background: #ffffff;
   padding: 15px;
-  /* Reduced padding */
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-top: 0;
-  /* Remove top margin */
+  width: 100%; /* Make the container fill the whole container */
+  margin-top: 20px; /* Add margin to separate from the Add Goal button */
 }
 
 .saved-goals {
@@ -116,11 +105,9 @@
 
 .saved-goals-title {
   font-size: 18px;
-  /* Reduced font size */
   font-weight: bold;
   color: #1e293b;
   margin-bottom: 10px;
-  /* Reduced margin */
 }
 
 .goal {
@@ -128,10 +115,9 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 15px;
+  margin-bottom: 25px; /* Increased vertical spacing */
   text-align: left;
   font-size: 13px;
-  /* Reduced font size */
 }
 
 .goal-header {
@@ -140,16 +126,18 @@
   align-items: center;
 }
 
+.goal-header .goal-name {
+  flex-grow: 1;
+}
+
 .goal-header i {
   cursor: pointer;
-  /* Make icons clickable */
   transition: color 0.3s ease;
-  /* Smooth transition for color change */
+  margin-left: 10px; /* Add margin for better alignment */
 }
 
 .goal-header i:hover {
   color: blue;
-  /* Change icon color to blue on hover */
 }
 
 .goal-label {
@@ -183,8 +171,8 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: auto;
-  background-color: #D2E5F6; /* Updated button color */
-  color: black; /* Updated icon color */
+  background-color: #D2E5F6;
+  color: black;
 }
 
 .btn-danger {
@@ -210,7 +198,7 @@
   font-size: 24px;
   cursor: pointer;
   transition: color 0.3s ease;
-  color: black; /* Updated icon color */
+  color: black;
 }
 
 .plus-icon:hover {
@@ -289,4 +277,11 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
+}
+
+/* Add Goal Button */
+.add-goal-container .btn {
+  display: block; /* Make the button display as block */
+  width: auto; /* Adjust the width as needed */
+  margin-bottom: 20px; /* Add some margin at the bottom */
 }
