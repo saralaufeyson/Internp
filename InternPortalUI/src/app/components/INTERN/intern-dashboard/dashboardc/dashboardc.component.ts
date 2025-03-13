@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { Chart, ChartConfiguration, ChartData, ChartType, registerables } from 'chart.js';
 import { UserDetailsService } from '../../../../services/user-details.service';
 import { RouterModule } from '@angular/router';
@@ -13,7 +14,7 @@ Chart.register(...registerables);
 @Component({
   selector: 'app-dashboardc',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule], // Add FormsModule to imports
   templateUrl: './dashboardc.component.html',
   styleUrls: ['./dashboardc.component.css']
 })
@@ -26,6 +27,9 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
   radarChart: Chart<'radar'> | undefined;
   semiPieChart: Chart | undefined;
   learningPathProgress: any[] = []; // Update to store individual progress
+  availableMonths: Date[] = []; // Use dynamic list of months
+  selectedMonth: Date | null = null; // Add selected month
+  feedbackData: any = {}; // Add feedback data
 
   constructor(
     private http: HttpClient,
@@ -41,8 +45,8 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
       this.updateGoalCount();
       this.updatePocCount();
       this.fetchDashboardData();
-      this.fetchInternFeedback();
-      this.fetchLearningPathProgress();
+      this.fetchLearningPathProgress(); // Fetch learning path progress
+      this.fetchAvailableMonths(); // Fetch available months
     } else {
       console.error('DashboardcComponent initialized without userId');
     }
@@ -152,12 +156,39 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  fetchInternFeedback(): void {
+  fetchAvailableMonths(): void {
     if (this.userId) {
       this.http.get(`http://localhost:5180/api/internfeedback/${this.userId}`).subscribe({
         next: (response: any) => {
-          if (response.ratings && Object.keys(response.ratings).length > 0) {
-            this.createRadarChart(response.ratings);
+          this.availableMonths = response.map((feedback: any) => new Date(feedback.reviewMonth));
+          if (this.availableMonths.length > 0) {
+            this.selectedMonth = this.availableMonths[0];
+            this.fetchInternFeedback();
+          }
+        },
+        error: (error: any) => {
+          console.error('Error fetching available months:', error);
+        }
+      });
+    }
+  }
+
+  fetchInternFeedback(): void {
+    if (this.userId && this.selectedMonth) {
+      const monthString = new Date(this.selectedMonth).toISOString();
+      this.http.get(`http://localhost:5180/api/internfeedback/${this.userId}`).subscribe({
+        next: (response: any) => {
+          this.feedbackData = response;
+          console.log('Intern feedback:', this.feedbackData);
+          
+          // Filter feedback data based on selected month
+          const filteredFeedback = response.find((feedback: any) => {
+            const feedbackMonth = new Date(feedback.reviewMonth).toISOString();
+            return feedbackMonth === monthString;
+          });
+
+          if (filteredFeedback && filteredFeedback.ratings && Object.keys(filteredFeedback.ratings).length > 0) {
+            this.createRadarChart(filteredFeedback.ratings);
           } else {
             this.createRadarChart({});
           }
@@ -295,7 +326,6 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
               ticks: {
                 stepSize: 20, // Show progress in multiples of 10
                 callback: function(value) {
-               
                   return value + '%';
                 }
               }
