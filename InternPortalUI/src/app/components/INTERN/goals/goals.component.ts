@@ -63,12 +63,12 @@ export class GoalsComponent implements OnInit {
       (response: any) => {
         console.log('Fetched goals:', response);
         // Update the component's goals state with the fetched data
-        this.goals = response.map((goal: any) => ({
+        this.goals = (response.map((goal: any) => ({
           ...goal,
           status: goal.status,
           startDate: goal.startDate,
           endDate: goal.endDate
-        })) || []; // If no goals, set an empty array
+        })) || []).reverse(); // Reverse the order of goals
       },
       (error) => {
         console.error('Failed to fetch goals:', error);
