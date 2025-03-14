@@ -4,15 +4,28 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
+  max-width: 1200px; /* Make it wider */
   margin: 20px auto;
   text-align: center;
   display: flex;
-  flex-direction: column; /* Change to column direction */
-  align-items: flex-end;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.goals-title {
+.goals-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.goals-header h2 {
+  margin: 0;
+}
+
+/* Heading */
+h2,
+h3 {
   font-size: 20px;
   font-weight: bold;
   color: #1e293b;
@@ -80,7 +93,7 @@
 }
 
 .submit-button:hover {
-  background: #D2E5F6;
+  background: #c5dff5;
 }
 
 .submit-button:disabled {
@@ -89,25 +102,10 @@
 }
 
 /* Saved Goals */
-.saved-goals-container {
-  flex: 1; /* Make the container fill the whole available width */
-  background: #ffffff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Make the container fill the whole container */
-  margin-top: 20px; /* Add margin to separate from the Add Goal button */
-}
-
-.saved-goals {
-  margin-top: 25px;
-}
-
-.saved-goals-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #1e293b;
-  margin-bottom: 10px;
+.goal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 .goal {
@@ -115,7 +113,6 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 25px; /* Increased vertical spacing */
   text-align: left;
   font-size: 13px;
 }
@@ -133,7 +130,6 @@
 .goal-header i {
   cursor: pointer;
   transition: color 0.3s ease;
-  margin-left: 10px; /* Add margin for better alignment */
 }
 
 .goal-header i:hover {

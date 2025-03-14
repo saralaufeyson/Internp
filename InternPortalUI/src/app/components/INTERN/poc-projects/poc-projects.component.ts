@@ -16,6 +16,7 @@ export class PocProjectsComponent implements OnInit {
   pocs: Array<any> = [];
   userId: string = ''; // Get the logged-in user's ID here (e.g., from LocalStorage or an AuthService)
   errorMessage: string = '';  // For storing error messages
+  showForm: boolean = false;  // Property to control form visibility
 
   constructor(private fb: FormBuilder, private pocService: PocService) {
     this.pocForm = this.fb.group({
@@ -36,6 +37,10 @@ export class PocProjectsComponent implements OnInit {
       console.error('No user ID found in localStorage. User is not logged in.');
       this.errorMessage = 'No user ID found. Please log in.';
     }
+  }
+
+  toggleForm(): void {
+    this.showForm = !this.showForm;
   }
 
   loadPocProjects() {
@@ -74,6 +79,7 @@ export class PocProjectsComponent implements OnInit {
             startDate: '',
             endDate: ''
           });
+          this.showForm = false; // Hide the form after submission
         },
         (error) => {
           console.error('Error adding PoC Project', error);
