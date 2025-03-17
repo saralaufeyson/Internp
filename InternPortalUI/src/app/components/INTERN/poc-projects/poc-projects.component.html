@@ -1,11 +1,14 @@
 <div class="poc-projects-container">
   <div class="poc-projects-header">
     <h2>Your POCs / Projects</h2>
-    <button (click)="toggleForm()" class="btn btn-primary">Add PoC</button>
+    
+    <button class="btn btn-primary" (click)="toggleForm()">
+      <i class="bi bi-plus">Add POC</i>
+    </button>
   </div>
 
   <div class="saved-pocs">
-    <h3>Your Saved POCs:</h3>
+    <h3>Your Saved POCs</h3>
     <div *ngIf="pocs.length > 0" class="poc-grid">
       <div *ngFor="let poc of pocs" class="poc">
         <div class="poc-header">
@@ -44,7 +47,7 @@
   <!-- Modal for Add PoC Form -->
   <div *ngIf="showForm" class="modal">
     <div class="modal-content">
-      <span class="close" (click)="toggleForm()">&times;</span>
+      <span class="close" (click)="toggleForm()" style="align-self: flex-end;">&times;</span>
       <form [formGroup]="pocForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="projectName">POC Title:<span style="color: red;">*</span></label>
