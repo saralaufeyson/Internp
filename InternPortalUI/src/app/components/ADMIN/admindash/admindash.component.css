@@ -18,7 +18,8 @@
   display: inline-block;
   max-width: 100%;
   text-align: center;
-  width: auto; /* Ensure the card wraps around the text */
+  width: auto;
+  /* Ensure the card wraps around the text */
 }
 
 /* Card Heading */
@@ -31,7 +32,7 @@
 }
 
 /* Spacing Between Cards */
-.card + .card {
+.card+.card {
   margin-top: 20px;
 }
 
@@ -68,7 +69,6 @@ canvas {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
   /* Reduced gap */
 }
 
@@ -145,12 +145,14 @@ canvas {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  flex-wrap: wrap; /* Ensure the cards wrap within the row */
+  flex-wrap: wrap;
+  /* Ensure the cards wrap within the row */
 }
 
 .row .card {
-  flex: 1 1 calc(33.333% - 20px); /* Ensure three cards per row with spacing */
-  margin: 10px;
+  flex: 1 1 calc(33.333% - 20px);
+  /* Ensure three cards per row with spacing */
+  margin: 5px;
 }
 
 /* Mentor Dashboard Styles */
@@ -284,8 +286,10 @@ canvas {
 canvas {
   width: 100% !important;
   height: 100% !important;
-  max-width: 300px; /* Increase max-width */
-  max-height: 300px; /* Increase max-height */
+  max-width: 300px;
+  /* Increase max-width */
+  max-height: 300px;
+  /* Increase max-height */
   display: block;
   margin: 0 auto;
 }
@@ -326,13 +330,15 @@ button:focus {
 
 /* Large Icon Styling */
 .large-icon {
-  font-size: 2em; /* Adjust the size as needed */
+  font-size: 2em;
+  /* Adjust the size as needed */
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .large-icon:hover {
-  color: #D2E5F6; /* Change to desired hover color */
+  color: #D2E5F6;
+  /* Change to desired hover color */
 }
 
 /* Tabs Styling */
@@ -351,8 +357,9 @@ button:focus {
   border-top-right-radius: 0.25rem;
   color: #474747;
   cursor: pointer;
-  
-  padding: 10px 15px; /* Add padding */
+
+  padding: 10px 15px;
+  /* Add padding */
 }
 
 .nav-link:hover {
@@ -363,8 +370,10 @@ button:focus {
   color: #000000;
   background-color: #fff;
   border-color: #ddd #ddd #fff;
-  font-size: 1.01rem; /* Increase font size for active tab */
-  font-weight: bold; /* Make text bold */
+  font-size: 1.01rem;
+  /* Increase font size for active tab */
+  font-weight: bold;
+  /* Make text bold */
 }
 
 /* Adjust PoCs card to wrap around the text */
@@ -461,9 +470,11 @@ button:focus {
 
 /* Specific Graph Containers */
 .poc-pie-chart-container {
-  flex: 1 1 40%; /* 40% width */
+  flex: 1 1 40%;
+  /* 40% width */
 }
 
 .intern-goals-bar-chart-container {
-  flex: 1 1 60%; /* 60% width */
+  flex: 1 1 60%;
+  /* 60% width */
 }

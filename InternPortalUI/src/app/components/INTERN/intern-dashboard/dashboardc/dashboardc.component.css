@@ -167,7 +167,7 @@
   /* Include padding and border in the element's total width and height */
   flex: 1 1 calc(50% - 20px);
   /* 50% width minus gap */
-  margin: 10px;
+  margin: 5px;
   /* Add margin for spacing */
 }
 
