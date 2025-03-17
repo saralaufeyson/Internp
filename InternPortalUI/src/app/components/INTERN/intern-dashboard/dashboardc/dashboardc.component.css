@@ -169,6 +169,8 @@
   /* 50% width minus gap */
   margin: 5px;
   /* Add margin for spacing */
+  height: auto;
+  /* Allow dynamic height adjustment */
 }
 
 .internRadarChart .graph-container {

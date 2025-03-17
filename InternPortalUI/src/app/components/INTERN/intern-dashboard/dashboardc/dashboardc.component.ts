@@ -299,33 +299,32 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         type: 'bar',
         data: {
           labels: labels,
-          datasets: data.map((value, index) => ({
-            label: labels[index],
-            data: [value],
-            backgroundColor: backgroundColors[index],
-            borderColor: backgroundColors[index],
-            borderWidth: 1,
-            barThickness: 20 // Set a fixed bar width
-          }))
+          datasets: [{
+            label: 'Progress (%)',
+            data: data,
+            backgroundColor: backgroundColors,
+            borderColor: backgroundColors,
+            borderWidth: 1
+          }]
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false, // Disable aspect ratio to allow custom height
+          maintainAspectRatio: false,
           scales: {
             x: {
-              display: false // Hide x-axis labels
+              ticks: {
+                autoSkip: false // Ensure all labels are shown
+              }
             },
             y: {
               beginAtZero: true,
-              max: 100, // Set the maximum value to 100
+              max: 100,
               title: {
                 display: true,
                 text: 'Progress (%)'
               },
-              suggestedMin: 0,
-              suggestedMax: 100,
               ticks: {
-                stepSize: 20, // Show progress in multiples of 10
+                stepSize: 10,
                 callback: function (value) {
                   return value + '%';
                 }
@@ -334,20 +333,12 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
           },
           plugins: {
             legend: {
-              display: true,
-              position: 'top', // Position the legend at the top
-              align: 'start', // Align the legend to the start
-              labels: {
-                boxWidth: 10, // Adjust the box width
-                padding: 20 // Add padding between legend and chart
-              }
+              display: false // Hide legend for simplicity
             },
             tooltip: {
               callbacks: {
                 label: function (context) {
-                  const label = context.dataset.label || '';
-                  const value = context.raw;
-                  return `${label}: ${value}%`;
+                  return `${context.label}: ${context.raw}%`;
                 }
               }
             }
@@ -355,10 +346,10 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
 
-      // Set a fixed height for the chart container
+      // Adjust the height of the chart container dynamically
       const chartContainer = canvas.parentElement;
       if (chartContainer) {
-        chartContainer.style.height = '500px'; // Set desired height
+        chartContainer.style.height = `${this.learningPathProgress.length * 50}px`; // Adjust height based on the number of bars
       }
     }, 300);
   }
