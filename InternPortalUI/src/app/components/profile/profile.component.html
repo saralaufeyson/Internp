@@ -38,7 +38,7 @@
   <!-- Tab Content -->
   <div class="tab-content">
     <div *ngIf="activeTab === 'about'" class="about-section">
-      <div class="edit-button-container">
+      <div class="edit-button-container" style="text-align: right;">
         <button (click)="toggleEditAbout()" class="edit-button">
           <mat-icon>{{ isEditingAbout ? 'close' : 'edit' }}</mat-icon>
         </button>
@@ -46,7 +46,9 @@
       <div *ngIf="isEditingAbout">
         <textarea [(ngModel)]="userProfile.about" rows="10" cols="80" placeholder="Enter about information..."
           class="about-textarea"></textarea>
-        <button (click)="saveAboutSection()" class="save-button">Save</button>
+        <div style=" margin-top: 10px;">
+          <button (click)="saveAboutSection()" class="save-button">Save</button>
+        </div>
       </div>
       <div *ngIf="!isEditingAbout">
         <p>{{ userProfile.about }}</p>

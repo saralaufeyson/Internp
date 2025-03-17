@@ -130,34 +130,15 @@ button:disabled {
   border: 1px solid blue;
 }
 
-/* .btn-primary {
+.btn-primary {
   background-color: #D2E5F6;
   color: black;
   border: none;
-} */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: auto;
-  background-color: #D2E5F6;
-  color: black;
-  border: 1px solid blue;
-}
-
-.plus-icon:hover {
-  color: blue;
-
 }
 
 .btn-primary:hover {
-  background-color: blue;
-  color: #fff;
+  background-color: #c5dff5;
+  color: #000000;
   border: 1px solid #D2E5F6;
 }
 
@@ -227,7 +208,7 @@ button:disabled {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Make it fill the whole page */
+  max-width: 1200px; /* Make it wider */
   text-align: center;
 }
 
@@ -265,9 +246,6 @@ button:disabled {
   width: 80%;
   max-width: 600px; /* Make it wider */
   border-radius: 8px;
-  position: relative; /* Ensure it stays centered */
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Center vertically */
 }
 
 .close {
