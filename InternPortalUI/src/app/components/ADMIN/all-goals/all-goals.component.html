@@ -1,6 +1,18 @@
 <div class="container">
   <h2>All Goals</h2>
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  
+  <!-- Filter Section -->
+  <div class="filter-section">
+    <button (click)="toggleDropdown()" class="btn btn-primary " style="background-color: #D2E5F6; color: black;">Filter by Username</button>
+    <div *ngIf="showDropdown" class="dropdown-menu">
+      <div *ngFor="let username of uniqueUsernames">
+        <input type="checkbox" [value]="username" (change)="onCheckboxChange($event)" /> {{ username }}
+      </div>
+      <button (click)="applyFilter()" class="btn btn-secondary">Apply Filter</button>
+    </div>
+  </div>
+  
   <table class="table table-striped">
     <thead>
       <tr>
@@ -14,7 +26,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let goal of goals">
+      <tr *ngFor="let goal of filteredGoals">
         <td>{{ goal.username }}</td>
         <td>{{ goal.goalName }}</td>
         <td>{{ goal.description }}</td>

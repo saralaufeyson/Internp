@@ -29,6 +29,32 @@ h2 {
   font-size: 1rem;
 }
 
+/* Filter Section Styling */
+.filter-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-section .form-control {
+  width: 300px;
+}
+
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
 /* Table Styling */
 .table {
   width: 100%;
