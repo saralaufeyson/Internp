@@ -180,7 +180,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
         next: (response: any) => {
           this.feedbackData = response;
           console.log('Intern feedback:', this.feedbackData);
-          
+
           // Filter feedback data based on selected month
           const filteredFeedback = response.find((feedback: any) => {
             const feedbackMonth = new Date(feedback.reviewMonth).toISOString();
@@ -245,7 +245,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
               ticks: {
                 stepSize: 1, // Display only integers
                 backdropColor: 'transparent', // Ensure ticks are not trimmed
-                callback: function(value) {
+                callback: function (value) {
                   return Number.isInteger(value) ? value : null; // Show only integer values
                 }
               }
@@ -304,12 +304,13 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
             data: [value],
             backgroundColor: backgroundColors[index],
             borderColor: backgroundColors[index],
-            borderWidth: 1
+            borderWidth: 1,
+            barThickness: 20 // Set a fixed bar width
           }))
         },
         options: {
           responsive: true,
-          maintainAspectRatio: true,
+          maintainAspectRatio: false, // Disable aspect ratio to allow custom height
           scales: {
             x: {
               display: false // Hide x-axis labels
@@ -325,7 +326,7 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
               suggestedMax: 100,
               ticks: {
                 stepSize: 20, // Show progress in multiples of 10
-                callback: function(value) {
+                callback: function (value) {
                   return value + '%';
                 }
               }
@@ -333,7 +334,13 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
           },
           plugins: {
             legend: {
-              display: true // Display legends
+              display: true,
+              position: 'top', // Position the legend at the top
+              align: 'start', // Align the legend to the start
+              labels: {
+                boxWidth: 10, // Adjust the box width
+                padding: 20 // Add padding between legend and chart
+              }
             },
             tooltip: {
               callbacks: {
@@ -347,6 +354,12 @@ export class DashboardcComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         }
       });
+
+      // Set a fixed height for the chart container
+      const chartContainer = canvas.parentElement;
+      if (chartContainer) {
+        chartContainer.style.height = '500px'; // Set desired height
+      }
     }, 300);
   }
 }
