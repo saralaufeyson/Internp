@@ -123,9 +123,11 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px; /* Reduced gap */
+  gap: 10px;
+  /* Reduced gap */
   margin-bottom: 10px;
-  width: 98%; /* Ensure widgets take full width */
+  width: 98%;
+  /* Ensure widgets take full width */
 }
 
 .widget {
@@ -140,8 +142,9 @@
 
 .widget-title {
   font-size: 14px;
-  color: #6c757d;
+  color: #4a4a4a;
   display: inline;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
@@ -169,7 +172,8 @@
 }
 
 .internRadarChart .graph-container {
-  width: 100%; /* Ensure the internRadarChart takes full width */
+  width: 100%;
+  /* Ensure the internRadarChart takes full width */
 }
 
 .graph-title {
@@ -206,7 +210,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 100%; /* Ensure graph sections take full width */
+  width: 100%;
+  /* Ensure graph sections take full width */
 }
 
 .chart-legend {
