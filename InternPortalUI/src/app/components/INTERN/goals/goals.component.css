@@ -123,6 +123,10 @@ h3 {
   align-items: center;
 }
 
+.goal-header .goal-name {
+  flex-grow: 1;
+}
+
 .goal-header i {
   cursor: pointer;
   transition: color 0.3s ease;
@@ -269,4 +273,11 @@ h3 {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
+}
+
+/* Add Goal Button */
+.add-goal-container .btn {
+  display: block; /* Make the button display as block */
+  width: auto; /* Adjust the width as needed */
+  margin-bottom: 20px; /* Add some margin at the bottom */
 }
