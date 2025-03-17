@@ -4,35 +4,42 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  /* Expanded max-width */
+  max-width: 1200px; /* Make it wider */
   margin: 20px auto;
   text-align: center;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.goals-title {
+.goals-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.goals-header h2 {
+  margin: 0;
+}
+
+/* Heading */
+h2,
+h3 {
   font-size: 20px;
-  /* Reduced font size */
   font-weight: bold;
   color: #1e293b;
   margin-bottom: 15px;
-  /* Reduced margin */
 }
 
 /* Form Styling */
 .goals-form {
   background: #ffffff;
   padding: 20px;
-  /* Reduced padding */
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   flex: 2;
-  /* Further increased width */
   margin-right: 15px;
-  /* Reduced margin */
 }
 
 .form-group {
@@ -75,21 +82,18 @@
 
 .submit-button {
   width: auto;
-  /* Adjust width */
   padding: 8px 16px;
-  /* Reduced padding */
   background: #D2E5F6;
   color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 15px;
-  /* Reduced font size */
   transition: 0.3s;
 }
 
 .submit-button:hover {
-  background: #D2E5F6;
+  background: #c5dff5;
 }
 
 .submit-button:disabled {
@@ -98,29 +102,10 @@
 }
 
 /* Saved Goals */
-.saved-goals-container {
-  flex: 0.8;
-  /* Reduced size */
-  background: #ffffff;
-  padding: 15px;
-  /* Reduced padding */
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-top: 0;
-  /* Remove top margin */
-}
-
-.saved-goals {
-  margin-top: 25px;
-}
-
-.saved-goals-title {
-  font-size: 18px;
-  /* Reduced font size */
-  font-weight: bold;
-  color: #1e293b;
-  margin-bottom: 10px;
-  /* Reduced margin */
+.goal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 .goal {
@@ -128,10 +113,8 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 15px;
   text-align: left;
   font-size: 13px;
-  /* Reduced font size */
 }
 
 .goal-header {
@@ -142,14 +125,11 @@
 
 .goal-header i {
   cursor: pointer;
-  /* Make icons clickable */
   transition: color 0.3s ease;
-  /* Smooth transition for color change */
 }
 
 .goal-header i:hover {
   color: blue;
-  /* Change icon color to blue on hover */
 }
 
 .goal-label {
@@ -183,8 +163,8 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: auto;
-  background-color: #D2E5F6; /* Updated button color */
-  color: black; /* Updated icon color */
+  background-color: #D2E5F6;
+  color: black;
 }
 
 .btn-danger {
@@ -210,7 +190,7 @@
   font-size: 24px;
   cursor: pointer;
   transition: color 0.3s ease;
-  color: black; /* Updated icon color */
+  color: black;
 }
 
 .plus-icon:hover {

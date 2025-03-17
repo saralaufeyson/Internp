@@ -3,26 +3,31 @@
 <!-- Add this line to include Bootstrap Icons CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
 
-<div class="goals-container d-flex justify-content-between">
-  <div class="saved-goals-container">
-    <!-- Display saved goals -->
-    <div *ngIf="goals.length > 0">
-      <h3 class="saved-goals-title">Your Saved Goals</h3>
+<div class="goals-container">
+  <div class="goals-header">
+    <h2>Your Goals</h2>
+    <button class="btn btn-primary" (click)="togglePopup()">
+      <i class="bi bi-plus">Add Goal</i>
+    </button>
+  </div>
+
+  <div class="saved-goals">
+    <h3>Your Saved Goals</h3>
+    <div *ngIf="goals.length > 0" class="goal-grid">
       <div *ngFor="let goal of goals" class="goal">
         <div class="goal-header">
-          <div class="goal-name">
-            <strong class="goal-label">Goal Name:</strong> <strong>{{ goal.goalName }}</strong>
+          <h4>{{ goal.goalName }} ({{ goal.status }})</h4>
+          <div class="goal-actions">
+            <i class="bi bi-pencil" (click)="editGoal(goal)"></i>
+            <i class="bi bi-trash" (click)="deleteGoal(goal._id)"></i>
           </div>
-          <i class="bi bi-pencil" (click)="editGoal(goal)"></i>
-          <i class="bi bi-trash" (click)="deleteGoal(goal._id)"></i>
         </div>
-        <div class="goal-description"><strong>Description:</strong> {{ goal.description }}</div>
-        <div class="goal-status"><strong>Status:</strong> {{ goal.status }}</div>
-        <div class="goal-start-date"><strong>Start Date:</strong> {{ goal.startDate | date: 'shortDate' }}</div>
-        <div class="goal-end-date" *ngIf="goal.status === 'completed'"><strong>End Date:</strong> {{ goal.endDate |
-          date:
-          'shortDate' }}</div>
-        <div class="goal-created"><strong>Created At:</strong> {{ goal.createdAt | date: 'short' }}</div>
+        <p><strong>Description:</strong> {{ goal.description }}</p>
+        <p><strong>Start Date:</strong> {{ goal.startDate | date: 'shortDate' }}</p>
+        <p *ngIf="goal.status === 'completed'">
+          <strong>End Date:</strong> {{ goal.endDate | date: 'shortDate' }}
+        </p>
+        <p><strong>Created At:</strong> {{ goal.createdAt | date: 'short' }}</p>
 
         <!-- Edit form for the goal -->
         <div *ngIf="editingGoal && editingGoal._id === goal._id" class="edit-goal-form">
@@ -46,17 +51,9 @@
         </div>
       </div>
     </div>
-    <!-- Show message when no goals are available -->
     <div *ngIf="goals.length === 0" class="no-goals-message">
       You have not set any goals yet. Start by adding a goal above!
     </div>
-  </div>
-
-  <div class="add-goal-container">
-    <!-- Remove the toggleForm button and use togglePopup instead -->
-    <button class="btn btn-primary" (click)="togglePopup()">
-      <i class="bi bi-plus">Add Goal</i>
-    </button>
   </div>
 </div>
 
@@ -69,8 +66,7 @@
     <!-- Goal Name -->
     <div class="form-group">
       <label for="goalName" class="form-label">Goal Name<span style="color: red;">*</span></label>
-      <input id="goalName" formControlName="goalName" type="text" class="form-input"
-        placeholder="Enter your goal name" />
+      <input id="goalName" formControlName="goalName" type="text" class="form-input" placeholder="Enter your goal name" />
       <div *ngIf="form.get('goalName')?.invalid && form.get('goalName')?.touched" class="error-message">
         Goal name is required.
       </div>
@@ -78,8 +74,7 @@
     <!-- Goal Description -->
     <div class="form-group">
       <label for="goalDescription" class="form-label">Goal Description<span style="color: red;">*</span></label>
-      <input id="goalDescription" formControlName="goalDescription" type="text" class="form-input"
-        placeholder="Enter goal description" />
+      <input id="goalDescription" formControlName="goalDescription" type="text" class="form-input" placeholder="Enter goal description" />
       <div *ngIf="form.get('goalDescription')?.invalid && form.get('goalDescription')?.touched" class="error-message">
         Goal description is required.
       </div>
