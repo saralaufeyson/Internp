@@ -4,10 +4,10 @@
   
   <!-- Filter Section -->
   <div class="filter-section">
-    <button (click)="toggleDropdown()" class="btn btn-primary " style="background-color: #D2E5F6; color: black;">Filter by Username</button>
+    <button (click)="toggleDropdown()" class="btn btn-primary" style="background-color: #D2E5F6; color: black;">Filter by Username</button>
     <div *ngIf="showDropdown" class="dropdown-menu">
       <div *ngFor="let username of uniqueUsernames">
-        <input type="checkbox" [value]="username" (change)="onCheckboxChange($event)" /> {{ username }}
+        <input type="checkbox" [value]="username" [checked]="selectedUsernames.has(username)" (change)="onCheckboxChange($event)" /> {{ username }}
       </div>
       <button (click)="applyFilter()" class="btn btn-secondary">Apply Filter</button>
     </div>
