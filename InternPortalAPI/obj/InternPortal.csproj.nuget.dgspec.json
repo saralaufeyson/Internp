@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj": {}
+    "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj": {}
   },
   "projects": {
-    "c:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj": {
+    "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
+        "projectUniqueName": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
         "projectName": "InternPortal",
-        "projectPath": "c:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
+        "projectPath": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\InternPortal.csproj",
         "packagesPath": "C:\\Users\\dneelam\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\obj\\",
+        "outputPath": "C:\\Users\\dneelam\\InternPortal\\InternPortalAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dneelam\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -51,6 +51,18 @@
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[3.2.1, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.72, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.4.5, )"
             }
           },
           "imports": [

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk"> <!-- This should NOT be "Microsoft.NET.Test.Sdk" -->
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework> <!-- Use a stable .NET version -->
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Required for running tests -->
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="Castle.Core" Version="5.1.1" />
+    <PackageReference Include="coverlet.collector" Version="3.1.2" /> <!-- For code coverage -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Reference to the main application -->
+    <ProjectReference Include="..\..\InternPortalAPI\InternPortal.csproj" />
+  </ItemGroup>
+
+</Project>

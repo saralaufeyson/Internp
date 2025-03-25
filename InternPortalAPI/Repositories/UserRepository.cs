@@ -97,7 +97,9 @@ namespace InternPortal.Repositories
 
             var internObjectIds = internIds.Where(id => ObjectId.TryParse(id, out _)).ToList();
 
+#pragma warning disable CS8604 // Possible null reference argument.
             var interns = await _users.Find(u => internObjectIds.Contains(u.Id) && u.Role == "Intern").ToListAsync();
+#pragma warning restore CS8604 // Possible null reference argument.
             if (interns.Count != internIds.Count)
             {
                 return false;
