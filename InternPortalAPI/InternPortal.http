@@ -1,6 +1,122 @@
 @internp_HostAddress = http://localhost:5180
-
-GET {{internp_HostAddress}}/weatherforecast/
 Accept: application/json
 
-###
+### Get all goals
+GET {{internp_HostAddress}}/api/Goal/getAllGoals
+
+### Get goals by user ID
+GET {{internp_HostAddress}}/api/Goal/getGoals/{{userId}}
+
+### Get goal count by user ID
+GET {{internp_HostAddress}}/api/Goal/getGoalCount/{{userId}}
+
+### Get all goals count
+GET {{internp_HostAddress}}/api/Goal/getAllGoalsCount
+
+### Add a new goal
+POST {{internp_HostAddress}}/api/Goal/addGoal
+Content-Type: application/json
+
+{
+  "userId": "string",
+  "goalName": "string",
+  "description": "string",
+  "status": "string",
+  "startDate": "2023-01-01T00:00:00Z",
+  "endDate": "2023-12-31T00:00:00Z"
+}
+
+### Update a goal
+PUT {{internp_HostAddress}}/api/Goal/updateGoal/{{goalId}}
+Content-Type: application/json
+
+{
+  "status": "string",
+  "endDate": "2023-12-31T00:00:00Z"
+}
+
+### Delete a goal
+DELETE {{internp_HostAddress}}/api/Goal/deleteGoal/{{goalId}}
+
+### Get feedback by intern ID
+GET {{internp_HostAddress}}/api/InternFeedback/{{internId}}
+
+### Get feedbacks by mentor name
+GET {{internp_HostAddress}}/api/InternFeedback/mentor/{{mentorName}}
+
+### Get all feedbacks
+GET {{internp_HostAddress}}/api/InternFeedback
+
+### Submit feedback
+POST {{internp_HostAddress}}/api/InternFeedback/submit
+Content-Type: application/json
+
+{
+  "internId": "string",
+  "fullName": "string",
+  "mentorName": "string",
+  "ratings": {
+    "domainKnowledge": 5,
+    "functionalKnowledge": 4,
+    "processAdherence": 3,
+    "teamWork": 4,
+    "learningCapabilities": 5,
+    "attentionToDetail": 4,
+    "communication": 5,
+    "curiosityAndProactiveness": 4,
+    "problemSolving": 5,
+    "delivery": 4
+  },
+  "tasks": [
+    {
+      "taskDetails": "string",
+      "startDate": "2023-01-01T00:00:00Z",
+      "endDate": "2023-12-31T00:00:00Z",
+      "priority": 1,
+      "weightage": 10,
+      "status": "In Progress",
+      "month": "January"
+    }
+  ],
+  "recommendation": "string",
+  "areasOfImprovement": "string",
+  "feedback": "string",
+  "overallRating": 4.5,
+  "reviewMonth": "2023-01"
+}
+
+### Delete feedback by intern ID
+DELETE {{internp_HostAddress}}/api/InternFeedback/{{internId}}
+
+### Get mentors
+GET {{internp_HostAddress}}/api/User/getMentors
+
+### Get mentors with interns
+GET {{internp_HostAddress}}/api/User/getMentorsWithInterns
+
+### Assign interns to mentor
+POST {{internp_HostAddress}}/api/User/assignInternsToMentor
+Content-Type: application/json
+
+{
+  "mentorId": "string",
+  "internIds": ["string1", "string2"]
+}
+
+### Get POC project stats by user ID
+GET {{internp_HostAddress}}/api/User/getPocProjectStats/{{userId}}
+
+### Get all POC project stats
+GET {{internp_HostAddress}}/api/User/getAllPocProjectStats
+
+### Get total goals from all assigned interns
+GET {{internp_HostAddress}}/api/Mentor/{{mentorId}}/total-goals
+
+### Get all POCs for assigned interns
+GET {{internp_HostAddress}}/api/Mentor/{{mentorId}}/total-pocs
+
+### Get in-progress POCs for assigned interns
+GET {{internp_HostAddress}}/api/Mentor/{{mentorId}}/poc-project-stats
+
+### Get learning paths for assigned interns
+GET {{internp_HostAddress}}/api/Mentor/{{mentorId}}/interns-learning-paths
