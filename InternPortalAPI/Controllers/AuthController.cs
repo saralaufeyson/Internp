@@ -19,29 +19,58 @@ namespace InternPortal.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] User user)
         {
-            var result = await _userRepository.RegisterUserAsync(user);
-            if (result == "User with this email already exists.")
+            if (string.IsNullOrWhiteSpace(user.Email) || string.IsNullOrWhiteSpace(user.Password))
             {
-                return Conflict(result);
+                return BadRequest("Email and Password are required.");
             }
-            return Ok(result);
+
+            try
+            {
+                // Ensure passwords are hashed and salted in the repository implementation
+                var result = await _userRepository.RegisterUserAsync(user);
+                if (result == "User with this email already exists.")
+                {
+                    return Conflict(result);
+                }
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                // Log the exception securely (e.g., using Serilog or NLog)
+                // Avoid exposing sensitive details to the client
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var (success, message, user) = await _userRepository.LoginUserAsync(request);
-            if (!success)
+            if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
             {
-                return Unauthorized(message);
+                return BadRequest("Email and Password are required.");
             }
 
-            if (user == null)
+            try
             {
-                return Unauthorized("User not found.");
-            }
+                // Ensure secure token generation and validation in the repository
+                var (success, message, user) = await _userRepository.LoginUserAsync(request);
+                if (!success)
+                {
+                    return Unauthorized(message);
+                }
 
-            return Ok(new { Message = message, UserId = user.Id, Role = user.Role, Username = user.Username });
+                if (user == null)
+                {
+                    return Unauthorized("User not found.");
+                }
+
+                return Ok(new { Message = message, UserId = user.Id, Role = user.Role, Username = user.Username });
+            }
+            catch (Exception)
+            {
+                // Log the exception securely
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
         }
 
         [HttpGet("role/{userId}")]

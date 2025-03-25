@@ -24,8 +24,6 @@ C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortal
 C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\ZstdSharp.dll
 C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\obj\Debug\net9.0\InternPortal.csproj.AssemblyReference.cache
 C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\obj\Debug\net9.0\InternPortal.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\obj\Debug\net9.0\InternPortal.AssemblyInfoInputs.cache
-C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\obj\Debug\net9.0\InternPortal.AssemblyInfo.cs
 C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\obj\Debug\net9.0\InternPortal.csproj.CoreCompileInputs.cache
 C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\obj\Debug\net9.0\InternPortal.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\obj\Debug\net9.0\InternPortal.MvcApplicationPartsAssemblyInfo.cache
@@ -46,3 +44,12 @@ C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortal
 C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\obj\Debug\net9.0\InternPortal.pdb
 C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\obj\Debug\net9.0\InternPortal.genruntimeconfig.cache
 C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\obj\Debug\net9.0\ref\InternPortal.dll
+C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\xunit.runner.utility.netcoreapp10.dll
+C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\Castle.Core.dll
+C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\Moq.dll
+C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\xunit.abstractions.dll
+C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\xunit.assert.dll
+C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\xunit.core.dll
+C:\Users\lkanchi\OneDrive - ViaPlus\Documents\internportal3\Internp\InternPortalAPI\bin\Debug\net9.0\xunit.execution.dotnet.dll
