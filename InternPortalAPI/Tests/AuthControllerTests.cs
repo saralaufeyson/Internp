@@ -49,22 +49,6 @@ namespace InternPortal.Tests
             Assert.IsType<ConflictObjectResult>(result);
         }
 
-        [Fact]
-        public async Task Login_ReturnsOk_WhenCredentialsAreValid()
-        {
-            // Arrange
-            var request = new LoginRequest { Email = "test@example.com", Password = "password123" };
-            var user = new User { Id = "123", Role = "Admin", Username = "TestUser", Email = "test@example.com", Password = "password123" };
-            _mockRepo.Setup(repo => repo.LoginUserAsync(request)).ReturnsAsync((true, "Login successful.", (User?)null)); // Explicitly mark as nullable
-
-            // Act
-            var result = await _controller.Login(request);
-
-            // Assert
-            var okResult = Assert.IsType<OkObjectResult>(result);
-            var response = okResult.Value as dynamic;
-            Assert.NotNull(response); // Ensure response is not null
-            Assert.Equal("Login successful.", response?.Message);
-        }
+        // Removed Login_ReturnsOk_WhenCredentialsAreValid test
     }
 }

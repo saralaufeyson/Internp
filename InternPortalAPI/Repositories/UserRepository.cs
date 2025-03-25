@@ -66,6 +66,8 @@ namespace InternPortal.Repositories
                 return (false, "Invalid email or password.", null);
             }
 
+            // Removed JWT token generation logic
+
             return (true, "Login successful.", existingUser);
         }
 
