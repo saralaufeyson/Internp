@@ -13,11 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InternPortal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b16b3f7960356601cf300478199541fb809547c")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c0e91a9c7ac5a0d2b244dea17bb9a45a5dd3f09")]
->>>>>>> 39e338c234fb75d4276886cbebed229fed76e78c
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1ab9e78bed77467dc2d965f38afcaaa7f3af2f14")]
 [assembly: System.Reflection.AssemblyProductAttribute("InternPortal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InternPortal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

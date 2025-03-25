@@ -1,12 +1,10 @@
 using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using InternPortal.Repositories;
 using InternPortal.Interfaces;
@@ -26,22 +24,6 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPocProjectRepository, PocProjectRepository>();
 builder.Services.AddScoped<IMentorRepository, MentorRepository>();
 builder.Services.AddScoped<ILearningPathRepository, LearningPathRepository>(); // ✅ Register IAuthService
-// Configure Authentication using JWT
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("YourSecretKey")), // Change this to a secure key
-        ValidateIssuer = false,
-        ValidateAudience = false
-    };
-});
 
 // Enable CORS for Angular
 builder.Services.AddCors(options =>
@@ -61,7 +43,6 @@ var app = builder.Build();
 // Configure Middleware Pipeline
 app.UseHttpsRedirection();
 app.UseCors("AllowAngularApp");
-app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers(); // Ensure controllers are mapped
 
